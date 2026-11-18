@@ -12,7 +12,7 @@ namespace ProjectRTD.Gameplay
 {
     internal static class AnimalPartCsv
     {
-        private const string Columns = "partId,animal,slot,displayName,description,weightDelta,healthDelta,heightDelta,skill";
+        private const string Columns = "partId,animal,slot,displayName,description,weightDelta,heightDelta,skill";
 
         internal static List<PartSheetRow> Parse(string csv)
         {
@@ -43,7 +43,7 @@ namespace ProjectRTD.Gameplay
                 T Named<T>(string key, string value) where T : struct, Enum => Enum.GetNames(typeof(T)).Contains(value, StringComparer.OrdinalIgnoreCase) ? (T)Enum.Parse(typeof(T), value, true) : throw Error(row, key, "미등록 값: " + value);
                 var p = new PartSheetRow { partId = Get("partId"), displayName = Get("displayName"), description = Get("description"),
                     animal = Get("animal"), slot = Named<PartSlot>("slot", Get("slot")),
-                    heightDelta = Get("heightDelta"), skill = Get("skill"), weightDelta = Number("weightDelta"), healthDelta = Number("healthDelta") };
+                    heightDelta = Get("heightDelta"), skill = Get("skill"), weightDelta = Number("weightDelta") };
                 if (!Regex.IsMatch(p.partId, @"\A[A-Za-z0-9_-]+\z") || !ids.Add(p.partId)) throw Error(row, "partId", "빈 키, 잘못된 문자 또는 중복: " + p.partId);
                 if (p.displayName.Length == 0) throw Error(row, "displayName", "빈 표시명");
                 if (p.heightDelta != "-") Number("heightDelta");

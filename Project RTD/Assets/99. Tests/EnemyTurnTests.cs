@@ -5,6 +5,23 @@ using UnityEngine;
 
 public class EnemyTurnTests
 {
+    [Test]
+    public void Stage04UsesAnimatedScientistPrefab()
+    {
+        var scene = UnityEditor.SceneManagement.EditorSceneManager.OpenPreviewScene("Assets/00. Scenes/Stage04.unity");
+        try
+        {
+            var active = new System.Collections.Generic.List<PlatformEnemy>();
+            foreach (var root in scene.GetRootGameObjects()) active.AddRange(root.GetComponentsInChildren<PlatformEnemy>());
+            Assert.That(active.Count, Is.EqualTo(1));
+            var enemy = active[0];
+            Assert.That(PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(enemy.gameObject), Is.EqualTo("Assets/02. Prefabs/Scientist.prefab"));
+            var art = new SerializedObject(enemy).FindProperty("animatedArt").objectReferenceValue as Transform;
+            Assert.That(art && art.GetComponent("ScientistAnimator"), Is.True);
+        }
+        finally { UnityEditor.SceneManagement.EditorSceneManager.ClosePreviewScene(scene); }
+    }
+
     [TestCase("Drone")]
     [TestCase("Scientist")]
     public void CardTurnMirrorsOnlyEnemyArt(string kind)

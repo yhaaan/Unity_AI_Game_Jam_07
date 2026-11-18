@@ -3842,7 +3842,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 04    DRONE
+  m_text: 04    SCIENTIST
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3f82882ada419f443ba84b4db89c5358, type: 2}
   m_sharedMaterial: {fileID: -1873953731298723051, guid: 3f82882ada419f443ba84b4db89c5358, type: 2}

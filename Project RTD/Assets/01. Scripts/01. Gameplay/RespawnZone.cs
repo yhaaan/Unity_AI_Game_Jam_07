@@ -6,14 +6,13 @@ namespace ProjectRTD.Gameplay
     [RequireComponent(typeof(Collider2D))]
     public sealed class RespawnZone : MonoBehaviour
     {
-        [SerializeField] private bool outsideStage = true;
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player") && other.attachedRigidbody &&
                 other.attachedRigidbody.linearVelocityY < 0f && StageRuntime.Instance)
             {
-                StageRuntime.Instance.RegisterFall(outsideStage);
+                StageRuntime.Instance.ReturnToStart(falling: true);
             }
         }
     }

@@ -9,7 +9,7 @@ namespace ProjectRTD.Gameplay
     [DisallowMultipleComponent]
     public sealed class StageRuntime : MonoBehaviour
     {
-        public enum Challenge { HighJump, Glide, Lightweight, Drone, LowCeiling, Power, Swim }
+        public enum Challenge { HighJump, Glide, Lightweight, Scientist, LowCeiling, Power, Swim }
 
         [SerializeField] private Transform player;
         [SerializeField] private Transform spawnPoint;
@@ -17,21 +17,45 @@ namespace ProjectRTD.Gameplay
         [SerializeField] private Challenge challenge;
 
         private PlayerPartLoadout loadout;
-        private PlatformEnemy drone;
         private PlayerMotor2D motor;
         private Rigidbody2D body;
-        private Collider2D playerCollider;
-        private Vector2 safePosition;
-        private bool fallDamaged;
+        // Failures always return to the stage entrance, never to a recent landing.
 
         public static StageRuntime Instance { get; private set; }
         public Transform Player => player;
         public Transform SpawnPoint => spawnPoint;
-        public int Health { get; private set; } = 1;
-        public int MaxHealth { get; private set; } = 1;
         public bool IsRespawning { get; private set; }
 
-        public event Action HealthChanged;
+        internal bool InDoorway { get; private set; }
+        bool motorWasEnabled, bodyWasSimulated;
+
+        internal void BeginDoorway()
+        {
+            InDoorway = true;
+            if (motor) { motorWasEnabled = motor.enabled; motor.enabled = false; }
+            if (body)
+            {
+                bodyWasSimulated = body.simulated;
+                body.linearVelocity = Vector2.zero;
+                body.angularVelocity = 0;
+                body.simulated = false;
+            }
+            if (deathFade) deathFade.transform.SetAsLastSibling();
+        }
+
+        internal void SetDoorFade(float alpha)
+        {
+            if (deathFade) deathFade.color = new Color(0, 0, 0, Mathf.Clamp01(alpha));
+        }
+
+        internal void EndDoorway()
+        {
+            if (body) { body.position = player.position; body.simulated = bodyWasSimulated; }
+            if (player.TryGetComponent<PlayerInputReader>(out var input)) input.ConsumeJumpPressed();
+            if (motor) { motor.ResetAfterTeleport(); motor.enabled = motorWasEnabled; }
+            InDoorway = false;
+        }
+
         public event Action ResetMechanics;
 
         public string Requirement => challenge switch
@@ -39,7 +63,7 @@ namespace ProjectRTD.Gameplay
             Challenge.HighJump => "JUMP LEVEL 3",
             Challenge.Glide => "GLIDING BODY",
             Challenge.Lightweight => "WEIGHT BELOW 3",
-            Challenge.Drone => "AT LEAST 2 HP OR A HEAD THE DRONE IGNORES",
+            Challenge.Scientist => "BEAR OR LION HEAD",
             Challenge.LowCeiling => "HEIGHT 0-2",
             Challenge.Power => "POWER LEVEL 3",
             Challenge.Swim => "DUCK OR AXOLOTL BODY",
@@ -51,7 +75,7 @@ namespace ProjectRTD.Gameplay
             Challenge.HighJump => build.Jump >= 3,
             Challenge.Glide => build.HasEffect(PartEffect.Glide),
             Challenge.Lightweight => build.Weight < 3,
-            Challenge.Drone => !drone || build.Head.Animal != drone.TargetAnimal || build.Health >= 2,
+            Challenge.Scientist => build.HasEffect(PartEffect.CanPass),
             Challenge.LowCeiling => build.Height is >= 0 and <= 2,
             Challenge.Power => build.Power >= 3,
             Challenge.Swim => build.HasEffect(PartEffect.Float),
@@ -64,41 +88,40 @@ namespace ProjectRTD.Gameplay
             spawnPoint = spawnTransform;
         }
 
-        public void TakeDamage(bool lethal = false, float deathDelay = 0f)
+        public void ReturnToStart(bool falling = false)
         {
-            if (!player || !spawnPoint || IsRespawning) return;
-            Health = lethal ? 0 : Health - 1;
-            HealthChanged?.Invoke();
-            if (Health == 0) StartCoroutine(Respawn(deathDelay));
+            if (!player || !spawnPoint || IsRespawning || InDoorway) return;
+            StartCoroutine(Respawn(falling));
         }
 
-        public void RegisterFall(bool outsideStage)
-        {
-            if (IsRespawning || (motor && motor.IsClimbing)) return;
-            if (!fallDamaged)
-            {
-                fallDamaged = true;
-                TakeDamage();
-            }
-
-            // A fall onto a lower floor carries on. Recover only beyond the last floor.
-            if (outsideStage && !IsRespawning) PlacePlayer(safePosition);
-        }
-
-        private IEnumerator Respawn(float delay)
+        private IEnumerator Respawn(bool falling)
         {
             IsRespawning = true;
+            bool restoreMotor = motor && motor.enabled;
+            bool restorePhysics = body && body.simulated;
+            if (motor) motor.enabled = false;
+            if (body) body.simulated = false;
+            if (deathFade) deathFade.transform.SetAsLastSibling();
             SoundManager.Play(Sfx.Defeat);
-            if (delay > 0f) yield return new WaitForSecondsRealtime(delay);
-
+            if (falling)
+            {
+                // Keep the fall readable even when the basin bottom or a lower ledge has a collider.
+                Vector3 start = player.position;
+                const float duration = .42f;
+                for (float t = 0f; t < duration; t += Time.deltaTime)
+                {
+                    player.position = start + Vector3.down * (1.5f * t + 6f * t * t);
+                    yield return null;
+                }
+            }
             yield return Fade(0f, 1f);
             ResetMechanics?.Invoke();
-            safePosition = spawnPoint.position;
-            PlacePlayer(safePosition);
-            Health = MaxHealth;
-            HealthChanged?.Invoke();
+            PlacePlayer(spawnPoint.position);
             SoundManager.Play(Sfx.Respawn);
             yield return Fade(1f, 0f);
+            if (body) body.simulated = restorePhysics;
+            if (player.TryGetComponent<PlayerInputReader>(out var input)) input.ConsumeJumpPressed();
+            if (motor) motor.enabled = restoreMotor;
             IsRespawning = false;
         }
 
@@ -130,66 +153,37 @@ namespace ProjectRTD.Gameplay
                 body.rotation = 0f;
             }
             player.position = position;
-            fallDamaged = false;
-        }
-
-        private void ApplyBuild(PlayerPartBuild build)
-        {
-            MaxHealth = build?.Health ?? 1;
-            Health = MaxHealth;
-            HealthChanged?.Invoke();
-        }
-
-        private void LateUpdate()
-        {
-            if (!motor || !body || !playerCollider || IsRespawning || !motor.IsGrounded) return;
-            Collider2D ground = motor.GroundCollider;
-            if (!ground) return;
-            fallDamaged = false;
-            if (ground.attachedRigidbody || ground.GetComponentInParent<CollapsingBridge2D>()) return;
-
-            Bounds surface = ground.bounds;
-            float margin = playerCollider.bounds.extents.x;
-            if (surface.size.x < margin * 2f) return;
-            safePosition = new Vector2(Mathf.Clamp(body.position.x, surface.min.x + margin, surface.max.x - margin),
-                surface.max.y + body.position.y - playerCollider.bounds.min.y + .02f);
         }
 
         private void Awake()
         {
             Instance = this;
             StageCourseLayout.Apply(this);
-            if (challenge == Challenge.Drone) drone = GetComponentInChildren<PlatformEnemy>();
-            if (spawnPoint) safePosition = spawnPoint.position;
             if (!player) return;
             player.TryGetComponent(out body);
             player.TryGetComponent(out motor);
-            player.TryGetComponent(out playerCollider);
-            if (player.TryGetComponent(out loadout))
-            {
-                loadout.Changed += ApplyBuild;
-                ApplyBuild(loadout.Current);
-            }
+            player.TryGetComponent(out loadout);
         }
 
         private void OnDestroy()
         {
-            if (loadout) loadout.Changed -= ApplyBuild;
             if (Instance == this)
             {
                 Instance = null;
             }
         }
 
+        private void Reroll()
+        {
+            if (!InDoorway && !IsRespawning && Time.timeScale > 0f && loadout) loadout.TryResummon();
+        }
+
         private void Update()
         {
             Keyboard keyboard = Keyboard.current;
-            if (keyboard == null || IsRespawning || Time.timeScale <= 0f) return;
-            if (keyboard.f8Key.wasPressedThisFrame && loadout) loadout.TryResummon();
-            if (keyboard.rKey.wasPressedThisFrame)
-            {
-                SceneFlow.RestartActiveScene();
-            }
+            if (keyboard == null || InDoorway || IsRespawning || Time.timeScale <= 0f) return;
+            if (keyboard.rKey.wasPressedThisFrame) SceneFlow.RestartActiveScene();
+            else if (keyboard.leftShiftKey.wasPressedThisFrame || keyboard.rightShiftKey.wasPressedThisFrame) Reroll();
         }
     }
 }

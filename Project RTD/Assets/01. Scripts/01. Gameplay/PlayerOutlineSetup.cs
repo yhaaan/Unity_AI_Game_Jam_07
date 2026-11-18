@@ -59,7 +59,7 @@ namespace ProjectRTD.Gameplay
                 var popup = root.GetComponent<PlayerStatPopup>();
                 if (!popup) popup = root.AddComponent<PlayerStatPopup>();
                 var popupFields = new SerializedObject(popup);
-                foreach (var stat in new[] { "weight", "speed", "health", "jump" })
+                foreach (var stat in new[] { "weight", "speed", "jump" })
                     popupFields.FindProperty(stat + "Icon").objectReferenceValue = AssetDatabase.LoadAssetAtPath<Sprite>(Icons + stat + ".png");
                 popupFields.FindProperty("font").objectReferenceValue = AssetDatabase.LoadAssetAtPath<TMPro.TMP_FontAsset>(Font);
                 popupFields.FindProperty("startDelay").floatValue = 0.88f; // right after the combine cloud bursts

@@ -56,8 +56,8 @@ public sealed class PlayerPartBuildTests
                     Assert.That(sheet.FindPropertyRelative(key).stringValue, Is.EqualTo((string)typeof(PartSheetRow).GetField(key).GetValue(row)), row.partId + "/" + key);
                 Assert.That(part.Animal, Is.EqualTo(row.Animal), row.partId);
                 Assert.That(part.DisplayName, Is.EqualTo(row.displayName), row.partId);
-                Assert.That(new[] { part.WeightDelta, part.HealthDelta, part.HeightDelta },
-                    Is.EqualTo(new[] { row.weightDelta, row.healthDelta, row.Height }), row.partId);
+                Assert.That(new[] { part.WeightDelta, part.HeightDelta },
+                    Is.EqualTo(new[] { row.weightDelta, row.Height }), row.partId);
                 Assert.That(part.EffectIds, Is.EquivalentTo(row.Effects()), row.partId);
             }
         }
@@ -85,7 +85,7 @@ public sealed class PlayerPartBuildTests
             Assert.That(build.Jump, Is.EqualTo(jump[build.Weight + 6]));
             Assert.That(build.Power, Is.EqualTo(power[build.Weight + 6]));
             Assert.That(build.Speed, Is.EqualTo(3));
-            Assert.That(build.Health, Is.InRange(1, 3));
+
             foreach (var effect in h.EffectIds.Concat(b.EffectIds).Concat(l.EffectIds)) Assert.That(build.HasEffect(effect));
         }
     }
@@ -223,7 +223,7 @@ public sealed class PlayerPartBuildTests
     {
         AnimalPartDefinition Part(string slot) => AssetDatabase.LoadAssetAtPath<AnimalPartDefinition>("Assets/06. Data/Part_lion_" + slot + ".asset");
         var lion = new PlayerPartBuild(Part("head"), Part("body"), Part("legs"));
-        Assert.That(new[] { lion.Power, lion.Jump, lion.Weight, lion.Health }, Is.EqualTo(new[] { 3, 1, 3, 3 }));
+        Assert.That(new[] { lion.Power, lion.Jump, lion.Weight }, Is.EqualTo(new[] { 3, 1, 3 }));
         Assert.That(lion.Height, Is.EqualTo(4));
         Assert.That(lion.HasEffect(PartEffect.CanPass), Is.True);
         Assert.That(lion.HasEffect(PartEffect.Glide), Is.False);

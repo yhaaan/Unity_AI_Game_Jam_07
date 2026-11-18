@@ -1,19 +1,19 @@
-partId,animal,slot,displayName,description,weightDelta,healthDelta,heightDelta,skill
-chicken_head,chicken,Head,닭 머리,,0,0,1,
-chicken_body,chicken,Body,닭 몸통,,0,1,-,canFly
-chicken_legs,chicken,Legs,닭 다리,,0,0,1,
-rabbit_head,rabbit,Head,토끼 머리,,-1,0,0,
-rabbit_body,rabbit,Body,토끼 몸통,,-1,0,-,
-rabbit_legs,rabbit,Legs,토끼 다리,,-1,0,0,
-lion_head,lion,Head,사자 머리,,1,0,2,canPass
-lion_body,lion,Body,사자 몸통,,1,2,-,
-lion_legs,lion,Legs,사자 다리,,1,0,2,
-bear_head,bear,Head,곰 머리,,2,0,2,canPass
-bear_body,bear,Body,곰 몸통,,2,2,-,
-bear_legs,bear,Legs,곰 다리,,2,0,2,
-duck_head,duck,Head,오리 머리,,0,0,1,
-duck_body,duck,Body,오리 몸통,,0,1,-,"canFly, canSwim"
-duck_legs,duck,Legs,오리 다리,,0,0,1,
-upa_head,upa,Head,우파루파 머리,,-2,0,0,
-upa_body,upa,Body,우파루파 몸통,,-2,0,-,canSwim
-upa_legs,upa,Legs,우파루파 다리,,-2,0,0,
+partId,animal,slot,displayName,description,weightDelta,heightDelta,skill
+chicken_head,chicken,Head,닭 머리,,0,1,
+chicken_body,chicken,Body,닭 몸통,,0,-,canFly
+chicken_legs,chicken,Legs,닭 다리,,0,1,
+rabbit_head,rabbit,Head,토끼 머리,,-1,0,
+rabbit_body,rabbit,Body,토끼 몸통,,-1,-,
+rabbit_legs,rabbit,Legs,토끼 다리,,-1,0,
+lion_head,lion,Head,사자 머리,,1,2,canPass
+lion_body,lion,Body,사자 몸통,,1,-,
+lion_legs,lion,Legs,사자 다리,,1,2,
+bear_head,bear,Head,곰 머리,,2,2,canPass
+bear_body,bear,Body,곰 몸통,,2,-,
+bear_legs,bear,Legs,곰 다리,,2,2,
+duck_head,duck,Head,오리 머리,,0,1,
+duck_body,duck,Body,오리 몸통,,0,-,"canFly, canSwim"
+duck_legs,duck,Legs,오리 다리,,0,1,
+upa_head,upa,Head,우파루파 머리,,-2,0,
+upa_body,upa,Body,우파루파 몸통,,-2,-,canSwim
+upa_legs,upa,Legs,우파루파 다리,,-2,0,

@@ -40,10 +40,33 @@ namespace ProjectRTD.Gameplay
             if (targetLabel) targetLabel.text = $"TARGET: {targetAnimal.ToString().ToUpperInvariant()}";
         }
 
+        StageRuntime patrolStage;
+        Vector2 patrolStart;
+        bool PatrolPaused => patrolStage && (patrolStage.IsRespawning || patrolStage.InDoorway);
+
+        void ResetPatrol()
+        {
+            body.position = patrolStart;
+            transform.position = new Vector3(patrolStart.x, patrolStart.y, transform.position.z);
+            direction = -1;
+            nextAttack = 0f;
+        }
+
+        void OnDestroy()
+        {
+            if (patrolStage) patrolStage.ResetMechanics -= ResetPatrol;
+        }
+
         private void Start()
         {
             if (islandGuard) return;
             body = GetComponent<Rigidbody2D>();
+            if (kind == Kind.Scientist)
+            {
+                patrolStage = GetComponentInParent<StageRuntime>();
+                patrolStart = body.position;
+                if (patrolStage) patrolStage.ResetMechanics += ResetPatrol;
+            }
             hitbox = GetComponent<BoxCollider2D>();
             var visual = transform.Find("Visual");
             if (animatedArt)
@@ -64,7 +87,7 @@ namespace ProjectRTD.Gameplay
 
         private void FixedUpdate()
         {
-            if (!platform) return;
+            if (!platform || PatrolPaused) return;
             var bounds = platform.bounds;
             float margin = Mathf.Min(bounds.extents.x, hitbox.bounds.extents.x);
             float left = bounds.min.x + margin, right = bounds.max.x - margin;
@@ -98,12 +121,12 @@ namespace ProjectRTD.Gameplay
             {
                 player.GetComponentInChildren<PlayerPartVisual>()?.PlayScare();
             }
-            stage.TakeDamage();
+            stage.ReturnToStart();
         }
 
         private void Update()
         {
-            if (!scientist && !drone) return;
+            if (PatrolPaused || (!scientist && !drone)) return;
             var player = StageRuntime.Instance ? StageRuntime.Instance.Player : null;
             bool near = player && Mathf.Abs(player.position.x - transform.position.x) < noticeRange
                         && Mathf.Abs(player.position.y - transform.position.y) < 2f;

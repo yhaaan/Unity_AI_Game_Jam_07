@@ -18,7 +18,7 @@ namespace ProjectRTD.Gameplay
         [TextArea] public string description;
         public PartAnimal Animal => animal == "upa" ? PartAnimal.Axolotl : (PartAnimal)Enum.Parse(typeof(PartAnimal), animal, true);
         
-        public int weightDelta, healthDelta;
+        public int weightDelta;
         public string heightDelta = "0", skill = "";
         public int Height => heightDelta == "-" ? 0 : int.Parse(heightDelta, System.Globalization.CultureInfo.InvariantCulture);
 
@@ -54,7 +54,7 @@ namespace ProjectRTD.Gameplay
 
         public int HeightDelta => sheet.Height;
         public int WeightDelta => sheet.weightDelta;
-        public int HealthDelta => sheet.healthDelta;
+
         public IEnumerable<PartEffect> EffectIds => sheet.Effects();
         public Sprite Sprite => sprite;
         [SerializeField, Tooltip("다리 PNG의 위쪽부터 발바닥까지의 픽셀 거리")]

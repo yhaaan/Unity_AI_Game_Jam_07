@@ -11,7 +11,7 @@ using UnityEngine.UI;
 
 namespace ProjectRTD.Gameplay
 {
-    // Builds the bottom-left stat column (weight, speed, health, jump) under the "Stage HUD" canvas of Stage01.
+    // Builds the bottom-left stat column (weight, speed, jump) under the "Stage HUD" canvas of Stage01.
     internal static class StageStatHudSetup
     {
         const string Stage = "Assets/00. Scenes/Stage01.unity";
@@ -19,7 +19,7 @@ namespace ProjectRTD.Gameplay
         const string PanelName = "Player Stats";
         const float Row = 76f, IconSize = 52f;
         const int Version = 5;
-        static readonly string[] Stats = { "weight", "speed", "health", "jump" };
+        static readonly string[] Stats = { "weight", "speed", "jump" };
 
         [InitializeOnLoadMethod]
         static void FirstInstall() => EditorApplication.delayCall += () =>

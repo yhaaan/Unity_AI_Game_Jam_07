@@ -26,7 +26,7 @@ namespace ProjectRTD.Gameplay
 
             collapsed = true;
             foreach (BoxCollider2D plank in planks) plank.enabled = false;
-            stage.TakeDamage(lethal: true, deathDelay: .22f);
+            stage.ReturnToStart(falling: true);
         }
 
         private void Update()
