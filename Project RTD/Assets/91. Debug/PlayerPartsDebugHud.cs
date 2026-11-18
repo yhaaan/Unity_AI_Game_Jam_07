@@ -12,8 +12,7 @@ namespace ProjectRTD.Debugging
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
         private PlayerPartLoadout loadout;
         private PlayerMotor2D motor;
-        private bool rerollFailed;
-        private bool visible = true;
+        private bool visible;
 
         private void Awake()
         {
@@ -29,10 +28,6 @@ namespace ProjectRTD.Debugging
 
         }
 
-        private void Reroll()
-        {
-            if (CanReassemble()) rerollFailed = !loadout.TryResummon();
-        }
 
         private static bool CanReassemble()
         {
@@ -72,15 +67,12 @@ namespace ProjectRTD.Debugging
             }
             else
             {
-                var stage = StageRuntime.Instance;
-                int health = stage ? stage.Health : build.Health;
                 GUILayout.Label($"머리: {build.Head.DisplayName}\n몸통: {build.Body.DisplayName}\n다리: {build.Legs.DisplayName}");
-                GUILayout.Label($"키 {build.Height}   |   무게 {build.Weight}   |   체력 {health}/{build.Health}\n" +
+                GUILayout.Label($"키 {build.Height}   |   무게 {build.Weight}\n" +
                     $"이동속도 {build.Speed}/5   ({motor.MoveSpeed:0.##} 유닛/초)\n" +
                     $"파워 {build.Power}/3   |   점프력 {build.Jump}/3   (초속 {motor.JumpVelocity:0.##} 유닛/초)");
             }
-            if (GUILayout.Button("전체 파츠 랜덤 재추첨 [F8]")) Reroll();
-            if (rerollFailed) GUILayout.Label("재추첨 실패: 카탈로그와 슬롯 후보를 확인하세요.");
+            GUILayout.Label("파츠 재조합: Shift");
             GUILayout.EndVertical();
             GUILayout.EndArea();
         }
