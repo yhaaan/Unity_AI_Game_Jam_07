@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ProjectRTD.Gameplay::ProjectRTD.Gameplay.AnimalPartDefinition
   sheet:
     partId: chicken_body
+    animal: chicken
+    slot: 1
     displayName: "\uB2ED \uBAB8\uD1B5"
     description: 
-    animal: 5
-    slot: 1
     weightDelta: 0
     healthDelta: 1
-    heightDelta: 0
-    effectIds: 01000000
+    heightDelta: '-'
+    skill: canFly
   sprite: {fileID: -5350050065633897117, guid: 7de9031d830cf9341b7f25f0f511b212, type: 3}
   groundYpx: 0

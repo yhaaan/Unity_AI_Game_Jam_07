@@ -42,18 +42,17 @@ namespace ProjectRTD.Gameplay
                 int Number(string key) => int.TryParse(Get(key), NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out int n) ? n : throw Error(row, key, "부호 있는 정수 필요");
                 T Named<T>(string key, string value) where T : struct, Enum => Enum.GetNames(typeof(T)).Contains(value, StringComparer.OrdinalIgnoreCase) ? (T)Enum.Parse(typeof(T), value, true) : throw Error(row, key, "미등록 값: " + value);
                 var p = new PartSheetRow { partId = Get("partId"), displayName = Get("displayName"), description = Get("description"),
-                    animal = Named<PartAnimal>("animal", Get("animal").Equals("upa", StringComparison.OrdinalIgnoreCase) ? "Axolotl" : Get("animal")), slot = Named<PartSlot>("slot", Get("slot")),
-                    heightDelta = Get("heightDelta") == "-" ? 0 : Number("heightDelta"), weightDelta = Number("weightDelta"), healthDelta = Number("healthDelta") };
+                    animal = Get("animal"), slot = Named<PartSlot>("slot", Get("slot")),
+                    heightDelta = Get("heightDelta"), skill = Get("skill"), weightDelta = Number("weightDelta"), healthDelta = Number("healthDelta") };
                 if (!Regex.IsMatch(p.partId, @"\A[A-Za-z0-9_-]+\z") || !ids.Add(p.partId)) throw Error(row, "partId", "빈 키, 잘못된 문자 또는 중복: " + p.partId);
                 if (p.displayName.Length == 0) throw Error(row, "displayName", "빈 표시명");
-                if (!pairs.Add((p.animal, p.slot))) throw Error(row, "animal/slot", "중복 조합: " + p.animal + "/" + p.slot);
-                if (Get("skill").Length > 0) p.effectIds = Get("skill").Split(',').Select(s => s.Trim().ToLowerInvariant() switch
+                if (p.heightDelta != "-") Number("heightDelta");
+                var animal = Named<PartAnimal>("animal", p.animal == "upa" ? "Axolotl" : p.animal);
+                if (!pairs.Add((animal, p.slot))) throw Error(row, "animal/slot", "중복 조합: " + p.animal + "/" + p.slot);
+                if (p.skill.Length > 0) foreach (string token in p.skill.Split(','))
                 {
-                    "canfly" => PartEffect.Glide,
-                    "canpass" => PartEffect.CanPass,
-                    "canswim" => PartEffect.Float,
-                    _ => throw Error(row, "skill", "미등록 스킬: " + s.Trim())
-                }).ToArray();
+                    if (!PartSheetRow.TrySkill(token.Trim(), out _)) throw Error(row, "skill", "미등록 스킬: " + token.Trim());
+                }
                 parts.Add(p);
             }
             foreach (PartAnimal animal in Enum.GetValues(typeof(PartAnimal)))

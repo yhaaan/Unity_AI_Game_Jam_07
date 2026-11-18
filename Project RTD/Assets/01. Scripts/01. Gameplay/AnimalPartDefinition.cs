@@ -11,13 +11,33 @@ namespace ProjectRTD.Gameplay
     [Serializable]
     public sealed class PartSheetRow
     {
-        public string partId, displayName;
-        [TextArea] public string description;
-        public PartAnimal animal;
+        public string partId, animal;
+        
         public PartSlot slot;
-        public int weightDelta, healthDelta, heightDelta;
+        public string displayName;
+        [TextArea] public string description;
+        public PartAnimal Animal => animal == "upa" ? PartAnimal.Axolotl : (PartAnimal)Enum.Parse(typeof(PartAnimal), animal, true);
+        
+        public int weightDelta, healthDelta;
+        public string heightDelta = "0", skill = "";
+        public int Height => heightDelta == "-" ? 0 : int.Parse(heightDelta, System.Globalization.CultureInfo.InvariantCulture);
 
-        public PartEffect[] effectIds = Array.Empty<PartEffect>();
+        internal static bool TrySkill(string token, out PartEffect effect)
+        {
+            switch (token) {
+                case "canFly": effect = PartEffect.Glide; return true;
+                case "canPass": effect = PartEffect.CanPass; return true;
+                case "canSwim": effect = PartEffect.Float; return true;
+                default: effect = default; return false;
+            }
+        }
+
+        public IEnumerable<PartEffect> Effects()
+        {
+            if (string.IsNullOrWhiteSpace(skill)) yield break;
+            foreach (string token in skill.Split(','))
+                if (TrySkill(token.Trim(), out var value)) yield return value;
+        }
     }
 
     [CreateAssetMenu(menuName = "RTD/Animal Part")]
@@ -26,16 +46,16 @@ namespace ProjectRTD.Gameplay
         [SerializeField] private PartSheetRow sheet = new PartSheetRow();
         [SerializeField] private Sprite sprite;
         public string PartId => sheet.partId;
-        public PartAnimal Animal => sheet.animal;
+        public PartAnimal Animal => sheet.Animal;
         public PartSlot Slot => sheet.slot;
         public string DisplayName => sheet.displayName;
         public string Description => sheet.description;
 
 
-        public int HeightDelta => sheet.heightDelta;
+        public int HeightDelta => sheet.Height;
         public int WeightDelta => sheet.weightDelta;
         public int HealthDelta => sheet.healthDelta;
-        public IReadOnlyList<PartEffect> EffectIds => sheet.effectIds;
+        public IEnumerable<PartEffect> EffectIds => sheet.Effects();
         public Sprite Sprite => sprite;
         [SerializeField, Tooltip("다리 PNG의 위쪽부터 발바닥까지의 픽셀 거리")]
         private int groundYpx;

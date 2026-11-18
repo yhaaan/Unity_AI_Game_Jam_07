@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectRTD.Gameplay.AnimalPartDefinition
   sheet:
     partId: duck_body
+    animal: duck
+    slot: 1
     displayName: "\uC624\uB9AC \uBAB8\uD1B5"
     description: 
-    animal: 4
-    slot: 1
     weightDelta: 0
     healthDelta: 1
-    heightDelta: 0
-    effectIds: 0100000007000000
+    heightDelta: '-'
+    skill: canFly, canSwim
   sprite: {fileID: 2602703668656435996, guid: 7de9031d830cf9341b7f25f0f511b212, type: 3}
   groundYpx: 0

@@ -20,11 +20,14 @@ public sealed class PlayerPartBuildTests
             foreach (var row in rows)
             {
                 var part = catalog.ForSlot(row.slot).Single(p => p.PartId == row.partId);
-                Assert.That(part.Animal, Is.EqualTo(row.animal), row.partId);
+                var sheet = new SerializedObject(part).FindProperty("sheet");
+                foreach (var key in new[] { "animal", "heightDelta", "skill" })
+                    Assert.That(sheet.FindPropertyRelative(key).stringValue, Is.EqualTo((string)typeof(PartSheetRow).GetField(key).GetValue(row)), row.partId + "/" + key);
+                Assert.That(part.Animal, Is.EqualTo(row.Animal), row.partId);
                 Assert.That(part.DisplayName, Is.EqualTo(row.displayName), row.partId);
                 Assert.That(new[] { part.WeightDelta, part.HealthDelta, part.HeightDelta },
-                    Is.EqualTo(new[] { row.weightDelta, row.healthDelta, row.heightDelta }), row.partId);
-                Assert.That(part.EffectIds, Is.EquivalentTo(row.effectIds), row.partId);
+                    Is.EqualTo(new[] { row.weightDelta, row.healthDelta, row.Height }), row.partId);
+                Assert.That(part.EffectIds, Is.EquivalentTo(row.Effects()), row.partId);
             }
         }
     }

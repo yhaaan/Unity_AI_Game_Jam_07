@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectRTD.Gameplay.AnimalPartDefinition
   sheet:
     partId: rabbit_head
+    animal: rabbit
+    slot: 0
     displayName: "\uD1A0\uB07C \uBA38\uB9AC"
     description: 
-    animal: 0
-    slot: 0
     weightDelta: -1
     healthDelta: 0
     heightDelta: 0
-    effectIds: 
+    skill: 
   sprite: {fileID: -1573536004639951878, guid: 7de9031d830cf9341b7f25f0f511b212, type: 3}
   groundYpx: 0

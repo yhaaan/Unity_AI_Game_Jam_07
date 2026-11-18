@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ProjectRTD.Gameplay::ProjectRTD.Gameplay.AnimalPartDefinition
   sheet:
     partId: chicken_legs
+    animal: chicken
+    slot: 2
     displayName: "\uB2ED \uB2E4\uB9AC"
     description: 
-    animal: 5
-    slot: 2
     weightDelta: 0
     healthDelta: 0
     heightDelta: 1
-    effectIds: 
+    skill: 
   sprite: {fileID: 7587116467506208818, guid: 7de9031d830cf9341b7f25f0f511b212, type: 3}
   groundYpx: 418

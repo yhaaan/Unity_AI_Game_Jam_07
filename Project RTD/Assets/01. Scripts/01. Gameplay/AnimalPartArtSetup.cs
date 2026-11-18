@@ -31,7 +31,7 @@ namespace ProjectRTD.Gameplay
                     string slot = part.Slot == PartSlot.Head ? "머리" : part.Slot == PartSlot.Body ? "몸통" : "다리";
                     var error = AssetDatabase.RenameAsset(path,"Part_" + id);
                     if (!string.IsNullOrEmpty(error)) throw new IOException(error);
-                    part.ApplySheet(new PartSheetRow {partId=id, displayName=label+" "+slot, animal=part.Animal, slot=part.Slot});
+                    part.ApplySheet(new PartSheetRow {partId=id, displayName=label+" "+slot, animal=part.Animal == PartAnimal.Axolotl ? "upa" : part.Animal.ToString().ToLowerInvariant(), slot=part.Slot});
                     EditorUtility.SetDirty(part);
                 }
                 var data = new SerializedObject(part);

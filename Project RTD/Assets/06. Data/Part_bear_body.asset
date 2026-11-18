@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectRTD.Gameplay.AnimalPartDefinition
   sheet:
     partId: bear_body
+    animal: bear
+    slot: 1
     displayName: "\uACF0 \uBAB8\uD1B5"
     description: 
-    animal: 1
-    slot: 1
     weightDelta: 2
     healthDelta: 2
-    heightDelta: 0
-    effectIds: 
+    heightDelta: '-'
+    skill: 
   sprite: {fileID: -5811508573064454468, guid: 7de9031d830cf9341b7f25f0f511b212, type: 3}
   groundYpx: 0

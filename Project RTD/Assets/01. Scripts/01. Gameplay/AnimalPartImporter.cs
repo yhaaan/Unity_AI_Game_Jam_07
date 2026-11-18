@@ -90,9 +90,12 @@ namespace ProjectRTD.Gameplay
         private static void UpgradeCatalog() => EditorApplication.delayCall += () =>
         {
             var legacy = AssetDatabase.LoadAssetAtPath<AnimalPartDefinition>(Data + "Part_axolotl_head.asset");
-            if (!EditorApplication.isPlayingOrWillChangePlaymode && legacy && legacy.PartId == "axolotl_head" && !File.Exists(Data + "Part_chicken_head.asset"))
+            if (!EditorApplication.isPlayingOrWillChangePlaymode && legacy && (legacy.PartId == "axolotl_head" || File.ReadAllText(Data + "Part_axolotl_head.asset").Contains("    effectIds:")))
                 Debug.Log(ImportSheet(File.ReadAllText("Assets/99. Documents/PartsTemplate.txt")));
         };
+
+        [MenuItem("Tools/RTD/Sync parts from PartsTemplate")]
+        internal static void SyncTemplate() => Debug.Log(ImportSheet(File.ReadAllText("Assets/99. Documents/PartsTemplate.txt")));
 
         private static string ImportSheet(string csv)
         {
@@ -106,11 +109,11 @@ namespace ProjectRTD.Gameplay
                     throw new InvalidOperationException("기존 에셋의 partId 누락 또는 중복: " + path);
             }
             // Change the sheet key in place, not the asset/GUID used by prefabs and art.
-            foreach (var row in rows.Where(r => r.animal == PartAnimal.Axolotl))
+            foreach (var row in rows.Where(r => r.Animal == PartAnimal.Axolotl))
             {
                 string suffix = row.slot.ToString().ToLowerInvariant();
                 string legacy = "axolotl_" + suffix;
-                if (row.partId == "upa_" + suffix && !existing.ContainsKey(row.partId) && existing.TryGetValue(legacy, out var part) && part.Animal == row.animal && part.Slot == row.slot)
+                if (row.partId == "upa_" + suffix && !existing.ContainsKey(row.partId) && existing.TryGetValue(legacy, out var part) && part.Animal == row.Animal && part.Slot == row.slot)
                 {
                     existing.Remove(legacy);
                     existing.Add(row.partId, part);
