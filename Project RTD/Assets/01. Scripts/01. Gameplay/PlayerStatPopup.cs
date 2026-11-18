@@ -21,7 +21,6 @@ namespace ProjectRTD.Gameplay
 
         private PlayerPartLoadout loadout;
         private CapsuleCollider2D capsule;
-        private PlayerPartBuild previous;
         private readonly List<Popup> live = new();
         private Material outlinedFont;
 
@@ -40,13 +39,11 @@ namespace ProjectRTD.Gameplay
             capsule = GetComponent<CapsuleCollider2D>();
         }
 
-        private void OnEnable() { loadout.Changed += OnChanged; previous = loadout.Current; }
-        private void OnDisable() { loadout.Changed -= OnChanged; }
+        private void OnEnable() { loadout.Revealed += OnRevealed; }
+        private void OnDisable() { loadout.Revealed -= OnRevealed; }
 
-        private void OnChanged(PlayerPartBuild next)
+        private void OnRevealed(PlayerPartBuild before, PlayerPartBuild next)
         {
-            var before = previous;
-            previous = next;
             if (before == null || next == null) return; // first summon: nothing to compare against
 
             var changes = new List<(Sprite icon, int delta)>();

@@ -22,11 +22,38 @@ namespace ProjectRTD.Core
 
         private System.Collections.IEnumerator Start()
         {
+            if (confirmAction == ConfirmAction.ReturnToTitle && gameObject.scene.name == SceneFlow.EndingScene)
+            {
+                var summary = GameObject.Find("/Ending Canvas");
+                if (!summary || !Camera.main) yield break;
+                summary.SetActive(false);
+                // The old Enter/Space handler and the title button must not consume credit-card input.
+                confirmAction = ConfirmAction.None;
+                var roll = new GameObject("Ending Credits").AddComponent<ChimeraGroove.Ending.EndingCreditsPlayer>();
+                roll.transform.SetParent(transform, false);
+                roll.Finished += () => StartCoroutine(ShowSummary());
+                System.Collections.IEnumerator ShowSummary()
+                {
+                    yield return null; // do not submit the return prompt with the last card's click
+                    Destroy(roll.gameObject);
+                    summary.SetActive(true);
+                    confirmAction = ConfirmAction.ReturnToTitle;
+                }
+                yield break;
+            }
             if (confirmAction != ConfirmAction.StartStage01) yield break;
 
             var logoObject = GameObject.Find("/Title Canvas/Title Logo");
             if (logoObject == null || !logoObject.TryGetComponent<RectTransform>(out var logo)) yield break;
 
+            var art = SharedMenuArt.Loaded;
+            if (art)
+            {
+                logo.GetComponent<UnityEngine.UI.Image>().enabled = false;
+                MenuArtView.Art(logo, art.title, 0,0,1,1);
+                var levels = MenuArtView.Action(logo.parent, art.resumePanel, "Level Select", .67f,.09f,.26f,.12f, OpenLevelSelect);
+                MenuArtView.Label(levels.transform, "LEVEL SELECT");
+            }
             if (titleIntroShown) yield break;
             titleIntroShown = true;
             var group = logoObject.AddComponent<CanvasGroup>();

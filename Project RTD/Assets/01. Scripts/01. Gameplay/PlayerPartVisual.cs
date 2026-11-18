@@ -118,7 +118,11 @@ namespace ProjectRTD.Gameplay
             var lift = new Vector3(.03f*shake,.26f*hold,0);
             legRig.Transform.localPosition = lift;
             legRig.Pose(beat,run,air,ascent,hold);
-            bodyRig.Pose(beat,run,air,ascent,hold);
+            var flight = default(ChimeraGroove.BodyPose);
+            if (air && !motor.IsClimbing && float.IsNegativeInfinity(scaredAt) && loadout.Current.HasEffect(PartEffect.Glide) && (motor.IsGliding || velocity.y > 0))
+                ChimeraGroove.ChimeraMoves.State(motor.IsGliding ? ChimeraGroove.ChimeraState.Glide : ChimeraGroove.ChimeraState.Fly,
+                    beat, 0, out _, out flight, out _);
+            bodyRig.Pose(beat,run,air,ascent,hold,flight);
             headRig.Pose(beat,run,air,ascent,hold);
             var hip = ChimeraPartRig.Canvas(262,331);
             var neck = ChimeraPartRig.Canvas(185,250);

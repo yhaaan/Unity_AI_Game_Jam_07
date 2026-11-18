@@ -82,6 +82,7 @@ namespace ProjectRTD.Gameplay
             IsPlaying = false;
             waitingForChoice = false;
             gameObject.SetActive(false);
+            loadout.RevealCurrent();
         }
     }
 }

@@ -9,12 +9,18 @@ namespace ProjectRTD.Gameplay
     {
         [SerializeField] private PartCatalog catalog;
         [Header("Jump multiplier by level (1–3)")]
-        [SerializeField] private AnimationCurve jumpScale = AnimationCurve.Linear(1f, 0.8f, 5f, 1.2f);
+        // Takeoff speeds tuned for apex heights 1 : 1.4 : 2.8 at the 0.02 s physics step.
+        [SerializeField] private AnimationCurve jumpScale = new AnimationCurve(
+            new Keyframe(1f, 0.8f), new Keyframe(2f, 0.94163f), new Keyframe(3f, 1.31882f));
 
         private PlayerMotor2D motor;
         private float baseJump;
         public PlayerPartBuild Current { get; private set; }
         public event Action<PlayerPartBuild> Changed;
+        internal event Action<PlayerPartBuild, PlayerPartBuild> Revealed;
+        private PlayerPartBuild previous;
+
+        internal void RevealCurrent() => Revealed?.Invoke(previous, Current);
 
         private void Start()
         {
@@ -38,9 +44,12 @@ namespace ProjectRTD.Gameplay
             }
             var next = new PlayerPartBuild(head, body, legs);
             motor.JumpVelocity = baseJump * jumpScale.Evaluate(next.Jump);
+            previous = Current;
             Current = next;
             ProjectRTD.Core.SoundManager.Play(ProjectRTD.Core.Sfx.Summon);
             Changed?.Invoke(next);
+            var stage = StageRuntime.Instance;
+            if (!stage || stage.Player != transform || !stage.IsAssembling) RevealCurrent();
             return true;
         }
 

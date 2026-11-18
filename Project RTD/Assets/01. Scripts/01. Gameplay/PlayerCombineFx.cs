@@ -70,13 +70,13 @@ namespace ProjectRTD.Gameplay
             if (visual) { visualBaseY = visual.localScale.y; outline = visual.GetComponent<PlayerOutline>(); }
         }
 
-        private void OnEnable() => loadout.Changed += Play;
-        private void OnDisable() { loadout.Changed -= Play; Stop(); }
+        private void OnEnable() => loadout.Revealed += Play;
+        private void OnDisable() { loadout.Revealed -= Play; Stop(); }
 
         private Vector3 Center => capsule ? (Vector3)capsule.offset : Vector3.up * 0.8f;
         private float Now => Time.unscaledTime;
 
-        private void Play(PlayerPartBuild _)
+        private void Play(PlayerPartBuild before, PlayerPartBuild after)
         {
             Stop();
             SoundManager.Play(Sfx.Summon);

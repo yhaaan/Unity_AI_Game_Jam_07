@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11bd8788cec94e09a6e15c6cfc061efc, type: 3}
+  m_Name: SharedMenuArt
+  m_EditorClassIdentifier:
+  title: {fileID: 2800000, guid: 5abc9613a92e49c7975f8af6ec1a33b2, type: 3}
+  brand: {fileID: 2800000, guid: 3e120ea2cfe04d65a444dabdc06bf8c0, type: 3}
+  subtitle: {fileID: 2800000, guid: 52ab23a81cb944c680f321e8126fae10, type: 3}
+  leftPrint: {fileID: 2800000, guid: 83fe030e3da542ebb4b8d2e6015f66b8, type: 3}
+  rightPrint: {fileID: 2800000, guid: 5f0397c5484b4a3d8991506f8d0ed624, type: 3}
+  available: {fileID: 2800000, guid: 66f23ad05aae461da5386af8c8206393, type: 3}
+  locked: {fileID: 2800000, guid: e5938c300e54414c99842cc199881c4f, type: 3}
+  panel: {fileID: 2800000, guid: 56d496d160dc46de8e09d17b9d582ff8, type: 3}
+  resumePanel: {fileID: 2800000, guid: 6003bac673824d1f9706366a22c6c976, type: 3}
+  backPanel: {fileID: 2800000, guid: 84f94e3ad88148a3afac598fb7d53789, type: 3}
+  pause: {fileID: 2800000, guid: 54ad6f11576148a687ce0f75a76f37b4, type: 3}
+  resume: {fileID: 2800000, guid: c14732973a2a46fc89dd83b7790e35de, type: 3}
+  settings: {fileID: 2800000, guid: d270dedb1abd44d8a372876784800d24, type: 3}
+  speaker: {fileID: 2800000, guid: 6af966ef19a24d1cad5893fe9bf90faa, type: 3}
+  track: {fileID: 2800000, guid: b4a91fce7b094e82aa254b988dda251a, type: 3}
+  knob: {fileID: 2800000, guid: da25274520bc4a21b9f28e3eeb0fc48c, type: 3}
+  labIllustration: {fileID: 2800000, guid: 234f362e45634b5593504ff282498bff, type: 3}
+  uiIllustration: {fileID: 2800000, guid: fcd4a38181fb4f8e98adee43abc5411e, type: 3}

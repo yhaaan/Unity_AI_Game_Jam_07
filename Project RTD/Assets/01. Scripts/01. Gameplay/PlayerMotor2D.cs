@@ -48,6 +48,7 @@ namespace ProjectRTD.Gameplay
         [SerializeField, Min(0.01f)] private float glideDescentSpeed = 1.5f;
         private const float GlideDuration = 2f;
         private float glideRemaining = GlideDuration;
+        internal bool IsGliding { get; private set; }
         private float airborneSeconds;
         private TravelCadence gait;
         private bool rightFoot, jumpHeldLastTick;
@@ -123,6 +124,7 @@ namespace ProjectRTD.Gameplay
 
         private void FixedUpdate()
         {
+            IsGliding = false;
             var stage = StageRuntime.Instance;
             if (stage && stage.Player == transform && (stage.IsRespawning || stage.IsAssembling))
             {
@@ -165,12 +167,12 @@ namespace ProjectRTD.Gameplay
 
             ApplyHorizontalMovement();
             ApplyJump();
-            bool gliding = !IsFloating && !IsGrounded && body.linearVelocityY <= 0.0001f && jumpHeld &&
+            IsGliding = !IsFloating && !IsGrounded && body.linearVelocityY <= 0.0001f && jumpHeld &&
                 SpendGlideTime(loadout?.Current?.HasEffect(PartEffect.Glide) == true, ref glideRemaining, Time.fixedDeltaTime);
             // A held jump can transition to glide silently. Only a new press on descent cues the wings.
-            if (gliding && freshHold) SoundManager.Play(Sfx.Glide, .32f);
+            if (IsGliding && freshHold) SoundManager.Play(Sfx.Glide, .32f);
             UpdateTravelSound(wasGrounded, wasFloating);
-            if (gliding)
+            if (IsGliding)
             {
 
                 body.linearVelocityY = -glideDescentSpeed;
@@ -240,7 +242,7 @@ namespace ProjectRTD.Gameplay
         internal void ResetAfterTeleport()
         {
             StopClimbing();
-            IsGrounded = IsFloating = leavingWater = false;
+            IsGliding = IsGrounded = IsFloating = leavingWater = false;
             GroundCollider = null;
             coyoteTimer = jumpBufferTimer = airborneSeconds = bobPhase = 0f;
             glideRemaining = GlideDuration;

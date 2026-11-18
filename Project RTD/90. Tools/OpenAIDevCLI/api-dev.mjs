@@ -1,7 +1,7 @@
 import { spawn } from "node:child_process";
 import { createHash, randomUUID } from "node:crypto";
 import { existsSync } from "node:fs";
-import { cp, lstat, mkdir, readFile, readdir, rm, stat, writeFile } from "node:fs/promises";
+import { appendFile, cp, lstat, mkdir, readFile, readdir, rm, stat, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import { homedir, tmpdir } from "node:os";
 import path from "node:path";
@@ -16,6 +16,8 @@ const workspaceRoot = path.resolve(projectRoot, "..");
 const envPath = path.join(workspaceRoot, ".env.local");
 const statePath = path.join(workspaceRoot, ".unity-game-jam-state.json");
 const memoryPath = path.join(workspaceRoot, ".unity-game-jam-memory.json");
+// Usage log: one JSON line per request and per event, one file per day. Kept out of Git.
+const logDir = path.join(workspaceRoot, ".unity-game-jam-logs");
 const sessionId = `${Date.now()}-${randomUUID().slice(0, 8)}`;
 const backupRoot = path.join(tmpdir(), "openai-api-dev-cli", sessionId);
 
@@ -216,6 +218,9 @@ function isReadableFile(absolutePath) {
 function assertWritableLocation(absolutePath) {
   if (isOwnToolPath(absolutePath)) {
     throw new Error("API 에이전트는 자신의 실행 코드와 권한 규칙을 수정할 수 없습니다.");
+  }
+  if (isWithin(logDir.toLowerCase(), path.resolve(absolutePath).toLowerCase())) {
+    throw new Error("사용 내역 로그는 읽기만 할 수 있습니다.");
   }
   const insideProject = isWithin(projectRoot, absolutePath);
   if (insideProject) {
@@ -1563,7 +1568,17 @@ function serializeMutation(task) {
   return result;
 }
 
-const SERIALIZED_TOOLS = new Set(["replace_text", "create_file", "delete_path", "unity_compile", "unity_editmode_tests", "git_commit", "unity_ai_generate"]);
+// Asset generation takes minutes, so it waits in its own line instead of blocking every
+// other session's edits, compiles and commits.
+let generationQueue = Promise.resolve();
+
+function serializeGeneration(task) {
+  const result = generationQueue.then(task, task);
+  generationQueue = result.catch(() => {});
+  return result;
+}
+
+const SERIALIZED_TOOLS = new Set(["replace_text", "create_file", "delete_path", "unity_compile", "unity_editmode_tests", "git_commit"]);
 
 async function invokeTool(name, args, session) {
   switch (name) {
@@ -1595,6 +1610,145 @@ async function invokeTool(name, args, session) {
   }
 }
 
+// ---------------------------------------------------------------------------
+// Usage log
+// ---------------------------------------------------------------------------
+
+let logQueue = Promise.resolve();
+
+function appendLog(record) {
+  const now = new Date();
+  const line = `${JSON.stringify({ ts: now.toISOString(), ...record })}\n`;
+  const file = path.join(logDir, `${todayKey()}.jsonl`);
+  logQueue = logQueue
+    .then(async () => {
+      await mkdir(logDir, { recursive: true });
+      await appendFile(file, line, "utf8");
+    })
+    .catch((error) => console.error(`[로그 저장 실패] ${error.message}`));
+  return logQueue;
+}
+
+// Writes the conversations saved before logging existed, once. Those messages have no
+// timestamps of their own, so each record carries its session's created/updated times.
+async function backfillLogs() {
+  const file = path.join(logDir, "backfill.jsonl");
+  if (existsSync(file)) return;
+  const lines = [];
+  const now = new Date().toISOString();
+  for (const session of webSessions.values()) {
+    const history = session.history || [];
+    for (let index = 0; index < history.length; index += 1) {
+      if (history[index].role !== "user") continue;
+      const reply = history[index + 1]?.role === "assistant" ? history[index + 1] : null;
+      lines.push(JSON.stringify({
+        ts: now,
+        type: "backfill_turn",
+        session_id: session.id,
+        session_title: session.title,
+        session_created_at: session.createdAt,
+        session_updated_at: session.updatedAt,
+        model: reply?.meta?.model || session.model,
+        effort: reply?.meta?.effort || null,
+        request: history[index].text,
+        answer: reply?.text ?? null,
+        outcome: reply ? (reply.text.startsWith("오류:") ? "error" : "completed") : "no_reply",
+        usage: reply?.meta?.usage || null,
+        tools: reply?.tools || [],
+        changed_files: reply?.meta?.changed_files || [],
+      }));
+    }
+  }
+  lines.push(JSON.stringify({ ts: now, type: "backfill_totals", note: "로그 기록 시작 전까지의 전체 토큰 누계", usage: usageTotals }));
+  await mkdir(logDir, { recursive: true });
+  await writeFile(file, `${lines.join("\n")}\n`, "utf8");
+}
+
+async function readAllLogRecords() {
+  if (!existsSync(logDir)) return [];
+  // Recovered history first, then the daily files in date order.
+  const files = (await readdir(logDir)).filter((name) => name.endsWith(".jsonl"))
+    .sort((a, b) => (a === "backfill.jsonl" ? -1 : b === "backfill.jsonl" ? 1 : a.localeCompare(b)));
+  const records = [];
+  for (const name of files) {
+    for (const line of (await readFile(path.join(logDir, name), "utf8")).split(/\r?\n/)) {
+      if (!line.trim()) continue;
+      try { records.push(JSON.parse(line)); } catch { /* a line cut off by a crash is skipped */ }
+    }
+  }
+  return records;
+}
+
+function csvCell(value) {
+  const text = value === null || value === undefined ? "" : String(value);
+  return /[",\r\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
+}
+
+// One row per request, with a byte-order mark so Excel opens the Korean text correctly.
+async function exportLogCsv() {
+  const header = ["date", "time", "kind", "session", "outcome", "model", "api_models", "effort",
+    "input_tokens", "cached_tokens", "output_tokens", "reasoning_tokens", "api_calls", "duration_sec",
+    "tools", "failed_tools", "unity_credits", "commits", "deleted", "changed_files", "request", "answer"];
+  const rows = [header];
+  for (const record of await readAllLogRecords()) {
+    if (record.type !== "turn" && record.type !== "backfill_turn") continue;
+    const when = new Date(record.started_at || record.session_updated_at || record.ts);
+    const tools = record.tools || [];
+    const credits = tools.flatMap((tool) => tool.result?.credits || [])
+      .reduce((sum, item) => sum + Object.values(item).reduce((a, b) => a + b, 0), 0);
+    const usage = record.usage || {};
+    rows.push([
+      todayKeyOf(when), [when.getHours(), when.getMinutes(), when.getSeconds()].map((part) => String(part).padStart(2, "0")).join(":"),
+      record.type === "turn" ? "live" : "backfill", record.session_title, record.outcome,
+      record.model, (record.api_models || []).join(" "), record.effort,
+      usage.input, usage.cached, usage.output, usage.reasoning, usage.calls,
+      record.duration_ms ? Math.round(record.duration_ms / 1000) : "",
+      tools.length, tools.filter((tool) => tool.status === "failed").length, credits || "",
+      tools.filter((tool) => tool.name === "git_commit" && tool.result?.commit).map((tool) => tool.result.commit).join(" | "),
+      tools.flatMap((tool) => tool.result?.deleted || []).join(" | "),
+      (record.changed_files || []).join(" | "),
+      record.request, record.answer,
+    ]);
+  }
+  return `﻿${rows.map((row) => row.map(csvCell).join(",")).join("\r\n")}\r\n`;
+}
+
+async function logInfo() {
+  const files = existsSync(logDir) ? (await readdir(logDir)).filter((name) => name.endsWith(".jsonl")).sort() : [];
+  const details = [];
+  for (const name of files) {
+    const info = await stat(path.join(logDir, name));
+    details.push({ name, size: info.size });
+  }
+  return { folder: logDir, files: details };
+}
+
+function todayKeyOf(date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+
+// Numbers worth keeping from a tool's result: commit hashes, deleted paths, credits charged.
+function toolResultSummary(name, result) {
+  if (!result || typeof result !== "object") return undefined;
+  if (name === "git_commit") return { commit: String(result.summary || "").split("\n")[0] };
+  if (name === "delete_path") return { deleted: result.deleted };
+  if (name === "create_file" || name === "replace_text") return { path: result.path };
+  if (name === "unity_ai_generate") {
+    const credits = [];
+    for (const event of result.events || []) {
+      for (const [key, value] of Object.entries(event || {})) {
+        if (typeof value === "number" && /point|charge|cost|credit/i.test(key)) credits.push({ [key]: value });
+      }
+    }
+    return { out: result.out, credits };
+  }
+  if (name === "unity_ai_quote") {
+    const quoted = (result.events || []).find((event) => event.event === "quoted");
+    return quoted ? { model: quoted.modelId, points_cost: quoted.pointsCost } : undefined;
+  }
+  return undefined;
+}
+
 async function executeTool(call, toolLog, session) {
   let args;
   try {
@@ -1602,19 +1756,25 @@ async function executeTool(call, toolLog, session) {
   } catch {
     return JSON.stringify({ ok: false, error: "도구 인자를 JSON으로 해석할 수 없습니다." });
   }
-  const logEntry = { name: call.name, arguments: safeToolArgs(args), status: "running" };
+  const logEntry = { name: call.name, arguments: safeToolArgs(args), status: "running", started_at: new Date().toISOString() };
   toolLog.push(logEntry);
   console.log(`  [tool] ${safeToolSummary(call.name, args)}`);
+  const startedAt = Date.now();
   try {
     const invoke = () => invokeTool(call.name, args, session);
-    const result = SERIALIZED_TOOLS.has(call.name) ? await serializeMutation(invoke) : await invoke();
+    const result = call.name === "unity_ai_generate" ? await serializeGeneration(invoke)
+      : SERIALIZED_TOOLS.has(call.name) ? await serializeMutation(invoke) : await invoke();
     logEntry.status = "completed";
+    logEntry.duration_ms = Date.now() - startedAt;
+    const summary = toolResultSummary(call.name, result);
+    if (summary) logEntry.result = summary;
     const serialized = JSON.stringify({ ok: true, result });
     return serialized.length > MAX_TOOL_OUTPUT
       ? `${serialized.slice(0, MAX_TOOL_OUTPUT)}\n...도구 출력이 잘렸습니다. 범위를 좁혀 다시 조회하세요...`
       : serialized;
   } catch (error) {
     logEntry.status = "failed";
+    logEntry.duration_ms = Date.now() - startedAt;
     logEntry.error = error.message.slice(0, 300);
     return JSON.stringify({ ok: false, error: error.message });
   }
@@ -1809,6 +1969,24 @@ async function runAgentTurn(apiKey, userInput, { silent = false, session = cliSe
   let finalResponse = null;
   let stopReason = null;
   let rounds = 0;
+  const startedAt = new Date();
+  const apiModels = new Set();
+  const logTurn = (fields) => appendLog({
+    type: "turn",
+    session_id: session.id,
+    session_title: session.title,
+    model: selectedModel,
+    api_models: [...apiModels],
+    effort,
+    scope: writeScope,
+    started_at: startedAt.toISOString(),
+    duration_ms: Date.now() - startedAt.getTime(),
+    request: userInput,
+    usage: turnUsage,
+    api_calls: turnUsage.calls,
+    tools: toolLog,
+    ...fields,
+  });
   try {
     while (true) {
       if (session.cancelRequested) { stopReason = "cancel"; break; }
@@ -1817,6 +1995,7 @@ async function runAgentTurn(apiKey, userInput, { silent = false, session = cliSe
       session.pendingInput = nextInput;
       const response = await createResponse(apiKey, nextInput, { ...options, continuationId: session.previousResponseId });
       recordUsage(response, session, turnUsage);
+      if (response.model) apiModels.add(response.model);
       activeResponseId = response.id;
       session.activeResponseId = response.id;
       session.previousResponseId = response.id;
@@ -1836,6 +2015,7 @@ async function runAgentTurn(apiKey, userInput, { silent = false, session = cliSe
   } catch (error) {
     if (!session.cancelRequested && error.name !== "AbortError" && error.name !== "TimeoutError") {
       error.message += ` (도구 ${toolLog.length}건까지의 진행 상황은 저장되어 다음 요청에서 이어집니다)`;
+      await logTurn({ outcome: "error", error: error.message });
       throw error;
     }
     stopReason = session.cancelRequested ? "cancel" : "timeout";
@@ -1858,9 +2038,11 @@ async function runAgentTurn(apiKey, userInput, { silent = false, session = cliSe
   const changedFiles = [...new Set(toolLog
     .filter((entry) => FILE_CHANGING_TOOLS.has(entry.name) && entry.status === "completed")
     .map((entry) => entry.arguments.path || entry.arguments.out))];
+  await logTurn({ outcome: stopReason || "completed", answer: text, changed_files: changedFiles });
   return {
     text,
     stopped: stopReason,
+    api_models: [...apiModels],
     tools: toolLog,
     model: selectedModel,
     reasoning_effort: effort,
@@ -2164,13 +2346,17 @@ async function startWebServer(apiKey) {
   await buildProjectContext();
   await loadPersistentSessions().catch((error) => console.error(`[세션 복원 실패] ${error.message}`));
   await loadMemory().catch((error) => console.error(`[장기 기억 복원 실패] ${error.message}`));
+  await backfillLogs().catch((error) => console.error(`[이전 기록 로그 저장 실패] ${error.message}`));
+  appendLog({ type: "event", event: "server_start", sessions: webSessions.size });
   await refreshModelCatalog(apiKey, true);
   const port = parseWebPort();
   const host = "127.0.0.1";
   const url = `http://${host}:${port}`;
   const browserToken = randomUUID();
-  const htmlTemplate = await readFile(path.join(scriptDir, "web.html"), "utf8");
-  const html = htmlTemplate.replace("__API_DEV_TOKEN__", JSON.stringify(browserToken));
+  // Read on every page load so changes to web.html show up with a browser refresh, no restart.
+  const loadPage = async () => (await readFile(path.join(scriptDir, "web.html"), "utf8"))
+    .replace("__API_DEV_TOKEN__", JSON.stringify(browserToken));
+  await loadPage();
   if (webSessions.size === 0) {
     createSessionRecord();
     await persistSessions();
@@ -2197,6 +2383,7 @@ async function startWebServer(apiKey) {
       return;
     }
     if (request.method === "GET" && requestUrl.pathname === "/") {
+      const html = await loadPage();
       response.writeHead(200, {
         "Content-Type": "text/html; charset=utf-8",
         "Content-Length": Buffer.byteLength(html),
@@ -2223,6 +2410,23 @@ async function startWebServer(apiKey) {
         sendJson(response, 200, { ...modelCatalog, default_model: model, efforts: REASONING_EFFORTS, default_effort: reasoningEffort });
         return;
       }
+      if (request.method === "GET" && requestUrl.pathname === "/api/logs") {
+        sendJson(response, 200, await logInfo());
+        return;
+      }
+      if (request.method === "GET" && requestUrl.pathname === "/api/logs/export.csv") {
+        await logQueue;
+        const csv = await exportLogCsv();
+        response.writeHead(200, {
+          "Content-Type": "text/csv; charset=utf-8",
+          "Content-Length": Buffer.byteLength(csv),
+          "Content-Disposition": `attachment; filename="unity-game-jam-usage-${todayKey()}.csv"`,
+          "Cache-Control": "no-store",
+          "X-Content-Type-Options": "nosniff",
+        });
+        response.end(csv);
+        return;
+      }
       if (request.method === "GET" && requestUrl.pathname === "/api/unity-credits") {
         try {
           sendJson(response, 200, await unityCredits(requestUrl.searchParams.get("refresh") === "1"));
@@ -2238,6 +2442,7 @@ async function startWebServer(apiKey) {
           return;
         }
         writeScope = body.scope;
+        appendLog({ type: "event", event: "scope_change", scope: writeScope });
         sendJson(response, 200, { write_scope: writeScope });
         return;
       }
@@ -2248,14 +2453,16 @@ async function startWebServer(apiKey) {
       }
       const memoryDeleteMatch = requestUrl.pathname.match(/^\/api\/memory\/([0-9a-f]{8})$/i);
       if (request.method === "DELETE" && memoryDeleteMatch) {
-        await deleteMemory(memoryDeleteMatch[1]);
+        const removedMemory = await deleteMemory(memoryDeleteMatch[1]);
+        appendLog({ type: "event", event: "memory_delete", by: "user", memory: removedMemory });
         sendJson(response, 200, projectInfo());
         return;
       }
       if (request.method === "POST" && requestUrl.pathname === "/api/memory") {
         const body = await readJsonBody(request);
         const kind = ["decision", "summary", "note"].includes(body.kind) ? body.kind : "note";
-        await addMemory(kind, body.text, "사용자");
+        const addedMemory = await addMemory(kind, body.text, "사용자");
+        appendLog({ type: "event", event: "memory_add", by: "user", memory: addedMemory });
         sendJson(response, 201, projectInfo());
         return;
       }
@@ -2269,6 +2476,7 @@ async function startWebServer(apiKey) {
       if (request.method === "POST" && requestUrl.pathname === "/api/sessions") {
         const session = createSessionRecord();
         await persistSessions();
+        appendLog({ type: "event", event: "session_create", session_id: session.id });
         sendJson(response, 201, webState(session));
         return;
       }
@@ -2284,6 +2492,7 @@ async function startWebServer(apiKey) {
           return;
         }
         webSessions.delete(sessionDeleteMatch[1]);
+        appendLog({ type: "event", event: "session_close", session_id: session.id, session_title: session.title, usage: session.usage });
         if (webSessions.size === 0) createSessionRecord();
         await persistSessions();
         sendJson(response, 200, { sessions: [...webSessions.values()].map(webSessionSummary) });
@@ -2309,6 +2518,7 @@ async function startWebServer(apiKey) {
           sendJson(response, 409, { error: "작업 중인 세션은 초기화할 수 없습니다." });
           return;
         }
+        appendLog({ type: "event", event: "session_reset", session_id: session.id, session_title: session.title });
         resetConversation(session);
         session.messageCount = 0;
         session.title = "새 세션";
@@ -2324,6 +2534,7 @@ async function startWebServer(apiKey) {
           return;
         }
         const result = await serializeMutation(() => undoSessionChanges());
+        appendLog({ type: "event", event: "undo", restored: result.restored, skipped: result.skipped });
         sendJson(response, 200, { ...result, project: projectInfo() });
         return;
       }
@@ -2341,6 +2552,7 @@ async function startWebServer(apiKey) {
         // Stops after the tool that is running now; an in-flight API call is aborted at once.
         session.cancelRequested = true;
         session.abortController?.abort();
+        appendLog({ type: "event", event: "cancel", session_id: session.id, session_title: session.title });
         sendJson(response, 200, { cancelling: true });
         return;
       }
@@ -2379,18 +2591,19 @@ async function startWebServer(apiKey) {
         session.history.push({ role: "user", text: message, tools: [] });
         await persistSessions();
         try {
-          const result = await runAgentTurn(apiKey, message, { silent: true, session });
+          // Named before the turn runs, so the usage log carries the real title.
           if (session.messageCount === 0) {
             const compact = message.replace(/\s+/g, " ");
             session.title = compact.length > 28 ? `${compact.slice(0, 28)}…` : compact;
           }
+          const result = await runAgentTurn(apiKey, message, { silent: true, session });
           session.messageCount += 1;
           await ensureWorkSummary(result, message, session);
           session.history.push({
             role: "assistant",
             text: result.text,
             tools: result.tools || [],
-            meta: { model: result.model, effort: result.reasoning_effort, usage: result.usage, changed_files: result.changed_files },
+            meta: { model: result.model, api_models: result.api_models, effort: result.reasoning_effort, usage: result.usage, changed_files: result.changed_files },
           });
           session.updatedAt = new Date().toISOString();
           await persistSessions();
