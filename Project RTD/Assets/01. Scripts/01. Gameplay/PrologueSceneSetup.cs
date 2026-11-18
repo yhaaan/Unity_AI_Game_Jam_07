@@ -14,7 +14,7 @@ using UnityEngine.UI;
 
 namespace ProjectRTD.Gameplay
 {
-    // Creates PrologueScene (comic prologue + SKIP button) and puts it in the build right after the title.
+    // Creates the comic prologue and registers it as the first build scene.
     internal static class PrologueSceneSetup
     {
         const string ScenePath = "Assets/00. Scenes/" + SceneFlow.PrologueScene + ".unity";
@@ -85,7 +85,7 @@ namespace ProjectRTD.Gameplay
             }
             finally { EditorSceneManager.CloseScene(scene, true); }
             EnsureInBuild();
-            Debug.Log("PrologueScene ready: title START now plays the prologue before Stage01.");
+            Debug.Log("PrologueScene ready as the first scene in the build.");
         }
 
         static Button BuildSkipButton(Transform canvas)
@@ -149,9 +149,10 @@ namespace ProjectRTD.Gameplay
         static void EnsureInBuild()
         {
             var scenes = EditorBuildSettings.scenes.ToList();
-            if (scenes.Any(s => s.path == ScenePath)) return;
-            int title = scenes.FindIndex(s => s.path.EndsWith("/" + SceneFlow.TitleScene + ".unity"));
-            scenes.Insert(title + 1, new EditorBuildSettingsScene(ScenePath, true));
+            if (scenes.Count > 0 && scenes[0].path == ScenePath && scenes[0].enabled &&
+                scenes.Count(scene => scene.path == ScenePath) == 1) return;
+            scenes.RemoveAll(scene => scene.path == ScenePath);
+            scenes.Insert(0, new EditorBuildSettingsScene(ScenePath, true));
             EditorBuildSettings.scenes = scenes.ToArray();
         }
 

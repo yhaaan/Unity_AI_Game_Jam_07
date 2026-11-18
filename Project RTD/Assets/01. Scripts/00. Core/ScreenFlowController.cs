@@ -65,6 +65,12 @@ namespace ProjectRTD.Core
             SceneFlow.RestartActiveScene();
         }
 
+        public void OpenLevelSelect()
+        {
+            SoundManager.Play(Sfx.Confirm);
+            SceneFlow.LoadLevelSelect();
+        }
+
         private void Update()
         {
             Keyboard keyboard = Keyboard.current;

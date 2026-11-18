@@ -123,7 +123,8 @@ namespace ProjectRTD.Gameplay
 
         private void FixedUpdate()
         {
-            if (StageRuntime.Instance && StageRuntime.Instance.Player == transform && StageRuntime.Instance.IsRespawning)
+            var stage = StageRuntime.Instance;
+            if (stage && stage.Player == transform && (stage.IsRespawning || stage.IsAssembling))
             {
                 body.linearVelocityX = 0f;
                 jumpBufferTimer = 0f;

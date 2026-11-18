@@ -6,13 +6,13 @@ namespace ChimeraGroove.Prologue
     /// <summary>
     /// Shows the prologue one cut at a time. Tap / click / Space / Enter / → goes to the next cut.
     /// Drop it on an empty GameObject in a scene with an orthographic camera and press Play.
-    /// Cuts 1–4 slide in like comic panels; cut 5 arrives through the full-screen dust wipe.
+    /// The story cuts slide in like comic panels.
     /// </summary>
     public class ProloguePlayer : MonoBehaviour
     {
-        public string[] cuts = { "cut1-breakout", "cut2-the-look", "cut3-team-up", "cut4-dust-cloud", "cut5-chimera-roll" };
+        public string[] cuts = { "cut1-breakout", "cut2-the-look", "cut3-team-up", "cut4-dust-cloud" };
         [Tooltip("true = enter this cut through the full-screen dust wipe instead of a panel slide")]
-        public bool[] dustBefore = { false, false, false, false, true };
+        public bool[] dustBefore = { false, false, false, false };
 
         public Camera viewCamera;
         [Range(.5f, 1f)] public float fill = .92f;

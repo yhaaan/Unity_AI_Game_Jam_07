@@ -7,13 +7,17 @@ namespace ProjectRTD.Gameplay
     [RequireComponent(typeof(Collider2D))]
     public sealed class StageGoal : MonoBehaviour
     {
+        private bool completed;
+
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Player") && (!StageRuntime.Instance || !StageRuntime.Instance.IsRespawning))
-            {
-                SoundManager.Play(Sfx.Goal);
-                SceneFlow.LoadEnding();
-            }
+            if (completed || !other.CompareTag("Player")) return;
+            var stage = StageRuntime.Instance;
+            if (stage && (stage.IsRespawning || stage.IsAssembling)) return;
+
+            completed = true;
+            SoundManager.Play(Sfx.Goal);
+            SceneFlow.CompleteActiveStage();
         }
     }
 }

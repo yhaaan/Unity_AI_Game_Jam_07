@@ -6,6 +6,13 @@ namespace ProjectRTD.Core
     [DisallowMultipleComponent]
     public sealed class DebugSceneHotkeys : MonoBehaviour
     {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        private static readonly Key[] StageKeys =
+            { Key.Digit1, Key.Digit2, Key.Digit3, Key.Digit4, Key.Digit5, Key.Digit6, Key.Digit7 };
+        private static readonly Key[] NumpadStageKeys =
+            { Key.Numpad1, Key.Numpad2, Key.Numpad3, Key.Numpad4, Key.Numpad5, Key.Numpad6, Key.Numpad7 };
+#endif
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Bootstrap()
         {
@@ -42,21 +49,11 @@ namespace ProjectRTD.Core
                 return;
             }
 
-            if (keyboard.digit1Key.wasPressedThisFrame || keyboard.numpad1Key.wasPressedThisFrame)
+            for (int i = 0; i < StageKeys.Length; i++)
             {
-                SceneFlow.LoadStage(1);
-            }
-            else if (keyboard.digit2Key.wasPressedThisFrame || keyboard.numpad2Key.wasPressedThisFrame)
-            {
-                SceneFlow.LoadStage(2);
-            }
-            else if (keyboard.digit3Key.wasPressedThisFrame || keyboard.numpad3Key.wasPressedThisFrame)
-            {
-                SceneFlow.LoadStage(3);
-            }
-            else if (keyboard.digit4Key.wasPressedThisFrame || keyboard.numpad4Key.wasPressedThisFrame)
-            {
-                SceneFlow.LoadStage(4);
+                if (!keyboard[StageKeys[i]].wasPressedThisFrame && !keyboard[NumpadStageKeys[i]].wasPressedThisFrame) continue;
+                SceneFlow.LoadStage(i + 1);
+                return;
             }
 #endif
         }

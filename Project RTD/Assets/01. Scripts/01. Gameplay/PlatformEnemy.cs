@@ -14,6 +14,7 @@ namespace ProjectRTD.Gameplay
         [SerializeField] private bool islandGuard;
         [SerializeField] private TMPro.TMP_Text targetLabel;
         private PartAnimal targetAnimal;
+        internal PartAnimal TargetAnimal => targetAnimal;
         [SerializeField, Min(0)] private float speed = 1.1f;
         [SerializeField] private LayerMask platforms = Physics2D.DefaultRaycastLayers;
         private Rigidbody2D body;
@@ -31,19 +32,17 @@ namespace ProjectRTD.Gameplay
         private ChimeraGroove.DroneAnimator drone;
         private float nextAttack;
 
+        private void Awake()
+        {
+            if (!islandGuard || kind != Kind.Drone) return;
+            var animals = (PartAnimal[])Enum.GetValues(typeof(PartAnimal));
+            targetAnimal = animals[UnityEngine.Random.Range(0, animals.Length)];
+            if (targetLabel) targetLabel.text = $"TARGET: {targetAnimal.ToString().ToUpperInvariant()}";
+        }
+
         private void Start()
         {
-            if (islandGuard)
-            {
-                if (kind == Kind.Drone)
-                {
-                    var animals = (PartAnimal[])Enum.GetValues(typeof(PartAnimal));
-                    targetAnimal = animals[UnityEngine.Random.Range(0, animals.Length)];
-                    if (targetLabel) targetLabel.text = $"TARGET: {targetAnimal.ToString().ToUpperInvariant()}";
-                }
-                return;
-            }
-
+            if (islandGuard) return;
             body = GetComponent<Rigidbody2D>();
             hitbox = GetComponent<BoxCollider2D>();
             var visual = transform.Find("Visual");

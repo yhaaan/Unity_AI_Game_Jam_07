@@ -9,11 +9,16 @@ namespace ProjectRTD.Gameplay
     [DisallowMultipleComponent]
     public sealed class StageRuntime : MonoBehaviour
     {
+        public enum Challenge { HighJump, Glide, Lightweight, Drone, LowCeiling, Power, Swim }
+
         [SerializeField] private Transform player;
         [SerializeField] private Transform spawnPoint;
         [SerializeField] private UnityEngine.UI.Image deathFade;
+        [SerializeField] private StageAssemblyIntro assemblyIntro;
+        [SerializeField] private Challenge challenge;
 
         private PlayerPartLoadout loadout;
+        private PlatformEnemy drone;
         private PlayerMotor2D motor;
         private Rigidbody2D body;
         private Collider2D playerCollider;
@@ -26,8 +31,33 @@ namespace ProjectRTD.Gameplay
         public int Health { get; private set; } = 1;
         public int MaxHealth { get; private set; } = 1;
         public bool IsRespawning { get; private set; }
+        public bool IsAssembling => assemblyIntro && assemblyIntro.IsPlaying;
         public event Action HealthChanged;
         public event Action ResetMechanics;
+
+        public string Requirement => challenge switch
+        {
+            Challenge.HighJump => "JUMP LEVEL 3",
+            Challenge.Glide => "GLIDING BODY",
+            Challenge.Lightweight => "WEIGHT BELOW 3",
+            Challenge.Drone => "AT LEAST 2 HP OR A HEAD THE DRONE IGNORES",
+            Challenge.LowCeiling => "HEIGHT 0-2",
+            Challenge.Power => "POWER LEVEL 3",
+            Challenge.Swim => "DUCK OR AXOLOTL BODY",
+            _ => ""
+        };
+
+        public bool CanClearWith(PlayerPartBuild build) => build != null && (challenge switch
+        {
+            Challenge.HighJump => build.Jump >= 3,
+            Challenge.Glide => build.HasEffect(PartEffect.Glide),
+            Challenge.Lightweight => build.Weight < 3,
+            Challenge.Drone => !drone || build.Head.Animal != drone.TargetAnimal || build.Health >= 2,
+            Challenge.LowCeiling => build.Height is >= 0 and <= 2,
+            Challenge.Power => build.Power >= 3,
+            Challenge.Swim => build.HasEffect(PartEffect.Float),
+            _ => false
+        });
 
         public void Configure(Transform playerTransform, Transform spawnTransform)
         {
@@ -129,6 +159,7 @@ namespace ProjectRTD.Gameplay
         private void Awake()
         {
             Instance = this;
+            if (challenge == Challenge.Drone) drone = GetComponentInChildren<PlatformEnemy>();
             if (spawnPoint) safePosition = spawnPoint.position;
             if (!player) return;
             player.TryGetComponent(out body);
@@ -153,7 +184,8 @@ namespace ProjectRTD.Gameplay
         private void Update()
         {
             Keyboard keyboard = Keyboard.current;
-            if (keyboard != null && keyboard.rKey.wasPressedThisFrame)
+            if (keyboard == null || IsAssembling || IsRespawning) return;
+            if (keyboard.rKey.wasPressedThisFrame)
             {
                 SceneFlow.RestartActiveScene();
             }

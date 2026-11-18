@@ -10,6 +10,7 @@ namespace ProjectRTD.Gameplay
         private PlayerInputReader input;
         private CapsuleCollider2D capsule;
         [SerializeField] private ChimeraLayerLibrary animations;
+        internal ChimeraLayerLibrary PartArt => animations;
         private ChimeraPartRig legRig, bodyRig, headRig;
         private PlayerMotor2D motor;
         private Rigidbody2D physicsBody;

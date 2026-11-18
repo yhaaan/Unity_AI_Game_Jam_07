@@ -29,11 +29,20 @@ namespace ProjectRTD.Debugging
             if (keyboard.f8Key.wasPressedThisFrame) Reroll();
         }
 
-        private void Reroll() => rerollFailed = !loadout.TryResummon();
+        private void Reroll()
+        {
+            if (CanReassemble()) rerollFailed = !loadout.TryResummon();
+        }
+
+        private static bool CanReassemble()
+        {
+            var stage = StageRuntime.Instance;
+            return !stage || (!stage.IsAssembling && !stage.IsRespawning);
+        }
 
         private void OnGUI()
         {
-            if (!visible || Screen.width <= 20 || Screen.height <= 20) return;
+            if (!visible || !CanReassemble() || Screen.width <= 20 || Screen.height <= 20) return;
 
             float scale = Mathf.Min(2f, Mathf.Min((Screen.width - 20f) / 330f, (Screen.height - 20f) / 270f));
             var previousMatrix = GUI.matrix;
@@ -63,8 +72,10 @@ namespace ProjectRTD.Debugging
             }
             else
             {
+                var stage = StageRuntime.Instance;
+                int health = stage ? stage.Health : build.Health;
                 GUILayout.Label($"머리: {build.Head.DisplayName}\n몸통: {build.Body.DisplayName}\n다리: {build.Legs.DisplayName}");
-                GUILayout.Label($"키 {build.Height}   |   무게 {build.Weight}   |   체력 단계 {build.Health}/5\n" +
+                GUILayout.Label($"키 {build.Height}   |   무게 {build.Weight}   |   체력 {health}/{build.Health}\n" +
                     $"이동속도 {build.Speed}/5   ({motor.MoveSpeed:0.##} 유닛/초)\n" +
                     $"파워 {build.Power}/3   |   점프력 {build.Jump}/3   (초속 {motor.JumpVelocity:0.##} 유닛/초)");
             }

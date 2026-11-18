@@ -6,17 +6,38 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/00. Scenes/TitleScene.unity
-    guid: b0f171df89ce2254586fba1eab090ece
-  - enabled: 1
     path: Assets/00. Scenes/PrologueScene.unity
     guid: dd9b51ea27bab4b75ab8a20fd507c581
+  - enabled: 1
+    path: Assets/00. Scenes/TitleScene.unity
+    guid: b0f171df89ce2254586fba1eab090ece
   - enabled: 1
     path: Assets/00. Scenes/Stage01.unity
     guid: 48978b4c7ede4ab43904784e89a80048
   - enabled: 1
+    path: Assets/00. Scenes/Stage02.unity
+    guid: 3b34ed5763b22984fb16b2cf640df266
+  - enabled: 1
+    path: Assets/00. Scenes/Stage03.unity
+    guid: fbd805cb3ac1df24b83e5a41dc40fa29
+  - enabled: 1
+    path: Assets/00. Scenes/Stage04.unity
+    guid: cc6cc018b43ceb645b4671529e3a08b8
+  - enabled: 1
+    path: Assets/00. Scenes/Stage05.unity
+    guid: 3cd3a8e2c76232544b854167827c0e2c
+  - enabled: 1
+    path: Assets/00. Scenes/Stage06.unity
+    guid: afd5b5b7b3a5dc34d946a43bdbd4f4d3
+  - enabled: 1
+    path: Assets/00. Scenes/Stage07.unity
+    guid: 7f4cf43d8d6adaa48a63a2cf1e1ed3c8
+  - enabled: 1
     path: Assets/00. Scenes/EndingScene.unity
     guid: 6efe5bc5351b65f479a54fc5f26233c6
+  - enabled: 1
+    path: Assets/00. Scenes/LevelSelectScene.unity
+    guid: c525b2259affa89438dc966494caa0dc
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

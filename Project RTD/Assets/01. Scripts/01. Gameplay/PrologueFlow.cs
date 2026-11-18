@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace ProjectRTD.Gameplay
 {
-    // Runs the comic prologue before Stage01. Click / Space / Enter / → advances a cut; SKIP button or Esc jumps to the stage.
+    // Click / Space / Enter / → advances a cut. Finishing or skipping opens the title.
     [DisallowMultipleComponent]
     public sealed class PrologueFlow : MonoBehaviour
     {
@@ -51,7 +51,7 @@ namespace ProjectRTD.Gameplay
             if (leaving) return;
             leaving = true;
             SoundManager.Play(Sfx.Confirm);
-            SceneFlow.LoadStage01();
+            SceneFlow.LoadTitle();
         }
     }
 

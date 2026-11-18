@@ -146,6 +146,7 @@ namespace ChimeraGroove.Prologue
         Transform cam;
         Transform[] nodes;
         SpriteRenderer[] renderers;
+        Dictionary<string, int> layerIndices;
         LayerPose[] poses;
         float[] alpha;
         int[] order; // parents before children
@@ -179,7 +180,7 @@ namespace ChimeraGroove.Prologue
             int n = layers.Length;
             SizePx = new Vector2(rig.size[0], rig.size[1]);
             Intro = anim.intro;
-            var index = new Dictionary<string, int>();
+            var index = layerIndices = new Dictionary<string, int>();
             for (int i = 0; i < n; i++) index[layers[i].id] = i;
 
             parent = new int[n];
@@ -242,6 +243,12 @@ namespace ChimeraGroove.Prologue
         }
 
         static Vector3 ToUnity(Vector2 px) => new Vector3(px.x / PPU, -px.y / PPU, 0f);
+
+        public SpriteRenderer GetLayerRenderer(string id)
+        {
+            if (!Built) Build();
+            return layerIndices != null && layerIndices.TryGetValue(id, out int index) ? renderers[index] : null;
+        }
 
         /// <summary>Makes every renderer of this cut respect (or ignore) a SpriteMask.</summary>
         public void SetMaskInteraction(SpriteMaskInteraction m)

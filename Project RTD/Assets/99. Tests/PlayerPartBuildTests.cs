@@ -126,7 +126,7 @@ public sealed class PlayerPartBuildTests
     [Test]
     public void BasinUsesWaterShaderAfterSceneColorCapture()
     {
-        var scene = UnityEditor.SceneManagement.EditorSceneManager.OpenPreviewScene("Assets/00. Scenes/Stage01.unity");
+        var scene = UnityEditor.SceneManagement.EditorSceneManager.OpenPreviewScene("Assets/00. Scenes/Stage07.unity");
         try
         {
             var basin = scene.GetRootGameObjects().SelectMany(root => root.GetComponentsInChildren<SpriteRenderer>(true))
