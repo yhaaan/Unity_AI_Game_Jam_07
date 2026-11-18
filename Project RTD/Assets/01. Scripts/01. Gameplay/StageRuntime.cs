@@ -158,7 +158,7 @@ namespace ProjectRTD.Gameplay
         private void Awake()
         {
             Instance = this;
-            StageCourseLayout.Apply(this);
+            // The course layout (floors, walls, spawn, camera bounds) is baked into the scene: Tools/RTD/Bake Stage Layout.
             if (!player) return;
             player.TryGetComponent(out body);
             player.TryGetComponent(out motor);

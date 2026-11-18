@@ -4,29 +4,42 @@ using ProjectRTD.Gameplay;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
+// The layout is baked into the scenes (Tools/RTD/Bake Stage Layout), so check what is saved there.
 public class StageCourseLayoutTests
 {
     [TestCase(1, false)] [TestCase(2, true)] [TestCase(3, true)] [TestCase(4, false)]
     [TestCase(5, true)] [TestCase(6, false)] [TestCase(7, false)]
-    public void WidenCourseWithoutChangingPuzzleGaps(int level, bool split)
+    public void StageSceneHoldsTheWidenedCourse(int level, bool split)
     {
         var scene = EditorSceneManager.OpenPreviewScene($"Assets/00. Scenes/Stage{level:00}.unity");
         try
         {
-            var stage = scene.GetRootGameObjects().Select(o => o.GetComponent<StageRuntime>()).Single(s => s);
+            var stage = scene.GetRootGameObjects().Select(o => o.GetComponentInChildren<StageRuntime>(true)).Single(s => s);
             var floors = stage.GetComponentsInChildren<BoxCollider2D>().Where(c => c.name == "Island Surface").OrderBy(c => c.bounds.center.x).ToArray();
             Assert.That(floors.Length, Is.EqualTo(split ? 2 : 1));
-            float gap = floors.Last().bounds.min.x - floors.First().bounds.max.x;
-            var goal = stage.GetComponentInChildren<StageGoal>();
-            float travel = goal.transform.position.x - stage.SpawnPoint.position.x;
-            StageCourseLayout.Apply(stage);
-            var left = stage.transform.Find("Course Boundaries/Left Boundary").GetComponent<BoxCollider2D>().bounds.max.x;
-            var right = stage.transform.Find("Course Boundaries/Right Boundary").GetComponent<BoxCollider2D>().bounds.min.x;
-            Assert.That(right - left, Is.EqualTo(24.8f).Within(.01f));
+            var limits = stage.transform.Find("Course Boundaries");
+            Assert.That(limits, Is.Not.Null, "run Tools/RTD/Bake Stage Layout");
+            var left = limits.Find("Left Boundary").GetComponent<BoxCollider2D>().bounds.max.x;
+            var right = limits.Find("Right Boundary").GetComponent<BoxCollider2D>().bounds.min.x;
+            Assert.That(right - left, Is.EqualTo(StageCourseLayout.Width).Within(.01f));
             Assert.That(floors.First().bounds.min.x, Is.EqualTo(left).Within(.01f));
             Assert.That(floors.Last().bounds.max.x, Is.EqualTo(right).Within(.01f));
-            Assert.That(goal.transform.position.x - stage.SpawnPoint.position.x, Is.GreaterThan(travel * 1.8f));
-            if (split) Assert.That(floors.Last().bounds.min.x - floors.First().bounds.max.x, Is.EqualTo(gap).Within(.01f));
+            Assert.That(limits.GetComponentsInChildren<LabFloorArt>().Count(a => !a.pit), Is.EqualTo(floors.Length));
+            // the whole entrance door (0.6 left of the spawn, ~1.75 half width) is inside the room
+            Assert.That(stage.SpawnPoint.position.x - .6f - 1.75f, Is.GreaterThan(left));
+
+            // doors are saved in the scene and stay inside the room
+            var entrance = stage.SpawnPoint.Find("Entrance Door");
+            Assert.That(entrance, Is.Not.Null);
+            var goal = stage.GetComponentInChildren<StageGoal>(true);
+            var exit = goal.transform.parent.Find("Exit Door");
+            Assert.That(exit, Is.Not.Null);
+            Assert.That(exit.position.x + 1.75f, Is.LessThan(right));
+            Assert.That(scene.GetRootGameObjects().Any(o => o.name == "Assembly Canvas"), Is.False);
+
+            var bounds = scene.GetRootGameObjects().Select(o => o.GetComponentInChildren<StageOverviewCamera>(true)).Single(c => c);
+            Assert.That(bounds.leftWall, Is.Not.Null);
+            Assert.That(bounds.rightWall, Is.Not.Null);
         }
         finally { EditorSceneManager.ClosePreviewScene(scene); }
     }
