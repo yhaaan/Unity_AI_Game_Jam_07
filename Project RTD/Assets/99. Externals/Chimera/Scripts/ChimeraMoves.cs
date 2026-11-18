@@ -33,10 +33,10 @@ namespace ChimeraGroove
         }
     }
 
-    public enum ChimeraState { Groove, Idle, Run, Jump, Skid, Hurt, Scare }
+    public enum ChimeraState { Groove, Idle, Run, Jump, Skid, Hurt, Scare, Fly, Glide } // Fly·Glide: 날개 달린 몸통(오리·닭·용·불사조)만, 아니면 Idle
 
     public struct LegPose { public float Lr, Ly, Rr, Ry, Lk, Rk, lift, lean, dx, sq, foot; } // Lk·Rk: 무릎을 더 굽히는 정도
-    public struct BodyPose { public float r, dx, dy, sx, sy, wing, fin; }
+    public struct BodyPose { public float r, dx, dy, sx, sy, wing, fin, wingX, wingY, wingSx, wingSy, farWing; } // wingSx·wingSy 0 = 1로 취급, farWing>0이면 몸 뒤에 반대편 날개
     public struct HeadPose { public float r, dx, dy, sx, sy, px, py, browR, browY, wink, eyePop, mouth; } // eyePop: 눈이 커지는 정도(0=그대로)
     public struct Flick { public float r, sx, sy; }
 
@@ -313,7 +313,10 @@ namespace ChimeraGroove
             return j;
         }
 
-        /// <summary>Idle·Run은 b(박자), Jump·Skid·Hurt·Scare는 p(0→1 진행도)를 씁니다.</summary>
+        /// <summary>날기·활강 때 발이 땅에서 떠 있는 높이(512 캔버스 픽셀).</summary>
+        public const float FlyHover = 95f;
+
+        /// <summary>Idle·Run·Fly·Glide는 b(박자), Jump·Skid·Hurt·Scare는 p(0→1 진행도)를 씁니다.</summary>
         public static void State(ChimeraState st, float b, float p, out LegPose L, out BodyPose B, out HeadPose H)
         {
             L = new LegPose(); B = new BodyPose { sx = 1, sy = 1 }; H = new HeadPose { sx = 1, sy = 1, browY = -2 * Hit(b) };
@@ -334,6 +337,25 @@ namespace ChimeraGroove
                 B.sx = 1.08f + .06f * W(c, 2); B.sy = .94f - .06f * W(c, 2); B.dy = 3 * W(c, 2, .25f); B.r = 3 * W(c);
                 B.wing = -24 + 18 * W(c, 2); B.fin = 14 * W(c, 2);
                 H.dx = -9; H.dy = 6 * W(c, 2, -.2f); H.r = 5 + 4 * W(c, 2, -.3f); H.px = -1.5f;
+            }
+            else if (st == ChimeraState.Fly)
+            {   // 날기: 날개를 크게 위아래로 퍼덕(내려칠 때 몸이 위로 붕), 다리는 대롱대롱, 공중에서 천천히 8자로 떠다님
+                float c = b * 2, s = W(c), up = W(c, 1, .25f), raise = .5f + .5f * s;
+                L.Lr = 14 + 12 * W(c, 1, .6f); L.Lk = -12 + 9 * W(c, 1, .7f);
+                L.Rr = 4 + 12 * W(c, 1, .9f); L.Rk = -12 + 9 * W(c, 1, 1);
+                L.lift = FlyHover + 11 * up + 12 * W(b, .25f); L.lean = -6 + 3 * W(b, .25f); L.dx = 16 * W(b, .125f); L.sq = -.3f * up;
+                B.sx = 1 + .04f * up; B.sy = 1 - .05f * up; B.r = 3 * W(c, 1, .3f);
+                B.wing = 15 - 85 * raise; B.wingX = 16 * raise; B.wingY = -24 * raise; B.wingSx = 1.9f; B.wingSy = 1.4f; B.farWing = 1; B.fin = 10 * W(c);
+                H.dx = -5; H.dy = 4 * W(c, 1, -.15f); H.r = -4 + 3 * W(c, 1, -.2f); H.px = -1.5f; H.mouth = .25f;
+            }
+            else if (st == ChimeraState.Glide)
+            {   // 활강: 날개를 쫙 편 채 바르르, 다리는 뒤로 접고, 오르내리는 대로 기수가 들렸다 숙여짐, 눈은 가늘게
+                float g = b * .25f, sway = W(g, 1, -.25f), nose = W(g);
+                L.Lr = -40 + 3 * W(b, 2); L.Lk = -26; L.Rr = -32 + 3 * W(b, 2, .3f); L.Rk = -26;
+                L.lift = FlyHover + 22 * sway; L.lean = -9 + 7 * nose; L.sq = -.35f;
+                B.sx = 1.07f; B.sy = .94f; B.r = 2 * nose;
+                B.wing = -18 + 3 * W(b, 4); B.wingX = 8; B.wingY = -16; B.wingSx = 2.1f + .04f * W(b, 4, .25f); B.wingSy = 1.4f; B.farWing = 1; B.fin = 6 * W(b, 1);
+                H.dx = -8; H.dy = -2; H.r = -3 - 4 * nose; H.px = -2; H.wink = .3f;
             }
             else if (st == ChimeraState.Skid)
             {   // 급정지: 두 발을 앞으로 내밀고 뒤로 젖힌 채 '끼기긱' 떨면서 미끄러지다 멈춤
@@ -371,6 +393,8 @@ namespace ChimeraGroove
         {
             if (st == ChimeraState.Idle) return 14 * W(b, 1, -.25f - i * .08f);
             if (st == ChimeraState.Run) return -16 + 18 * W(b * 2, 2, -.35f - i * .07f); // 뒤로 휘날림
+            if (st == ChimeraState.Fly) return -18 + 14 * W(b * 2, 1, -.3f - i * .07f);
+            if (st == ChimeraState.Glide) return -10 + 6 * W(b, 1, -i * .1f);
             if (st == ChimeraState.Skid) { float env, k, jud; Sk(p, out env, out k, out jud); return -30 * k * env + 6 * jud; }
             if (st == ChimeraState.Hurt) { var h = Hc(p); return -26 * h.back + 8 * h.jud; }
             if (st == ChimeraState.Scare) { var c = Sc(p); return -40 * c.hold + 6 * c.shiver; }
@@ -385,6 +409,8 @@ namespace ChimeraGroove
                 return (i == 0 ? 1 : -1) * (5 * W(b, 1, -.3f) + 10 * tw);
             }
             if (st == ChimeraState.Run) return 30 + 9 * W(b * 2, 2, -.4f + i * .1f); // 바람에 뒤로 쏠린 채 펄럭
+            if (st == ChimeraState.Fly) return 26 + 10 * W(b * 2, 1, -.35f + i * .1f);
+            if (st == ChimeraState.Glide) return 34 + 5 * W(b, 2, -.3f + i * .1f);
             if (st == ChimeraState.Skid) { float env, k, jud; Sk(p, out env, out k, out jud); return -24 * k * env + 4 * jud; }
             if (st == ChimeraState.Hurt) { var h = Hc(p); return -22 * h.back + 5 * h.jud; }
             if (st == ChimeraState.Scare) { var c = Sc(p); return (i == 0 ? -1 : 1) * 18 * c.hold + 6 * c.shiver; }
@@ -395,6 +421,8 @@ namespace ChimeraGroove
         {
             if (st == ChimeraState.Idle) return 0;
             if (st == ChimeraState.Run) return 12 * W(b * 2, 2, -i * .1f);
+            if (st == ChimeraState.Fly) return 12 * W(b * 2, 1, -i * .1f);
+            if (st == ChimeraState.Glide) return -10 + 6 * W(b, 1, -i * .1f);
             if (st == ChimeraState.Skid) return -14 * (1 - p) * (1 - p);
             if (st == ChimeraState.Hurt) return -14 * Hc(p).back;
             if (st == ChimeraState.Scare) return 20 * Sc(p).hold;

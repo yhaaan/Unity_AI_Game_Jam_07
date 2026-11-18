@@ -21,7 +21,7 @@ namespace ChimeraGroove
         public string legs = "chicken";
 
         [Header("동작")]
-        [Tooltip("Groove=춤, Idle=아이들, Run=빨리 달리기, Jump=반복 점프(확인용), Skid=달리다 급정지 반복(확인용), Hurt=피격 반복(확인용), Scare=놀람 반복(확인용). 한 번만 하려면 Jump() / Skid() / Hurt() / Scare() 호출.")]
+        [Tooltip("Groove=춤, Idle=아이들, Run=빨리 달리기, Jump=반복 점프(확인용), Skid=달리다 급정지 반복(확인용), Hurt=피격 반복(확인용), Scare=놀람 반복(확인용), Fly=날기, Glide=활강(날개 달린 몸통만). 한 번만 하려면 Jump() / Skid() / Hurt() / Scare() 호출.")]
         public ChimeraState state = ChimeraState.Groove;
 
         [Header("리소스")]
@@ -48,6 +48,7 @@ namespace ChimeraGroove
         {
             public Transform t; public Vector3 rest; public string role;
             public int i, n; public bool left, top;
+            public Node far; // 날개: 날 때 몸 뒤에 그리는 반대편 날개
         }
 
         static readonly Dictionary<string, ChimeraManifest> manifests = new Dictionary<string, ChimeraManifest>();
@@ -61,7 +62,9 @@ namespace ChimeraGroove
         bool knees; // 윗다리·아랫다리로 나뉜 파츠인지
         float jumpAt = float.NegativeInfinity, combineAt = float.NegativeInfinity, skidAt = float.NegativeInfinity, hurtAt = float.NegativeInfinity, scareAt = float.NegativeInfinity;
         ChimeraDust dust;
-        int dustStride = int.MinValue;
+        int dustStride = int.MinValue, dustFlap = int.MinValue;
+        float dustGlideAt = float.NegativeInfinity;
+        bool canFly;
         float dustJumpP = -1f, dustHurtP = -1f, dustScareP = -1f, dustSkidAt = float.NegativeInfinity;
         int order;
 
@@ -84,6 +87,9 @@ namespace ChimeraGroove
 
         /// <summary>'꺅!' 깜짝 놀라 쭈욱 늘어나는 동작을 한 번 하고 원래 상태로 돌아옵니다.</summary>
         public void Scare() { scareAt = Time.time; }
+
+        /// <summary>날개 달린 몸통(오리·닭·용·불사조)이라 Fly·Glide를 쓸 수 있는지. 아니면 Fly·Glide는 Idle로 보입니다.</summary>
+        public bool CanFly { get { return canFly; } }
 
         /// <summary>Jump()로 뛴 점프가 아직 진행 중인지.</summary>
         public bool IsJumping { get { float d = Time.time - jumpAt; return d >= 0 && d < ChimeraMoves.JumpSeconds; } }
@@ -152,6 +158,7 @@ namespace ChimeraGroove
 
             groundY = L.ground_y_px;
             knees = Array.Exists(L.layers, x => x.role == "lower_leg");
+            canFly = Array.Exists(B.layers, x => x.role == "wing");
             seed = (head + body + legs).Length * 0.37f;
             order = sortingOrderBase;
 
@@ -185,6 +192,8 @@ namespace ChimeraGroove
         {
             var byId = new Dictionary<string, Node>();
             var count = new Dictionary<string, int>();
+            int farOrder = order; // 반대편 날개는 몸통보다 뒤(다리 다음)에 그림
+            foreach (var l in part.layers) if (l.role == "wing") order++;
             foreach (var l in part.layers)
             {
                 var node = new Node { role = l.role, left = l.id.Contains("left") };
@@ -212,6 +221,20 @@ namespace ChimeraGroove
                 node.t.SetParent(p != null ? p.t : baseT, false);
                 node.rest = pl != null ? U(l.pivot[0] - pl.pivot[0], l.pivot[1] - pl.pivot[1]) : U(l.pivot[0] - baseX, l.pivot[1] - baseY);
                 node.t.localPosition = node.rest;
+                if (l.role == "wing" && node.t.childCount > 0)
+                {   // 같은 그림을 한 장 더: 날 때만 켜지고, 어둡게, 몸통 뒤 순서
+                    var farT = new GameObject(l.id + "_far").transform;
+                    farT.SetParent(node.t.parent, false);
+                    farT.localPosition = node.rest;
+                    var src = node.t.GetChild(0);
+                    var g = Instantiate(src.gameObject, farT, false);
+                    g.name = "gfx";
+                    var fsr = g.GetComponent<SpriteRenderer>();
+                    fsr.sortingOrder = farOrder++;
+                    fsr.color = new Color(.72f, .72f, .72f, 1f);
+                    farT.gameObject.SetActive(false);
+                    node.far = new Node { t = farT, rest = node.rest, role = "farwing" };
+                }
             }
         }
 
@@ -260,6 +283,15 @@ namespace ChimeraGroove
                 if (dustScareP < .85f && p >= .85f)
                     for (int i = 0; i < 4; i++) { int d = i < 2 ? -1 : 1; Puff(d * (40 + 30 * R()), d * (70 + 60 * R()), -30, 26 + 14 * R()); }
             }
+            else if (st == ChimeraState.Fly)
+            {   // 날개를 내려칠 때마다 날개 밑으로 바람 덩이가 '훅'
+                int k = Mathf.FloorToInt(b * 2 - .75f);
+                if (k != dustFlap) { dustFlap = k; float lf = Lift * pixelsPerUnit; for (int i = 0; i < 2; i++) Puff(20 + 50 * R(), 30 + 40 * R(), 90 + 40 * R(), 20 + 10 * R(), -(lf + 70)); }
+            }
+            else if (st == ChimeraState.Glide)
+            {   // 몸 뒤로 바람 줄기가 쓱쓱
+                if (now - dustGlideAt > .09f) { dustGlideAt = now; float lf = Lift * pixelsPerUnit; Puff(70 + 30 * R(), 300 + 120 * R(), 0, 22 + 10 * R(), -(lf + 40 + 130 * R()), true); }
+            }
             dustScareP = st == ChimeraState.Scare ? p : -1f;
             dustJumpP = st == ChimeraState.Jump ? p : -1f;
             dustHurtP = st == ChimeraState.Hurt ? p : -1f;
@@ -268,7 +300,7 @@ namespace ChimeraGroove
         static float R() { return UnityEngine.Random.value; }
 
         // x: 발밑 중앙 기준 가로 위치(왼쪽이 앞), vx·vy: 퍼지는 속도, size: 크기 — 모두 512 캔버스 픽셀
-        void Puff(float x, float vx, float vy, float size)
+        void Puff(float x, float vx, float vy, float size, float y0 = 0, bool streak = false)
         {
             if (dust == null)
             {   // 캐릭터가 움직여도 먼지는 제자리에 남도록 부모 없이 월드에 둠
@@ -277,7 +309,7 @@ namespace ChimeraGroove
             dust.color = dustColor;
             dust.sortingLayerName = sortingLayerName;
             dust.sortingOrder = sortingOrderBase + 95;
-            dust.Emit(transform.TransformPoint(U(x, 0)), transform.TransformVector(U(vx, vy)), size / pixelsPerUnit * Mathf.Abs(transform.lossyScale.y));
+            dust.Emit(transform.TransformPoint(U(x, y0)), transform.TransformVector(U(vx, vy)), size / pixelsPerUnit * Mathf.Abs(transform.lossyScale.y), streak);
         }
 
         void OnDestroy() { if (dust != null) Destroy(dust.gameObject); }
@@ -318,6 +350,7 @@ namespace ChimeraGroove
                 if (c < 1f) st = ChimeraState.Idle;
                 else p = (c - 1f) / ChimeraMoves.ScareSeconds;
             }
+            if ((st == ChimeraState.Fly || st == ChimeraState.Glide) && !canFly) st = ChimeraState.Idle; // 날개 없는 몸통
             bool groove = st == ChimeraState.Groove;
             EmitDust(st, p, b, now);
 
@@ -360,7 +393,16 @@ namespace ChimeraGroove
             foreach (var n in bodyNodes)
             {
                 if (n.role == "tail") Set(n.t, n.rest, groove ? ChimeraMoves.Tail(body, b, n.i, n.n) : ChimeraMoves.StateTail(st, b, p, n.i));
-                else if (n.role == "wing") Set(n.t, n.rest, B.wing);
+                else if (n.role == "wing")
+                {   // 날 때는 날개를 길게 펼치고 등 위로 올림, 반대편 날개도 몸 뒤에 보임
+                    float wsx = B.wingSx == 0 ? 1 : B.wingSx, wsy = B.wingSy == 0 ? 1 : B.wingSy;
+                    Set(n.t, n.rest, B.wing, B.wingX, B.wingY, wsx, wsy);
+                    if (n.far != null)
+                    {
+                        n.far.t.gameObject.SetActive(B.farWing > 0);
+                        if (B.farWing > 0) Set(n.far.t, n.far.rest, B.wing - 12, B.wingX + 14, B.wingY - 12, wsx * .92f, wsy * .92f);
+                    }
+                }
                 else if (n.role == "fin") Set(n.t, n.rest, B.fin);
                 else if (n.role == "fire") { var f = ChimeraMoves.Flicker(b, n.i, groove ? ChimeraMoves.BodyFire(body, b, n.i) : ChimeraMoves.StateFire(st, b, p, n.i)); Set(n.t, n.rest, f.r, 0, 0, f.sx, f.sy); }
             }
