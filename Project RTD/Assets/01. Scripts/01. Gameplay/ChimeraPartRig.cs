@@ -42,7 +42,7 @@ namespace ProjectRTD.Gameplay
 
         public void Dispose() { root.SetActive(false); Object.Destroy(root); }
 
-        public void Pose(float beat, bool run, bool air, float ascent)
+        public void Pose(float beat, bool run, bool air, float ascent, float surprise)
         {
             float wave = Mathf.Sin(2*Mathf.PI*beat*(run ? 2 : .5f));
             float blinkTime = Time.time % 3.1f;
@@ -59,7 +59,8 @@ namespace ProjectRTD.Gameplay
                     case "ear": angle = air ? (j.left ? -16 : 16)*ascent : run ? 12+8*wave : 2*wave; break;
                     case "eyelid": angle = 3*blink; break;
                     case "eye": case "sclera":
-                        j.t.localScale = new Vector3(1,1-.9f*blink,1); continue;
+                        float eye = 1 + .45f * surprise;
+                        j.t.localScale = new Vector3(eye,eye-.9f*blink*(1-Mathf.Clamp01(surprise)),1); continue;
                     default: continue;
                 }
                 j.t.localRotation = Quaternion.Euler(0,0,-angle);

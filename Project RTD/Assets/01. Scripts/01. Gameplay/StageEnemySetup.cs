@@ -65,7 +65,8 @@ namespace ProjectRTD.Gameplay
                 var box = go.GetComponent<BoxCollider2D>(); box.isTrigger = true;
                 box.size = kind == PlatformEnemy.Kind.Drone ? new Vector2(1.45f,.9f) : new Vector2(.95f,1.65f);
                 box.offset = Vector2.up * box.size.y * .5f;
-                var art = go.GetComponent<SpriteRenderer>(); art.sprite = sprite; art.sortingOrder = 8;
+                var visual = new GameObject("Visual"); visual.transform.SetParent(go.transform, false);
+                var art = visual.AddComponent<SpriteRenderer>(); art.sprite = sprite; art.sortingOrder = 8;
                 return PrefabUtility.SaveAsPrefabAsset(go,path);
             }
             finally { UnityEngine.Object.DestroyImmediate(go); }

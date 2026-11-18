@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ProjectRTD.Gameplay
 {
-    [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D), typeof(SpriteRenderer))]
+    [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
     public sealed class PlatformEnemy : MonoBehaviour
     {
         public enum Kind { Drone, Scientist }
@@ -15,13 +15,13 @@ namespace ProjectRTD.Gameplay
         [SerializeField] private LayerMask platforms = Physics2D.DefaultRaycastLayers;
         private Rigidbody2D body;
         private BoxCollider2D hitbox;
-        private SpriteRenderer art;
+        private CardTurn turn;
         private Collider2D platform;
         private int direction = -1;
 
         private void Start()
         {
-            body = GetComponent<Rigidbody2D>(); hitbox = GetComponent<BoxCollider2D>(); art = GetComponent<SpriteRenderer>();
+            body = GetComponent<Rigidbody2D>(); hitbox = GetComponent<BoxCollider2D>(); turn = new CardTurn(GetComponentInChildren<SpriteRenderer>().transform);
             var filter = new ContactFilter2D(); filter.SetLayerMask(platforms); filter.useTriggers = false;
             var hits = new System.Collections.Generic.List<RaycastHit2D>();
             Physics2D.Raycast(body.position + Vector2.up * .15f, Vector2.down, filter, hits, 1.5f);
@@ -37,11 +37,21 @@ namespace ProjectRTD.Gameplay
             float left = bounds.min.x + margin, right = bounds.max.x - margin;
             float x = Mathf.Clamp(body.position.x + direction * speed * Time.fixedDeltaTime,left,right);
             if (x <= left) direction = 1; else if (x >= right) direction = -1;
-            art.flipX = direction > 0;
+
             body.MovePosition(new Vector2(x,bounds.max.y));
         }
 
-        private void OnTriggerEnter2D(Collider2D other) => CheckHead(other);
+        private void LateUpdate() => turn.Tick(direction, Time.deltaTime);
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent<PlayerPartLoadout>(out var player))
+            {
+                if (kind == Kind.Scientist && player.Current?.HasEffect(PartEffect.CanPass) == true) return;
+                player.GetComponentInChildren<PlayerPartVisual>()?.PlayScare();
+            }
+            CheckHead(other);
+        }
         private void OnTriggerStay2D(Collider2D other) => CheckHead(other);
         private void CheckHead(Collider2D other)
         {

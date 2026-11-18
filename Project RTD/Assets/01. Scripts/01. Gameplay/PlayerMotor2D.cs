@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ProjectRTD.Core;
 using UnityEngine;
 
 namespace ProjectRTD.Gameplay
@@ -15,6 +16,19 @@ namespace ProjectRTD.Gameplay
         [SerializeField, Min(0f)] private float groundDeceleration = 70f;
         [SerializeField, Min(0f)] private float airAcceleration = 35f;
 
+        private bool IsScareLocked { get; set; }
+
+        internal void SetScareLocked(bool locked)
+        {
+            if (IsScareLocked == locked) return;
+            IsScareLocked = locked;
+            if (!locked) return;
+            body.linearVelocityX = 0f;
+            jumpBufferTimer = 0f;
+            input.ConsumeJumpPressed();
+        }
+
+
         [Header("Jump")]
         [SerializeField, Min(0f)] private float jumpVelocity = 10f;
         [SerializeField, Min(0f)] private float coyoteTime = 0.12f;
@@ -30,6 +44,19 @@ namespace ProjectRTD.Gameplay
         [SerializeField, Range(0.2f, 0.8f)] private float submergedFraction = 0.5f;
         [SerializeField, Range(0f, 0.2f)] private float bobHeightFraction = 0.10f;
         [SerializeField, Min(0.5f)] private float bobPeriod = 2.2f;
+        [Header("Glide")]
+        [SerializeField, Min(0.01f)] private float glideDescentSpeed = 1.5f;
+        private const float GlideDuration = 2f;
+        private float glideRemaining = GlideDuration;
+        private float airborneSeconds;
+        private TravelCadence gait;
+        private bool rightFoot, jumpHeldLastTick;
+
+        private void OnDisable()
+        {
+            gait = default;
+            jumpHeldLastTick = false;
+        }
         private float bobPhase;
         private bool leavingWater;
         public bool IsFloating { get; private set; }
@@ -82,7 +109,7 @@ namespace ProjectRTD.Gameplay
 
         private void Update()
         {
-            if (input.ConsumeJumpPressed())
+            if (input.ConsumeJumpPressed() && !IsScareLocked)
             {
                 jumpBufferTimer = jumpBufferTime;
             }
@@ -90,24 +117,73 @@ namespace ProjectRTD.Gameplay
 
         private void FixedUpdate()
         {
+            bool jumpHeld = input.JumpHeld;
+            bool freshHold = jumpHeld && !jumpHeldLastTick;
+            jumpHeldLastTick = jumpHeld;
+            bool wasFloating = IsFloating;
+            bool wasGrounded = IsGrounded;
             IsFloating = ApplyFlotation();
             IsGrounded = CheckGrounded();
+            if (IsFloating && !wasFloating) SoundManager.Play(Sfx.Splash);
+            else if (IsGrounded && !wasGrounded && airborneSeconds > .08f && !IsFloating)
+                SoundManager.Play(Sfx.Land, Mathf.Lerp(.48f, .92f, Mathf.InverseLerp(.08f, .8f, airborneSeconds)));
+            airborneSeconds = IsGrounded || IsFloating ? 0f : airborneSeconds + Time.fixedDeltaTime;
             if (!IsFloating) bobPhase = 0f;
 
             if (IsGrounded || IsFloating)
             {
                 coyoteTimer = coyoteTime;
+                glideRemaining = GlideDuration;
             }
             else
             {
                 coyoteTimer = Mathf.Max(0f, coyoteTimer - Time.fixedDeltaTime);
             }
 
+            if (IsScareLocked)
+            {
+                body.linearVelocityX = 0f;
+                gait = default;
+                LimitFallSpeed();
+                return;
+            }
+
             ApplyHorizontalMovement();
             ApplyJump();
+            bool gliding = !IsFloating && !IsGrounded && body.linearVelocityY <= 0.0001f && jumpHeld &&
+                SpendGlideTime(loadout?.Current?.HasEffect(PartEffect.Glide) == true, ref glideRemaining, Time.fixedDeltaTime);
+            // A held jump can transition to glide silently. Only a new press on descent cues the wings.
+            if (gliding && freshHold) SoundManager.Play(Sfx.Glide, .32f);
+            UpdateTravelSound(wasGrounded, wasFloating);
+            if (gliding)
+            {
+
+                body.linearVelocityY = -glideDescentSpeed;
+                body.AddForce(Vector2.up * (-Physics2D.gravity.y * body.gravityScale * body.mass));
+            }
             LimitFallSpeed();
 
             jumpBufferTimer = Mathf.Max(0f, jumpBufferTimer - Time.fixedDeltaTime);
+        }
+
+        private void UpdateTravelSound(bool wasGrounded, bool wasFloating)
+        {
+            // Do not count the contact that already produced Land/Splash, or a takeoff.
+            bool movingOnSurface = IsFloating ? wasFloating : IsGrounded && wasGrounded && !wasFloating;
+            bool walking = movingOnSurface && Mathf.Abs(input.Move.x) > .01f;
+            if (!gait.Tick(body.position.x, walking, IsFloating, Mathf.Max(.5f, moveSpeed * Time.fixedDeltaTime * 2f))) return;
+            if (IsFloating) { SoundManager.Play(Sfx.Paddle, .4f); return; }
+
+            float weight = Mathf.InverseLerp(1f, 5f, loadout?.Current?.Weight ?? 3);
+            SoundManager.Play(rightFoot ? Sfx.StepRight : Sfx.StepLeft, Mathf.Lerp(.33f, .57f, weight));
+            rightFoot = !rightFoot;
+        }
+
+        internal static bool SpendGlideTime(bool hasFly, ref float remaining, float step)
+        {
+            if (!hasFly || remaining + .00001f < step) return false;
+            remaining = Mathf.Max(0f, remaining - step);
+            return true;
         }
 
         private bool ApplyFlotation()
@@ -157,6 +233,7 @@ namespace ProjectRTD.Gameplay
             if (jumpBufferTimer > 0f && coyoteTimer > 0f)
             {
                 Vector2 velocity = body.linearVelocity;
+                SoundManager.Play(Sfx.Jump);
                 velocity.y = jumpVelocity;
                 body.linearVelocity = velocity;
 

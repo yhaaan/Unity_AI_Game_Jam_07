@@ -8,6 +8,21 @@ using UnityEngine;
 public sealed class PlayerPartBuildTests
 {
     [Test]
+    public void GlideBudgetComesFromBodySkillAndLastsTwoSeconds()
+    {
+        var catalog = AssetDatabase.LoadAssetAtPath<PartCatalog>("Assets/06. Data/PartCatalog.asset");
+        foreach (var body in catalog.ForSlot(PartSlot.Body))
+        {
+            var build = new PlayerPartBuild(catalog.ForSlot(PartSlot.Head).First(), body, catalog.ForSlot(PartSlot.Legs).First());
+            bool hasFly = build.HasEffect(PartEffect.Glide);
+            bool expected = body.PartId == "chicken_body" || body.PartId == "duck_body";
+            float remaining = 2f;
+            for (int tick = 0; tick < 101; tick++)
+                Assert.That(PlayerMotor2D.SpendGlideTime(hasFly, ref remaining, .02f), Is.EqualTo(expected && tick < 100), body.PartId);
+        }
+    }
+
+    [Test]
     public void FinalCsvAndClipboardMatchCatalog()
     {
         string csv = System.IO.File.ReadAllText("Assets/99. Documents/PartsTemplate.txt");
