@@ -38,6 +38,7 @@ crashlytics-build.properties
 *.local.json
 .unity-game-jam-state.json
 .unity-game-jam-memory.json
+.unity-game-jam-logs/
 npm-debug.log*
 
 
