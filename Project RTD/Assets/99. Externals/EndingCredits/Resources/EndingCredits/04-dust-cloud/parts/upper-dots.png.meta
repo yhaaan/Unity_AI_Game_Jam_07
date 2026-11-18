@@ -1,0 +1,884 @@
+fileFormatVersion: 2
+guid: a694d438e007b4027b97e529088a708e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2799938576251628878
+    second: upper-dots_0
+  - first:
+      213: -599253689372740350
+    second: upper-dots_1
+  - first:
+      213: 576949912865959020
+    second: upper-dots_2
+  - first:
+      213: 8065853937944353789
+    second: upper-dots_3
+  - first:
+      213: -8054808767555897804
+    second: upper-dots_4
+  - first:
+      213: 25323300879208652
+    second: upper-dots_5
+  - first:
+      213: 4086547291682345636
+    second: upper-dots_6
+  - first:
+      213: 123548324323642083
+    second: upper-dots_7
+  - first:
+      213: 5623741989428561631
+    second: upper-dots_8
+  - first:
+      213: -222057570773627587
+    second: upper-dots_9
+  - first:
+      213: 7994680478943469599
+    second: upper-dots_10
+  - first:
+      213: -1046228264337705113
+    second: upper-dots_11
+  - first:
+      213: 4814776881183418352
+    second: upper-dots_12
+  - first:
+      213: -4906585980068070776
+    second: upper-dots_13
+  - first:
+      213: -5604082292149550143
+    second: upper-dots_14
+  - first:
+      213: 8298333571254653797
+    second: upper-dots_15
+  - first:
+      213: -6413141901547925603
+    second: upper-dots_16
+  - first:
+      213: -8844349658093091512
+    second: upper-dots_17
+  - first:
+      213: -3930842670373854486
+    second: upper-dots_18
+  - first:
+      213: -7597083842338498131
+    second: upper-dots_19
+  - first:
+      213: -383422364318547382
+    second: upper-dots_20
+  - first:
+      213: -7546304728315078010
+    second: upper-dots_21
+  - first:
+      213: -9160373471471286662
+    second: upper-dots_22
+  - first:
+      213: 647821385419015313
+    second: upper-dots_23
+  - first:
+      213: -7254439564344766400
+    second: upper-dots_24
+  - first:
+      213: -6410872479261038492
+    second: upper-dots_25
+  - first:
+      213: -977990061981827615
+    second: upper-dots_26
+  - first:
+      213: -585179099872547599
+    second: upper-dots_27
+  - first:
+      213: -2754907883896618363
+    second: upper-dots_28
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: upper-dots_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 22
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4d2466ec416bd620800000000000000
+      internalID: 2799938576251628878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_1
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 21
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 205789ac1f50fa7f0800000000000000
+      internalID: -599253689372740350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_2
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 21
+        width: 29
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6c619193ecb10800800000000000000
+      internalID: 576949912865959020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_3
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 33
+        width: 17
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfbdb5dfb6bafef60800000000000000
+      internalID: 8065853937944353789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_4
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 17
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 436f0242a12973090800000000000000
+      internalID: -8054808767555897804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_5
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 31
+        width: 20
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc012717867f95000800000000000000
+      internalID: 25323300879208652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_6
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 16
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a29f8e3c1556b830800000000000000
+      internalID: 4086547291682345636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_7
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 29
+        width: 20
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3eac7efdb8ee6b100800000000000000
+      internalID: 123548324323642083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_8
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 29
+        width: 20
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd686542b8b8b0e40800000000000000
+      internalID: 5623741989428561631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_9
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 29
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3d0a5ed0d71becf0800000000000000
+      internalID: -222057570773627587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_10
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 25
+        width: 21
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f10ec28b98fc2fe60800000000000000
+      internalID: 7994680478943469599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_11
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 23
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7677d2ecfec0b71f0800000000000000
+      internalID: -1046228264337705113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_12
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 21
+        width: 30
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f763bb401681d240800000000000000
+      internalID: 4814776881183418352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_13
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 21
+        width: 30
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88a712e1c0e48ebb0800000000000000
+      internalID: -4906585980068070776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_14
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 23
+        width: 28
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c38e54d8dc4a32b0800000000000000
+      internalID: -5604082292149550143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_15
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 25
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5631556aa6a992370800000000000000
+      internalID: 8298333571254653797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_16
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 29
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9f00183b61fff6a0800000000000000
+      internalID: -6413141901547925603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_17
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 3
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 845830868de824580800000000000000
+      internalID: -8844349658093091512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_18
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 2
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae22b64fa67d279c0800000000000000
+      internalID: -3930842670373854486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_19
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 1
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da9dd881f7cb19690800000000000000
+      internalID: -7597083842338498131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_20
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 14
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a424adf146fcdaaf0800000000000000
+      internalID: -383422364318547382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_21
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 0
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68adde5e4d3264790800000000000000
+      internalID: -7546304728315078010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_22
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 14
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a76ca078cd0dfd080800000000000000
+      internalID: -9160373471471286662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_23
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 12
+        width: 29
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1944dc32e168df800800000000000000
+      internalID: 647821385419015313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_24
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 10
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 040d0b2e6ad035b90800000000000000
+      internalID: -7254439564344766400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_25
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 10
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 468615542710807a0800000000000000
+      internalID: -6410872479261038492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_26
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 12
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1edf5b1683b7d62f0800000000000000
+      internalID: -977990061981827615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_27
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fc2d1685b601e7f0800000000000000
+      internalID: -585179099872547599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper-dots_28
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 0
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5824b6f20e994c9d0800000000000000
+      internalID: -2754907883896618363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      upper-dots_0: 2799938576251628878
+      upper-dots_1: -599253689372740350
+      upper-dots_10: 7994680478943469599
+      upper-dots_11: -1046228264337705113
+      upper-dots_12: 4814776881183418352
+      upper-dots_13: -4906585980068070776
+      upper-dots_14: -5604082292149550143
+      upper-dots_15: 8298333571254653797
+      upper-dots_16: -6413141901547925603
+      upper-dots_17: -8844349658093091512
+      upper-dots_18: -3930842670373854486
+      upper-dots_19: -7597083842338498131
+      upper-dots_2: 576949912865959020
+      upper-dots_20: -383422364318547382
+      upper-dots_21: -7546304728315078010
+      upper-dots_22: -9160373471471286662
+      upper-dots_23: 647821385419015313
+      upper-dots_24: -7254439564344766400
+      upper-dots_25: -6410872479261038492
+      upper-dots_26: -977990061981827615
+      upper-dots_27: -585179099872547599
+      upper-dots_28: -2754907883896618363
+      upper-dots_3: 8065853937944353789
+      upper-dots_4: -8054808767555897804
+      upper-dots_5: 25323300879208652
+      upper-dots_6: 4086547291682345636
+      upper-dots_7: 123548324323642083
+      upper-dots_8: 5623741989428561631
+      upper-dots_9: -222057570773627587
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

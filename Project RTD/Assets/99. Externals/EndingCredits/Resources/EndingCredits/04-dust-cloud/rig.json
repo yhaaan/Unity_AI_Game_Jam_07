@@ -1,0 +1,537 @@
+{
+ "cut": "04-dust-cloud",
+ "size": [
+  1920,
+  600
+ ],
+ "layers": [
+  {
+   "id": "blue-field",
+   "file": "parts/blue-field.png",
+   "parent": null,
+   "role": "blue-field",
+   "pivot": [
+    937,
+    298
+   ],
+   "rect": [
+    0,
+    0,
+    1920,
+    600
+   ]
+  },
+  {
+   "id": "corner-dots",
+   "file": "parts/corner-dots.png",
+   "parent": null,
+   "role": "corner-dots",
+   "pivot": [
+    141,
+    55
+   ],
+   "rect": [
+    0,
+    0,
+    386,
+    324
+   ]
+  },
+  {
+   "id": "upper-dots",
+   "file": "parts/upper-dots.png",
+   "parent": null,
+   "role": "upper-dots",
+   "pivot": [
+    946,
+    -3
+   ],
+   "rect": [
+    652,
+    0,
+    565,
+    39
+   ]
+  },
+  {
+   "id": "lower-dots",
+   "file": "parts/lower-dots.png",
+   "parent": null,
+   "role": "lower-dots",
+   "pivot": [
+    376,
+    589
+   ],
+   "rect": [
+    0,
+    295,
+    1209,
+    305
+   ]
+  },
+  {
+   "id": "sweep-overhead",
+   "file": "parts/sweep-overhead.png",
+   "parent": null,
+   "role": "sweep-overhead",
+   "pivot": [
+    999,
+    49
+   ],
+   "rect": [
+    731,
+    6,
+    514,
+    130
+   ]
+  },
+  {
+   "id": "sweep-small-top",
+   "file": "parts/sweep-small-top.png",
+   "parent": null,
+   "role": "sweep-small-top",
+   "pivot": [
+    800,
+    148
+   ],
+   "rect": [
+    756,
+    120,
+    90,
+    63
+   ]
+  },
+  {
+   "id": "speed-upper-long",
+   "file": "parts/speed-upper-long.png",
+   "parent": null,
+   "role": "speed-upper-long",
+   "pivot": [
+    405,
+    254
+   ],
+   "rect": [
+    284,
+    222,
+    309,
+    73
+   ]
+  },
+  {
+   "id": "speed-upper-short",
+   "file": "parts/speed-upper-short.png",
+   "parent": null,
+   "role": "speed-upper-short",
+   "pivot": [
+    408,
+    269
+   ],
+   "rect": [
+    323,
+    250,
+    212,
+    46
+   ]
+  },
+  {
+   "id": "speed-lower-long",
+   "file": "parts/speed-lower-long.png",
+   "parent": null,
+   "role": "speed-lower-long",
+   "pivot": [
+    324,
+    467
+   ],
+   "rect": [
+    166,
+    424,
+    361,
+    67
+   ]
+  },
+  {
+   "id": "speed-lower-short",
+   "file": "parts/speed-lower-short.png",
+   "parent": null,
+   "role": "speed-lower-short",
+   "pivot": [
+    399,
+    450
+   ],
+   "rect": [
+    296,
+    435,
+    162,
+    22
+   ]
+  },
+  {
+   "id": "speed-bottom-long",
+   "file": "parts/speed-bottom-long.png",
+   "parent": null,
+   "role": "speed-bottom-long",
+   "pivot": [
+    545,
+    554
+   ],
+   "rect": [
+    373,
+    515,
+    351,
+    56
+   ]
+  },
+  {
+   "id": "speed-bottom-short",
+   "file": "parts/speed-bottom-short.png",
+   "parent": null,
+   "role": "speed-bottom-short",
+   "pivot": [
+    667,
+    538
+   ],
+   "rect": [
+    619,
+    530,
+    99,
+    22
+   ]
+  },
+  {
+   "id": "star-high",
+   "file": "parts/star-high.png",
+   "parent": null,
+   "role": "star-high",
+   "pivot": [
+    1314,
+    52
+   ],
+   "rect": [
+    1251,
+    0,
+    122,
+    123
+   ]
+  },
+  {
+   "id": "star-low",
+   "file": "parts/star-low.png",
+   "parent": null,
+   "role": "star-low",
+   "pivot": [
+    584,
+    481
+   ],
+   "rect": [
+    530,
+    419,
+    116,
+    121
+   ]
+  },
+  {
+   "id": "lightning",
+   "file": "parts/lightning.png",
+   "parent": null,
+   "role": "lightning",
+   "pivot": [
+    622,
+    137
+   ],
+   "rect": [
+    490,
+    40,
+    258,
+    195
+   ]
+  },
+  {
+   "id": "puff-trail-04",
+   "file": "parts/puff-trail-04.png",
+   "parent": null,
+   "role": "puff-trail-04",
+   "pivot": [
+    342,
+    364
+   ],
+   "rect": [
+    280,
+    314,
+    132,
+    105
+   ]
+  },
+  {
+   "id": "puff-trail-03",
+   "file": "parts/puff-trail-03.png",
+   "parent": null,
+   "role": "puff-trail-03",
+   "pivot": [
+    214,
+    368
+   ],
+   "rect": [
+    170,
+    336,
+    83,
+    70
+   ]
+  },
+  {
+   "id": "puff-trail-02",
+   "file": "parts/puff-trail-02.png",
+   "parent": null,
+   "role": "puff-trail-02",
+   "pivot": [
+    132,
+    372
+   ],
+   "rect": [
+    111,
+    355,
+    43,
+    33
+   ]
+  },
+  {
+   "id": "puff-trail-01",
+   "file": "parts/puff-trail-01.png",
+   "parent": null,
+   "role": "puff-trail-01",
+   "pivot": [
+    89,
+    396
+   ],
+   "rect": [
+    71,
+    386,
+    36,
+    29
+   ]
+  },
+  {
+   "id": "cloud-tail-backing",
+   "file": "parts/cloud-tail-backing.png",
+   "parent": "cloud-tail",
+   "role": "cloud-tail-backing",
+   "pivot": [
+    689,
+    421
+   ],
+   "rect": [
+    429,
+    138,
+    572,
+    439
+   ]
+  },
+  {
+   "id": "cloud-left-backing",
+   "file": "parts/cloud-left-backing.png",
+   "parent": "cloud-left",
+   "role": "cloud-left-backing",
+   "pivot": [
+    953,
+    391
+   ],
+   "rect": [
+    654,
+    45,
+    573,
+    555
+   ]
+  },
+  {
+   "id": "cloud-middle-backing",
+   "file": "parts/cloud-middle-backing.png",
+   "parent": "cloud-middle",
+   "role": "cloud-middle-backing",
+   "pivot": [
+    1273,
+    345
+   ],
+   "rect": [
+    894,
+    0,
+    735,
+    600
+   ]
+  },
+  {
+   "id": "cloud-front-backing",
+   "file": "parts/cloud-front-backing.png",
+   "parent": "cloud-front",
+   "role": "cloud-front-backing",
+   "pivot": [
+    1646,
+    315
+   ],
+   "rect": [
+    1198,
+    0,
+    722,
+    600
+   ]
+  },
+  {
+   "id": "cloud-tail",
+   "file": "parts/cloud-tail.png",
+   "parent": null,
+   "role": "cloud-tail",
+   "pivot": [
+    689,
+    421
+   ],
+   "rect": [
+    430,
+    139,
+    478,
+    411
+   ]
+  },
+  {
+   "id": "cloud-left",
+   "file": "parts/cloud-left.png",
+   "parent": null,
+   "role": "cloud-left",
+   "pivot": [
+    953,
+    391
+   ],
+   "rect": [
+    730,
+    47,
+    417,
+    553
+   ]
+  },
+  {
+   "id": "cloud-middle",
+   "file": "parts/cloud-middle.png",
+   "parent": null,
+   "role": "cloud-middle",
+   "pivot": [
+    1273,
+    345
+   ],
+   "rect": [
+    971,
+    6,
+    567,
+    594
+   ]
+  },
+  {
+   "id": "cloud-front",
+   "file": "parts/cloud-front.png",
+   "parent": null,
+   "role": "cloud-front",
+   "pivot": [
+    1646,
+    315
+   ],
+   "rect": [
+    1275,
+    0,
+    645,
+    600
+   ]
+  },
+  {
+   "id": "rabbit-ear-far",
+   "file": "parts/rabbit-ear-far.png",
+   "parent": "cloud-left",
+   "role": "rabbit-ear-far",
+   "pivot": [
+    816,
+    392
+   ],
+   "rect": [
+    692,
+    257,
+    147,
+    146
+   ]
+  },
+  {
+   "id": "rabbit-ear-near",
+   "file": "parts/rabbit-ear-near.png",
+   "parent": "cloud-left",
+   "role": "rabbit-ear-near",
+   "pivot": [
+    781,
+    409
+   ],
+   "rect": [
+    611,
+    336,
+    189,
+    98
+   ]
+  },
+  {
+   "id": "bear-paw",
+   "file": "parts/bear-paw.png",
+   "parent": "cloud-left",
+   "role": "bear-paw",
+   "pivot": [
+    952,
+    163
+   ],
+   "rect": [
+    898,
+    90,
+    106,
+    88
+   ]
+  },
+  {
+   "id": "duck-foot",
+   "file": "parts/duck-foot.png",
+   "parent": "cloud-front",
+   "role": "duck-foot",
+   "pivot": [
+    1426,
+    275
+   ],
+   "rect": [
+    1406,
+    147,
+    180,
+    150
+   ]
+  },
+  {
+   "id": "axolotl-gill",
+   "file": "parts/axolotl-gill.png",
+   "parent": "cloud-middle",
+   "role": "axolotl-gill",
+   "pivot": [
+    1198,
+    521
+   ],
+   "rect": [
+    1117,
+    457,
+    98,
+    121
+   ]
+  },
+  {
+   "id": "ka-thump-lettering",
+   "file": "parts/ka-thump-lettering.png",
+   "parent": null,
+   "role": "ka-thump-lettering",
+   "pivot": [
+    366,
+    210
+   ],
+   "rect": [
+    81,
+    104,
+    583,
+    218
+   ]
+  }
+ ]
+}

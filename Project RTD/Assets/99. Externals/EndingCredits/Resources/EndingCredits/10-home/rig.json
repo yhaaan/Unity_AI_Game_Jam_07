@@ -1,0 +1,409 @@
+{
+ "cut": "10-home",
+ "size": [
+  1920,
+  955
+ ],
+ "layers": [
+  {
+   "id": "clean-background",
+   "file": "parts/clean-background.png",
+   "parent": null,
+   "role": "clean-background",
+   "pivot": [
+    960,
+    477
+   ],
+   "rect": [
+    0,
+    0,
+    1920,
+    955
+   ]
+  },
+  {
+   "id": "shadow",
+   "file": "parts/shadow.png",
+   "parent": null,
+   "role": "shadow",
+   "pivot": [
+    807,
+    869
+   ],
+   "rect": [
+    474,
+    820,
+    650,
+    81
+   ]
+  },
+  {
+   "id": "dust-far",
+   "file": "parts/dust-far.png",
+   "parent": null,
+   "role": "dust-far",
+   "pivot": [
+    353,
+    804
+   ],
+   "rect": [
+    291,
+    749,
+    122,
+    110
+   ]
+  },
+  {
+   "id": "dust-near",
+   "file": "parts/dust-near.png",
+   "parent": null,
+   "role": "dust-near",
+   "pivot": [
+    444,
+    858
+   ],
+   "rect": [
+    404,
+    816,
+    77,
+    71
+   ]
+  },
+  {
+   "id": "dust-motion",
+   "file": "parts/dust-motion.png",
+   "parent": null,
+   "role": "dust-motion",
+   "pivot": [
+    450,
+    785
+   ],
+   "rect": [
+    430,
+    747,
+    60,
+    55
+   ]
+  },
+  {
+   "id": "paw-motion",
+   "file": "parts/paw-motion.png",
+   "parent": null,
+   "role": "paw-motion",
+   "pivot": [
+    1362,
+    310
+   ],
+   "rect": [
+    1294,
+    257,
+    141,
+    120
+   ]
+  },
+  {
+   "id": "bear-tail",
+   "file": "parts/bear-tail.png",
+   "parent": "torso",
+   "role": "bear-tail",
+   "pivot": [
+    674,
+    533
+   ],
+   "rect": [
+    593,
+    447,
+    128,
+    114
+   ]
+  },
+  {
+   "id": "rear-duck-foot",
+   "file": "parts/rear-duck-foot.png",
+   "parent": "torso",
+   "role": "rear-duck-foot",
+   "pivot": [
+    655,
+    729
+   ],
+   "rect": [
+    606,
+    690,
+    92,
+    127
+   ]
+  },
+  {
+   "id": "rear-webbing",
+   "file": "parts/rear-webbing.png",
+   "parent": "rear-duck-foot",
+   "role": "rear-webbing",
+   "pivot": [
+    636,
+    751
+   ],
+   "rect": [
+    477,
+    690,
+    175,
+    199
+   ]
+  },
+  {
+   "id": "near-duck-foot",
+   "file": "parts/near-duck-foot.png",
+   "parent": "torso",
+   "role": "near-duck-foot",
+   "pivot": [
+    890,
+    729
+   ],
+   "rect": [
+    827,
+    718,
+    212,
+    99
+   ]
+  },
+  {
+   "id": "near-webbing",
+   "file": "parts/near-webbing.png",
+   "parent": "near-duck-foot",
+   "role": "near-webbing",
+   "pivot": [
+    893,
+    804
+   ],
+   "rect": [
+    796,
+    805,
+    259,
+    93
+   ]
+  },
+  {
+   "id": "bear-arm",
+   "file": "parts/bear-arm.png",
+   "parent": "torso",
+   "role": "bear-arm",
+   "pivot": [
+    1116,
+    581
+   ],
+   "rect": [
+    1053,
+    448,
+    253,
+    202
+   ]
+  },
+  {
+   "id": "bear-paw",
+   "file": "parts/bear-paw.png",
+   "parent": "bear-arm",
+   "role": "bear-paw",
+   "pivot": [
+    1284,
+    545
+   ],
+   "rect": [
+    1270,
+    447,
+    98,
+    173
+   ]
+  },
+  {
+   "id": "torso",
+   "file": "parts/torso.png",
+   "parent": null,
+   "role": "torso",
+   "pivot": [
+    852,
+    624
+   ],
+   "rect": [
+    581,
+    434,
+    569,
+    340
+   ]
+  },
+  {
+   "id": "left-gills",
+   "file": "parts/left-gills.png",
+   "parent": "mane",
+   "role": "left-gills",
+   "pivot": [
+    871,
+    398
+   ],
+   "rect": [
+    736,
+    309,
+    146,
+    171
+   ]
+  },
+  {
+   "id": "right-gills",
+   "file": "parts/right-gills.png",
+   "parent": "mane",
+   "role": "right-gills",
+   "pivot": [
+    1166,
+    432
+   ],
+   "rect": [
+    1147,
+    340,
+    139,
+    193
+   ]
+  },
+  {
+   "id": "ear-left",
+   "file": "parts/ear-left.png",
+   "parent": "mane",
+   "role": "ear-left",
+   "pivot": [
+    934,
+    290
+   ],
+   "rect": [
+    899,
+    102,
+    166,
+    195
+   ]
+  },
+  {
+   "id": "ear-right",
+   "file": "parts/ear-right.png",
+   "parent": "mane",
+   "role": "ear-right",
+   "pivot": [
+    1080,
+    266
+   ],
+   "rect": [
+    1042,
+    67,
+    213,
+    219
+   ]
+  },
+  {
+   "id": "mane",
+   "file": "parts/mane.png",
+   "parent": "torso",
+   "role": "mane",
+   "pivot": [
+    1006,
+    408
+   ],
+   "rect": [
+    824,
+    237,
+    404,
+    319
+   ]
+  },
+  {
+   "id": "hen-wing",
+   "file": "parts/hen-wing.png",
+   "parent": "torso",
+   "role": "hen-wing",
+   "pivot": [
+    816,
+    542
+   ],
+   "rect": [
+    743,
+    497,
+    252,
+    205
+   ]
+  },
+  {
+   "id": "mane-straw-left",
+   "file": "parts/mane-straw-left.png",
+   "parent": "mane",
+   "role": "mane-straw-left",
+   "pivot": [
+    912,
+    317
+   ],
+   "rect": [
+    834,
+    270,
+    103,
+    70
+   ]
+  },
+  {
+   "id": "mane-straw-middle",
+   "file": "parts/mane-straw-middle.png",
+   "parent": "mane",
+   "role": "mane-straw-middle",
+   "pivot": [
+    953,
+    382
+   ],
+   "rect": [
+    934,
+    318,
+    99,
+    73
+   ]
+  },
+  {
+   "id": "mane-straw-right",
+   "file": "parts/mane-straw-right.png",
+   "parent": "mane",
+   "role": "mane-straw-right",
+   "pivot": [
+    1123,
+    317
+   ],
+   "rect": [
+    1111,
+    260,
+    117,
+    73
+   ]
+  },
+  {
+   "id": "speech-balloon",
+   "file": "parts/speech-balloon.png",
+   "parent": null,
+   "role": "speech-balloon",
+   "pivot": [
+    411,
+    238
+   ],
+   "rect": [
+    111,
+    92,
+    601,
+    293
+   ]
+  },
+  {
+   "id": "words",
+   "file": "parts/words.png",
+   "parent": "speech-balloon",
+   "role": "words",
+   "pivot": [
+    297,
+    184
+   ],
+   "rect": [
+    202,
+    161,
+    190,
+    47
+   ]
+  }
+ ]
+}

@@ -1,0 +1,425 @@
+{
+ "cut": "07-hay-crash",
+ "size": [
+  1920,
+  447
+ ],
+ "layers": [
+  {
+   "id": "clean-background",
+   "file": "parts/clean-background.png",
+   "parent": null,
+   "role": "clean-background",
+   "pivot": [
+    960,
+    223
+   ],
+   "rect": [
+    0,
+    0,
+    1920,
+    447
+   ]
+  },
+  {
+   "id": "dirt-trail",
+   "file": "parts/dirt-trail.png",
+   "parent": null,
+   "role": "dirt-trail",
+   "pivot": [
+    569,
+    399
+   ],
+   "rect": [
+    292,
+    365,
+    496,
+    57
+   ]
+  },
+  {
+   "id": "dust-puff-a",
+   "file": "parts/dust-puff-a.png",
+   "parent": null,
+   "role": "dust-puff-a",
+   "pivot": [
+    458,
+    338
+   ],
+   "rect": [
+    410,
+    291,
+    102,
+    89
+   ]
+  },
+  {
+   "id": "dust-puff-b",
+   "file": "parts/dust-puff-b.png",
+   "parent": null,
+   "role": "dust-puff-b",
+   "pivot": [
+    558,
+    353
+   ],
+   "rect": [
+    529,
+    323,
+    77,
+    64
+   ]
+  },
+  {
+   "id": "dust-puff-c",
+   "file": "parts/dust-puff-c.png",
+   "parent": null,
+   "role": "dust-puff-c",
+   "pivot": [
+    663,
+    362
+   ],
+   "rect": [
+    638,
+    340,
+    45,
+    40
+   ]
+  },
+  {
+   "id": "speed-lines",
+   "file": "parts/speed-lines.png",
+   "parent": null,
+   "role": "speed-lines",
+   "pivot": [
+    781,
+    202
+   ],
+   "rect": [
+    673,
+    155,
+    220,
+    107
+   ]
+  },
+  {
+   "id": "rear-duck-foot",
+   "file": "parts/rear-duck-foot.png",
+   "parent": "torso",
+   "role": "rear-duck-foot",
+   "pivot": [
+    1082,
+    209
+   ],
+   "rect": [
+    1028,
+    123,
+    66,
+    94
+   ]
+  },
+  {
+   "id": "rear-webbing",
+   "file": "parts/rear-webbing.png",
+   "parent": "rear-duck-foot",
+   "role": "rear-webbing",
+   "pivot": [
+    1039,
+    185
+   ],
+   "rect": [
+    924,
+    67,
+    130,
+    144
+   ]
+  },
+  {
+   "id": "near-duck-foot",
+   "file": "parts/near-duck-foot.png",
+   "parent": "torso",
+   "role": "near-duck-foot",
+   "pivot": [
+    1078,
+    236
+   ],
+   "rect": [
+    1012,
+    204,
+    85,
+    91
+   ]
+  },
+  {
+   "id": "near-webbing",
+   "file": "parts/near-webbing.png",
+   "parent": "near-duck-foot",
+   "role": "near-webbing",
+   "pivot": [
+    1025,
+    248
+   ],
+   "rect": [
+    905,
+    216,
+    124,
+    133
+   ]
+  },
+  {
+   "id": "bear-tail",
+   "file": "parts/bear-tail.png",
+   "parent": "torso",
+   "role": "bear-tail",
+   "pivot": [
+    1159,
+    123
+   ],
+   "rect": [
+    1110,
+    64,
+    92,
+    71
+   ]
+  },
+  {
+   "id": "torso",
+   "file": "parts/torso.png",
+   "parent": null,
+   "role": "torso",
+   "pivot": [
+    1231,
+    207
+   ],
+   "rect": [
+    1056,
+    89,
+    382,
+    260
+   ]
+  },
+  {
+   "id": "hen-wing",
+   "file": "parts/hen-wing.png",
+   "parent": "torso",
+   "role": "hen-wing",
+   "pivot": [
+    1265,
+    156
+   ],
+   "rect": [
+    1212,
+    123,
+    160,
+    145
+   ]
+  },
+  {
+   "id": "hay-cover",
+   "file": "parts/hay-cover.png",
+   "parent": null,
+   "role": "hay-cover",
+   "pivot": [
+    1502,
+    348
+   ],
+   "rect": [
+    1074,
+    14,
+    832,
+    403
+   ]
+  },
+  {
+   "id": "straw-01",
+   "file": "parts/straw-01.png",
+   "parent": null,
+   "role": "straw-01",
+   "pivot": [
+    844,
+    95
+   ],
+   "rect": [
+    800,
+    75,
+    78,
+    50
+   ]
+  },
+  {
+   "id": "straw-02",
+   "file": "parts/straw-02.png",
+   "parent": null,
+   "role": "straw-02",
+   "pivot": [
+    815,
+    288
+   ],
+   "rect": [
+    778,
+    258,
+    76,
+    61
+   ]
+  },
+  {
+   "id": "straw-03",
+   "file": "parts/straw-03.png",
+   "parent": null,
+   "role": "straw-03",
+   "pivot": [
+    842,
+    355
+   ],
+   "rect": [
+    811,
+    333,
+    61,
+    43
+   ]
+  },
+  {
+   "id": "straw-04",
+   "file": "parts/straw-04.png",
+   "parent": null,
+   "role": "straw-04",
+   "pivot": [
+    1001,
+    46
+   ],
+   "rect": [
+    965,
+    25,
+    67,
+    32
+   ]
+  },
+  {
+   "id": "straw-05",
+   "file": "parts/straw-05.png",
+   "parent": null,
+   "role": "straw-05",
+   "pivot": [
+    1183,
+    41
+   ],
+   "rect": [
+    1149,
+    13,
+    79,
+    34
+   ]
+  },
+  {
+   "id": "straw-06",
+   "file": "parts/straw-06.png",
+   "parent": null,
+   "role": "straw-06",
+   "pivot": [
+    1320,
+    65
+   ],
+   "rect": [
+    1291,
+    19,
+    52,
+    68
+   ]
+  },
+  {
+   "id": "straw-07",
+   "file": "parts/straw-07.png",
+   "parent": null,
+   "role": "straw-07",
+   "pivot": [
+    1409,
+    58
+   ],
+   "rect": [
+    1368,
+    0,
+    87,
+    96
+   ]
+  },
+  {
+   "id": "straw-08",
+   "file": "parts/straw-08.png",
+   "parent": null,
+   "role": "straw-08",
+   "pivot": [
+    964,
+    397
+   ],
+   "rect": [
+    883,
+    384,
+    176,
+    46
+   ]
+  },
+  {
+   "id": "straw-09",
+   "file": "parts/straw-09.png",
+   "parent": null,
+   "role": "straw-09",
+   "pivot": [
+    1150,
+    403
+   ],
+   "rect": [
+    1132,
+    410,
+    33,
+    7
+   ]
+  },
+  {
+   "id": "straw-10",
+   "file": "parts/straw-10.png",
+   "parent": null,
+   "role": "straw-10",
+   "pivot": [
+    1510,
+    394
+   ],
+   "rect": [
+    1460,
+    399,
+    103,
+    32
+   ]
+  },
+  {
+   "id": "straw-11",
+   "file": "parts/straw-11.png",
+   "parent": null,
+   "role": "straw-11",
+   "pivot": [
+    1056,
+    345
+   ],
+   "rect": [
+    1015,
+    329,
+    75,
+    48
+   ]
+  },
+  {
+   "id": "impact-lettering",
+   "file": "parts/impact-lettering.png",
+   "parent": null,
+   "role": "impact-lettering",
+   "pivot": [
+    323,
+    121
+   ],
+   "rect": [
+    115,
+    52,
+    417,
+    139
+   ]
+  }
+ ]
+}

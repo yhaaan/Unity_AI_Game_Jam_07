@@ -1,0 +1,5 @@
+{
+    "name": "ChimeraGroove.Ending",
+    "rootNamespace": "ChimeraGroove.Ending",
+    "references": ["ChimeraGroove.Prologue", "Unity.TextMeshPro", "UnityEngine.UI", "Unity.InputSystem"]
+}

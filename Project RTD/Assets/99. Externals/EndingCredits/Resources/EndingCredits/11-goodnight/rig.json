@@ -1,0 +1,377 @@
+{
+ "cut": "11-goodnight",
+ "size": [
+  1920,
+  957
+ ],
+ "layers": [
+  {
+   "id": "clean-background",
+   "file": "parts/clean-background.png",
+   "parent": null,
+   "role": "clean-background",
+   "pivot": [
+    960,
+    478
+   ],
+   "rect": [
+    0,
+    0,
+    1920,
+    957
+   ]
+  },
+  {
+   "id": "window-star-left",
+   "file": "parts/window-star-left.png",
+   "parent": null,
+   "role": "window-star-left",
+   "pivot": [
+    189,
+    149
+   ],
+   "rect": [
+    163,
+    117,
+    55,
+    63
+   ]
+  },
+  {
+   "id": "window-star-right",
+   "file": "parts/window-star-right.png",
+   "parent": null,
+   "role": "window-star-right",
+   "pivot": [
+    333,
+    169
+   ],
+   "rect": [
+    310,
+    156,
+    46,
+    52
+   ]
+  },
+  {
+   "id": "window-star-low",
+   "file": "parts/window-star-low.png",
+   "parent": null,
+   "role": "window-star-low",
+   "pivot": [
+    260,
+    228
+   ],
+   "rect": [
+    236,
+    207,
+    44,
+    48
+   ]
+  },
+  {
+   "id": "bear-tail",
+   "file": "parts/bear-tail.png",
+   "parent": "torso",
+   "role": "bear-tail",
+   "pivot": [
+    646,
+    405
+   ],
+   "rect": [
+    552,
+    279,
+    175,
+    161
+   ]
+  },
+  {
+   "id": "torso",
+   "file": "parts/torso.png",
+   "parent": null,
+   "role": "torso",
+   "pivot": [
+    866,
+    535
+   ],
+   "rect": [
+    514,
+    242,
+    835,
+    582
+   ]
+  },
+  {
+   "id": "bear-shoulder",
+   "file": "parts/bear-shoulder.png",
+   "parent": "torso",
+   "role": "bear-shoulder",
+   "pivot": [
+    1632,
+    662
+   ],
+   "rect": [
+    1486,
+    618,
+    246,
+    202
+   ]
+  },
+  {
+   "id": "hen-wing",
+   "file": "parts/hen-wing.png",
+   "parent": "torso",
+   "role": "hen-wing",
+   "pivot": [
+    986,
+    360
+   ],
+   "rect": [
+    691,
+    306,
+    449,
+    350
+   ]
+  },
+  {
+   "id": "gills-left",
+   "file": "parts/gills-left.png",
+   "parent": "mane",
+   "role": "gills-left",
+   "pivot": [
+    1234,
+    437
+   ],
+   "rect": [
+    1045,
+    252,
+    234,
+    280
+   ]
+  },
+  {
+   "id": "gills-right",
+   "file": "parts/gills-right.png",
+   "parent": "mane",
+   "role": "gills-right",
+   "pivot": [
+    1680,
+    528
+   ],
+   "rect": [
+    1642,
+    385,
+    218,
+    280
+   ]
+  },
+  {
+   "id": "ear-far",
+   "file": "parts/ear-far.png",
+   "parent": "mane",
+   "role": "ear-far",
+   "pivot": [
+    1538,
+    300
+   ],
+   "rect": [
+    1211,
+    47,
+    367,
+    275
+   ]
+  },
+  {
+   "id": "ear-near",
+   "file": "parts/ear-near.png",
+   "parent": "mane",
+   "role": "ear-near",
+   "pivot": [
+    1375,
+    269
+   ],
+   "rect": [
+    941,
+    90,
+    462,
+    205
+   ]
+  },
+  {
+   "id": "mane",
+   "file": "parts/mane.png",
+   "parent": "torso",
+   "role": "mane",
+   "pivot": [
+    1457,
+    499
+   ],
+   "rect": [
+    1116,
+    221,
+    634,
+    514
+   ]
+  },
+  {
+   "id": "lion-face",
+   "file": "parts/lion-face.png",
+   "parent": "mane",
+   "role": "lion-face",
+   "pivot": [
+    1406,
+    501
+   ],
+   "rect": [
+    1223,
+    293,
+    428,
+    371
+   ]
+  },
+  {
+   "id": "muzzle",
+   "file": "parts/muzzle.png",
+   "parent": "lion-face",
+   "role": "muzzle",
+   "pivot": [
+    1301,
+    513
+   ],
+   "rect": [
+    1224,
+    449,
+    111,
+    126
+   ]
+  },
+  {
+   "id": "left-closed-eye",
+   "file": "parts/left-closed-eye.png",
+   "parent": "lion-face",
+   "role": "left-closed-eye",
+   "pivot": [
+    1325,
+    465
+   ],
+   "rect": [
+    1272,
+    419,
+    119,
+    87
+   ]
+  },
+  {
+   "id": "right-closed-eye",
+   "file": "parts/right-closed-eye.png",
+   "parent": "lion-face",
+   "role": "right-closed-eye",
+   "pivot": [
+    1493,
+    496
+   ],
+   "rect": [
+    1432,
+    468,
+    118,
+    59
+   ]
+  },
+  {
+   "id": "nose",
+   "file": "parts/nose.png",
+   "parent": "lion-face",
+   "role": "nose",
+   "pivot": [
+    1337,
+    487
+   ],
+   "rect": [
+    1286,
+    463,
+    105,
+    67
+   ]
+  },
+  {
+   "id": "mouth",
+   "file": "parts/mouth.png",
+   "parent": "lion-face",
+   "role": "mouth",
+   "pivot": [
+    1325,
+    552
+   ],
+   "rect": [
+    1248,
+    495,
+    200,
+    153
+   ]
+  },
+  {
+   "id": "near-duck-foot",
+   "file": "parts/near-duck-foot.png",
+   "parent": "torso",
+   "role": "near-duck-foot",
+   "pivot": [
+    643,
+    650
+   ],
+   "rect": [
+    283,
+    572,
+    427,
+    357
+   ]
+  },
+  {
+   "id": "bear-forearm",
+   "file": "parts/bear-forearm.png",
+   "parent": "torso",
+   "role": "bear-forearm",
+   "pivot": [
+    1306,
+    770
+   ],
+   "rect": [
+    1234,
+    616,
+    275,
+    224
+   ]
+  },
+  {
+   "id": "bear-paw",
+   "file": "parts/bear-paw.png",
+   "parent": "bear-forearm",
+   "role": "bear-paw",
+   "pivot": [
+    1481,
+    693
+   ],
+   "rect": [
+    1467,
+    612,
+    174,
+    169
+   ]
+  },
+  {
+   "id": "foreground-hay",
+   "file": "parts/foreground-hay.png",
+   "parent": null,
+   "role": "foreground-hay",
+   "pivot": [
+    1003,
+    863
+   ],
+   "rect": [
+    0,
+    617,
+    1920,
+    340
+   ]
+  }
+ ]
+}
