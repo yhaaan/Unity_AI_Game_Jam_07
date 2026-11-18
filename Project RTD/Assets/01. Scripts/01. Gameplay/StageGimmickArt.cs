@@ -58,6 +58,7 @@ namespace ProjectRTD.Gameplay
         {
             if (!box || !texture || grid.x < 1 || grid.y < 1) return null;
             Hide(box.transform);
+            // Colliders are authored at the frame's aspect, so the art fills them exactly.
             return Make(box.transform, texture, grid, box.bounds.center, box.bounds.size, 4);
         }
 
