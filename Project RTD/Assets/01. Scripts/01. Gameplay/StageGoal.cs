@@ -13,6 +13,9 @@ namespace ProjectRTD.Gameplay
 
         internal void BindDoors(StageRuntime stage, StageGimmickArt startDoor, StageGimmickArt endDoor)
         {
+            // Dress runs on AfterSceneLoad and again on sceneLoaded for the same scene. A second Arrive
+            // would take the already-shrunk player scale as the "normal" one and leave the player tiny.
+            if (owner) return;
             owner = stage;
             entrance = startDoor;
             exit = endDoor;
