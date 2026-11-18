@@ -1,6 +1,6 @@
-# OpenAI API Dev CLI
+# Unity Game Jam
 
-OpenAI Responses API 크레딧으로 Unity 프로젝트의 코드 작업을 수행하는 로컬 개발 CLI다.
+OpenAI Responses API 크레딧으로 Unity 프로젝트의 코드 작업을 수행하는 로컬 브라우저 채팅이다.
 Codex 사용량 대신 API Platform 크레딧을 사용하며, 실행 중인 Unity Editor에는 Unity CLI로 연결한다.
 
 ## 실행
@@ -11,7 +11,15 @@ PowerShell에서:
 & '.\Project RTD\90. Tools\OpenAIDevCLI\start.ps1'
 ```
 
-또는 `api-dev.cmd`를 더블클릭한다.
+또는 루트의 `Start-API-Dev.cmd`를 더블클릭한다. 로컬 서버 창과 기본 브라우저가 열린다.
+
+브라우저 상단의 `+ 세션`으로 독립된 API 대화를 추가할 수 있다. 각 세션은 대화 문맥, 모델, 토큰 누계를 따로 유지하며, 세션 이름은 첫 요청으로 자동 생성된다. `×`를 누르면 해당 세션의 대화 문맥이 제거된다. 다른 세션의 API 요청은 동시에 진행할 수 있고, 파일 변경·Unity 컴파일·테스트 도구만 충돌 방지를 위해 순서대로 실행된다.
+
+기존 터미널 UI가 필요하면 다음처럼 실행한다.
+
+```powershell
+& '.\Project RTD\90. Tools\OpenAIDevCLI\start.ps1' --cli
+```
 
 프롬프트 예시:
 

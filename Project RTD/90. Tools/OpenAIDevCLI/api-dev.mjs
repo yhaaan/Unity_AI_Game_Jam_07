@@ -2,6 +2,7 @@ import { spawn } from "node:child_process";
 import { createHash, randomUUID } from "node:crypto";
 import { existsSync } from "node:fs";
 import { lstat, mkdir, readFile, readdir, rm, stat, writeFile } from "node:fs/promises";
+import { createServer } from "node:http";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import process from "node:process";
@@ -12,12 +13,13 @@ const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptDir, "..", "..");
 const workspaceRoot = path.resolve(projectRoot, "..");
 const envPath = path.join(workspaceRoot, ".env.local");
+const statePath = path.join(workspaceRoot, ".unity-game-jam-state.json");
 const sessionId = `${Date.now()}-${randomUUID().slice(0, 8)}`;
 const backupRoot = path.join(tmpdir(), "openai-api-dev-cli", sessionId);
 
 const MODEL_ALIASES = Object.freeze({
   astra: "gpt-6.2-astra",
-  sol: "gpt-6.1-sol",
+  sol: "gpt-6.2-sol",
   luna: "gpt-6-luna",
 });
 
@@ -37,9 +39,10 @@ const SKIPPED_DIRECTORIES = new Set([
 ]);
 
 const READABLE_EXTENSIONS = new Set([
-  ".asmdef", ".asmref", ".asset", ".cginc", ".compute", ".cs", ".glslinc",
-  ".hlsl", ".json", ".md", ".meta", ".prefab", ".shader", ".txt", ".unity",
-  ".uss", ".uxml", ".xml", ".yaml", ".yml",
+  ".asmdef", ".asmref", ".asset", ".bat", ".cginc", ".cmd", ".compute", ".cs",
+  ".glslinc", ".gradle", ".hlsl", ".ini", ".js", ".json", ".md", ".meta", ".mjs",
+  ".prefab", ".props", ".ps1", ".py", ".rsp", ".shader", ".sh", ".targets", ".toml",
+  ".ts", ".txt", ".unity", ".uss", ".uxml", ".xml", ".yaml", ".yml",
 ]);
 
 const WRITABLE_EXTENSIONS = new Set([
@@ -54,6 +57,7 @@ const WRITABLE_FILENAMES = new Set([".editorconfig", ".gitattributes", ".gitigno
 const MAX_READ_BYTES = 512 * 1024;
 const MAX_TOOL_OUTPUT = 48_000;
 const MAX_TOOL_ROUNDS = 32;
+const MODEL_CONTEXT_TOKENS = 1_050_000;
 
 let model = process.env.OPENAI_DEV_MODEL || MODEL_ALIASES.astra;
 let reasoningEffort = process.env.OPENAI_DEV_REASONING || "medium";
@@ -62,10 +66,16 @@ let previousResponseId = null;
 let totalInputTokens = 0;
 let totalOutputTokens = 0;
 let activeResponseId = null;
+let activeWebRequests = 0;
+let mutationQueue = Promise.resolve();
+const webSessions = new Map();
 const readPaths = new Set();
 const backups = new Map();
 const changedPaths = new Set();
 const lastWrittenHashes = new Map();
+let projectContext = "";
+let projectContextUpdatedAt = 0;
+let stateSaveQueue = Promise.resolve();
 
 function normalizeRelative(value = ".") {
   return value.replaceAll("\\", "/").replace(/^\.\//, "");
@@ -80,7 +90,30 @@ function isSecretPath(absolutePath) {
   const relative = normalizeRelative(path.relative(workspaceRoot, absolutePath)).toLowerCase();
   return relative.split("/").some((segment) =>
     segment === "auth.json" || segment === "credentials.json" || segment === "secrets.json" ||
-    segment === ".npmrc" || segment.startsWith(".env"));
+    segment === ".npmrc" || segment === ".unity-game-jam-state.json" || segment.startsWith(".env"));
+}
+
+async function refreshProjectContext(force = false) {
+  if (!force && Date.now() - projectContextUpdatedAt < 30_000) return projectContext;
+  const files = (await walkFiles(projectRoot, 12_000)).filter(isReadableFile);
+  const relative = files.map(toProjectRelative).sort();
+  const keyCandidates = [
+    path.join(workspaceRoot, "AGENTS.md"), path.join(projectRoot, "AGENTS.md"),
+    path.join(projectRoot, "README.md"), path.join(projectRoot, "Packages", "manifest.json"),
+    path.join(projectRoot, "ProjectSettings", "ProjectVersion.txt"),
+  ];
+  const keySections = [];
+  for (const candidate of keyCandidates) {
+    if (!existsSync(candidate) || isSecretPath(candidate)) continue;
+    const content = await readFile(candidate, "utf8").catch(() => "");
+    if (content) keySections.push(`### ${normalizeRelative(path.relative(workspaceRoot, candidate))}\n${content.slice(0, 12_000)}`);
+  }
+  const scripts = relative.filter((file) => file.endsWith(".cs"));
+  const scenes = relative.filter((file) => file.endsWith(".unity"));
+  const assemblies = relative.filter((file) => file.endsWith(".asmdef"));
+  projectContext = `프로젝트 자동 인덱스 (${new Date().toISOString()}):\n- 읽을 수 있는 파일 ${relative.length}개\n- C# ${scripts.length}개, 씬 ${scenes.length}개, asmdef ${assemblies.length}개\n- 주요 씬: ${scenes.slice(0, 30).join(", ") || "없음"}\n- 어셈블리: ${assemblies.slice(0, 30).join(", ") || "없음"}\n\n${keySections.join("\n\n")}`;
+  projectContextUpdatedAt = Date.now();
+  return projectContext;
 }
 
 function resolveProjectPath(relativePath = ".") {
@@ -551,7 +584,7 @@ const tools = [
   },
 ];
 
-const instructions = `당신은 Unity 프로젝트를 직접 다루는 수석 개발 에이전트다.
+const baseInstructions = `당신은 Unity 프로젝트를 직접 다루는 수석 개발 에이전트다.
 사용자에게는 한국어로 답한다. 프로젝트 루트는 ${projectRoot} 이다.
 
 규칙:
@@ -570,49 +603,68 @@ const instructions = `당신은 Unity 프로젝트를 직접 다루는 수석 �
 - 삭제, 커밋, 푸시, 패키지 설치, 빌드, Editor 종료는 할 수 없으며 시도하지 않는다.
 - 최종 답변에는 변경 파일, 검증 결과, 남은 문제를 간결하게 정리한다.`;
 
-function safeToolSummary(name, args) {
+function safeToolArgs(args) {
   const safe = {};
   for (const key of ["path", "query", "filter", "mode"]) {
     if (args[key] !== undefined && args[key] !== null) safe[key] = args[key];
   }
+  return safe;
+}
+
+function safeToolSummary(name, args) {
+  const safe = safeToolArgs(args);
   return Object.keys(safe).length ? `${name} ${JSON.stringify(safe)}` : name;
 }
 
-async function executeTool(call) {
+function serializeMutation(task) {
+  const result = mutationQueue.then(task, task);
+  mutationQueue = result.catch(() => {});
+  return result;
+}
+
+async function executeTool(call, toolLog) {
   let args;
   try {
     args = JSON.parse(call.arguments || "{}");
   } catch {
     return JSON.stringify({ ok: false, error: "도구 인자를 JSON으로 해석할 수 없습니다." });
   }
+  const logEntry = { name: call.name, arguments: safeToolArgs(args), status: "running" };
+  toolLog.push(logEntry);
   console.log(`  [tool] ${safeToolSummary(call.name, args)}`);
   try {
-    let result;
-    switch (call.name) {
-      case "list_files": result = await listFiles(args); break;
-      case "read_file": result = await readTextFile(args); break;
-      case "search_text": result = await searchText(args); break;
-      case "replace_text": result = await replaceText(args); break;
-      case "create_file": result = await createFile(args); break;
-      case "git_diff": result = await gitStatusAndDiff(); break;
-      case "unity_status": result = await unityStatus(); break;
-      case "unity_compile": result = await unityCompile(); break;
-      case "unity_editmode_tests": result = await unityEditorTests(args); break;
-      default: throw new Error(`알 수 없는 도구: ${call.name}`);
-    }
+    const invoke = async () => {
+      switch (call.name) {
+        case "list_files": return listFiles(args);
+        case "read_file": return readTextFile(args);
+        case "search_text": return searchText(args);
+        case "replace_text": return replaceText(args);
+        case "create_file": return createFile(args);
+        case "git_diff": return gitStatusAndDiff();
+        case "unity_status": return unityStatus();
+        case "unity_compile": return unityCompile();
+        case "unity_editmode_tests": return unityEditorTests(args);
+        default: throw new Error(`알 수 없는 도구: ${call.name}`);
+      }
+    };
+    const serializedTools = new Set(["replace_text", "create_file", "unity_compile", "unity_editmode_tests"]);
+    const result = serializedTools.has(call.name) ? await serializeMutation(invoke) : await invoke();
+    logEntry.status = "completed";
     const serialized = JSON.stringify({ ok: true, result });
     return serialized.length > MAX_TOOL_OUTPUT
       ? `${serialized.slice(0, MAX_TOOL_OUTPUT)}\n...도구 출력이 잘렸습니다...`
       : serialized;
   } catch (error) {
+    logEntry.status = "failed";
     return JSON.stringify({ ok: false, error: error.message });
   }
 }
 
-async function createResponse(apiKey, input, continuationId = null) {
+async function createResponse(apiKey, input, continuationId = null, selectedModel = model) {
+  await refreshProjectContext();
   const body = {
-    model,
-    instructions,
+    model: selectedModel,
+    instructions: `${baseInstructions}\n\n${projectContext}`,
     input,
     tools,
     tool_choice: "auto",
@@ -652,9 +704,18 @@ async function createResponse(apiKey, input, continuationId = null) {
   throw lastError;
 }
 
-function recordUsage(response) {
-  totalInputTokens += response.usage?.input_tokens || 0;
-  totalOutputTokens += response.usage?.output_tokens || 0;
+function recordUsage(response, session = null) {
+  const inputTokens = response.usage?.input_tokens || 0;
+  const outputTokens = response.usage?.output_tokens || 0;
+  if (session) {
+    session.inputTokens += inputTokens;
+    session.outputTokens += outputTokens;
+    session.lastInputTokens = inputTokens;
+    session.lastOutputTokens = outputTokens;
+  } else {
+    totalInputTokens += inputTokens;
+    totalOutputTokens += outputTokens;
+  }
 }
 
 function extractText(response) {
@@ -668,28 +729,47 @@ function extractText(response) {
   return chunks.join("\n").trim();
 }
 
-async function runAgentTurn(apiKey, userInput) {
-  let response = await createResponse(apiKey, userInput, previousResponseId);
+async function runAgentTurn(apiKey, userInput, { silent = false, session = null } = {}) {
+  const toolLog = [];
+  const selectedModel = session?.model || model;
+  const continuationId = session ? session.previousResponseId : previousResponseId;
+  let response = await createResponse(apiKey, userInput, continuationId, selectedModel);
   for (let round = 0; round < MAX_TOOL_ROUNDS; round += 1) {
-    recordUsage(response);
+    recordUsage(response, session);
     activeResponseId = response.id;
+    if (session) session.activeResponseId = response.id;
     const calls = (response.output || []).filter((item) => item.type === "function_call");
     if (calls.length === 0) {
-      previousResponseId = response.id;
+      if (session) {
+        session.previousResponseId = response.id;
+        session.updatedAt = new Date().toISOString();
+      } else {
+        previousResponseId = response.id;
+      }
       const text = extractText(response);
-      console.log(`\n${text || "응답 텍스트가 없습니다."}`);
-      console.log(`\n[tokens] 이번 세션 누적 input ${totalInputTokens.toLocaleString()} / output ${totalOutputTokens.toLocaleString()}`);
-      return;
+      if (!silent) {
+        console.log(`\n${text || "응답 텍스트가 없습니다."}`);
+        console.log(`\n[tokens] 이번 세션 누적 input ${totalInputTokens.toLocaleString()} / output ${totalOutputTokens.toLocaleString()}`);
+      }
+      return {
+        text: text || "응답 텍스트가 없습니다.",
+        tools: toolLog,
+        model: selectedModel,
+        reasoning_effort: reasoningEffort,
+        write_scope: writeScope,
+        input_tokens: session?.inputTokens ?? totalInputTokens,
+        output_tokens: session?.outputTokens ?? totalOutputTokens,
+      };
     }
     const outputs = [];
     for (const call of calls) {
       outputs.push({
         type: "function_call_output",
         call_id: call.call_id,
-        output: await executeTool(call),
+        output: await executeTool(call, toolLog),
       });
     }
-    response = await createResponse(apiKey, outputs, response.id);
+    response = await createResponse(apiKey, outputs, response.id, selectedModel);
   }
   throw new Error(`도구 호출이 ${MAX_TOOL_ROUNDS}회를 넘었습니다. 작업을 더 작게 나눠주세요.`);
 }
@@ -782,8 +862,322 @@ async function handleSlashCommand(input) {
   }
 }
 
+function createWebSession() {
+  const now = new Date().toISOString();
+  const session = {
+    id: randomUUID(),
+    title: "새 세션",
+    model,
+    previousResponseId: null,
+    activeResponseId: null,
+    inputTokens: 0,
+    outputTokens: 0,
+    lastInputTokens: 0,
+    lastOutputTokens: 0,
+    messageCount: 0,
+    history: [],
+    busy: false,
+    createdAt: now,
+    updatedAt: now,
+  };
+  webSessions.set(session.id, session);
+  return session;
+}
+
+function persistSessions() {
+  const sessions = [...webSessions.values()].map(({ busy, activeResponseId, ...session }) => ({ ...session, busy: false, activeResponseId: null }));
+  const payload = JSON.stringify({ version: 1, savedAt: new Date().toISOString(), sessions }, null, 2);
+  stateSaveQueue = stateSaveQueue.then(() => writeFile(statePath, payload, "utf8"), () => writeFile(statePath, payload, "utf8"));
+  return stateSaveQueue;
+}
+
+async function loadPersistentSessions() {
+  if (!existsSync(statePath)) return;
+  const saved = JSON.parse(await readFile(statePath, "utf8"));
+  for (const item of saved.sessions || []) {
+    if (!item.id || !Object.values(MODEL_ALIASES).includes(item.model)) continue;
+    webSessions.set(item.id, {
+      ...item,
+      busy: false,
+      activeResponseId: null,
+      history: Array.isArray(item.history) ? item.history.slice(-500) : [],
+      lastInputTokens: item.lastInputTokens || 0,
+      lastOutputTokens: item.lastOutputTokens || 0,
+    });
+  }
+}
+
+function webSessionSummary(session) {
+  return {
+    id: session.id,
+    title: session.title,
+    model: session.model,
+    input_tokens: session.inputTokens,
+    output_tokens: session.outputTokens,
+    context_used_tokens: session.lastInputTokens + session.lastOutputTokens,
+    context_remaining_tokens: Math.max(0, MODEL_CONTEXT_TOKENS - session.lastInputTokens - session.lastOutputTokens),
+    updated_at: session.updatedAt,
+    busy: session.busy,
+  };
+}
+
+function webState(session) {
+  return {
+    session_id: session.id,
+    title: session.title,
+    model: session.model,
+    reasoning_effort: reasoningEffort,
+    write_scope: writeScope,
+    input_tokens: session.inputTokens,
+    output_tokens: session.outputTokens,
+    context_used_tokens: session.lastInputTokens + session.lastOutputTokens,
+    context_remaining_tokens: Math.max(0, MODEL_CONTEXT_TOKENS - session.lastInputTokens - session.lastOutputTokens),
+    context_window_tokens: MODEL_CONTEXT_TOKENS,
+    history: session.history,
+    project_index: { updated_at: new Date(projectContextUpdatedAt).toISOString() },
+    changed_files: [...changedPaths].map(toProjectRelative).sort(),
+    busy: session.busy,
+    active_requests: activeWebRequests,
+  };
+}
+
+function getWebSession(sessionId) {
+  return typeof sessionId === "string" ? webSessions.get(sessionId) : null;
+}
+
+function sendJson(response, status, value) {
+  const body = JSON.stringify(value);
+  response.writeHead(status, {
+    "Content-Type": "application/json; charset=utf-8",
+    "Content-Length": Buffer.byteLength(body),
+    "Cache-Control": "no-store",
+    "X-Content-Type-Options": "nosniff",
+  });
+  response.end(body);
+}
+
+async function readJsonBody(request) {
+  const chunks = [];
+  let size = 0;
+  for await (const chunk of request) {
+    size += chunk.length;
+    if (size > 64 * 1024) throw new Error("요청이 너무 큽니다.");
+    chunks.push(chunk);
+  }
+  if (chunks.length === 0) return {};
+  return JSON.parse(Buffer.concat(chunks).toString("utf8"));
+}
+
+function parseWebPort() {
+  const index = process.argv.indexOf("--port");
+  if (index < 0) return 4317;
+  const port = Number.parseInt(process.argv[index + 1], 10);
+  if (!Number.isInteger(port) || port < 1024 || port > 65535) {
+    throw new Error("--port에는 1024~65535 사이의 포트를 지정하세요.");
+  }
+  return port;
+}
+
+async function startWebServer(apiKey) {
+  await refreshProjectContext(true);
+  await loadPersistentSessions().catch((error) => console.error(`[세션 복원 실패] ${error.message}`));
+  const port = parseWebPort();
+  const host = "127.0.0.1";
+  const url = `http://${host}:${port}`;
+  const browserToken = randomUUID();
+  const htmlTemplate = await readFile(path.join(scriptDir, "web.html"), "utf8");
+  const html = htmlTemplate.replace("__API_DEV_TOKEN__", JSON.stringify(browserToken));
+  if (webSessions.size === 0) {
+    createWebSession();
+    await persistSessions();
+  }
+
+  const server = createServer(async (request, response) => {
+    const requestUrl = new URL(request.url || "/", url);
+    const allowedHosts = new Set([`${host}:${port}`, `localhost:${port}`]);
+    if (!allowedHosts.has(request.headers.host || "")) {
+      sendJson(response, 403, { error: "허용되지 않은 Host입니다." });
+      return;
+    }
+
+    if (request.method === "GET" && requestUrl.pathname === "/health") {
+      sendJson(response, 200, { ok: true });
+      return;
+    }
+    if (request.method === "GET" && requestUrl.pathname === "/favicon.ico") {
+      response.writeHead(204);
+      response.end();
+      return;
+    }
+    if (request.method === "GET" && requestUrl.pathname === "/") {
+      response.writeHead(200, {
+        "Content-Type": "text/html; charset=utf-8",
+        "Content-Length": Buffer.byteLength(html),
+        "Cache-Control": "no-store",
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'none'; form-action 'none'",
+        "Referrer-Policy": "no-referrer",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+      });
+      response.end(html);
+      return;
+    }
+
+    const origin = request.headers.origin;
+    const token = request.headers["x-api-dev-token"];
+    if ((origin && origin !== url) || token !== browserToken) {
+      sendJson(response, 403, { error: "브라우저 세션 인증에 실패했습니다." });
+      return;
+    }
+
+    try {
+      if (request.method === "GET" && requestUrl.pathname === "/api/sessions") {
+        const sessions = [...webSessions.values()]
+          .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
+          .map(webSessionSummary);
+        sendJson(response, 200, { sessions, active_requests: activeWebRequests });
+        return;
+      }
+      if (request.method === "POST" && requestUrl.pathname === "/api/sessions") {
+        const session = createWebSession();
+        await persistSessions();
+        sendJson(response, 201, webState(session));
+        return;
+      }
+      const sessionDeleteMatch = requestUrl.pathname.match(/^\/api\/sessions\/([0-9a-f-]+)$/i);
+      if (request.method === "DELETE" && sessionDeleteMatch) {
+        const session = getWebSession(sessionDeleteMatch[1]);
+        if (!session) {
+          sendJson(response, 404, { error: "세션을 찾을 수 없습니다." });
+          return;
+        }
+        if (session.busy) {
+          sendJson(response, 409, { error: "작업 중인 세션은 닫을 수 없습니다." });
+          return;
+        }
+        webSessions.delete(sessionDeleteMatch[1]);
+        if (webSessions.size === 0) createWebSession();
+        await persistSessions();
+        sendJson(response, 200, { sessions: [...webSessions.values()].map(webSessionSummary) });
+        return;
+      }
+      if (request.method === "GET" && requestUrl.pathname === "/api/state") {
+        const session = getWebSession(requestUrl.searchParams.get("session_id"));
+        if (!session) {
+          sendJson(response, 404, { error: "세션을 찾을 수 없습니다." });
+          return;
+        }
+        if (session.busy) {
+          sendJson(response, 409, { error: "작업 중인 세션은 초기화할 수 없습니다." });
+          return;
+        }
+        sendJson(response, 200, webState(session));
+        return;
+      }
+      if (request.method === "POST" && requestUrl.pathname === "/api/reset") {
+        const body = await readJsonBody(request);
+        const session = getWebSession(body.session_id);
+        if (!session) {
+          sendJson(response, 404, { error: "세션을 찾을 수 없습니다." });
+          return;
+        }
+        session.previousResponseId = null;
+        session.activeResponseId = null;
+        session.messageCount = 0;
+        session.title = "새 세션";
+        session.history = [];
+        session.updatedAt = new Date().toISOString();
+        await persistSessions();
+        sendJson(response, 200, webState(session));
+        return;
+      }
+      if (request.method === "POST" && requestUrl.pathname === "/api/chat") {
+        const body = await readJsonBody(request);
+        const session = getWebSession(body.session_id);
+        if (!session) {
+          sendJson(response, 404, { error: "세션을 찾을 수 없습니다." });
+          return;
+        }
+        if (session.busy) {
+          sendJson(response, 409, { error: "이 세션에서 다른 요청을 처리 중입니다." });
+          return;
+        }
+        const message = typeof body.message === "string" ? body.message.trim() : "";
+        if (!message || message.length > 20_000) {
+          sendJson(response, 400, { error: "1~20,000자의 요청을 입력하세요." });
+          return;
+        }
+        const selected = MODEL_ALIASES[body.model] || body.model;
+        if (!Object.values(MODEL_ALIASES).includes(selected)) {
+          sendJson(response, 400, { error: "지원하지 않는 모델입니다." });
+          return;
+        }
+        if (session.model !== selected) {
+          session.model = selected;
+          session.previousResponseId = null;
+          session.activeResponseId = null;
+        }
+        session.busy = true;
+        activeWebRequests += 1;
+        session.history.push({ role: "user", text: message, tools: [] });
+        await persistSessions();
+        try {
+          const result = await runAgentTurn(apiKey, message, { silent: true, session });
+          if (session.messageCount === 0) {
+            const compact = message.replace(/\s+/g, " ");
+            session.title = compact.length > 28 ? `${compact.slice(0, 28)}…` : compact;
+          }
+          session.messageCount += 1;
+          session.history.push({ role: "assistant", text: result.text, tools: result.tools || [] });
+          session.updatedAt = new Date().toISOString();
+          await persistSessions();
+          sendJson(response, 200, { ...result, session: webSessionSummary(session) });
+        } finally {
+          session.busy = false;
+          activeWebRequests -= 1;
+        }
+        return;
+      }
+      sendJson(response, 404, { error: "찾을 수 없는 경로입니다." });
+    } catch (error) {
+      console.error(`[웹 요청 오류] ${error.message}`);
+      sendJson(response, 500, { error: error.message });
+    }
+  });
+
+  await new Promise((resolve, reject) => {
+    server.once("error", reject);
+    server.listen(port, host, resolve);
+  });
+  console.log("Unity Game Jam");
+  console.log(`Project: ${projectRoot}`);
+  console.log(`URL: ${url}`);
+  console.log(`Model: ${model} / reasoning: ${reasoningEffort} / scope: ${writeScope}`);
+  console.log("이 창을 닫으면 브라우저 채팅도 종료됩니다.");
+
+  if (!process.argv.includes("--no-open")) {
+    const opener = spawn("cmd.exe", ["/c", "start", "", url], {
+      detached: true,
+      stdio: "ignore",
+      windowsHide: true,
+    });
+    opener.unref();
+  }
+
+  await new Promise((resolve) => {
+    const close = () => server.close(resolve);
+    process.once("SIGINT", close);
+    process.once("SIGTERM", close);
+  });
+  await rm(backupRoot, { recursive: true, force: true }).catch(() => {});
+}
+
 async function main() {
   const apiKey = await loadApiKey();
+  if (process.argv.includes("--web")) {
+    await startWebServer(apiKey);
+    return;
+  }
   const oneShotIndex = process.argv.indexOf("--prompt");
   if (oneShotIndex >= 0) {
     const prompt = process.argv.slice(oneShotIndex + 1).join(" ").trim();
@@ -792,7 +1186,7 @@ async function main() {
     return;
   }
 
-  console.log("OpenAI API Dev CLI");
+  console.log("Unity Game Jam CLI");
   console.log(`Project: ${projectRoot}`);
   console.log(`Model: ${model} / reasoning: ${reasoningEffort}`);
   console.log(`Write scope: ${writeScope}`);

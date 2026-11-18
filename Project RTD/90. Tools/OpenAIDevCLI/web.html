@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unity Game Jam</title>
+  <style>
+    :root { color-scheme: dark; font-family: Inter, Pretendard, "Segoe UI", sans-serif; background: #0d0f12; color: #edf0f5; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: radial-gradient(circle at top, #18202e 0, #0d0f12 45%); }
+    .app { width: min(960px, 100%); min-height: 100vh; margin: auto; display: grid; grid-template-rows: auto 1fr auto; }
+    header { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; padding: 14px 20px 10px; border-bottom: 1px solid #2a303a; background: rgba(13,15,18,.92); backdrop-filter: blur(12px); }
+    h1 { margin: 0 auto 0 0; font-size: 18px; }
+    .online { width: 9px; height: 9px; border-radius: 50%; background: #43d17b; box-shadow: 0 0 12px #43d17b; }
+    button, select, textarea { font: inherit; color: inherit; }
+    button, select { border: 1px solid #343c49; border-radius: 9px; background: #191e26; padding: 8px 11px; }
+    button { cursor: pointer; }
+    button:hover { background: #222a35; }
+    button:disabled { cursor: wait; opacity: .55; }
+    .sessions { order: 3; width: 100%; display: flex; gap: 7px; overflow-x: auto; padding: 2px 0 4px; scrollbar-width: thin; }
+    .session-tab { flex: 0 0 auto; display: flex; border: 1px solid #303845; border-radius: 9px; overflow: hidden; background: #151920; }
+    .session-tab.active { border-color: #4c82d7; background: #1a2c48; }
+    .session-tab.working::before { content: ""; width: 7px; height: 7px; margin: auto 0 auto 9px; border-radius: 50%; background: #f0b84b; animation: pulse 1s infinite alternate; }
+    .session-tab button { border: 0; border-radius: 0; background: transparent; padding: 7px 10px; }
+    .session-tab .close { padding-inline: 8px; color: #8994a5; border-left: 1px solid #303845; }
+    #add-session { flex: 0 0 auto; padding: 7px 11px; }
+    #messages { padding: 24px 20px 160px; overflow-wrap: anywhere; }
+    .message { display: flex; margin: 0 0 20px; }
+    .bubble { max-width: 84%; padding: 13px 15px; border: 1px solid #2c3440; border-radius: 14px; line-height: 1.55; white-space: pre-wrap; background: #171b22; }
+    .user { justify-content: flex-end; }
+    .user .bubble { border-color: #355fa6; background: #17335d; }
+    .meta { margin-top: 9px; color: #9aa5b5; font-size: 12px; white-space: normal; }
+    details { margin-top: 10px; color: #b8c1ce; }
+    details ul { margin: 8px 0 0; padding-left: 20px; }
+    .empty { color: #9aa5b5; text-align: center; padding-top: 18vh; }
+    footer { position: fixed; bottom: 0; width: min(960px, 100%); padding: 12px 20px 16px; border-top: 1px solid #2a303a; background: rgba(13,15,18,.94); backdrop-filter: blur(12px); }
+    .composer { display: flex; gap: 10px; align-items: flex-end; }
+    textarea { width: 100%; min-height: 50px; max-height: 180px; resize: vertical; border: 1px solid #343c49; border-radius: 12px; outline: none; background: #151920; padding: 13px; }
+    textarea:focus { border-color: #4c82d7; box-shadow: 0 0 0 3px rgba(76,130,215,.16); }
+    #send { min-width: 72px; min-height: 50px; border-color: #4076ca; background: #2862bd; }
+    #status { min-height: 17px; margin: 8px 2px 0; color: #8994a5; font-size: 12px; }
+    @keyframes pulse { to { opacity: .3; } }
+    @media (max-width: 620px) { header { flex-wrap: wrap; } h1 { width: calc(100% - 24px); } .bubble { max-width: 94%; } }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <span class="online" aria-label="로컬 서버 연결됨"></span>
+      <h1>Unity Game Jam</h1>
+      <label>
+        <span hidden>모델</span>
+        <select id="model">
+          <option value="sol">Sol · 일반 구현</option>
+          <option value="astra">Astra · 복잡한 작업</option>
+          <option value="luna">Luna · 단순 작업</option>
+        </select>
+      </label>
+      <button id="reset" type="button">새 대화</button>
+      <nav class="sessions" id="sessions" aria-label="개발 세션"></nav>
+    </header>
+    <section id="messages" aria-live="polite">
+      <div class="empty" id="empty">Unity 프로젝트 작업을 입력하세요.<br>이 채팅은 OpenAI API 크레딧을 사용합니다.</div>
+    </section>
+    <footer>
+      <form class="composer" id="form">
+        <textarea id="input" maxlength="20000" aria-label="개발 요청" placeholder="예: 현재 플레이어 이동 코드를 분석하고 점프 버그를 고쳐줘" required></textarea>
+        <button id="send" type="submit">전송</button>
+      </form>
+      <div id="status">서버 상태 확인 중…</div>
+    </footer>
+  </main>
+  <script>
+    const API_TOKEN = __API_DEV_TOKEN__;
+    const MODEL_IDS = { "gpt-6.2-astra": "astra", "gpt-6.2-sol": "sol", "gpt-6.1-sol": "sol", "gpt-6-luna": "luna" };
+    const messages = document.querySelector("#messages");
+    const sessionsElement = document.querySelector("#sessions");
+    const form = document.querySelector("#form");
+    const input = document.querySelector("#input");
+    const send = document.querySelector("#send");
+    const reset = document.querySelector("#reset");
+    const model = document.querySelector("#model");
+    const status = document.querySelector("#status");
+    let sessions = [];
+    let activeSessionId = sessionStorage.getItem("api-dev-active-session");
+    let histories = {};
+    const busySessions = new Set();
+    try { histories = JSON.parse(sessionStorage.getItem("api-dev-histories") || "{}"); } catch { histories = {}; }
+
+    async function api(path, options = {}) {
+      const response = await fetch(path, {
+        ...options,
+        headers: { "Content-Type": "application/json", "X-API-Dev-Token": API_TOKEN, ...(options.headers || {}) },
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || `HTTP ${response.status}`);
+      return data;
+    }
+
+    function saveHistories() { sessionStorage.setItem("api-dev-histories", JSON.stringify(histories)); }
+
+    function activeHistory() {
+      histories[activeSessionId] ||= [];
+      return histories[activeSessionId];
+    }
+
+    function addMessage(role, text, tools = [], persist = true, sessionId = activeSessionId) {
+      if (sessionId !== activeSessionId) {
+        if (persist) {
+          histories[sessionId] ||= [];
+          histories[sessionId].push({ role, text, tools });
+          saveHistories();
+        }
+        return null;
+      }
+      document.querySelector("#empty")?.remove();
+      const row = document.createElement("article");
+      row.className = `message ${role}`;
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+      bubble.textContent = text;
+      if (tools.length) {
+        const details = document.createElement("details");
+        const summary = document.createElement("summary");
+        summary.textContent = `도구 실행 ${tools.length}건`;
+        const list = document.createElement("ul");
+        for (const tool of tools) {
+          const item = document.createElement("li");
+          const args = Object.keys(tool.arguments || {}).length ? ` ${JSON.stringify(tool.arguments)}` : "";
+          item.textContent = `${tool.name}${args} · ${tool.status}`;
+          list.append(item);
+        }
+        details.append(summary, list);
+        bubble.append(details);
+      }
+      row.append(bubble);
+      messages.append(row);
+      if (persist) { activeHistory().push({ role, text, tools }); saveHistories(); }
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+      return row;
+    }
+
+    function updateStatus(state) {
+      const remaining = Number(state.context_remaining_tokens ?? 0).toLocaleString();
+      status.textContent = `${state.model} · 누적 input ${Number(state.input_tokens).toLocaleString()} / output ${Number(state.output_tokens).toLocaleString()} · 현재 컨텍스트 잔여 약 ${remaining} 토큰`;
+    }
+
+    function updateControls() {
+      const busy = busySessions.has(activeSessionId);
+      send.disabled = busy;
+      reset.disabled = busy;
+      model.disabled = busy;
+      input.disabled = busy;
+      send.textContent = busy ? "작업 중…" : "전송";
+    }
+
+    function setSessionBusy(sessionId, value) {
+      if (value) busySessions.add(sessionId); else busySessions.delete(sessionId);
+      const session = sessions.find((item) => item.id === sessionId);
+      if (session) session.busy = value;
+      renderSessions();
+      updateControls();
+    }
+
+    function renderHistory() {
+      messages.replaceChildren();
+      const history = activeHistory();
+      if (!history.length) {
+        const notice = document.createElement("div");
+        notice.className = "empty";
+        notice.id = "empty";
+        notice.textContent = "이 세션에서 Unity 프로젝트 작업을 입력하세요.";
+        messages.append(notice);
+        return;
+      }
+      for (const item of history) addMessage(item.role, item.text, item.tools || [], false);
+    }
+
+    function renderSessions() {
+      sessionsElement.replaceChildren();
+      for (const session of sessions) {
+        const tab = document.createElement("div");
+        tab.className = `session-tab${session.id === activeSessionId ? " active" : ""}${session.busy || busySessions.has(session.id) ? " working" : ""}`;
+        const select = document.createElement("button");
+        select.type = "button";
+        select.className = "session-action";
+        select.textContent = session.title;
+        select.title = session.title;
+        select.addEventListener("click", () => switchSession(session.id));
+        const close = document.createElement("button");
+        close.type = "button";
+        close.className = "close session-action";
+        close.textContent = "×";
+        close.title = `${session.title} 닫기`;
+        close.setAttribute("aria-label", close.title);
+        close.disabled = session.busy || busySessions.has(session.id);
+        close.addEventListener("click", () => closeSession(session.id));
+        tab.append(select, close);
+        sessionsElement.append(tab);
+      }
+      const add = document.createElement("button");
+      add.id = "add-session";
+      add.type = "button";
+      add.className = "session-action";
+      add.textContent = "+ 세션";
+      add.addEventListener("click", createSession);
+      sessionsElement.append(add);
+    }
+
+    async function switchSession(sessionId) {
+      activeSessionId = sessionId;
+      sessionStorage.setItem("api-dev-active-session", sessionId);
+      renderSessions();
+      renderHistory();
+      const state = await api(`/api/state?session_id=${encodeURIComponent(sessionId)}`);
+      if (Array.isArray(state.history)) {
+        histories[sessionId] = state.history;
+        saveHistories();
+        renderHistory();
+      }
+      if (state.busy) busySessions.add(sessionId); else busySessions.delete(sessionId);
+      model.value = MODEL_IDS[state.model] || "sol";
+      updateStatus(state);
+      updateControls();
+      input.focus();
+    }
+
+    async function refreshSessions(preferredId = null) {
+      const result = await api("/api/sessions");
+      sessions = result.sessions;
+      const available = new Set(sessions.map((session) => session.id));
+      const target = preferredId || (available.has(activeSessionId) ? activeSessionId : sessions[0]?.id);
+      if (!target) throw new Error("사용 가능한 세션이 없습니다.");
+      await switchSession(target);
+    }
+
+    async function createSession() {
+      try {
+        const created = await api("/api/sessions", { method: "POST", body: "{}" });
+        await refreshSessions(created.session_id);
+      } catch (error) { status.textContent = `세션 생성 실패: ${error.message}`; }
+    }
+
+    async function closeSession(sessionId) {
+      const selected = sessions.find((session) => session.id === sessionId);
+      if (!confirm(`'${selected?.title || "세션"}'을 닫을까요? 대화 문맥은 복구할 수 없습니다.`)) return;
+      try {
+        await api(`/api/sessions/${encodeURIComponent(sessionId)}`, { method: "DELETE" });
+        delete histories[sessionId];
+        saveHistories();
+        if (activeSessionId === sessionId) activeSessionId = null;
+        await refreshSessions();
+      } catch (error) { status.textContent = `세션 닫기 실패: ${error.message}`; }
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const message = input.value.trim();
+      if (!message) return;
+      const requestSessionId = activeSessionId;
+      const requestModel = model.value;
+      addMessage("user", message, [], true, requestSessionId);
+      input.value = "";
+      setSessionBusy(requestSessionId, true);
+      status.textContent = "API가 프로젝트를 확인하고 있습니다…";
+      try {
+        const result = await api("/api/chat", { method: "POST", body: JSON.stringify({ session_id: requestSessionId, message, model: requestModel }) });
+        addMessage("assistant", result.text, result.tools || [], true, requestSessionId);
+        const index = sessions.findIndex((session) => session.id === requestSessionId);
+        if (index >= 0) sessions[index] = result.session;
+        renderSessions();
+        if (activeSessionId === requestSessionId) updateStatus(result);
+      } catch (error) {
+        addMessage("assistant", `오류: ${error.message}`, [], true, requestSessionId);
+        if (activeSessionId === requestSessionId) status.textContent = "요청 실패";
+      } finally {
+        setSessionBusy(requestSessionId, false);
+        if (activeSessionId === requestSessionId) input.focus();
+      }
+    });
+
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); form.requestSubmit(); }
+    });
+
+    reset.addEventListener("click", async () => {
+      if (busySessions.has(activeSessionId)) return;
+      try {
+        const state = await api("/api/reset", { method: "POST", body: JSON.stringify({ session_id: activeSessionId }) });
+        histories[activeSessionId] = [];
+        saveHistories();
+        const index = sessions.findIndex((session) => session.id === activeSessionId);
+        if (index >= 0) sessions[index] = { ...sessions[index], title: state.title, input_tokens: state.input_tokens, output_tokens: state.output_tokens };
+        renderSessions();
+        renderHistory();
+        updateStatus(state);
+      } catch (error) { status.textContent = `초기화 실패: ${error.message}`; }
+      finally { updateControls(); input.focus(); }
+    });
+
+    refreshSessions().catch((error) => { status.textContent = `서버 연결 실패: ${error.message}`; });
+    input.focus();
+  </script>
+</body>
+</html>
