@@ -8,6 +8,10 @@ namespace ProjectRTD.Gameplay
     {
         private bool jumpPressed;
 
+        private InputAction jump;
+        private void Start() => jump = GetComponent<PlayerInput>()?.actions.FindAction("Player/Jump");
+        public bool JumpHeld => jump?.IsPressed() == true;
+
         public Vector2 Move { get; private set; }
 
         public void OnMove(InputValue value)

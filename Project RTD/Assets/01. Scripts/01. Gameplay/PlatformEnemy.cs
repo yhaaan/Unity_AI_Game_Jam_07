@@ -1,4 +1,5 @@
 using System;
+using ProjectRTD.Core;
 using UnityEngine;
 
 namespace ProjectRTD.Gameplay
@@ -8,7 +9,7 @@ namespace ProjectRTD.Gameplay
     {
         public enum Kind { Drone, Scientist }
         [SerializeField] private Kind kind;
-        [SerializeField, Tooltip("Drone: heads returned to spawn. Scientist: heads that defeat this enemy.")]
+        [SerializeField, Tooltip("Drone only: heads returned to spawn. Scientists check canPass instead.")]
         private AnimalPartDefinition[] matchingHeads = Array.Empty<AnimalPartDefinition>();
         [SerializeField, Min(0)] private float speed = 1.1f;
         [SerializeField] private LayerMask platforms = Physics2D.DefaultRaycastLayers;
@@ -46,9 +47,14 @@ namespace ProjectRTD.Gameplay
         {
             if (!other.attachedRigidbody || !other.attachedRigidbody.TryGetComponent<PlayerPartLoadout>(out var player)) return;
             var head = player.Current?.Head;
-            if (!head || Array.IndexOf(matchingHeads, head) < 0) return;
-            if (kind == Kind.Scientist) gameObject.SetActive(false);
-            else if (StageRuntime.Instance && StageRuntime.Instance.Player == player.transform) StageRuntime.Instance.RespawnPlayer();
+            if (!head) return;
+            if (kind == Kind.Scientist)
+            {
+                if (player.Current.HasEffect(PartEffect.CanPass)) return;
+
+            }
+            else if (Array.IndexOf(matchingHeads, head) < 0) return;
+            if (StageRuntime.Instance && StageRuntime.Instance.Player == player.transform) StageRuntime.Instance.RespawnPlayer();
         }
     }
 }
