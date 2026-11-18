@@ -1,0 +1,2793 @@
+{
+ "canvas_px": [
+  512,
+  512
+ ],
+ "coordinate_system": "top-left origin, +x right, +y down",
+ "direction": "left",
+ "pose": "standing",
+ "draw_order_back_to_front": [
+  "legs",
+  "bodies",
+  "heads"
+ ],
+ "layer_origin_px": [
+  0,
+  0
+ ],
+ "common_overlap_points_px": {
+  "head_body": [
+   185,
+   250
+  ],
+  "legs_body": [
+   [
+    196,
+    331
+   ],
+   [
+    329,
+    331
+   ]
+  ]
+ },
+ "barn_presets": [
+  [
+   "pig",
+   "sheep",
+   "chicken"
+  ],
+  [
+   "donkey",
+   "chicken",
+   "pig"
+  ],
+  [
+   "cow",
+   "duck",
+   "rabbit"
+  ]
+ ],
+ "parts": {
+  "heads": [
+   {
+    "id": "unicorn",
+    "ko": "유니콘",
+    "rarity": "legendary",
+    "layers": [
+     {
+      "id": "head",
+      "pivot": [
+       184,
+       246
+      ],
+      "role": "core",
+      "path": "PNG/heads/unicorn/00_head.png",
+      "draw_order": 0
+     },
+     {
+      "id": "nose_marks",
+      "role": "nose_marks",
+      "parent": "head",
+      "pivot": [
+       92,
+       249
+      ],
+      "path": "PNG/heads/unicorn/01_nose_marks.png",
+      "draw_order": 1
+     },
+     {
+      "id": "sclera",
+      "pivot": [
+       204,
+       211
+      ],
+      "role": "sclera",
+      "parent": "head",
+      "path": "PNG/heads/unicorn/02_sclera.png",
+      "draw_order": 2
+     },
+     {
+      "id": "pupil",
+      "pivot": [
+       190,
+       214
+      ],
+      "role": "pupil",
+      "parent": "sclera",
+      "path": "PNG/heads/unicorn/03_pupil.png",
+      "draw_order": 3
+     },
+     {
+      "id": "upper-lid",
+      "pivot": [
+       204,
+       211
+      ],
+      "role": "eyelid",
+      "parent": "sclera",
+      "path": "PNG/heads/unicorn/04_upper-lid.png",
+      "draw_order": 4
+     }
+    ]
+   },
+   {
+    "id": "dragon",
+    "ko": "용",
+    "rarity": "legendary",
+    "layers": [
+     {
+      "id": "head",
+      "pivot": [
+       184,
+       246
+      ],
+      "role": "core",
+      "path": "PNG/heads/dragon/00_head.png",
+      "draw_order": 0
+     },
+     {
+      "id": "nose_marks",
+      "role": "nose_marks",
+      "parent": "head",
+      "pivot": [
+       81,
+       231
+      ],
+      "path": "PNG/heads/dragon/01_nose_marks.png",
+      "draw_order": 1
+     },
+     {
+      "id": "eye",
+      "pivot": [
+       186,
+       203
+      ],
+      "role": "eye",
+      "parent": "head",
+      "path": "PNG/heads/dragon/02_eye.png",
+      "draw_order": 2
+     },
+     {
+      "id": "brow",
+      "pivot": [
+       179,
+       186
+      ],
+      "role": "eyelid",
+      "parent": "head",
+      "path": "PNG/heads/dragon/03_brow.png",
+      "draw_order": 3
+     }
+    ]
+   },
+   {
+    "id": "phoenix",
+    "ko": "불사조",
+    "rarity": "legendary",
+    "layers": [
+     {
+      "id": "head",
+      "pivot": [
+       184,
+       246
+      ],
+      "role": "core",
+      "path": "PNG/heads/phoenix/00_head.png",
+      "draw_order": 0
+     },
+     {
+      "id": "beak",
+      "pivot": [
+       130,
+       237
+      ],
+      "role": "beak",
+      "parent": "head",
+      "path": "PNG/heads/phoenix/01_beak.png",
+      "draw_order": 1
+     },
+     {
+      "id": "flame-crest",
+      "pivot": [
+       125,
+       190
+      ],
+      "role": "fire",
+      "parent": "head",
+      "path": "PNG/heads/phoenix/02_flame-crest.png",
+      "draw_order": 2
+     },
+     {
+      "id": "flame-gold",
+      "pivot": [
+       129,
+       182
+      ],
+      "role": "fire",
+      "parent": "flame-crest",
+      "path": "PNG/heads/phoenix/03_flame-gold.png",
+      "draw_order": 3
+     },
+     {
+      "id": "sclera",
+      "pivot": [
+       174,
+       209
+      ],
+      "role": "sclera",
+      "parent": "head",
+      "path": "PNG/heads/phoenix/04_sclera.png",
+      "draw_order": 4
+     },
+     {
+      "id": "pupil",
+      "pivot": [
+       161,
+       211
+      ],
+      "role": "pupil",
+      "parent": "sclera",
+      "path": "PNG/heads/phoenix/05_pupil.png",
+      "draw_order": 5
+     },
+     {
+      "id": "upper-lid",
+      "pivot": [
+       174,
+       209
+      ],
+      "role": "eyelid",
+      "parent": "sclera",
+      "path": "PNG/heads/phoenix/06_upper-lid.png",
+      "draw_order": 6
+     }
+    ]
+   },
+   {
+    "id": "gumiho",
+    "ko": "구미호",
+    "rarity": "legendary",
+    "layers": [
+     {
+      "id": "head",
+      "pivot": [
+       184,
+       246
+      ],
+      "role": "core",
+      "path": "PNG/heads/gumiho/00_head.png",
+      "draw_order": 0
+     },
+     {
+      "id": "nose",
+      "role": "nose",
+      "parent": "head",
+      "pivot": [
+       111,
+       252
+      ],
+      "path": "PNG/heads/gumiho/01_nose.png",
+      "draw_order": 1
+     },
+     {
+      "id": "ear-flame",
+      "pivot": [
+       252,
+       157
+      ],
+      "role": "fire",
+      "parent": "head",
+      "path": "PNG/heads/gumiho/02_ear-flame.png",
+      "draw_order": 2
+     },
+     {
+      "id": "eye-left",
+      "pivot": [
+       96,
+       219
+      ],
+      "role": "eye",
+      "parent": "head",
+      "path": "PNG/heads/gumiho/03_eye-left.png",
+      "draw_order": 3
+     },
+     {
+      "id": "eye-right",
+      "pivot": [
+       172,
+       216
+      ],
+      "role": "eye",
+      "parent": "head",
+      "path": "PNG/heads/gumiho/04_eye-right.png",
+      "draw_order": 4
+     }
+    ]
+   },
+   {
+    "id": "chicken",
+    "ko": "닭",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "core",
+      "role": "core",
+      "pivot": [
+       185,
+       250
+      ],
+      "path": "PNG/heads/chicken/00_core.png",
+      "draw_order": 0
+     },
+     {
+      "id": "beak",
+      "pivot": [
+       132,
+       224
+      ],
+      "role": "beak",
+      "parent": "core",
+      "path": "PNG/heads/chicken/01_beak.png",
+      "draw_order": 1
+     },
+     {
+      "id": "eye_left",
+      "role": "eye",
+      "pivot": [
+       177,
+       202
+      ],
+      "parent": "core",
+      "path": "PNG/heads/chicken/02_eye_left.png",
+      "draw_order": 2
+     }
+    ]
+   },
+   {
+    "id": "monkey",
+    "ko": "원숭이",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "far_ear",
+      "role": "ear",
+      "pivot": [
+       117,
+       192
+      ],
+      "parent": "core",
+      "path": "PNG/heads/monkey/00_far_ear.png",
+      "draw_order": 0
+     },
+     {
+      "id": "near_ear",
+      "role": "ear",
+      "pivot": [
+       232,
+       196
+      ],
+      "parent": "core",
+      "path": "PNG/heads/monkey/01_near_ear.png",
+      "draw_order": 1
+     },
+     {
+      "id": "core",
+      "role": "core",
+      "pivot": [
+       185,
+       250
+      ],
+      "path": "PNG/heads/monkey/02_core.png",
+      "draw_order": 2
+     },
+     {
+      "id": "nose_marks",
+      "role": "nose_marks",
+      "parent": "core",
+      "pivot": [
+       140,
+       229
+      ],
+      "path": "PNG/heads/monkey/03_nose_marks.png",
+      "draw_order": 3
+     },
+     {
+      "id": "mouth",
+      "role": "mouth",
+      "parent": "core",
+      "pivot": [
+       175,
+       246
+      ],
+      "path": "PNG/heads/monkey/04_mouth.png",
+      "draw_order": 4
+     },
+     {
+      "id": "far_sclera",
+      "role": "sclera",
+      "pivot": [
+       136,
+       191
+      ],
+      "parent": "core",
+      "path": "PNG/heads/monkey/05_far_sclera.png",
+      "draw_order": 5
+     },
+     {
+      "id": "far_pupil",
+      "role": "pupil",
+      "pivot": [
+       127,
+       185
+      ],
+      "parent": "far_sclera",
+      "path": "PNG/heads/monkey/06_far_pupil.png",
+      "draw_order": 6
+     },
+     {
+      "id": "near_sclera",
+      "role": "sclera",
+      "pivot": [
+       213,
+       199
+      ],
+      "parent": "core",
+      "path": "PNG/heads/monkey/07_near_sclera.png",
+      "draw_order": 7
+     },
+     {
+      "id": "near_pupil",
+      "role": "pupil",
+      "pivot": [
+       223,
+       203
+      ],
+      "parent": "near_sclera",
+      "path": "PNG/heads/monkey/08_near_pupil.png",
+      "draw_order": 8
+     }
+    ]
+   },
+   {
+    "id": "lion",
+    "ko": "사자",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "core",
+      "role": "core",
+      "pivot": [
+       185,
+       250
+      ],
+      "path": "PNG/heads/lion/00_core.png",
+      "draw_order": 0
+     },
+     {
+      "id": "muzzle",
+      "role": "muzzle",
+      "pivot": [
+       127,
+       213
+      ],
+      "parent": "core",
+      "path": "PNG/heads/lion/01_muzzle.png",
+      "draw_order": 1
+     },
+     {
+      "id": "fang",
+      "role": "tooth",
+      "pivot": [
+       162,
+       234
+      ],
+      "parent": "core",
+      "path": "PNG/heads/lion/02_fang.png",
+      "draw_order": 2
+     },
+     {
+      "id": "mouth",
+      "role": "mouth",
+      "pivot": [
+       131,
+       227
+      ],
+      "parent": "core",
+      "path": "PNG/heads/lion/03_mouth.png",
+      "draw_order": 3
+     },
+     {
+      "id": "nose",
+      "role": "nose",
+      "pivot": [
+       128,
+       197
+      ],
+      "parent": "core",
+      "path": "PNG/heads/lion/04_nose.png",
+      "draw_order": 4
+     },
+     {
+      "id": "eye_left",
+      "role": "eye",
+      "pivot": [
+       201,
+       194
+      ],
+      "parent": "core",
+      "path": "PNG/heads/lion/05_eye_left.png",
+      "draw_order": 5
+     },
+     {
+      "id": "pupil_left",
+      "role": "pupil",
+      "pivot": [
+       193,
+       185
+      ],
+      "parent": "eye_left",
+      "path": "PNG/heads/lion/06_pupil_left.png",
+      "draw_order": 6
+     }
+    ]
+   },
+   {
+    "id": "kangaroo",
+    "ko": "캥거루",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "core",
+      "role": "core",
+      "pivot": [
+       185,
+       250
+      ],
+      "path": "PNG/heads/kangaroo/00_core.png",
+      "draw_order": 0
+     },
+     {
+      "id": "mouth",
+      "role": "mouth",
+      "pivot": [
+       136,
+       271
+      ],
+      "parent": "core",
+      "path": "PNG/heads/kangaroo/01_mouth.png",
+      "draw_order": 1
+     },
+     {
+      "id": "nose",
+      "role": "nose",
+      "pivot": [
+       90,
+       244
+      ],
+      "parent": "core",
+      "path": "PNG/heads/kangaroo/02_nose.png",
+      "draw_order": 2
+     },
+     {
+      "id": "far_ear",
+      "role": "ear",
+      "pivot": [
+       157,
+       154
+      ],
+      "parent": "core",
+      "path": "PNG/heads/kangaroo/03_far_ear.png",
+      "draw_order": 3
+     },
+     {
+      "id": "near_ear",
+      "role": "ear",
+      "pivot": [
+       197,
+       160
+      ],
+      "parent": "core",
+      "path": "PNG/heads/kangaroo/04_near_ear.png",
+      "draw_order": 4
+     },
+     {
+      "id": "near_eye",
+      "role": "eye",
+      "pivot": [
+       173,
+       205
+      ],
+      "parent": "core",
+      "path": "PNG/heads/kangaroo/05_near_eye.png",
+      "draw_order": 5
+     },
+     {
+      "id": "near_glint",
+      "role": "highlight",
+      "pivot": [
+       173,
+       205
+      ],
+      "parent": "near_eye",
+      "path": "PNG/heads/kangaroo/06_near_glint.png",
+      "draw_order": 6
+     }
+    ]
+   },
+   {
+    "id": "axolotl",
+    "ko": "우파루파",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "core",
+      "role": "core",
+      "pivot": [
+       185,
+       250
+      ],
+      "path": "PNG/heads/axolotl/00_core.png",
+      "draw_order": 0
+     },
+     {
+      "id": "mouth",
+      "role": "mouth",
+      "parent": "core",
+      "pivot": [
+       169,
+       233
+      ],
+      "path": "PNG/heads/axolotl/01_mouth.png",
+      "draw_order": 1
+     },
+     {
+      "id": "eye_left",
+      "role": "eye",
+      "pivot": [
+       116,
+       221
+      ],
+      "parent": "core",
+      "path": "PNG/heads/axolotl/02_eye_left.png",
+      "draw_order": 2
+     },
+     {
+      "id": "eye_right",
+      "role": "eye",
+      "pivot": [
+       222,
+       221
+      ],
+      "parent": "core",
+      "path": "PNG/heads/axolotl/03_eye_right.png",
+      "draw_order": 3
+     }
+    ]
+   },
+   {
+    "id": "cow",
+    "ko": "소",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "core",
+      "role": "core",
+      "pivot": [
+       185,
+       250
+      ],
+      "path": "PNG/heads/cow/00_core.png",
+      "draw_order": 0
+     },
+     {
+      "id": "nose_marks",
+      "role": "nose_marks",
+      "parent": "core",
+      "pivot": [
+       147,
+       252
+      ],
+      "path": "PNG/heads/cow/01_nose_marks.png",
+      "draw_order": 1
+     },
+     {
+      "id": "eye_left",
+      "role": "eye",
+      "pivot": [
+       127,
+       191
+      ],
+      "parent": "core",
+      "path": "PNG/heads/cow/02_eye_left.png",
+      "draw_order": 2
+     },
+     {
+      "id": "pupil_left",
+      "role": "pupil",
+      "pivot": [
+       118,
+       189
+      ],
+      "parent": "eye_left",
+      "path": "PNG/heads/cow/03_pupil_left.png",
+      "draw_order": 3
+     },
+     {
+      "id": "eye_right",
+      "role": "eye",
+      "pivot": [
+       225,
+       203
+      ],
+      "parent": "core",
+      "path": "PNG/heads/cow/04_eye_right.png",
+      "draw_order": 4
+     }
+    ]
+   },
+   {
+    "id": "goat",
+    "ko": "염소",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "core",
+      "role": "core",
+      "pivot": [
+       185,
+       250
+      ],
+      "path": "PNG/heads/goat/00_core.png",
+      "draw_order": 0
+     },
+     {
+      "id": "nose_marks",
+      "role": "nose_marks",
+      "parent": "core",
+      "pivot": [
+       140,
+       245
+      ],
+      "path": "PNG/heads/goat/01_nose_marks.png",
+      "draw_order": 1
+     },
+     {
+      "id": "eye_left",
+      "role": "eye",
+      "pivot": [
+       208,
+       199
+      ],
+      "parent": "core",
+      "path": "PNG/heads/goat/02_eye_left.png",
+      "draw_order": 2
+     },
+     {
+      "id": "pupil_left",
+      "role": "pupil",
+      "pivot": [
+       194,
+       194
+      ],
+      "parent": "eye_left",
+      "path": "PNG/heads/goat/03_pupil_left.png",
+      "draw_order": 3
+     },
+     {
+      "id": "eye_far",
+      "role": "eye",
+      "pivot": [
+       145,
+       198
+      ],
+      "parent": "core",
+      "path": "PNG/heads/goat/04_eye_far.png",
+      "draw_order": 4
+     }
+    ]
+   },
+   {
+    "id": "duck",
+    "ko": "오리",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "head",
+      "pivot": [
+       184,
+       246
+      ],
+      "role": "core",
+      "path": "PNG/heads/duck/00_head.png",
+      "draw_order": 0
+     },
+     {
+      "id": "beak",
+      "pivot": [
+       151,
+       231
+      ],
+      "role": "beak",
+      "parent": "head",
+      "path": "PNG/heads/duck/01_beak.png",
+      "draw_order": 1
+     },
+     {
+      "id": "eye",
+      "pivot": [
+       195,
+       194
+      ],
+      "role": "eye",
+      "parent": "head",
+      "path": "PNG/heads/duck/02_eye.png",
+      "draw_order": 2
+     },
+     {
+      "id": "brow",
+      "pivot": [
+       192,
+       166
+      ],
+      "role": "eyelid",
+      "parent": "head",
+      "path": "PNG/heads/duck/03_brow.png",
+      "draw_order": 3
+     }
+    ]
+   },
+   {
+    "id": "pig",
+    "ko": "돼지",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "head",
+      "pivot": [
+       184,
+       246
+      ],
+      "role": "core",
+      "path": "PNG/heads/pig/00_head.png",
+      "draw_order": 0
+     },
+     {
+      "id": "nose_marks",
+      "role": "nose_marks",
+      "parent": "head",
+      "pivot": [
+       119,
+       243
+      ],
+      "path": "PNG/heads/pig/01_nose_marks.png",
+      "draw_order": 1
+     },
+     {
+      "id": "ear-left",
+      "pivot": [
+       140,
+       137
+      ],
+      "role": "ear",
+      "parent": "head",
+      "path": "PNG/heads/pig/02_ear-left.png",
+      "draw_order": 2
+     },
+     {
+      "id": "ear-right",
+      "pivot": [
+       226,
+       151
+      ],
+      "role": "ear",
+      "parent": "head",
+      "path": "PNG/heads/pig/03_ear-right.png",
+      "draw_order": 3
+     },
+     {
+      "id": "sclera-left",
+      "pivot": [
+       99,
+       190
+      ],
+      "role": "sclera",
+      "parent": "head",
+      "path": "PNG/heads/pig/04_sclera-left.png",
+      "draw_order": 4
+     },
+     {
+      "id": "pupil-left",
+      "pivot": [
+       99,
+       190
+      ],
+      "role": "pupil",
+      "parent": "sclera-left",
+      "path": "PNG/heads/pig/05_pupil-left.png",
+      "draw_order": 5
+     },
+     {
+      "id": "sclera-right",
+      "pivot": [
+       176,
+       209
+      ],
+      "role": "sclera",
+      "parent": "head",
+      "path": "PNG/heads/pig/06_sclera-right.png",
+      "draw_order": 6
+     },
+     {
+      "id": "pupil-right",
+      "pivot": [
+       176,
+       209
+      ],
+      "role": "pupil",
+      "parent": "sclera-right",
+      "path": "PNG/heads/pig/07_pupil-right.png",
+      "draw_order": 7
+     }
+    ]
+   },
+   {
+    "id": "donkey",
+    "ko": "당나귀",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "head",
+      "pivot": [
+       184,
+       246
+      ],
+      "role": "core",
+      "path": "PNG/heads/donkey/00_head.png",
+      "draw_order": 0
+     },
+     {
+      "id": "nose_marks",
+      "role": "nose_marks",
+      "parent": "head",
+      "pivot": [
+       102,
+       170
+      ],
+      "path": "PNG/heads/donkey/01_nose_marks.png",
+      "draw_order": 1
+     },
+     {
+      "id": "ear-left",
+      "pivot": [
+       144,
+       87
+      ],
+      "role": "ear",
+      "parent": "head",
+      "path": "PNG/heads/donkey/02_ear-left.png",
+      "draw_order": 2
+     },
+     {
+      "id": "ear-right",
+      "pivot": [
+       207,
+       98
+      ],
+      "role": "ear",
+      "parent": "head",
+      "path": "PNG/heads/donkey/03_ear-right.png",
+      "draw_order": 3
+     },
+     {
+      "id": "pupil-left",
+      "pivot": [
+       133,
+       122
+      ],
+      "role": "pupil",
+      "parent": "head",
+      "path": "PNG/heads/donkey/04_pupil-left.png",
+      "draw_order": 4
+     },
+     {
+      "id": "glint-left",
+      "pivot": [
+       133,
+       122
+      ],
+      "role": "highlight",
+      "parent": "pupil-left",
+      "path": "PNG/heads/donkey/05_glint-left.png",
+      "draw_order": 5
+     },
+     {
+      "id": "pupil-right",
+      "pivot": [
+       185,
+       135
+      ],
+      "role": "pupil",
+      "parent": "head",
+      "path": "PNG/heads/donkey/06_pupil-right.png",
+      "draw_order": 6
+     },
+     {
+      "id": "glint-right",
+      "pivot": [
+       185,
+       133
+      ],
+      "role": "highlight",
+      "parent": "pupil-right",
+      "path": "PNG/heads/donkey/07_glint-right.png",
+      "draw_order": 7
+     }
+    ]
+   },
+   {
+    "id": "rabbit",
+    "ko": "토끼",
+    "layers": [
+     {
+      "id": "ear_far",
+      "role": "ear",
+      "pivot": [
+       162,
+       159
+      ],
+      "parent": "core",
+      "path": "PNG/heads/rabbit/00_ear_far.png",
+      "draw_order": 0
+     },
+     {
+      "id": "ear_near",
+      "role": "ear",
+      "pivot": [
+       189,
+       154
+      ],
+      "parent": "core",
+      "path": "PNG/heads/rabbit/01_ear_near.png",
+      "draw_order": 1
+     },
+     {
+      "id": "core",
+      "role": "core",
+      "pivot": [
+       185,
+       250
+      ],
+      "path": "PNG/heads/rabbit/02_core.png",
+      "draw_order": 2
+     },
+     {
+      "id": "teeth",
+      "role": "teeth",
+      "parent": "core",
+      "pivot": [
+       112,
+       258
+      ],
+      "path": "PNG/heads/rabbit/03_teeth.png",
+      "draw_order": 3
+     },
+     {
+      "id": "nose",
+      "role": "nose",
+      "parent": "core",
+      "pivot": [
+       84,
+       237
+      ],
+      "path": "PNG/heads/rabbit/04_nose.png",
+      "draw_order": 4
+     },
+     {
+      "id": "mouth",
+      "role": "mouth",
+      "parent": "core",
+      "pivot": [
+       99,
+       253
+      ],
+      "path": "PNG/heads/rabbit/05_mouth.png",
+      "draw_order": 5
+     },
+     {
+      "id": "eye_far",
+      "role": "eye",
+      "pivot": [
+       112,
+       197
+      ],
+      "parent": "core",
+      "path": "PNG/heads/rabbit/06_eye_far.png",
+      "draw_order": 6
+     },
+     {
+      "id": "pupil_far",
+      "role": "pupil",
+      "pivot": [
+       108,
+       195
+      ],
+      "parent": "eye_far",
+      "path": "PNG/heads/rabbit/07_pupil_far.png",
+      "draw_order": 7
+     },
+     {
+      "id": "eyelid_far",
+      "role": "lid",
+      "pivot": [
+       111,
+       192
+      ],
+      "parent": "eye_far",
+      "path": "PNG/heads/rabbit/08_eyelid_far.png",
+      "draw_order": 8
+     },
+     {
+      "id": "eye_near",
+      "role": "eye",
+      "pivot": [
+       172,
+       201
+      ],
+      "parent": "core",
+      "path": "PNG/heads/rabbit/09_eye_near.png",
+      "draw_order": 9
+     },
+     {
+      "id": "pupil_near",
+      "role": "pupil",
+      "pivot": [
+       160,
+       198
+      ],
+      "parent": "eye_near",
+      "path": "PNG/heads/rabbit/10_pupil_near.png",
+      "draw_order": 10
+     },
+     {
+      "id": "eyelid_near",
+      "role": "lid",
+      "pivot": [
+       173,
+       193
+      ],
+      "parent": "eye_near",
+      "path": "PNG/heads/rabbit/11_eyelid_near.png",
+      "draw_order": 11
+     }
+    ],
+    "rarity": "normal"
+   },
+   {
+    "id": "bear",
+    "ko": "곰",
+    "layers": [
+     {
+      "id": "far_ear",
+      "role": "ear",
+      "pivot": [
+       120,
+       151
+      ],
+      "parent": "core",
+      "path": "PNG/heads/bear/00_far_ear.png",
+      "draw_order": 0
+     },
+     {
+      "id": "near_ear",
+      "role": "ear",
+      "pivot": [
+       229,
+       154
+      ],
+      "parent": "core",
+      "path": "PNG/heads/bear/01_near_ear.png",
+      "draw_order": 1
+     },
+     {
+      "id": "core",
+      "role": "core",
+      "pivot": [
+       185,
+       250
+      ],
+      "path": "PNG/heads/bear/02_core.png",
+      "draw_order": 2
+     },
+     {
+      "id": "nose",
+      "role": "nose",
+      "parent": "core",
+      "pivot": [
+       87,
+       224
+      ],
+      "path": "PNG/heads/bear/03_nose.png",
+      "draw_order": 3
+     },
+     {
+      "id": "mouth",
+      "role": "mouth",
+      "parent": "core",
+      "pivot": [
+       100,
+       247
+      ],
+      "path": "PNG/heads/bear/04_mouth.png",
+      "draw_order": 4
+     },
+     {
+      "id": "far_sclera",
+      "role": "sclera",
+      "pivot": [
+       105,
+       187
+      ],
+      "parent": "core",
+      "path": "PNG/heads/bear/05_far_sclera.png",
+      "draw_order": 5
+     },
+     {
+      "id": "far_pupil",
+      "role": "pupil",
+      "pivot": [
+       100,
+       185
+      ],
+      "parent": "far_sclera",
+      "path": "PNG/heads/bear/06_far_pupil.png",
+      "draw_order": 6
+     },
+     {
+      "id": "far_lid",
+      "role": "eyelid",
+      "pivot": [
+       102,
+       179
+      ],
+      "parent": "far_sclera",
+      "path": "PNG/heads/bear/07_far_lid.png",
+      "draw_order": 7
+     },
+     {
+      "id": "near_sclera",
+      "role": "sclera",
+      "pivot": [
+       172,
+       186
+      ],
+      "parent": "core",
+      "path": "PNG/heads/bear/08_near_sclera.png",
+      "draw_order": 8
+     },
+     {
+      "id": "near_pupil",
+      "role": "pupil",
+      "pivot": [
+       162,
+       185
+      ],
+      "parent": "near_sclera",
+      "path": "PNG/heads/bear/09_near_pupil.png",
+      "draw_order": 9
+     },
+     {
+      "id": "near_lid",
+      "role": "eyelid",
+      "pivot": [
+       169,
+       180
+      ],
+      "parent": "near_sclera",
+      "path": "PNG/heads/bear/10_near_lid.png",
+      "draw_order": 10
+     }
+    ],
+    "rarity": "normal"
+   }
+  ],
+  "bodies": [
+   {
+    "id": "unicorn",
+    "ko": "유니콘",
+    "rarity": "legendary",
+    "layers": [
+     {
+      "id": "tail_lilac",
+      "pivot": [
+       351,
+       263
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/unicorn/00_tail_lilac.png",
+      "draw_order": 0
+     },
+     {
+      "id": "tail_mint",
+      "pivot": [
+       357,
+       273
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/unicorn/01_tail_mint.png",
+      "draw_order": 1
+     },
+     {
+      "id": "core",
+      "pivot": [
+       255,
+       295
+      ],
+      "role": "core",
+      "path": "PNG/bodies/unicorn/02_core.png",
+      "draw_order": 2
+     }
+    ]
+   },
+   {
+    "id": "dragon",
+    "ko": "용",
+    "rarity": "legendary",
+    "layers": [
+     {
+      "id": "tail",
+      "pivot": [
+       353,
+       284
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/dragon/00_tail.png",
+      "draw_order": 0
+     },
+     {
+      "id": "core",
+      "pivot": [
+       255,
+       295
+      ],
+      "role": "core",
+      "path": "PNG/bodies/dragon/01_core.png",
+      "draw_order": 1
+     },
+     {
+      "id": "wing",
+      "pivot": [
+       244,
+       292
+      ],
+      "role": "wing",
+      "parent": "core",
+      "path": "PNG/bodies/dragon/02_wing.png",
+      "draw_order": 2
+     }
+    ]
+   },
+   {
+    "id": "phoenix",
+    "ko": "불사조",
+    "rarity": "legendary",
+    "layers": [
+     {
+      "id": "fire_plume_high",
+      "pivot": [
+       342,
+       271
+      ],
+      "role": "fire",
+      "parent": "core",
+      "path": "PNG/bodies/phoenix/00_fire_plume_high.png",
+      "draw_order": 0
+     },
+     {
+      "id": "fire_plume_middle",
+      "pivot": [
+       346,
+       278
+      ],
+      "role": "fire",
+      "parent": "core",
+      "path": "PNG/bodies/phoenix/01_fire_plume_middle.png",
+      "draw_order": 1
+     },
+     {
+      "id": "fire_plume_low",
+      "pivot": [
+       350,
+       290
+      ],
+      "role": "fire",
+      "parent": "core",
+      "path": "PNG/bodies/phoenix/02_fire_plume_low.png",
+      "draw_order": 2
+     },
+     {
+      "id": "core",
+      "pivot": [
+       255,
+       295
+      ],
+      "role": "core",
+      "path": "PNG/bodies/phoenix/03_core.png",
+      "draw_order": 3
+     },
+     {
+      "id": "wing",
+      "pivot": [
+       213,
+       294
+      ],
+      "role": "wing",
+      "parent": "core",
+      "path": "PNG/bodies/phoenix/04_wing.png",
+      "draw_order": 4
+     }
+    ]
+   },
+   {
+    "id": "gumiho",
+    "ko": "구미호",
+    "rarity": "legendary",
+    "layers": [
+     {
+      "id": "tail_01",
+      "pivot": [
+       337,
+       289
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/gumiho/00_tail_01.png",
+      "draw_order": 0
+     },
+     {
+      "id": "tail_02",
+      "pivot": [
+       333,
+       274
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/gumiho/01_tail_02.png",
+      "draw_order": 1
+     },
+     {
+      "id": "tail_03",
+      "pivot": [
+       348,
+       276
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/gumiho/02_tail_03.png",
+      "draw_order": 2
+     },
+     {
+      "id": "tail_04",
+      "pivot": [
+       350,
+       283
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/gumiho/03_tail_04.png",
+      "draw_order": 3
+     },
+     {
+      "id": "tail_05",
+      "pivot": [
+       355,
+       286
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/gumiho/04_tail_05.png",
+      "draw_order": 4
+     },
+     {
+      "id": "tail_06",
+      "pivot": [
+       359,
+       292
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/gumiho/05_tail_06.png",
+      "draw_order": 5
+     },
+     {
+      "id": "tail_07",
+      "pivot": [
+       355,
+       297
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/gumiho/06_tail_07.png",
+      "draw_order": 6
+     },
+     {
+      "id": "tail_08",
+      "pivot": [
+       355,
+       304
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/gumiho/07_tail_08.png",
+      "draw_order": 7
+     },
+     {
+      "id": "tail_09",
+      "pivot": [
+       350,
+       313
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/gumiho/08_tail_09.png",
+      "draw_order": 8
+     },
+     {
+      "id": "core",
+      "pivot": [
+       255,
+       295
+      ],
+      "role": "core",
+      "path": "PNG/bodies/gumiho/09_core.png",
+      "draw_order": 9
+     }
+    ]
+   },
+   {
+    "id": "chicken",
+    "ko": "닭",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "tail",
+      "pivot": [
+       313,
+       264
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/chicken/00_tail.png",
+      "draw_order": 0
+     },
+     {
+      "id": "core",
+      "pivot": [
+       255,
+       295
+      ],
+      "role": "core",
+      "path": "PNG/bodies/chicken/01_core.png",
+      "draw_order": 1
+     },
+     {
+      "id": "wing",
+      "pivot": [
+       241,
+       288
+      ],
+      "role": "wing",
+      "parent": "core",
+      "path": "PNG/bodies/chicken/02_wing.png",
+      "draw_order": 2
+     }
+    ]
+   },
+   {
+    "id": "monkey",
+    "ko": "원숭이",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "tail",
+      "pivot": [
+       348,
+       271
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/monkey/00_tail.png",
+      "draw_order": 0
+     },
+     {
+      "id": "core",
+      "pivot": [
+       255,
+       295
+      ],
+      "role": "core",
+      "path": "PNG/bodies/monkey/01_core.png",
+      "draw_order": 1
+     }
+    ]
+   },
+   {
+    "id": "lion",
+    "ko": "사자",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "tail",
+      "pivot": [
+       347,
+       249
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/lion/00_tail.png",
+      "draw_order": 0
+     },
+     {
+      "id": "core",
+      "pivot": [
+       255,
+       295
+      ],
+      "role": "core",
+      "path": "PNG/bodies/lion/01_core.png",
+      "draw_order": 1
+     }
+    ]
+   },
+   {
+    "id": "kangaroo",
+    "ko": "캥거루",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "core",
+      "pivot": [
+       255,
+       295
+      ],
+      "role": "core",
+      "path": "PNG/bodies/kangaroo/00_core.png",
+      "draw_order": 0
+     },
+     {
+      "id": "tail",
+      "pivot": [
+       351,
+       304
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/kangaroo/01_tail.png",
+      "draw_order": 1
+     }
+    ]
+   },
+   {
+    "id": "axolotl",
+    "ko": "우파루파",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "fin",
+      "pivot": [
+       354,
+       270
+      ],
+      "role": "fin",
+      "parent": "tail",
+      "path": "PNG/bodies/axolotl/00_fin.png",
+      "draw_order": 0
+     },
+     {
+      "id": "core",
+      "pivot": [
+       255,
+       295
+      ],
+      "role": "core",
+      "path": "PNG/bodies/axolotl/01_core.png",
+      "draw_order": 1
+     },
+     {
+      "id": "tail",
+      "pivot": [
+       354,
+       298
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/axolotl/02_tail.png",
+      "draw_order": 2
+     }
+    ]
+   },
+   {
+    "id": "cow",
+    "ko": "소",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "tail",
+      "pivot": [
+       355,
+       250
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/cow/00_tail.png",
+      "draw_order": 0
+     },
+     {
+      "id": "core",
+      "pivot": [
+       255,
+       295
+      ],
+      "role": "core",
+      "path": "PNG/bodies/cow/01_core.png",
+      "draw_order": 1
+     }
+    ]
+   },
+   {
+    "id": "sheep",
+    "ko": "양",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "core",
+      "pivot": [
+       255,
+       295
+      ],
+      "role": "core",
+      "path": "PNG/bodies/sheep/00_core.png",
+      "draw_order": 0
+     }
+    ]
+   },
+   {
+    "id": "pig",
+    "ko": "돼지",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "tail",
+      "pivot": [
+       355,
+       256
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/pig/00_tail.png",
+      "draw_order": 0
+     },
+     {
+      "id": "core",
+      "pivot": [
+       255,
+       295
+      ],
+      "role": "core",
+      "path": "PNG/bodies/pig/01_core.png",
+      "draw_order": 1
+     }
+    ]
+   },
+   {
+    "id": "duck",
+    "ko": "오리",
+    "rarity": "normal",
+    "layers": [
+     {
+      "id": "core",
+      "pivot": [
+       255,
+       295
+      ],
+      "role": "core",
+      "path": "PNG/bodies/duck/00_core.png",
+      "draw_order": 0
+     },
+     {
+      "id": "tail",
+      "pivot": [
+       335,
+       272
+      ],
+      "role": "tail",
+      "parent": "core",
+      "path": "PNG/bodies/duck/01_tail.png",
+      "draw_order": 1
+     },
+     {
+      "id": "wing",
+      "pivot": [
+       257,
+       294
+      ],
+      "role": "wing",
+      "parent": "core",
+      "path": "PNG/bodies/duck/02_wing.png",
+      "draw_order": 2
+     }
+    ]
+   },
+   {
+    "id": "rabbit",
+    "ko": "토끼",
+    "layers": [
+     {
+      "id": "tail",
+      "role": "tail",
+      "pivot": [
+       357,
+       288
+      ],
+      "parent": "core",
+      "path": "PNG/bodies/rabbit/00_tail.png",
+      "draw_order": 0
+     },
+     {
+      "id": "core",
+      "role": "core",
+      "pivot": [
+       255,
+       295
+      ],
+      "path": "PNG/bodies/rabbit/01_core.png",
+      "draw_order": 1
+     }
+    ],
+    "rarity": "normal"
+   },
+   {
+    "id": "bear",
+    "ko": "곰",
+    "layers": [
+     {
+      "id": "tail",
+      "role": "tail",
+      "pivot": [
+       363,
+       264
+      ],
+      "parent": "core",
+      "path": "PNG/bodies/bear/00_tail.png",
+      "draw_order": 0
+     },
+     {
+      "id": "core",
+      "role": "core",
+      "pivot": [
+       255,
+       295
+      ],
+      "path": "PNG/bodies/bear/01_core.png",
+      "draw_order": 1
+     }
+    ],
+    "rarity": "normal"
+   }
+  ],
+  "legs": [
+   {
+    "id": "unicorn",
+    "ko": "유니콘",
+    "rarity": "legendary",
+    "ground_y_px": 466,
+    "layers": [
+     {
+      "id": "upper_leg_right",
+      "role": "upper_leg",
+      "pivot": [
+       329,
+       331
+      ],
+      "path": "PNG/legs/unicorn/00_upper_leg_right.png",
+      "draw_order": 0
+     },
+     {
+      "id": "lower_leg_right",
+      "role": "lower_leg",
+      "pivot": [
+       330,
+       379
+      ],
+      "parent": "upper_leg_right",
+      "path": "PNG/legs/unicorn/01_lower_leg_right.png",
+      "draw_order": 1
+     },
+     {
+      "id": "foot_right",
+      "role": "foot",
+      "pivot": [
+       337,
+       434
+      ],
+      "parent": "lower_leg_right",
+      "path": "PNG/legs/unicorn/02_foot_right.png",
+      "draw_order": 2
+     },
+     {
+      "id": "upper_leg_left",
+      "role": "upper_leg",
+      "pivot": [
+       196,
+       331
+      ],
+      "path": "PNG/legs/unicorn/03_upper_leg_left.png",
+      "draw_order": 3
+     },
+     {
+      "id": "lower_leg_left",
+      "role": "lower_leg",
+      "pivot": [
+       182,
+       384
+      ],
+      "parent": "upper_leg_left",
+      "path": "PNG/legs/unicorn/04_lower_leg_left.png",
+      "draw_order": 4
+     },
+     {
+      "id": "foot_left",
+      "role": "foot",
+      "pivot": [
+       171,
+       442
+      ],
+      "parent": "lower_leg_left",
+      "path": "PNG/legs/unicorn/05_foot_left.png",
+      "draw_order": 5
+     }
+    ]
+   },
+   {
+    "id": "dragon",
+    "ko": "용",
+    "rarity": "legendary",
+    "ground_y_px": 450,
+    "layers": [
+     {
+      "id": "upper_leg_right",
+      "role": "upper_leg",
+      "pivot": [
+       329,
+       331
+      ],
+      "path": "PNG/legs/dragon/00_upper_leg_right.png",
+      "draw_order": 0
+     },
+     {
+      "id": "lower_leg_right",
+      "role": "lower_leg",
+      "pivot": [
+       338,
+       367
+      ],
+      "parent": "upper_leg_right",
+      "path": "PNG/legs/dragon/01_lower_leg_right.png",
+      "draw_order": 1
+     },
+     {
+      "id": "upper_leg_left",
+      "role": "upper_leg",
+      "pivot": [
+       196,
+       331
+      ],
+      "path": "PNG/legs/dragon/02_upper_leg_left.png",
+      "draw_order": 2
+     },
+     {
+      "id": "lower_leg_left",
+      "role": "lower_leg",
+      "pivot": [
+       196,
+       373
+      ],
+      "parent": "upper_leg_left",
+      "path": "PNG/legs/dragon/03_lower_leg_left.png",
+      "draw_order": 3
+     }
+    ]
+   },
+   {
+    "id": "phoenix",
+    "ko": "불사조",
+    "rarity": "legendary",
+    "ground_y_px": 441,
+    "layers": [
+     {
+      "id": "upper_leg_right",
+      "role": "upper_leg",
+      "pivot": [
+       329,
+       331
+      ],
+      "path": "PNG/legs/phoenix/00_upper_leg_right.png",
+      "draw_order": 0
+     },
+     {
+      "id": "lower_leg_right",
+      "role": "lower_leg",
+      "pivot": [
+       338,
+       358
+      ],
+      "parent": "upper_leg_right",
+      "path": "PNG/legs/phoenix/01_lower_leg_right.png",
+      "draw_order": 1
+     },
+     {
+      "id": "fire_right",
+      "role": "fire",
+      "pivot": [
+       351,
+       387
+      ],
+      "parent": "lower_leg_right",
+      "path": "PNG/legs/phoenix/02_fire_right.png",
+      "draw_order": 2
+     },
+     {
+      "id": "foot_right",
+      "role": "foot",
+      "pivot": [
+       347,
+       398
+      ],
+      "parent": "lower_leg_right",
+      "path": "PNG/legs/phoenix/03_foot_right.png",
+      "draw_order": 3
+     },
+     {
+      "id": "upper_leg_left",
+      "role": "upper_leg",
+      "pivot": [
+       196,
+       331
+      ],
+      "path": "PNG/legs/phoenix/04_upper_leg_left.png",
+      "draw_order": 4
+     },
+     {
+      "id": "lower_leg_left",
+      "role": "lower_leg",
+      "pivot": [
+       195,
+       361
+      ],
+      "parent": "upper_leg_left",
+      "path": "PNG/legs/phoenix/05_lower_leg_left.png",
+      "draw_order": 5
+     },
+     {
+      "id": "fire_left",
+      "role": "fire",
+      "pivot": [
+       197,
+       391
+      ],
+      "parent": "lower_leg_left",
+      "path": "PNG/legs/phoenix/06_fire_left.png",
+      "draw_order": 6
+     },
+     {
+      "id": "foot_left",
+      "role": "foot",
+      "pivot": [
+       186,
+       404
+      ],
+      "parent": "lower_leg_left",
+      "path": "PNG/legs/phoenix/07_foot_left.png",
+      "draw_order": 7
+     }
+    ]
+   },
+   {
+    "id": "gumiho",
+    "ko": "구미호",
+    "rarity": "legendary",
+    "ground_y_px": 443,
+    "layers": [
+     {
+      "id": "upper_leg_right",
+      "role": "upper_leg",
+      "pivot": [
+       329,
+       331
+      ],
+      "path": "PNG/legs/gumiho/00_upper_leg_right.png",
+      "draw_order": 0
+     },
+     {
+      "id": "lower_leg_right",
+      "role": "lower_leg",
+      "pivot": [
+       324,
+       367
+      ],
+      "parent": "upper_leg_right",
+      "path": "PNG/legs/gumiho/01_lower_leg_right.png",
+      "draw_order": 1
+     },
+     {
+      "id": "foot_right",
+      "role": "foot",
+      "pivot": [
+       348,
+       397
+      ],
+      "parent": "lower_leg_right",
+      "path": "PNG/legs/gumiho/02_foot_right.png",
+      "draw_order": 2
+     },
+     {
+      "id": "fire_right",
+      "role": "fire",
+      "pivot": [
+       361,
+       401
+      ],
+      "parent": "lower_leg_right",
+      "path": "PNG/legs/gumiho/03_fire_right.png",
+      "draw_order": 3
+     },
+     {
+      "id": "upper_leg_left",
+      "role": "upper_leg",
+      "pivot": [
+       196,
+       331
+      ],
+      "path": "PNG/legs/gumiho/04_upper_leg_left.png",
+      "draw_order": 4
+     },
+     {
+      "id": "lower_leg_left",
+      "role": "lower_leg",
+      "pivot": [
+       172,
+       371
+      ],
+      "parent": "upper_leg_left",
+      "path": "PNG/legs/gumiho/05_lower_leg_left.png",
+      "draw_order": 5
+     },
+     {
+      "id": "foot_left",
+      "role": "foot",
+      "pivot": [
+       189,
+       404
+      ],
+      "parent": "lower_leg_left",
+      "path": "PNG/legs/gumiho/06_foot_left.png",
+      "draw_order": 6
+     },
+     {
+      "id": "fire_left",
+      "role": "fire",
+      "pivot": [
+       204,
+       409
+      ],
+      "parent": "lower_leg_left",
+      "path": "PNG/legs/gumiho/07_fire_left.png",
+      "draw_order": 7
+     }
+    ]
+   },
+   {
+    "id": "chicken",
+    "ko": "닭",
+    "rarity": "normal",
+    "ground_y_px": 418,
+    "layers": [
+     {
+      "id": "upper_leg_right",
+      "role": "upper_leg",
+      "pivot": [
+       329,
+       331
+      ],
+      "path": "PNG/legs/chicken/00_upper_leg_right.png",
+      "draw_order": 0
+     },
+     {
+      "id": "lower_leg_right",
+      "role": "lower_leg",
+      "pivot": [
+       332,
+       363
+      ],
+      "parent": "upper_leg_right",
+      "path": "PNG/legs/chicken/01_lower_leg_right.png",
+      "draw_order": 1
+     },
+     {
+      "id": "upper_leg_left",
+      "role": "upper_leg",
+      "pivot": [
+       196,
+       331
+      ],
+      "path": "PNG/legs/chicken/02_upper_leg_left.png",
+      "draw_order": 2
+     },
+     {
+      "id": "lower_leg_left",
+      "role": "lower_leg",
+      "pivot": [
+       192,
+       366
+      ],
+      "parent": "upper_leg_left",
+      "path": "PNG/legs/chicken/03_lower_leg_left.png",
+      "draw_order": 3
+     }
+    ]
+   },
+   {
+    "id": "monkey",
+    "ko": "원숭이",
+    "rarity": "normal",
+    "ground_y_px": 430,
+    "layers": [
+     {
+      "id": "upper_leg_right",
+      "role": "upper_leg",
+      "pivot": [
+       329,
+       331
+      ],
+      "path": "PNG/legs/monkey/00_upper_leg_right.png",
+      "draw_order": 0
+     },
+     {
+      "id": "lower_leg_right",
+      "role": "lower_leg",
+      "pivot": [
+       338,
+       359
+      ],
+      "parent": "upper_leg_right",
+      "path": "PNG/legs/monkey/01_lower_leg_right.png",
+      "draw_order": 1
+     },
+     {
+      "id": "upper_leg_left",
+      "role": "upper_leg",
+      "pivot": [
+       196,
+       331
+      ],
+      "path": "PNG/legs/monkey/02_upper_leg_left.png",
+      "draw_order": 2
+     },
+     {
+      "id": "lower_leg_left",
+      "role": "lower_leg",
+      "pivot": [
+       188,
+       361
+      ],
+      "parent": "upper_leg_left",
+      "path": "PNG/legs/monkey/03_lower_leg_left.png",
+      "draw_order": 3
+     }
+    ]
+   },
+   {
+    "id": "lion",
+    "ko": "사자",
+    "rarity": "normal",
+    "ground_y_px": 435,
+    "layers": [
+     {
+      "id": "upper_leg_right",
+      "role": "upper_leg",
+      "pivot": [
+       329,
+       331
+      ],
+      "path": "PNG/legs/lion/00_upper_leg_right.png",
+      "draw_order": 0
+     },
+     {
+      "id": "lower_leg_right",
+      "role": "lower_leg",
+      "pivot": [
+       334,
+       363
+      ],
+      "parent": "upper_leg_right",
+      "path": "PNG/legs/lion/01_lower_leg_right.png",
+      "draw_order": 1
+     },
+     {
+      "id": "upper_leg_left",
+      "role": "upper_leg",
+      "pivot": [
+       196,
+       331
+      ],
+      "path": "PNG/legs/lion/02_upper_leg_left.png",
+      "draw_order": 2
+     },
+     {
+      "id": "lower_leg_left",
+      "role": "lower_leg",
+      "pivot": [
+       190,
+       368
+      ],
+      "parent": "upper_leg_left",
+      "path": "PNG/legs/lion/03_lower_leg_left.png",
+      "draw_order": 3
+     }
+    ]
+   },
+   {
+    "id": "kangaroo",
+    "ko": "캥거루",
+    "rarity": "normal",
+    "ground_y_px": 463,
+    "layers": [
+     {
+      "id": "upper_leg_right",
+      "role": "upper_leg",
+      "pivot": [
+       329,
+       331
+      ],
+      "path": "PNG/legs/kangaroo/00_upper_leg_right.png",
+      "draw_order": 0
+     },
+     {
+      "id": "lower_leg_right",
+      "role": "lower_leg",
+      "pivot": [
+       318,
+       376
+      ],
+      "parent": "upper_leg_right",
+      "path": "PNG/legs/kangaroo/01_lower_leg_right.png",
+      "draw_order": 1
+     },
+     {
+      "id": "upper_leg_left",
+      "role": "upper_leg",
+      "pivot": [
+       196,
+       331
+      ],
+      "path": "PNG/legs/kangaroo/02_upper_leg_left.png",
+      "draw_order": 2
+     },
+     {
+      "id": "lower_leg_left",
+      "role": "lower_leg",
+      "pivot": [
+       166,
+       384
+      ],
+      "parent": "upper_leg_left",
+      "path": "PNG/legs/kangaroo/03_lower_leg_left.png",
+      "draw_order": 3
+     }
+    ]
+   },
+   {
+    "id": "axolotl",
+    "ko": "우파루파",
+    "rarity": "normal",
+    "ground_y_px": 418,
+    "layers": [
+     {
+      "id": "upper_leg_right",
+      "role": "upper_leg",
+      "pivot": [
+       329,
+       331
+      ],
+      "path": "PNG/legs/axolotl/00_upper_leg_right.png",
+      "draw_order": 0
+     },
+     {
+      "id": "lower_leg_right",
+      "role": "lower_leg",
+      "pivot": [
+       350,
+       360
+      ],
+      "parent": "upper_leg_right",
+      "path": "PNG/legs/axolotl/01_lower_leg_right.png",
+      "draw_order": 1
+     },
+     {
+      "id": "upper_leg_left",
+      "role": "upper_leg",
+      "pivot": [
+       196,
+       331
+      ],
+      "path": "PNG/legs/axolotl/02_upper_leg_left.png",
+      "draw_order": 2
+     },
+     {
+      "id": "lower_leg_left",
+      "role": "lower_leg",
+      "pivot": [
+       173,
+       362
+      ],
+      "parent": "upper_leg_left",
+      "path": "PNG/legs/axolotl/03_lower_leg_left.png",
+      "draw_order": 3
+     }
+    ]
+   },
+   {
+    "id": "cow",
+    "ko": "소",
+    "rarity": "normal",
+    "ground_y_px": 440,
+    "layers": [
+     {
+      "id": "upper_leg_right",
+      "role": "upper_leg",
+      "pivot": [
+       329,
+       331
+      ],
+      "path": "PNG/legs/cow/00_upper_leg_right.png",
+      "draw_order": 0
+     },
+     {
+      "id": "lower_leg_right",
+      "role": "lower_leg",
+      "pivot": [
+       330,
+       370
+      ],
+      "parent": "upper_leg_right",
+      "path": "PNG/legs/cow/01_lower_leg_right.png",
+      "draw_order": 1
+     },
+     {
+      "id": "foot_right",
+      "role": "foot",
+      "pivot": [
+       335,
+       408
+      ],
+      "parent": "lower_leg_right",
+      "path": "PNG/legs/cow/02_foot_right.png",
+      "draw_order": 2
+     },
+     {
+      "id": "upper_leg_left",
+      "role": "upper_leg",
+      "pivot": [
+       196,
+       331
+      ],
+      "path": "PNG/legs/cow/03_upper_leg_left.png",
+      "draw_order": 3
+     },
+     {
+      "id": "lower_leg_left",
+      "role": "lower_leg",
+      "pivot": [
+       185,
+       373
+      ],
+      "parent": "upper_leg_left",
+      "path": "PNG/legs/cow/04_lower_leg_left.png",
+      "draw_order": 4
+     },
+     {
+      "id": "foot_left",
+      "role": "foot",
+      "pivot": [
+       180,
+       414
+      ],
+      "parent": "lower_leg_left",
+      "path": "PNG/legs/cow/05_foot_left.png",
+      "draw_order": 5
+     }
+    ]
+   },
+   {
+    "id": "horse",
+    "ko": "말",
+    "rarity": "normal",
+    "ground_y_px": 464,
+    "layers": [
+     {
+      "id": "upper_leg_right",
+      "role": "upper_leg",
+      "pivot": [
+       329,
+       331
+      ],
+      "path": "PNG/legs/horse/00_upper_leg_right.png",
+      "draw_order": 0
+     },
+     {
+      "id": "lower_leg_right",
+      "role": "lower_leg",
+      "pivot": [
+       336,
+       383
+      ],
+      "parent": "upper_leg_right",
+      "path": "PNG/legs/horse/01_lower_leg_right.png",
+      "draw_order": 1
+     },
+     {
+      "id": "foot_right",
+      "role": "foot",
+      "pivot": [
+       351,
+       427
+      ],
+      "parent": "lower_leg_right",
+      "path": "PNG/legs/horse/02_foot_right.png",
+      "draw_order": 2
+     },
+     {
+      "id": "upper_leg_left",
+      "role": "upper_leg",
+      "pivot": [
+       196,
+       331
+      ],
+      "path": "PNG/legs/horse/03_upper_leg_left.png",
+      "draw_order": 3
+     },
+     {
+      "id": "lower_leg_left",
+      "role": "lower_leg",
+      "pivot": [
+       182,
+       388
+      ],
+      "parent": "upper_leg_left",
+      "path": "PNG/legs/horse/04_lower_leg_left.png",
+      "draw_order": 4
+     },
+     {
+      "id": "foot_left",
+      "role": "foot",
+      "pivot": [
+       179,
+       438
+      ],
+      "parent": "lower_leg_left",
+      "path": "PNG/legs/horse/05_foot_left.png",
+      "draw_order": 5
+     }
+    ]
+   },
+   {
+    "id": "duck",
+    "ko": "오리",
+    "rarity": "normal",
+    "ground_y_px": 421,
+    "layers": [
+     {
+      "id": "upper_leg_right",
+      "role": "upper_leg",
+      "pivot": [
+       329,
+       331
+      ],
+      "path": "PNG/legs/duck/00_upper_leg_right.png",
+      "draw_order": 0
+     },
+     {
+      "id": "lower_leg_right",
+      "role": "lower_leg",
+      "pivot": [
+       336,
+       358
+      ],
+      "parent": "upper_leg_right",
+      "path": "PNG/legs/duck/01_lower_leg_right.png",
+      "draw_order": 1
+     },
+     {
+      "id": "upper_leg_left",
+      "role": "upper_leg",
+      "pivot": [
+       196,
+       331
+      ],
+      "path": "PNG/legs/duck/02_upper_leg_left.png",
+      "draw_order": 2
+     },
+     {
+      "id": "lower_leg_left",
+      "role": "lower_leg",
+      "pivot": [
+       192,
+       361
+      ],
+      "parent": "upper_leg_left",
+      "path": "PNG/legs/duck/03_lower_leg_left.png",
+      "draw_order": 3
+     }
+    ]
+   },
+   {
+    "id": "rabbit",
+    "ko": "토끼",
+    "ground_y_px": 431,
+    "layers": [
+     {
+      "id": "upper_leg_right",
+      "role": "upper_leg",
+      "pivot": [
+       329,
+       331
+      ],
+      "path": "PNG/legs/rabbit/00_upper_leg_right.png",
+      "draw_order": 0
+     },
+     {
+      "id": "lower_leg_right",
+      "role": "lower_leg",
+      "pivot": [
+       348,
+       363
+      ],
+      "parent": "upper_leg_right",
+      "path": "PNG/legs/rabbit/01_lower_leg_right.png",
+      "draw_order": 1
+     },
+     {
+      "id": "upper_leg_left",
+      "role": "upper_leg",
+      "pivot": [
+       196,
+       331
+      ],
+      "path": "PNG/legs/rabbit/02_upper_leg_left.png",
+      "draw_order": 2
+     },
+     {
+      "id": "lower_leg_left",
+      "role": "lower_leg",
+      "pivot": [
+       201,
+       365
+      ],
+      "parent": "upper_leg_left",
+      "path": "PNG/legs/rabbit/03_lower_leg_left.png",
+      "draw_order": 3
+     }
+    ],
+    "rarity": "normal"
+   },
+   {
+    "id": "pig",
+    "ko": "돼지",
+    "rarity": "normal",
+    "ground_y_px": 403,
+    "layers": [
+     {
+      "id": "upper_leg_right",
+      "role": "upper_leg",
+      "pivot": [
+       329,
+       331
+      ],
+      "path": "PNG/legs/pig/00_upper_leg_right.png",
+      "draw_order": 0
+     },
+     {
+      "id": "lower_leg_right",
+      "role": "lower_leg",
+      "pivot": [
+       318,
+       361
+      ],
+      "parent": "upper_leg_right",
+      "path": "PNG/legs/pig/01_lower_leg_right.png",
+      "draw_order": 1
+     },
+     {
+      "id": "upper_leg_left",
+      "role": "upper_leg",
+      "pivot": [
+       196,
+       331
+      ],
+      "path": "PNG/legs/pig/02_upper_leg_left.png",
+      "draw_order": 2
+     },
+     {
+      "id": "lower_leg_left",
+      "role": "lower_leg",
+      "pivot": [
+       198,
+       363
+      ],
+      "parent": "upper_leg_left",
+      "path": "PNG/legs/pig/03_lower_leg_left.png",
+      "draw_order": 3
+     }
+    ]
+   },
+   {
+    "id": "bear",
+    "ko": "곰",
+    "ground_y_px": 438,
+    "layers": [
+     {
+      "id": "upper_leg_right",
+      "role": "upper_leg",
+      "pivot": [
+       329,
+       331
+      ],
+      "path": "PNG/legs/bear/00_upper_leg_right.png",
+      "draw_order": 0
+     },
+     {
+      "id": "lower_leg_right",
+      "role": "lower_leg",
+      "pivot": [
+       332,
+       367
+      ],
+      "parent": "upper_leg_right",
+      "path": "PNG/legs/bear/01_lower_leg_right.png",
+      "draw_order": 1
+     },
+     {
+      "id": "upper_leg_left",
+      "role": "upper_leg",
+      "pivot": [
+       196,
+       331
+      ],
+      "path": "PNG/legs/bear/02_upper_leg_left.png",
+      "draw_order": 2
+     },
+     {
+      "id": "lower_leg_left",
+      "role": "lower_leg",
+      "pivot": [
+       200,
+       370
+      ],
+      "parent": "upper_leg_left",
+      "path": "PNG/legs/bear/03_lower_leg_left.png",
+      "draw_order": 3
+     }
+    ],
+    "rarity": "normal"
+   }
+  ]
+ },
+ "layer_counts": {
+  "heads": 104,
+  "bodies": 45,
+  "legs": 74
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "canvas_px": [
+  870,
+  520
+ ],
+ "note": "farm-lab-drone.png 한 장을 애니메이션용으로 잘라 만든 레이어. 좌표는 왼쪽 위 원점 픽셀.",
+ "layers": [
+  "blades_left.png",
+  "blades_right.png",
+  "body.png"
+ ],
+ "eye_mask": "eye_mask.png",
+ "hub_left": [
+  191,
+  168
+ ],
+ "hub_right": [
+  684,
+  180
+ ],
+ "pupil_center": [
+  340,
+  290
+ ],
+ "pupil_radius": 13,
+ "eye": [
+  352,
+  292
+ ],
+ "dome": [
+  440,
+  70
+ ],
+ "center": [
+  435,
+  290
+ ],
+ "bottom_y": 488
+}

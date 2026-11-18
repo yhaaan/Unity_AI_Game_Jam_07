@@ -1,0 +1,1404 @@
+{
+ "origin_px": [
+  0,
+  0
+ ],
+ "coordinate_system": "top left, x increases right, y increases down",
+ "layer_order": "back to front",
+ "characters": [
+  {
+   "id": "ray",
+   "ko": "광선총",
+   "canvas_px": [
+    925,
+    901
+   ],
+   "layers": [
+    {
+     "id": "leg-far-upper",
+     "role": "thigh",
+     "pivot": [
+      424,
+      680
+     ],
+     "parent": "torso",
+     "path": "PNG/ray/00_leg-far-upper.png",
+     "draw_order": 0
+    },
+    {
+     "id": "leg-far-lower",
+     "role": "shin",
+     "pivot": [
+      417,
+      719
+     ],
+     "parent": "leg-far-upper",
+     "path": "PNG/ray/01_leg-far-lower.png",
+     "draw_order": 1
+    },
+    {
+     "id": "boot-far",
+     "role": "boot",
+     "pivot": [
+      403,
+      757
+     ],
+     "parent": "leg-far-lower",
+     "path": "PNG/ray/02_boot-far.png",
+     "draw_order": 2
+    },
+    {
+     "id": "leg-near-upper",
+     "role": "thigh",
+     "pivot": [
+      705,
+      689
+     ],
+     "parent": "torso",
+     "path": "PNG/ray/03_leg-near-upper.png",
+     "draw_order": 3
+    },
+    {
+     "id": "leg-near-lower",
+     "role": "shin",
+     "pivot": [
+      710,
+      721
+     ],
+     "parent": "leg-near-upper",
+     "path": "PNG/ray/04_leg-near-lower.png",
+     "draw_order": 4
+    },
+    {
+     "id": "boot-near",
+     "role": "boot",
+     "pivot": [
+      722,
+      760
+     ],
+     "parent": "leg-near-lower",
+     "path": "PNG/ray/05_boot-near.png",
+     "draw_order": 5
+    },
+    {
+     "id": "arm-far-upper",
+     "role": "upper_arm",
+     "pivot": [
+      501,
+      460
+     ],
+     "parent": "torso",
+     "path": "PNG/ray/06_arm-far-upper.png",
+     "draw_order": 6
+    },
+    {
+     "id": "torso",
+     "role": "torso",
+     "pivot": [
+      593,
+      555
+     ],
+     "path": "PNG/ray/07_torso.png",
+     "draw_order": 7
+    },
+    {
+     "id": "arm-far-fore",
+     "role": "forearm",
+     "pivot": [
+      414,
+      531
+     ],
+     "parent": "arm-far-upper",
+     "path": "PNG/ray/08_arm-far-fore.png",
+     "draw_order": 8
+    },
+    {
+     "id": "hair-back",
+     "role": "hair",
+     "pivot": [
+      607,
+      207
+     ],
+     "parent": "head",
+     "path": "PNG/ray/09_hair-back.png",
+     "draw_order": 9
+    },
+    {
+     "id": "head",
+     "role": "head",
+     "pivot": [
+      598,
+      451
+     ],
+     "parent": "torso",
+     "path": "PNG/ray/10_head.png",
+     "draw_order": 10
+    },
+    {
+     "id": "hair-top",
+     "role": "hair",
+     "pivot": [
+      601,
+      177
+     ],
+     "parent": "head",
+     "path": "PNG/ray/11_hair-top.png",
+     "draw_order": 11
+    },
+    {
+     "id": "goggles-strap",
+     "role": "glasses",
+     "pivot": [
+      681,
+      298
+     ],
+     "parent": "head",
+     "path": "PNG/ray/12_goggles-strap.png",
+     "draw_order": 12
+    },
+    {
+     "id": "sclera-far",
+     "role": "sclera",
+     "pivot": [
+      501,
+      282
+     ],
+     "parent": "head",
+     "path": "PNG/ray/13_sclera-far.png",
+     "draw_order": 13
+    },
+    {
+     "id": "pupil-far",
+     "role": "pupil",
+     "pivot": [
+      477,
+      272
+     ],
+     "parent": "sclera-far",
+     "path": "PNG/ray/14_pupil-far.png",
+     "draw_order": 14
+    },
+    {
+     "id": "upper-lid-far",
+     "role": "eyelid",
+     "pivot": [
+      502,
+      270
+     ],
+     "parent": "sclera-far",
+     "path": "PNG/ray/15_upper-lid-far.png",
+     "draw_order": 15
+    },
+    {
+     "id": "nose",
+     "role": "nose",
+     "pivot": [
+      547,
+      298
+     ],
+     "parent": "head",
+     "path": "PNG/ray/16_nose.png",
+     "draw_order": 16
+    },
+    {
+     "id": "mouth",
+     "role": "mouth",
+     "pivot": [
+      595,
+      399
+     ],
+     "parent": "head",
+     "path": "PNG/ray/17_mouth.png",
+     "draw_order": 17
+    },
+    {
+     "id": "sclera-near",
+     "role": "sclera",
+     "pivot": [
+      625,
+      297
+     ],
+     "parent": "head",
+     "path": "PNG/ray/18_sclera-near.png",
+     "draw_order": 18
+    },
+    {
+     "id": "pupil-near",
+     "role": "pupil",
+     "pivot": [
+      610,
+      295
+     ],
+     "parent": "sclera-near",
+     "path": "PNG/ray/19_pupil-near.png",
+     "draw_order": 19
+    },
+    {
+     "id": "goggle-frame",
+     "role": "glasses",
+     "pivot": [
+      625,
+      297
+     ],
+     "parent": "head",
+     "path": "PNG/ray/20_goggle-frame.png",
+     "draw_order": 20
+    },
+    {
+     "id": "arm-near-upper",
+     "role": "upper_arm",
+     "pivot": [
+      724,
+      442
+     ],
+     "parent": "torso",
+     "path": "PNG/ray/21_arm-near-upper.png",
+     "draw_order": 21
+    },
+    {
+     "id": "arm-near-fore",
+     "role": "forearm",
+     "pivot": [
+      747,
+      546
+     ],
+     "parent": "arm-near-upper",
+     "path": "PNG/ray/22_arm-near-fore.png",
+     "draw_order": 22
+    },
+    {
+     "id": "weapon",
+     "role": "weapon",
+     "pivot": [
+      481,
+      566
+     ],
+     "parent": "torso",
+     "path": "PNG/ray/23_weapon.png",
+     "draw_order": 23
+    },
+    {
+     "id": "hand-far",
+     "role": "hand",
+     "pivot": [
+      350,
+      581
+     ],
+     "parent": "arm-far-fore",
+     "path": "PNG/ray/24_hand-far.png",
+     "draw_order": 24
+    },
+    {
+     "id": "hand-near",
+     "role": "hand",
+     "pivot": [
+      668,
+      592
+     ],
+     "parent": "arm-near-fore",
+     "path": "PNG/ray/25_hand-near.png",
+     "draw_order": 25
+    }
+   ]
+  },
+  {
+   "id": "pipe",
+   "ko": "쇠파이프",
+   "canvas_px": [
+    632,
+    660
+   ],
+   "layers": [
+    {
+     "id": "thigh_left",
+     "role": "thigh",
+     "parent": "pelvis",
+     "pivot": [
+      180,
+      465
+     ],
+     "path": "PNG/pipe/00_thigh_left.png",
+     "draw_order": 0
+    },
+    {
+     "id": "thigh_right",
+     "role": "thigh",
+     "parent": "pelvis",
+     "pivot": [
+      359,
+      471
+     ],
+     "path": "PNG/pipe/01_thigh_right.png",
+     "draw_order": 1
+    },
+    {
+     "id": "shin_left",
+     "role": "shin",
+     "parent": "thigh_left",
+     "pivot": [
+      179,
+      505
+     ],
+     "path": "PNG/pipe/02_shin_left.png",
+     "draw_order": 2
+    },
+    {
+     "id": "shin_right",
+     "role": "shin",
+     "parent": "thigh_right",
+     "pivot": [
+      368,
+      510
+     ],
+     "path": "PNG/pipe/03_shin_right.png",
+     "draw_order": 3
+    },
+    {
+     "id": "boot_left",
+     "role": "boot",
+     "parent": "shin_left",
+     "pivot": [
+      178,
+      550
+     ],
+     "path": "PNG/pipe/04_boot_left.png",
+     "draw_order": 4
+    },
+    {
+     "id": "boot_right",
+     "role": "boot",
+     "parent": "shin_right",
+     "pivot": [
+      375,
+      553
+     ],
+     "path": "PNG/pipe/05_boot_right.png",
+     "draw_order": 5
+    },
+    {
+     "id": "pelvis",
+     "role": "pelvis",
+     "parent": "torso",
+     "pivot": [
+      265,
+      480
+     ],
+     "path": "PNG/pipe/06_pelvis.png",
+     "draw_order": 6
+    },
+    {
+     "id": "upper_arm_left",
+     "role": "upper_arm",
+     "parent": "torso",
+     "pivot": [
+      192,
+      253
+     ],
+     "path": "PNG/pipe/07_upper_arm_left.png",
+     "draw_order": 7
+    },
+    {
+     "id": "forearm_left",
+     "role": "forearm",
+     "parent": "upper_arm_left",
+     "pivot": [
+      115,
+      313
+     ],
+     "path": "PNG/pipe/08_forearm_left.png",
+     "draw_order": 8
+    },
+    {
+     "id": "hand_left",
+     "role": "hand",
+     "parent": "forearm_left",
+     "pivot": [
+      144,
+      205
+     ],
+     "path": "PNG/pipe/09_hand_left.png",
+     "draw_order": 9
+    },
+    {
+     "id": "torso",
+     "role": "torso",
+     "pivot": [
+      279,
+      378
+     ],
+     "path": "PNG/pipe/10_torso.png",
+     "draw_order": 10
+    },
+    {
+     "id": "upper_arm_right",
+     "role": "upper_arm",
+     "parent": "torso",
+     "pivot": [
+      450,
+      264
+     ],
+     "path": "PNG/pipe/11_upper_arm_right.png",
+     "draw_order": 11
+    },
+    {
+     "id": "forearm_right",
+     "role": "forearm",
+     "parent": "upper_arm_right",
+     "pivot": [
+      505,
+      354
+     ],
+     "path": "PNG/pipe/12_forearm_right.png",
+     "draw_order": 12
+    },
+    {
+     "id": "hand_right",
+     "role": "hand",
+     "parent": "forearm_right",
+     "pivot": [
+      443,
+      409
+     ],
+     "path": "PNG/pipe/13_hand_right.png",
+     "draw_order": 13
+    },
+    {
+     "id": "pocket_front",
+     "role": "coat_pocket",
+     "parent": "torso",
+     "pivot": [
+      425,
+      447
+     ],
+     "path": "PNG/pipe/14_pocket_front.png",
+     "draw_order": 14
+    },
+    {
+     "id": "pipe",
+     "role": "weapon",
+     "parent": "hand_left",
+     "pivot": [
+      148,
+      189
+     ],
+     "path": "PNG/pipe/15_pipe.png",
+     "draw_order": 15
+    },
+    {
+     "id": "fingers_left",
+     "role": "fingers",
+     "parent": "hand_left",
+     "pivot": [
+      151,
+      185
+     ],
+     "path": "PNG/pipe/16_fingers_left.png",
+     "draw_order": 16
+    },
+    {
+     "id": "hair",
+     "role": "hair",
+     "parent": "head",
+     "pivot": [
+      387,
+      119
+     ],
+     "path": "PNG/pipe/17_hair.png",
+     "draw_order": 17
+    },
+    {
+     "id": "head",
+     "role": "head",
+     "parent": "torso",
+     "pivot": [
+      306,
+      282
+     ],
+     "path": "PNG/pipe/18_head.png",
+     "draw_order": 18
+    },
+    {
+     "id": "goggles",
+     "role": "goggles",
+     "parent": "head",
+     "pivot": [
+      300,
+      83
+     ],
+     "path": "PNG/pipe/19_goggles.png",
+     "draw_order": 19
+    },
+    {
+     "id": "eye_left",
+     "role": "eye",
+     "parent": "head",
+     "pivot": [
+      272,
+      149
+     ],
+     "path": "PNG/pipe/20_eye_left.png",
+     "draw_order": 20
+    },
+    {
+     "id": "pupil_left",
+     "role": "pupil",
+     "parent": "eye_left",
+     "pivot": [
+      277,
+      145
+     ],
+     "path": "PNG/pipe/21_pupil_left.png",
+     "draw_order": 21
+    },
+    {
+     "id": "eye_right",
+     "role": "eye",
+     "parent": "head",
+     "pivot": [
+      347,
+      148
+     ],
+     "path": "PNG/pipe/22_eye_right.png",
+     "draw_order": 22
+    },
+    {
+     "id": "pupil_right",
+     "role": "pupil",
+     "parent": "eye_right",
+     "pivot": [
+      364,
+      140
+     ],
+     "path": "PNG/pipe/23_pupil_right.png",
+     "draw_order": 23
+    },
+    {
+     "id": "nose",
+     "role": "nose",
+     "parent": "head",
+     "pivot": [
+      312,
+      150
+     ],
+     "path": "PNG/pipe/24_nose.png",
+     "draw_order": 24
+    },
+    {
+     "id": "mouth",
+     "role": "mouth",
+     "parent": "head",
+     "pivot": [
+      309,
+      226
+     ],
+     "path": "PNG/pipe/25_mouth.png",
+     "draw_order": 25
+    }
+   ]
+  },
+  {
+   "id": "net",
+   "ko": "포획망",
+   "canvas_px": [
+    615,
+    657
+   ],
+   "layers": [
+    {
+     "id": "far-thigh",
+     "role": "thigh",
+     "pivot": [
+      198,
+      501
+     ],
+     "parent": "torso",
+     "path": "PNG/net/00_far-thigh.png",
+     "draw_order": 0
+    },
+    {
+     "id": "far-shin",
+     "role": "shin",
+     "pivot": [
+      213,
+      538
+     ],
+     "parent": "far-thigh",
+     "path": "PNG/net/01_far-shin.png",
+     "draw_order": 1
+    },
+    {
+     "id": "far-boot",
+     "role": "boot",
+     "pivot": [
+      223,
+      568
+     ],
+     "parent": "far-shin",
+     "path": "PNG/net/02_far-boot.png",
+     "draw_order": 2
+    },
+    {
+     "id": "near-thigh",
+     "role": "thigh",
+     "pivot": [
+      141,
+      503
+     ],
+     "parent": "torso",
+     "path": "PNG/net/03_near-thigh.png",
+     "draw_order": 3
+    },
+    {
+     "id": "near-shin",
+     "role": "shin",
+     "pivot": [
+      159,
+      539
+     ],
+     "parent": "near-thigh",
+     "path": "PNG/net/04_near-shin.png",
+     "draw_order": 4
+    },
+    {
+     "id": "near-boot",
+     "role": "boot",
+     "pivot": [
+      137,
+      576
+     ],
+     "parent": "near-shin",
+     "path": "PNG/net/05_near-boot.png",
+     "draw_order": 5
+    },
+    {
+     "id": "far-upper-arm",
+     "role": "upper_arm",
+     "pivot": [
+      189,
+      224
+     ],
+     "parent": "torso",
+     "path": "PNG/net/06_far-upper-arm.png",
+     "draw_order": 6
+    },
+    {
+     "id": "far-forearm",
+     "role": "forearm",
+     "pivot": [
+      209,
+      406
+     ],
+     "parent": "far-upper-arm",
+     "path": "PNG/net/07_far-forearm.png",
+     "draw_order": 7
+    },
+    {
+     "id": "torso",
+     "role": "torso",
+     "pivot": [
+      179,
+      365
+     ],
+     "path": "PNG/net/08_torso.png",
+     "draw_order": 8
+    },
+    {
+     "id": "near-upper-arm",
+     "role": "upper_arm",
+     "pivot": [
+      138,
+      198
+     ],
+     "parent": "torso",
+     "path": "PNG/net/09_near-upper-arm.png",
+     "draw_order": 9
+    },
+    {
+     "id": "near-forearm",
+     "role": "forearm",
+     "pivot": [
+      91,
+      340
+     ],
+     "parent": "near-upper-arm",
+     "path": "PNG/net/10_near-forearm.png",
+     "draw_order": 10
+    },
+    {
+     "id": "net",
+     "role": "prop",
+     "pivot": [
+      181,
+      424
+     ],
+     "parent": "near-hand",
+     "path": "PNG/net/11_net.png",
+     "draw_order": 11
+    },
+    {
+     "id": "far-hand",
+     "role": "hand",
+     "pivot": [
+      270,
+      363
+     ],
+     "parent": "far-forearm",
+     "path": "PNG/net/12_far-hand.png",
+     "draw_order": 12
+    },
+    {
+     "id": "near-hand",
+     "role": "hand",
+     "pivot": [
+      153,
+      412
+     ],
+     "parent": "near-forearm",
+     "path": "PNG/net/13_near-hand.png",
+     "draw_order": 13
+    },
+    {
+     "id": "head",
+     "role": "head",
+     "pivot": [
+      204,
+      232
+     ],
+     "parent": "torso",
+     "path": "PNG/net/14_head.png",
+     "draw_order": 14
+    },
+    {
+     "id": "mouth",
+     "role": "mouth",
+     "pivot": [
+      263,
+      282
+     ],
+     "parent": "head",
+     "path": "PNG/net/15_mouth.png",
+     "draw_order": 15
+    },
+    {
+     "id": "sclera-near",
+     "role": "sclera",
+     "pivot": [
+      257,
+      210
+     ],
+     "parent": "head",
+     "path": "PNG/net/16_sclera-near.png",
+     "draw_order": 16
+    },
+    {
+     "id": "pupil-near",
+     "role": "pupil",
+     "pivot": [
+      245,
+      201
+     ],
+     "parent": "sclera-near",
+     "path": "PNG/net/17_pupil-near.png",
+     "draw_order": 17
+    },
+    {
+     "id": "lid-near",
+     "role": "eyelid",
+     "pivot": [
+      259,
+      196
+     ],
+     "parent": "sclera-near",
+     "path": "PNG/net/18_lid-near.png",
+     "draw_order": 18
+    },
+    {
+     "id": "sclera-far",
+     "role": "sclera",
+     "pivot": [
+      309,
+      219
+     ],
+     "parent": "head",
+     "path": "PNG/net/19_sclera-far.png",
+     "draw_order": 19
+    },
+    {
+     "id": "nose",
+     "role": "nose",
+     "pivot": [
+      297,
+      217
+     ],
+     "parent": "head",
+     "path": "PNG/net/20_nose.png",
+     "draw_order": 20
+    },
+    {
+     "id": "glasses",
+     "role": "glasses",
+     "pivot": [
+      306,
+      228
+     ],
+     "parent": "head",
+     "path": "PNG/net/21_glasses.png",
+     "draw_order": 21
+    }
+   ]
+  },
+  {
+   "id": "egg",
+   "ko": "달걀 발사기",
+   "canvas_px": [
+    618,
+    631
+   ],
+   "layers": [
+    {
+     "id": "leg-far-upper",
+     "role": "thigh",
+     "pivot": [
+      196,
+      481
+     ],
+     "parent": "torso",
+     "path": "PNG/egg/00_leg-far-upper.png",
+     "draw_order": 0
+    },
+    {
+     "id": "leg-far-lower",
+     "role": "shin",
+     "pivot": [
+      187,
+      512
+     ],
+     "parent": "leg-far-upper",
+     "path": "PNG/egg/01_leg-far-lower.png",
+     "draw_order": 1
+    },
+    {
+     "id": "boot-far",
+     "role": "boot",
+     "pivot": [
+      177,
+      543
+     ],
+     "parent": "leg-far-lower",
+     "path": "PNG/egg/02_boot-far.png",
+     "draw_order": 2
+    },
+    {
+     "id": "leg-near-upper",
+     "role": "thigh",
+     "pivot": [
+      453,
+      491
+     ],
+     "parent": "torso",
+     "path": "PNG/egg/03_leg-near-upper.png",
+     "draw_order": 3
+    },
+    {
+     "id": "leg-near-lower",
+     "role": "shin",
+     "pivot": [
+      468,
+      515
+     ],
+     "parent": "leg-near-upper",
+     "path": "PNG/egg/04_leg-near-lower.png",
+     "draw_order": 4
+    },
+    {
+     "id": "boot-near",
+     "role": "boot",
+     "pivot": [
+      462,
+      546
+     ],
+     "parent": "leg-near-lower",
+     "path": "PNG/egg/05_boot-near.png",
+     "draw_order": 5
+    },
+    {
+     "id": "arm-far-upper",
+     "role": "upper_arm",
+     "pivot": [
+      282,
+      297
+     ],
+     "parent": "torso",
+     "path": "PNG/egg/06_arm-far-upper.png",
+     "draw_order": 6
+    },
+    {
+     "id": "torso",
+     "role": "torso",
+     "pivot": [
+      319,
+      395
+     ],
+     "path": "PNG/egg/07_torso.png",
+     "draw_order": 7
+    },
+    {
+     "id": "apron-bow",
+     "role": "clothing",
+     "pivot": [
+      511,
+      376
+     ],
+     "parent": "torso",
+     "path": "PNG/egg/08_apron-bow.png",
+     "draw_order": 8
+    },
+    {
+     "id": "arm-far-fore",
+     "role": "forearm",
+     "pivot": [
+      226,
+      343
+     ],
+     "parent": "arm-far-upper",
+     "path": "PNG/egg/09_arm-far-fore.png",
+     "draw_order": 9
+    },
+    {
+     "id": "hair-back",
+     "role": "hair",
+     "pivot": [
+      407,
+      143
+     ],
+     "parent": "head",
+     "path": "PNG/egg/10_hair-back.png",
+     "draw_order": 10
+    },
+    {
+     "id": "head",
+     "role": "head",
+     "pivot": [
+      355,
+      272
+     ],
+     "parent": "torso",
+     "path": "PNG/egg/11_head.png",
+     "draw_order": 11
+    },
+    {
+     "id": "cheeks",
+     "role": "blush",
+     "pivot": [
+      352,
+      195
+     ],
+     "parent": "head",
+     "path": "PNG/egg/12_cheeks.png",
+     "draw_order": 12
+    },
+    {
+     "id": "head-shell",
+     "role": "hat",
+     "pivot": [
+      408,
+      134
+     ],
+     "parent": "head",
+     "path": "PNG/egg/13_head-shell.png",
+     "draw_order": 13
+    },
+    {
+     "id": "sclera-far",
+     "role": "sclera",
+     "pivot": [
+      349,
+      153
+     ],
+     "parent": "head",
+     "path": "PNG/egg/14_sclera-far.png",
+     "draw_order": 14
+    },
+    {
+     "id": "sclera-near",
+     "role": "sclera",
+     "pivot": [
+      396,
+      161
+     ],
+     "parent": "head",
+     "path": "PNG/egg/15_sclera-near.png",
+     "draw_order": 15
+    },
+    {
+     "id": "mouth",
+     "role": "mouth",
+     "pivot": [
+      352,
+      222
+     ],
+     "parent": "head",
+     "path": "PNG/egg/16_mouth.png",
+     "draw_order": 16
+    },
+    {
+     "id": "moustache",
+     "role": "moustache",
+     "pivot": [
+      352,
+      191
+     ],
+     "parent": "head",
+     "path": "PNG/egg/17_moustache.png",
+     "draw_order": 17
+    },
+    {
+     "id": "nose",
+     "role": "nose",
+     "pivot": [
+      348,
+      177
+     ],
+     "parent": "head",
+     "path": "PNG/egg/18_nose.png",
+     "draw_order": 18
+    },
+    {
+     "id": "arm-near-upper",
+     "role": "upper_arm",
+     "pivot": [
+      457,
+      269
+     ],
+     "parent": "torso",
+     "path": "PNG/egg/19_arm-near-upper.png",
+     "draw_order": 19
+    },
+    {
+     "id": "arm-near-fore",
+     "role": "forearm",
+     "pivot": [
+      495,
+      342
+     ],
+     "parent": "arm-near-upper",
+     "path": "PNG/egg/20_arm-near-fore.png",
+     "draw_order": 20
+    },
+    {
+     "id": "weapon",
+     "role": "weapon",
+     "pivot": [
+      320,
+      359
+     ],
+     "parent": "torso",
+     "path": "PNG/egg/21_weapon.png",
+     "draw_order": 21
+    },
+    {
+     "id": "hand-far",
+     "role": "hand",
+     "pivot": [
+      189,
+      389
+     ],
+     "parent": "arm-far-fore",
+     "path": "PNG/egg/22_hand-far.png",
+     "draw_order": 22
+    },
+    {
+     "id": "hand-near",
+     "role": "hand",
+     "pivot": [
+      458,
+      377
+     ],
+     "parent": "arm-near-fore",
+     "path": "PNG/egg/23_hand-near.png",
+     "draw_order": 23
+    }
+   ]
+  },
+  {
+   "id": "magnet",
+   "ko": "자석",
+   "canvas_px": [
+    634,
+    651
+   ],
+   "layers": [
+    {
+     "id": "thigh_left",
+     "role": "thigh",
+     "parent": "pelvis",
+     "pivot": [
+      310,
+      469
+     ],
+     "path": "PNG/magnet/00_thigh_left.png",
+     "draw_order": 0
+    },
+    {
+     "id": "shin_left",
+     "role": "shin",
+     "parent": "thigh_left",
+     "pivot": [
+      292,
+      510
+     ],
+     "path": "PNG/magnet/01_shin_left.png",
+     "draw_order": 1
+    },
+    {
+     "id": "boot_left",
+     "role": "boot",
+     "parent": "shin_left",
+     "pivot": [
+      281,
+      548
+     ],
+     "path": "PNG/magnet/02_boot_left.png",
+     "draw_order": 2
+    },
+    {
+     "id": "thigh_right",
+     "role": "thigh",
+     "parent": "pelvis",
+     "pivot": [
+      446,
+      470
+     ],
+     "path": "PNG/magnet/03_thigh_right.png",
+     "draw_order": 3
+    },
+    {
+     "id": "shin_right",
+     "role": "shin",
+     "parent": "thigh_right",
+     "pivot": [
+      467,
+      509
+     ],
+     "path": "PNG/magnet/04_shin_right.png",
+     "draw_order": 4
+    },
+    {
+     "id": "boot_right",
+     "role": "boot",
+     "parent": "shin_right",
+     "pivot": [
+      485,
+      548
+     ],
+     "path": "PNG/magnet/05_boot_right.png",
+     "draw_order": 5
+    },
+    {
+     "id": "pelvis",
+     "role": "pelvis",
+     "parent": "torso",
+     "pivot": [
+      378,
+      484
+     ],
+     "path": "PNG/magnet/06_pelvis.png",
+     "draw_order": 6
+    },
+    {
+     "id": "upper_arm_left",
+     "role": "upper_arm",
+     "parent": "torso",
+     "pivot": [
+      355,
+      322
+     ],
+     "path": "PNG/magnet/07_upper_arm_left.png",
+     "draw_order": 7
+    },
+    {
+     "id": "forearm_left",
+     "role": "forearm",
+     "parent": "upper_arm_left",
+     "pivot": [
+      308,
+      343
+     ],
+     "path": "PNG/magnet/08_forearm_left.png",
+     "draw_order": 8
+    },
+    {
+     "id": "hand_left",
+     "role": "hand",
+     "parent": "forearm_left",
+     "pivot": [
+      267,
+      362
+     ],
+     "path": "PNG/magnet/09_hand_left.png",
+     "draw_order": 9
+    },
+    {
+     "id": "upper_arm_right",
+     "role": "upper_arm",
+     "parent": "torso",
+     "pivot": [
+      452,
+      330
+     ],
+     "path": "PNG/magnet/10_upper_arm_right.png",
+     "draw_order": 10
+    },
+    {
+     "id": "torso",
+     "role": "torso",
+     "pivot": [
+      381,
+      409
+     ],
+     "path": "PNG/magnet/11_torso.png",
+     "draw_order": 11
+    },
+    {
+     "id": "forearm_right",
+     "role": "forearm",
+     "parent": "upper_arm_right",
+     "pivot": [
+      546,
+      347
+     ],
+     "path": "PNG/magnet/12_forearm_right.png",
+     "draw_order": 12
+    },
+    {
+     "id": "hand_right",
+     "role": "hand",
+     "parent": "forearm_right",
+     "pivot": [
+      503,
+      388
+     ],
+     "path": "PNG/magnet/13_hand_right.png",
+     "draw_order": 13
+    },
+    {
+     "id": "magnet",
+     "role": "weapon",
+     "parent": "hand_left",
+     "pivot": [
+      266,
+      366
+     ],
+     "path": "PNG/magnet/14_magnet.png",
+     "draw_order": 14
+    },
+    {
+     "id": "hair",
+     "role": "hair",
+     "parent": "head",
+     "pivot": [
+      438,
+      178
+     ],
+     "path": "PNG/magnet/15_hair.png",
+     "draw_order": 15
+    },
+    {
+     "id": "head",
+     "role": "head",
+     "parent": "torso",
+     "pivot": [
+      394,
+      332
+     ],
+     "path": "PNG/magnet/16_head.png",
+     "draw_order": 16
+    },
+    {
+     "id": "eye_left",
+     "role": "eye",
+     "parent": "head",
+     "pivot": [
+      367,
+      208
+     ],
+     "path": "PNG/magnet/17_eye_left.png",
+     "draw_order": 17
+    },
+    {
+     "id": "pupil_left",
+     "role": "pupil",
+     "parent": "eye_left",
+     "pivot": [
+      377,
+      204
+     ],
+     "path": "PNG/magnet/18_pupil_left.png",
+     "draw_order": 18
+    },
+    {
+     "id": "eye_right",
+     "role": "eye",
+     "parent": "head",
+     "pivot": [
+      440,
+      215
+     ],
+     "path": "PNG/magnet/19_eye_right.png",
+     "draw_order": 19
+    },
+    {
+     "id": "pupil_right",
+     "role": "pupil",
+     "parent": "eye_right",
+     "pivot": [
+      432,
+      213
+     ],
+     "path": "PNG/magnet/20_pupil_right.png",
+     "draw_order": 20
+    },
+    {
+     "id": "nose",
+     "role": "nose",
+     "parent": "head",
+     "pivot": [
+      397,
+      227
+     ],
+     "path": "PNG/magnet/21_nose.png",
+     "draw_order": 21
+    },
+    {
+     "id": "mouth",
+     "role": "mouth",
+     "parent": "head",
+     "pivot": [
+      409,
+      280
+     ],
+     "path": "PNG/magnet/22_mouth.png",
+     "draw_order": 22
+    },
+    {
+     "id": "goggle",
+     "role": "goggles",
+     "parent": "head",
+     "pivot": [
+      441,
+      216
+     ],
+     "path": "PNG/magnet/23_goggle.png",
+     "draw_order": 23
+    }
+   ]
+  }
+ ],
+ "layer_counts": {
+  "ray": 26,
+  "pipe": 26,
+  "net": 22,
+  "egg": 24,
+  "magnet": 24
+ }
+}
