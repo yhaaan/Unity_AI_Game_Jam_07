@@ -21,7 +21,7 @@ namespace ProjectRTD.Core
         private const float FadeSeconds = 0.8f;
         private static MusicPlayer instance;
         private AudioSource source;
-        private float targetVolume;
+        private float targetVolume, level; // level: the fade position; the source plays it scaled by GameVolume.Music
         private Coroutine fade;
 
         public static void Request(AudioClip clip, float volume)
@@ -48,6 +48,7 @@ namespace ProjectRTD.Core
             instance.source.spatialBlend = 0f;
             instance.source.volume = 0f;
             SceneManager.sceneLoaded += instance.OnSceneLoaded;
+            GameVolume.Changed += instance.Apply;
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -66,7 +67,8 @@ namespace ProjectRTD.Core
         {
             if (source.isPlaying) yield return Fade(0f);
             source.clip = clip;
-            source.volume = 0f;
+            level = 0f;
+            Apply();
             source.Play();
             yield return Fade(volume);
             fade = null;
@@ -88,19 +90,24 @@ namespace ProjectRTD.Core
         private IEnumerator Fade(float to)
         {
             targetVolume = to;
-            float from = source.volume;
+            float from = level;
             for (float t = 0f; t < FadeSeconds; t += Time.unscaledDeltaTime)
             {
-                source.volume = Mathf.Lerp(from, targetVolume, t / FadeSeconds);
+                level = Mathf.Lerp(from, targetVolume, t / FadeSeconds);
+                Apply();
                 yield return null;
             }
-            source.volume = targetVolume;
+            level = targetVolume;
+            Apply();
         }
+
+        private void Apply() => source.volume = level * GameVolume.Music;
 
         private void OnDestroy()
         {
             if (instance != this) return;
             SceneManager.sceneLoaded -= OnSceneLoaded;
+            GameVolume.Changed -= Apply;
             instance = null;
         }
     }

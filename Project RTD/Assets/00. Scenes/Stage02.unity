@@ -955,7 +955,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 40
-    OrthographicSize: 4.7
+    OrthographicSize: 4
     NearClipPlane: 0.1
     FarClipPlane: 100
     Dutch: 0
@@ -5937,6 +5937,7 @@ GameObject:
   - component: {fileID: 1740728361}
   - component: {fileID: 1740728360}
   - component: {fileID: 1740728359}
+  - component: {fileID: 1740728399}
   m_Layer: 0
   m_Name: Stage HUD
   m_TagString: Untagged
@@ -5944,6 +5945,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1740728399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740728358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969ca5c4137c183409a342a24182a585, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuArt: {fileID: 11400000, guid: 5c9d97979f5948c0a36c64d8c1ecbcb1, type: 2}
 --- !u!114 &1740728359
 MonoBehaviour:
   m_ObjectHideFlags: 0

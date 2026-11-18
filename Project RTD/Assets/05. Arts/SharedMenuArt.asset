@@ -29,4 +29,14 @@ MonoBehaviour:
   track: {fileID: 2800000, guid: b4a91fce7b094e82aa254b988dda251a, type: 3}
   knob: {fileID: 2800000, guid: da25274520bc4a21b9f28e3eeb0fc48c, type: 3}
   labIllustration: {fileID: 2800000, guid: 234f362e45634b5593504ff282498bff, type: 3}
+  plateGrid: {x: 4, y: 1}
+  doorGrid: {x: 4, y: 2}
+  reroll: {fileID: 2800000, guid: d9ea2c7bcd7c4896ae6429ce6942159f, type: 3}
+  crate: {fileID: 2800000, guid: 0d9da286b0e64b349ee3261c60320438, type: 3}
+  cupboardLeft: {fileID: 2800000, guid: c602699ceb09432ab4f5df4b692e8843, type: 3}
+  cupboardRight: {fileID: 2800000, guid: 4a5d743bf3f64418b154dcae31c84e68, type: 3}
+  plateSheet: {fileID: 2800000, guid: 32f5cc7983194f3984ce07b899db3c88, type: 3}
+  doorSheet: {fileID: 2800000, guid: 063cce8960aa4739af70e745ea754ebe, type: 3}
   uiIllustration: {fileID: 2800000, guid: fcd4a38181fb4f8e98adee43abc5411e, type: 3}
+  startButton: {fileID: 2800000, guid: 34065f9ff10e4047abac239936137815, type: 3}
+  exitButton: {fileID: 2800000, guid: 1ebca4db44804dc595126a4bf2ac19fd, type: 3}

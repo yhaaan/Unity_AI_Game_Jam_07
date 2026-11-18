@@ -33,7 +33,7 @@ namespace ProjectRTD.Core
 
         internal static RawImage Art(Transform parent, Texture2D tex, float x, float y, float w, float h, bool fit = true)
         {
-            var box = Box(parent, tex.name, x,y,w,h);
+            var box = Box(parent, tex ? tex.name : "Missing Art", x,y,w,h);
             return Picture(Box(box, "Image", 0,0,1,1), tex, fit);
         }
 
@@ -47,6 +47,30 @@ namespace ProjectRTD.Core
             button.targetGraphic = picture;
             button.onClick.AddListener(click);
             return button;
+        }
+
+        // Like Action, but shows only `crop` (UV space) so transparent padding neither shrinks the art nor catches clicks.
+        internal static Button CroppedAction(Transform parent, Texture2D tex, string label, Rect crop, float x,float y,float w,float h, UnityEngine.Events.UnityAction click)
+        {
+            var picture = Cropped(parent, tex, label, crop, x,y,w,h);
+            picture.raycastTarget = true; // the visible art itself is the hit area
+            picture.gameObject.AddComponent<HoverPop>();
+            var button = picture.gameObject.AddComponent<Button>();
+            button.targetGraphic = picture;
+            button.onClick.AddListener(click);
+            return button;
+        }
+
+        // One region (UV space) of a sheet, kept at that region's aspect ratio inside the box.
+        internal static RawImage Cropped(Transform parent, Texture2D tex, string name, Rect crop, float x,float y,float w,float h)
+        {
+            var art = Box(Box(parent, name, x,y,w,h), "Image", 0,0,1,1);
+            var picture = Picture(art, tex, false);
+            picture.uvRect = crop;
+            var fitter = art.gameObject.AddComponent<AspectRatioFitter>();
+            fitter.aspectMode = AspectRatioFitter.AspectMode.FitInParent;
+            fitter.aspectRatio = tex.width * crop.width / (tex.height * crop.height);
+            return picture;
         }
 
         internal static void Label(Transform parent, string caption)

@@ -55,7 +55,7 @@ namespace ProjectRTD.Core
             float now = Time.unscaledTime;
             if (instance.lastPlayed.TryGetValue(cue, out float last) && now - last < .06f) return;
             instance.lastPlayed[cue] = now;
-            instance.source.PlayOneShot(clip, Mathf.Clamp01(gain));
+            instance.source.PlayOneShot(clip, Mathf.Clamp01(gain) * GameVolume.Effects);
         }
 
         private void OnDestroy()
