@@ -27,6 +27,8 @@ PowerShell에서:
 - `/model sol`: 일반 구현용 `gpt-6.1-sol`로 전환한다.
 - `/model luna`: 단순 작업용 `gpt-6-luna`로 전환한다.
 - `/effort low|medium|high`: 추론 강도를 변경한다.
+- `/scope project`: Unity 프로젝트 전체의 허용된 텍스트 파일에 쓴다. 기본값이다.
+- `/scope assets`: 자동 쓰기를 다시 `Assets` 아래로 제한한다.
 - `/new`: API 대화 문맥을 초기화한다.
 - `/status`: 누적 토큰과 이번 세션 변경 파일을 표시한다.
 - `/undo`: 이번 실행에서 CLI가 변경한 모든 파일을 시작 전 상태로 복원한다.
@@ -36,9 +38,11 @@ PowerShell에서:
 
 - `.env.local`의 `OPENAI_API_KEY`는 메모리에서만 읽고 출력하지 않는다.
 - `Library`, `Temp`, `Logs`, 비밀정보 파일은 모델에 전달하지 않는다.
-- 자동 쓰기는 `Assets` 아래의 코드, UI, 셰이더, 텍스트 파일로 제한한다.
+- 자동 쓰기는 `Project RTD` 전체의 허용된 텍스트 파일을 대상으로 한다.
 - 기존 파일은 먼저 읽은 뒤 정확한 텍스트 교체로만 수정한다.
-- 씬, 프리팹, `.meta`, 바이너리 에셋, 패키지 설정은 수정하지 않는다.
+- `Packages`, `ProjectSettings`, `.vscode`, `90. Tools`도 수정할 수 있다.
+- `.git`, `Library`, `Temp`, `Logs`, 빌드 산출물, 비밀정보와 바이너리 파일은 계속 차단한다.
+- 에이전트가 `OpenAIDevCLI` 자신의 실행 코드와 권한 규칙을 수정하는 것은 차단한다.
 - 삭제, 커밋, 푸시, 패키지 설치, 빌드, Unity Editor 종료 기능은 제공하지 않는다.
 - Unity 작업은 상태 확인, 재컴파일, EditMode 테스트로 제한한다.
 

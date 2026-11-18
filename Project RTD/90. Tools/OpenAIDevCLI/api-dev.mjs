@@ -23,9 +23,7 @@ const MODEL_ALIASES = Object.freeze({
 
 const SKIPPED_DIRECTORIES = new Set([
   ".git",
-  ".idea",
   ".vs",
-  ".vscode",
   "Build",
   "Builds",
   "Library",
@@ -45,9 +43,13 @@ const READABLE_EXTENSIONS = new Set([
 ]);
 
 const WRITABLE_EXTENSIONS = new Set([
-  ".asmdef", ".asmref", ".cginc", ".compute", ".cs", ".glslinc", ".hlsl",
-  ".json", ".md", ".shader", ".txt", ".uss", ".uxml", ".xml", ".yaml", ".yml",
+  ".asmdef", ".asmref", ".asset", ".bat", ".cginc", ".cmd", ".compute", ".cs",
+  ".glslinc", ".gradle", ".hlsl", ".ini", ".js", ".json", ".md", ".meta", ".mjs",
+  ".prefab", ".props", ".ps1", ".py", ".rsp", ".shader", ".sh", ".targets", ".toml",
+  ".ts", ".txt", ".unity", ".uss", ".uxml", ".xml", ".yaml", ".yml",
 ]);
+
+const WRITABLE_FILENAMES = new Set([".editorconfig", ".gitattributes", ".gitignore"]);
 
 const MAX_READ_BYTES = 512 * 1024;
 const MAX_TOOL_OUTPUT = 48_000;
@@ -55,6 +57,7 @@ const MAX_TOOL_ROUNDS = 32;
 
 let model = process.env.OPENAI_DEV_MODEL || MODEL_ALIASES.astra;
 let reasoningEffort = process.env.OPENAI_DEV_REASONING || "medium";
+let writeScope = process.env.OPENAI_DEV_WRITE_SCOPE === "assets" ? "assets" : "project";
 let previousResponseId = null;
 let totalInputTokens = 0;
 let totalOutputTokens = 0;
@@ -76,7 +79,8 @@ function isWithin(parent, child) {
 function isSecretPath(absolutePath) {
   const relative = normalizeRelative(path.relative(workspaceRoot, absolutePath)).toLowerCase();
   return relative.split("/").some((segment) =>
-    segment === "auth.json" || segment === ".npmrc" || segment.startsWith(".env"));
+    segment === "auth.json" || segment === "credentials.json" || segment === "secrets.json" ||
+    segment === ".npmrc" || segment.startsWith(".env"));
 }
 
 function resolveProjectPath(relativePath = ".") {
@@ -107,13 +111,19 @@ function isReadableFile(absolutePath) {
 function assertWritablePath(absolutePath) {
   const relative = toProjectRelative(absolutePath);
   const lower = relative.toLowerCase();
-  if (!(relative === "Assets" || relative.startsWith("Assets/"))) {
-    throw new Error("자동 수정은 Unity Assets 폴더 안에서만 허용됩니다.");
+  const segments = lower.split("/");
+  if (segments.some((segment) => isSkippedDirectory(segment))) {
+    throw new Error("Unity 생성물, 캐시 또는 버전 관리 내부 폴더는 수정할 수 없습니다.");
   }
-  if (lower.startsWith("assets/plugins/") || lower.includes("/thirdparty/")) {
-    throw new Error("외부 플러그인과 ThirdParty 파일은 자동 수정하지 않습니다.");
+  if (lower === "90. tools/openaidevcli" || lower.startsWith("90. tools/openaidevcli/")) {
+    throw new Error("API 에이전트는 자신의 실행 코드와 권한 규칙을 수정할 수 없습니다.");
   }
-  if (!WRITABLE_EXTENSIONS.has(path.extname(absolutePath).toLowerCase())) {
+  if (writeScope === "assets" && !(lower === "assets" || lower.startsWith("assets/"))) {
+    throw new Error("현재 쓰기 범위는 Assets로 제한되어 있습니다. /scope project로 변경하세요.");
+  }
+  const extension = path.extname(absolutePath).toLowerCase();
+  const fileName = path.basename(absolutePath).toLowerCase();
+  if (!WRITABLE_EXTENSIONS.has(extension) && !WRITABLE_FILENAMES.has(fileName)) {
     throw new Error("이 파일 형식은 안전한 자동 수정 대상이 아닙니다.");
   }
 }
@@ -474,7 +484,7 @@ const tools = [
   {
     type: "function",
     name: "replace_text",
-    description: "이미 읽은 기존 파일에서 정확히 일치하는 텍스트를 교체한다. Assets 안의 코드/UI/셰이더 파일만 가능하다.",
+    description: "이미 읽은 기존 파일에서 정확히 일치하는 텍스트를 교체한다. Unity 프로젝트 전체의 허용된 텍스트 파일에 쓸 수 있다.",
     strict: true,
     parameters: {
       type: "object",
@@ -491,7 +501,7 @@ const tools = [
   {
     type: "function",
     name: "create_file",
-    description: "기존 폴더 안에 새 코드/UI/셰이더 파일을 만든다. 폴더와 메타 파일은 만들지 않는다.",
+    description: "Unity 프로젝트의 기존 폴더 안에 새 텍스트 파일을 만든다. 폴더는 자동 생성하지 않는다.",
     strict: true,
     parameters: {
       type: "object",
@@ -548,7 +558,9 @@ const instructions = `당신은 Unity 프로젝트를 직접 다루는 수석 �
 - 추측하지 말고 list_files, search_text, read_file로 필요한 최소 문맥을 먼저 확인한다.
 - 사용자의 기존 변경을 보존하고 요청과 무관한 파일은 수정하지 않는다.
 - 기존 파일을 수정하기 전에 반드시 read_file로 해당 부분을 읽는다.
-- 씬, 프리팹, .meta, 바이너리 에셋은 수정하지 않는다. 가능한 코드 변경만 수행한다.
+- Unity 프로젝트 전체의 허용된 텍스트 파일을 수정할 수 있지만, Library/Temp/Logs/Build/.git/비밀정보와 바이너리는 건드리지 않는다.
+- 씬, 프리팹, .meta는 사용자가 명시적으로 요구하거나 작업에 꼭 필요한 경우에만 수정하고, 가능한 Unity 도구를 우선한다.
+- 90. Tools/OpenAIDevCLI는 자신의 권한 코드이므로 수정하지 않는다.
 - 새 파일은 기존 폴더에만 만든다. 폴더를 만들거나 옮기지 않는다.
 - MonoBehaviour 하나당 파일 하나를 사용하고 파일명과 클래스명을 일치시킨다.
 - 변경 후 git_diff를 확인하고, C# 변경은 unity_compile로 검증한다.
@@ -690,6 +702,7 @@ function printHelp() {
   /model                현재 모델 확인
   /model astra|sol|luna 모델 변경 후 문맥 초기화
   /effort low|medium|high 추론 강도 변경 후 문맥 초기화
+  /scope assets|project 쓰기 범위 변경 후 문맥 초기화
   /status               모델, 토큰, 이번 세션 변경 파일 확인
   /undo                 이번 CLI 세션이 변경한 파일 전부 복원
   /exit                 종료
@@ -729,10 +742,21 @@ async function handleSlashCommand(input) {
         console.log(`추론 강도를 ${reasoningEffort}(으)로 변경하고 대화 문맥을 초기화했습니다.`);
       }
       return true;
+    case "/scope":
+      if (!value || !["assets", "project"].includes(value.toLowerCase())) {
+        console.log(`현재 쓰기 범위: ${writeScope}. 사용법: /scope assets|project`);
+      } else {
+        writeScope = value.toLowerCase();
+        previousResponseId = null;
+        activeResponseId = null;
+        console.log(`쓰기 범위를 ${writeScope}(으)로 변경하고 대화 문맥을 초기화했습니다.`);
+      }
+      return true;
     case "/status":
       console.log(JSON.stringify({
         model,
         reasoning_effort: reasoningEffort,
+        write_scope: writeScope,
         previous_response_id: previousResponseId,
         input_tokens: totalInputTokens,
         output_tokens: totalOutputTokens,
@@ -771,6 +795,7 @@ async function main() {
   console.log("OpenAI API Dev CLI");
   console.log(`Project: ${projectRoot}`);
   console.log(`Model: ${model} / reasoning: ${reasoningEffort}`);
+  console.log(`Write scope: ${writeScope}`);
   console.log("API Platform 크레딧을 사용합니다. /help로 명령을 확인하세요.");
 
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
