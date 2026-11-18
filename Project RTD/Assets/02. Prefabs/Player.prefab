@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 5234938267929886497}
   - component: {fileID: 8035938841069730177}
   - component: {fileID: 4864486302367939042}
+  - component: {fileID: 4536210098497003011}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -251,7 +252,6 @@ MonoBehaviour:
   groundDeceleration: 70
   airAcceleration: 35
   jumpVelocity: 10
-  jumpReleaseMultiplier: 0.45
   coyoteTime: 0.12
   jumpBufferTime: 0.12
   maxFallSpeed: 20
@@ -260,3 +260,16 @@ MonoBehaviour:
     m_Bits: 4294967295
   groundCheckDistance: 0.08
   minimumGroundNormalY: 0.65
+--- !u!114 &4536210098497003011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6708139678698787303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2688625d2e98aef4fb98cff3630800d5, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectRTD.Gameplay.PlayerPartLoadout
+  catalog: {fileID: 11400000, guid: 8919e785152a2e742b5e75df211d9602, type: 2}

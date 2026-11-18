@@ -17,7 +17,6 @@ namespace ProjectRTD.Gameplay
 
         [Header("Jump")]
         [SerializeField, Min(0f)] private float jumpVelocity = 10f;
-        [SerializeField, Range(0f, 1f)] private float jumpReleaseMultiplier = 0.45f;
         [SerializeField, Min(0f)] private float coyoteTime = 0.12f;
         [SerializeField, Min(0f)] private float jumpBufferTime = 0.12f;
         [SerializeField, Min(0f)] private float maxFallSpeed = 20f;
@@ -34,7 +33,6 @@ namespace ProjectRTD.Gameplay
         private ContactFilter2D groundFilter;
         private float coyoteTimer;
         private float jumpBufferTimer;
-        private bool jumpReleaseQueued;
 
         public bool IsGrounded { get; private set; }
 
@@ -71,11 +69,6 @@ namespace ProjectRTD.Gameplay
             if (input.ConsumeJumpPressed())
             {
                 jumpBufferTimer = jumpBufferTime;
-            }
-
-            if (input.ConsumeJumpReleased())
-            {
-                jumpReleaseQueued = true;
             }
         }
 
@@ -124,22 +117,6 @@ namespace ProjectRTD.Gameplay
                 coyoteTimer = 0f;
                 IsGrounded = false;
             }
-
-            if (!jumpReleaseQueued)
-            {
-                return;
-            }
-
-            jumpReleaseQueued = false;
-
-            if (body.linearVelocity.y <= 0f)
-            {
-                return;
-            }
-
-            Vector2 releasedVelocity = body.linearVelocity;
-            releasedVelocity.y *= jumpReleaseMultiplier;
-            body.linearVelocity = releasedVelocity;
         }
 
         private void LimitFallSpeed()

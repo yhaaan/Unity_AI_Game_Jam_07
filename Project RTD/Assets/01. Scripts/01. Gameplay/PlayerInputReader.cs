@@ -7,11 +7,8 @@ namespace ProjectRTD.Gameplay
     public sealed class PlayerInputReader : MonoBehaviour
     {
         private bool jumpPressed;
-        private bool jumpReleased;
 
         public Vector2 Move { get; private set; }
-
-        public bool JumpHeld { get; private set; }
 
         public void OnMove(InputValue value)
         {
@@ -20,18 +17,10 @@ namespace ProjectRTD.Gameplay
 
         public void OnJump(InputValue value)
         {
-            bool isPressed = value.isPressed;
-
-            if (isPressed && !JumpHeld)
+            if (value.isPressed)
             {
                 jumpPressed = true;
             }
-            else if (!isPressed && JumpHeld)
-            {
-                jumpReleased = true;
-            }
-
-            JumpHeld = isPressed;
         }
 
         public bool ConsumeJumpPressed()
@@ -41,19 +30,10 @@ namespace ProjectRTD.Gameplay
             return wasPressed;
         }
 
-        public bool ConsumeJumpReleased()
-        {
-            bool wasReleased = jumpReleased;
-            jumpReleased = false;
-            return wasReleased;
-        }
-
         private void OnDisable()
         {
             Move = Vector2.zero;
-            JumpHeld = false;
             jumpPressed = false;
-            jumpReleased = false;
         }
     }
 }
