@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "name": "unity-ai",
+    "version": "0.1.0-beta.1"
+  },
+  "modelId": "elevenlabs-sound-effects-v2",
+  "orgId": "14569670066960",
+  "jobId": "01a1ee95-183d-7904-b551-1dcdef7a8cbc",
+  "assetId": "01a1ee95-376c-77e7-a85e-8c8493af338a",
+  "approval": "limits",
+  "limitsGrantedVia": "terminal",
+  "prompt": "Reset to the beginning of a reel: a momentary backwards whirr of a small film transport, spool brake catches, ends on one soft cork pop. A forgiving restart on an old televised science cartoon. Single clean gesture, distinct from the assembly machine, immediate attack; warm mono, no ambient projector loop, sustained static, voice or melody.",
+  "modelName": "ElevenLabs Sound Effects V2",
+  "modality": "Sound",
+  "params": {
+    "prompt": "Reset to the beginning of a reel: a momentary backwards whirr of a small film transport, spool brake catches, ends on one soft cork pop. A forgiving restart on an old televised science cartoon. Single clean gesture, distinct from the assembly machine, immediate attack; warm mono, no ambient projector loop, sustained static, voice or melody.",
+    "duration": 0.9,
+    "prompt_influence": 0.78,
+    "output_format": "wav_mono"
+  },
+  "output": {
+    "index": 1,
+    "count": 1,
+    "generationId": "01a1ee95-183d-7904-b551-1dcdef7a8cbc",
+    "format": "wav"
+  },
+  "pointsCost": 27,
+  "createdAt": "2026-11-18T12:15:22.0242763+00:00"
+}

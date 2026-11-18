@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "name": "unity-ai",
+    "version": "0.1.0-beta.1"
+  },
+  "modelId": "elevenlabs-sound-effects-v2",
+  "orgId": "14569670066960",
+  "jobId": "01a1ee91-8504-76a5-8525-cc8aee5b8fbc",
+  "assetId": "01a1ee91-a55b-763d-873c-40ebfc81cfd3",
+  "approval": "limits",
+  "limitsGrantedVia": "terminal",
+  "prompt": "One right paw plant, companion take to a soft suede pad on old lab linoleum. This time the outside toe brushes first: tiny dry 'ff-tup', a little rounder, same scale and loudness. Handmade foley for an ink-and-paint animal cartoon. One very short close contact on frame one, no walking sequence, footwear, hiss, tune or echo.",
+  "modelName": "ElevenLabs Sound Effects V2",
+  "modality": "Sound",
+  "params": {
+    "prompt": "One right paw plant, companion take to a soft suede pad on old lab linoleum. This time the outside toe brushes first: tiny dry 'ff-tup', a little rounder, same scale and loudness. Handmade foley for an ink-and-paint animal cartoon. One very short close contact on frame one, no walking sequence, footwear, hiss, tune or echo.",
+    "duration": 0.5,
+    "prompt_influence": 0.78,
+    "output_format": "wav_mono"
+  },
+  "output": {
+    "index": 1,
+    "count": 1,
+    "generationId": "01a1ee91-8504-76a5-8525-cc8aee5b8fbc",
+    "format": "wav"
+  },
+  "pointsCost": 27,
+  "createdAt": "2026-11-18T12:11:28.2019414+00:00"
+}

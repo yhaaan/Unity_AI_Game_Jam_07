@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "name": "unity-ai",
+    "version": "0.1.0-beta.1"
+  },
+  "modelId": "elevenlabs-sound-effects-v2",
+  "orgId": "14569670066960",
+  "jobId": "01a1ee95-78e2-71c3-9a83-691ffe12eaed",
+  "assetId": "01a1ee95-9b63-7a4c-a7d4-c83142e27d6b",
+  "approval": "limits",
+  "limitsGrantedVia": "terminal",
+  "prompt": "An escape hatch opens on a faded cartoon science show: a clear latch release, then three rising struck glass vials with a warm resolving final ring. An earned little victory, not a song. Intimate old broadcast foley, clear midrange; instant onset, no orchestra, voice, tape noise or room bed.",
+  "modelName": "ElevenLabs Sound Effects V2",
+  "modality": "Sound",
+  "params": {
+    "prompt": "An escape hatch opens on a faded cartoon science show: a clear latch release, then three rising struck glass vials with a warm resolving final ring. An earned little victory, not a song. Intimate old broadcast foley, clear midrange; instant onset, no orchestra, voice, tape noise or room bed.",
+    "duration": 1.5,
+    "prompt_influence": 0.78,
+    "output_format": "wav_mono"
+  },
+  "output": {
+    "index": 1,
+    "count": 1,
+    "generationId": "01a1ee95-78e2-71c3-9a83-691ffe12eaed",
+    "format": "wav"
+  },
+  "pointsCost": 27,
+  "createdAt": "2026-11-18T12:15:47.2386092+00:00"
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "name": "unity-ai",
+    "version": "0.1.0-beta.1"
+  },
+  "modelId": "elevenlabs-sound-effects-v2",
+  "orgId": "14569670066960",
+  "jobId": "01a1ee90-6c19-71fa-92d8-e2d8283a9cc5",
+  "assetId": "01a1ee90-8e7f-7db2-8891-5bbad49f3d72",
+  "approval": "limits",
+  "limitsGrantedVia": "terminal",
+  "prompt": "ONE left paw plant, not a walk cycle. Foley for a hand-inked animal on a faded science TV show: press a suede-covered fingertip onto old laboratory linoleum, faint nail tap folded into the soft pad. Near, dry, warm midrange. Impact at frame zero, over within 100ms, then silence. No shoes, other steps, hiss or music.",
+  "modelName": "ElevenLabs Sound Effects V2",
+  "modality": "Sound",
+  "params": {
+    "prompt": "ONE left paw plant, not a walk cycle. Foley for a hand-inked animal on a faded science TV show: press a suede-covered fingertip onto old laboratory linoleum, faint nail tap folded into the soft pad. Near, dry, warm midrange. Impact at frame zero, over within 100ms, then silence. No shoes, other steps, hiss or music.",
+    "duration": 0.5,
+    "prompt_influence": 0.78,
+    "output_format": "wav_mono"
+  },
+  "output": {
+    "index": 1,
+    "count": 1,
+    "generationId": "01a1ee90-6c19-71fa-92d8-e2d8283a9cc5",
+    "format": "wav"
+  },
+  "pointsCost": 27,
+  "createdAt": "2026-11-18T12:10:15.5006635+00:00"
+}

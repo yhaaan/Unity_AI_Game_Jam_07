@@ -1,6 +1,6 @@
 {
     "name": "ProjectRTD.Gameplay.EditModeTests",
-    "references": ["ProjectRTD.Gameplay"],
+    "references": ["ProjectRTD.Gameplay", "ProjectRTD.Core"],
     "includePlatforms": ["Editor"],
     "optionalUnityReferences": ["TestAssemblies"]
 }

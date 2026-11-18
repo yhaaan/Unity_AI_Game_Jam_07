@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "name": "unity-ai",
+    "version": "0.1.0-beta.1"
+  },
+  "modelId": "elevenlabs-sound-effects-v2",
+  "orgId": "14569670066960",
+  "jobId": "01a1ee94-229a-7428-b764-1b273106dcd3",
+  "assetId": "01a1ee94-423e-790f-871d-cd8c32237230",
+  "approval": "limits",
+  "limitsGrantedVia": "terminal",
+  "prompt": "Depress an old lab weight plate: a fast felt-damped metal slide into one low brass latch CLACK. The low contact is the important frame. Heavy relative to a paw step, never a door slam. Intimate mechanical prop for a faded science cartoon, warm mono, attack instantly. No percussion track, beeps, spring release or room tone.",
+  "modelName": "ElevenLabs Sound Effects V2",
+  "modality": "Sound",
+  "params": {
+    "prompt": "Depress an old lab weight plate: a fast felt-damped metal slide into one low brass latch CLACK. The low contact is the important frame. Heavy relative to a paw step, never a door slam. Intimate mechanical prop for a faded science cartoon, warm mono, attack instantly. No percussion track, beeps, spring release or room tone.",
+    "duration": 0.5,
+    "prompt_influence": 0.78,
+    "output_format": "wav_mono"
+  },
+  "output": {
+    "index": 1,
+    "count": 1,
+    "generationId": "01a1ee94-229a-7428-b764-1b273106dcd3",
+    "format": "wav"
+  },
+  "pointsCost": 27,
+  "createdAt": "2026-11-18T12:14:17.9470849+00:00"
+}

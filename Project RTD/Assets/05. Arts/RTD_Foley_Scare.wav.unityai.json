@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "name": "unity-ai",
+    "version": "0.1.0-beta.1"
+  },
+  "modelId": "elevenlabs-sound-effects-v2",
+  "orgId": "14569670066960",
+  "jobId": "01a1ee93-099d-74ab-87ca-5b76dfb68713",
+  "assetId": "01a1ee93-29b9-7407-869f-d4c1d03810b4",
+  "approval": "limits",
+  "limitsGrantedVia": "terminal",
+  "prompt": "A funny freeze-frame double take by a stitched lab critter: one tiny breath caught in a reed bulb, a quick rattle of stiff paper fur, then total stillness. Nervous, NOT a scream or horror sting. Close practical prop from a hand-drawn vintage science cartoon, soft upper mids, no words, hiss or accompaniment.",
+  "modelName": "ElevenLabs Sound Effects V2",
+  "modality": "Sound",
+  "params": {
+    "prompt": "A funny freeze-frame double take by a stitched lab critter: one tiny breath caught in a reed bulb, a quick rattle of stiff paper fur, then total stillness. Nervous, NOT a scream or horror sting. Close practical prop from a hand-drawn vintage science cartoon, soft upper mids, no words, hiss or accompaniment.",
+    "duration": 0.6,
+    "prompt_influence": 0.78,
+    "output_format": "wav_mono"
+  },
+  "output": {
+    "index": 1,
+    "count": 1,
+    "generationId": "01a1ee93-099d-74ab-87ca-5b76dfb68713",
+    "format": "wav"
+  },
+  "pointsCost": 27,
+  "createdAt": "2026-11-18T12:13:05.6107753+00:00"
+}

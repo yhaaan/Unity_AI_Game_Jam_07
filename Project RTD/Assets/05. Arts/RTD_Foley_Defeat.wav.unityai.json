@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "name": "unity-ai",
+    "version": "0.1.0-beta.1"
+  },
+  "modelId": "elevenlabs-sound-effects-v2",
+  "orgId": "14569670066960",
+  "jobId": "01a1ee93-6398-72b7-85d8-afab81089b8d",
+  "assetId": "01a1ee93-823c-7f00-bead-908ade5cf82b",
+  "approval": "limits",
+  "limitsGrantedVia": "terminal",
+  "prompt": "A clockwork laboratory nuisance winds down: felt whack, two uneven slowing brass ratchet teeth, then the mechanism goes limp. A tiny comic punctuation for vintage cel animation, physical and midrangey like a tabletop prop. Close mono, attack at the start, short tail, no explosion, chiptune, speech or bed.",
+  "modelName": "ElevenLabs Sound Effects V2",
+  "modality": "Sound",
+  "params": {
+    "prompt": "A clockwork laboratory nuisance winds down: felt whack, two uneven slowing brass ratchet teeth, then the mechanism goes limp. A tiny comic punctuation for vintage cel animation, physical and midrangey like a tabletop prop. Close mono, attack at the start, short tail, no explosion, chiptune, speech or bed.",
+    "duration": 0.7,
+    "prompt_influence": 0.78,
+    "output_format": "wav_mono"
+  },
+  "output": {
+    "index": 1,
+    "count": 1,
+    "generationId": "01a1ee93-6398-72b7-85d8-afab81089b8d",
+    "format": "wav"
+  },
+  "pointsCost": 27,
+  "createdAt": "2026-11-18T12:13:28.3985863+00:00"
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "name": "unity-ai",
+    "version": "0.1.0-beta.1"
+  },
+  "modelId": "elevenlabs-sound-effects-v2",
+  "orgId": "14569670066960",
+  "jobId": "01a1ee94-aa95-7622-b464-a83748667cd0",
+  "assetId": "01a1ee94-df00-7c65-bd3f-835efa0261ec",
+  "approval": "limits",
+  "limitsGrantedVia": "terminal",
+  "prompt": "The SAME old brass lab plate lifting off its latch: the tension leaves in a light upward steel spring rasp ending with a small high pin tick. Lighter and shorter than pressing it down. Dry close-miked practical foley for a faded science cartoon. No descending slam, sci-fi beep, trigger repetition, room tone or music.",
+  "modelName": "ElevenLabs Sound Effects V2",
+  "modality": "Sound",
+  "params": {
+    "prompt": "The SAME old brass lab plate lifting off its latch: the tension leaves in a light upward steel spring rasp ending with a small high pin tick. Lighter and shorter than pressing it down. Dry close-miked practical foley for a faded science cartoon. No descending slam, sci-fi beep, trigger repetition, room tone or music.",
+    "duration": 0.5,
+    "prompt_influence": 0.78,
+    "output_format": "wav_mono"
+  },
+  "output": {
+    "index": 1,
+    "count": 1,
+    "generationId": "01a1ee94-aa95-7622-b464-a83748667cd0",
+    "format": "wav"
+  },
+  "pointsCost": 27,
+  "createdAt": "2026-11-18T12:14:57.3223664+00:00"
+}

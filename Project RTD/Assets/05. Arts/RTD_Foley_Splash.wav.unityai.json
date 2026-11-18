@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "name": "unity-ai",
+    "version": "0.1.0-beta.1"
+  },
+  "modelId": "elevenlabs-sound-effects-v2",
+  "orgId": "14569670066960",
+  "jobId": "01a1ee92-aa71-7f6a-83ee-1a3c13625686",
+  "assetId": "01a1ee92-cd4e-7175-9da0-14dca8658291",
+  "approval": "limits",
+  "limitsGrantedVia": "terminal",
+  "prompt": "Tiny animal belly meets a shallow enamel laboratory tray of water: a hollow close 'plup', one fan of water, two little drops landing on enamel. Hand-performed, warm mono cartoon foley; water, not a magic spell. Starts with the entry hit, falls quiet by half a second. No sea, stream, ambience or music.",
+  "modelName": "ElevenLabs Sound Effects V2",
+  "modality": "Sound",
+  "params": {
+    "prompt": "Tiny animal belly meets a shallow enamel laboratory tray of water: a hollow close 'plup', one fan of water, two little drops landing on enamel. Hand-performed, warm mono cartoon foley; water, not a magic spell. Starts with the entry hit, falls quiet by half a second. No sea, stream, ambience or music.",
+    "duration": 0.65,
+    "prompt_influence": 0.78,
+    "output_format": "wav_mono"
+  },
+  "output": {
+    "index": 1,
+    "count": 1,
+    "generationId": "01a1ee92-aa71-7f6a-83ee-1a3c13625686",
+    "format": "wav"
+  },
+  "pointsCost": 27,
+  "createdAt": "2026-11-18T12:12:42.5172279+00:00"
+}

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf6efb1d6da93e54abd4230541526f9e, type: 3}
+  m_Name: GameSoundBank
+  m_EditorClassIdentifier: ProjectRTD.Core::ProjectRTD.Core.GameSoundBank
+  entries:
+  - cue: 0
+    clip: {fileID: 8300000, guid: 3e7baaa0f416c7e4cae272686bb7fd21, type: 3}
+  - cue: 1
+    clip: {fileID: 8300000, guid: ead6dd854047336479f89cbb089d1afc, type: 3}
+  - cue: 2
+    clip: {fileID: 8300000, guid: f9b7c9e6a80eec946865355798776c51, type: 3}
+  - cue: 3
+    clip: {fileID: 8300000, guid: bfb3b0d5783858d4ba8bdb1173414d5a, type: 3}
+  - cue: 4
+    clip: {fileID: 8300000, guid: 40911c71b9b282944b80fd3e0ddb39db, type: 3}
+  - cue: 5
+    clip: {fileID: 8300000, guid: cd2aef528a7594847b8d944d56e7f857, type: 3}
+  - cue: 6
+    clip: {fileID: 8300000, guid: aee9b6680bc20534182f5533d5c3b904, type: 3}
+  - cue: 7
+    clip: {fileID: 8300000, guid: 3d5e885ddbe456c4ea6ea7733a86abf7, type: 3}
+  - cue: 8
+    clip: {fileID: 8300000, guid: 1a1f13bdb56390448975301aa57a917b, type: 3}
+  - cue: 9
+    clip: {fileID: 8300000, guid: 30a148e9f0f94f141a2217ae96691e21, type: 3}
+  - cue: 10
+    clip: {fileID: 8300000, guid: 8a2ed27b2c286394591b949a1319afcd, type: 3}
+  - cue: 11
+    clip: {fileID: 8300000, guid: 03a1bb520188f2943a9b8a8bc3caea98, type: 3}
+  - cue: 12
+    clip: {fileID: 8300000, guid: 5460b40a6f83217478e38aeae7fd7a96, type: 3}
+  - cue: 13
+    clip: {fileID: 8300000, guid: ff5ceb1dae25cad478de0f153da30ea5, type: 3}
+  - cue: 14
+    clip: {fileID: 8300000, guid: 3c1b0736d4f47e041af5f71a76c70f82, type: 3}

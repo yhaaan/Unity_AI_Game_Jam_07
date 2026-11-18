@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "name": "unity-ai",
+    "version": "0.1.0-beta.1"
+  },
+  "modelId": "elevenlabs-sound-effects-v2",
+  "orgId": "14569670066960",
+  "jobId": "01a1ee96-8649-797e-b9f4-064bea852005",
+  "assetId": "01a1ee96-a73a-711c-933f-d9863afd2376",
+  "approval": "limits",
+  "limitsGrantedVia": "terminal",
+  "prompt": "A small cartoon chicken hybrid unfolds its wings to glide: a close snap of thin pleated paper, feathers brushing into a soft breath of air. One unfolding gesture, no repeated flaps. Handmade analogue science-cartoon prop, soft warm mono, immediate start, clean quiet tail. No whistle, wind ambience, bird call or music.",
+  "modelName": "ElevenLabs Sound Effects V2",
+  "modality": "Sound",
+  "params": {
+    "prompt": "A small cartoon chicken hybrid unfolds its wings to glide: a close snap of thin pleated paper, feathers brushing into a soft breath of air. One unfolding gesture, no repeated flaps. Handmade analogue science-cartoon prop, soft warm mono, immediate start, clean quiet tail. No whistle, wind ambience, bird call or music.",
+    "duration": 0.5,
+    "prompt_influence": 0.78,
+    "output_format": "wav_mono"
+  },
+  "output": {
+    "index": 1,
+    "count": 1,
+    "generationId": "01a1ee96-8649-797e-b9f4-064bea852005",
+    "format": "wav"
+  },
+  "pointsCost": 27,
+  "createdAt": "2026-11-18T12:16:55.3185734+00:00"
+}

@@ -27,6 +27,10 @@ namespace ProjectRTD.Core
             Sfx.Respawn => new[] { new Note(.13f, 500, 130), new Note(.22f, 190, 660) },
             Sfx.Goal => new[] { new Note(.10f, 523, 523), new Note(.10f, 659, 659), new Note(.12f, 784, 784), new Note(.32f, 1047, 1047) },
             Sfx.Summon => new[] { new Note(.06f, 260, 390), new Note(.06f, 330, 495), new Note(.18f, 440, 880) },
+            Sfx.StepLeft => new[] { new Note(.06f, 120, 55, .33f) },
+            Sfx.StepRight => new[] { new Note(.07f, 128, 64, .28f) },
+            Sfx.Paddle => new[] { new Note(.12f, 230, 100, .68f) },
+            Sfx.Glide => new[] { new Note(.14f, 260, 520, .8f) },
             _ => throw new ArgumentOutOfRangeException(nameof(cue))
         };
 
