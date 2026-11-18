@@ -712,9 +712,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 510642119}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1501559480}
+  m_Script: {fileID: 11500000, guid: 4ebdcfd2dc2749c6aba9815344a203c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ProjectRTD.Gameplay::ProjectRTD.Gameplay.ComicButtonFx
+  fill: {fileID: 1930972530}
+  idleFill: {r: 0.9843137, g: 0.9529412, b: 0.8862745, a: 1}
+  hoverFill: {r: 1, g: 0.81960785, b: 0.4, a: 1}
+  restTilt: -4
 --- !u!1 &568486238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,21 +1063,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!115 &1501559480
-MonoScript:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 7
-  m_DefaultReferences: {}
-  m_Icon: {fileID: 0}
-  m_Type: 0
-  m_ExecutionOrder: 0
-  m_ClassName: ComicButtonFx
-  m_Namespace: ProjectRTD.Gameplay
-  m_AssemblyName: ProjectRTD.Gameplay
 --- !u!114 &1578392980
 MonoBehaviour:
   m_ObjectHideFlags: 0
