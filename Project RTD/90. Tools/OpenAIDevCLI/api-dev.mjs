@@ -1,9 +1,9 @@
 import { spawn } from "node:child_process";
 import { createHash, randomUUID } from "node:crypto";
 import { existsSync } from "node:fs";
-import { lstat, mkdir, readFile, readdir, rm, stat, writeFile } from "node:fs/promises";
+import { cp, lstat, mkdir, readFile, readdir, rm, stat, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
-import { tmpdir } from "node:os";
+import { homedir, tmpdir } from "node:os";
 import path from "node:path";
 import process from "node:process";
 import readline from "node:readline/promises";
@@ -91,7 +91,9 @@ const SEARCH_STOPWORDS = new Set([
 
 const MAX_READ_BYTES = 512 * 1024;
 const MAX_TOOL_OUTPUT = 48_000;
-const MAX_TOOL_ROUNDS = 32;
+// No limit by default; the web UI's stop button ends a turn. Set OPENAI_DEV_MAX_TOOL_ROUNDS to cap it.
+const MAX_TOOL_ROUNDS = Number.parseInt(process.env.OPENAI_DEV_MAX_TOOL_ROUNDS || "", 10) > 0
+  ? Number.parseInt(process.env.OPENAI_DEV_MAX_TOOL_ROUNDS, 10) : Infinity;
 const DEFAULT_CONTEXT_TOKENS = Number.parseInt(process.env.OPENAI_DEV_CONTEXT_TOKENS || "", 10) || 1_050_000;
 const CHANGE_LOG_LIMIT = 2000;
 const MEMORY_LIMIT = 300;
@@ -99,7 +101,9 @@ const MEMORY_LIMIT = 300;
 let model = process.env.OPENAI_DEV_MODEL || MODEL_ALIASES.astra;
 let reasoningEffort = REASONING_EFFORTS.includes(process.env.OPENAI_DEV_REASONING)
   ? process.env.OPENAI_DEV_REASONING : "medium";
-let writeScope = process.env.OPENAI_DEV_WRITE_SCOPE === "assets" ? "assets" : "project";
+const WRITE_SCOPES = Object.freeze(["full", "project", "assets"]);
+// full: any path on this computer (secrets stay blocked); project: Project RTD only; assets: writes under Assets only.
+let writeScope = WRITE_SCOPES.includes(process.env.OPENAI_DEV_WRITE_SCOPE) ? process.env.OPENAI_DEV_WRITE_SCOPE : "full";
 let activeResponseId = null;
 let activeWebRequests = 0;
 let mutationQueue = Promise.resolve();
@@ -147,28 +151,57 @@ function isWithin(parent, child) {
   return relative === "" || (!relative.startsWith("..") && !path.isAbsolute(relative));
 }
 
+// Folders and files that hold keys, tokens, saved logins or spending limits. They stay blocked in every
+// scope so their contents are never sent to the API and the agent cannot change its own limits.
+const SECRET_DIRECTORIES = new Set([
+  ".ssh", ".aws", ".azure", ".gnupg", ".kube", ".docker", ".gcloud", "unity-ai", "unityhub",
+]);
+const SECRET_FILENAMES = new Set([
+  "auth.json", "credentials.json", "secrets.json", ".npmrc", ".pypirc", ".netrc", "_netrc",
+  ".git-credentials", ".unity-game-jam-state.json", ".unity-game-jam-memory.json",
+  "login data", "cookies", "web data", "local state",
+]);
+const CODE_EXTENSIONS = new Set([".cs", ".js", ".mjs", ".ts", ".py", ".md", ".shader", ".hlsl", ".uxml", ".uss", ".asmdef", ".meta"]);
+
 function isSecretPath(absolutePath) {
-  const relative = normalizeRelative(path.relative(workspaceRoot, absolutePath)).toLowerCase();
-  return relative.split("/").some((segment) =>
-    segment === "auth.json" || segment === "credentials.json" || segment === "secrets.json" ||
-    segment === ".npmrc" || segment === ".unity-game-jam-state.json" ||
-    segment === ".unity-game-jam-memory.json" || segment.startsWith(".env"));
+  const lower = path.resolve(absolutePath).replaceAll("\\", "/").toLowerCase();
+  const segments = lower.split("/");
+  const name = segments.at(-1);
+  if (segments.slice(0, -1).some((segment) => SECRET_DIRECTORIES.has(segment))) return true;
+  if (SECRET_FILENAMES.has(name) || name.startsWith(".env")) return true;
+  if (/^id_(rsa|dsa|ecdsa|ed25519)/.test(name) || /\.(pem|key|pfx|p12|keystore|jks|kdbx|ppk|cer|crt)$/.test(name)) return true;
+  if (/(token|credential|secret|password)/.test(name) && !CODE_EXTENSIONS.has(path.extname(name))) return true;
+  if (/\/appdata\/(local|roaming)\/[^/]+\/[^/]*\/?(user data|profiles)(\/|$)/.test(lower)) return true;
+  if (/\/appdata\/(local|roaming)\/microsoft\/(credentials|protect|crypto|vault)(\/|$)/.test(lower)) return true;
+  return false;
 }
 
-function resolveProjectPath(relativePath = ".") {
-  const normalized = normalizeRelative(relativePath || ".");
-  const absolute = path.resolve(projectRoot, normalized);
-  if (!isWithin(projectRoot, absolute)) {
-    throw new Error("프로젝트 밖의 경로에는 접근할 수 없습니다.");
+function isOwnToolPath(absolutePath) {
+  return isWithin(scriptDir.toLowerCase(), path.resolve(absolutePath).toLowerCase());
+}
+
+// Relative paths are taken from the Unity project root; absolute paths and ~ reach the whole
+// computer when the scope is "full".
+function resolveProjectPath(inputPath = ".") {
+  let value = String(inputPath || ".").trim();
+  if (value === "~" || value.startsWith("~/") || value.startsWith("~\\")) value = path.join(homedir(), value.slice(1));
+  const absolute = path.isAbsolute(value) ? path.resolve(value) : path.resolve(projectRoot, normalizeRelative(value));
+  if (!isWithin(projectRoot, absolute) && writeScope !== "full") {
+    throw new Error("현재 접근 범위가 프로젝트로 제한되어 있습니다. 화면의 접근 범위를 '컴퓨터 전체'로 바꾸면 프로젝트 밖도 다룰 수 있습니다.");
   }
   if (isSecretPath(absolute)) {
-    throw new Error("비밀정보 파일에는 접근할 수 없습니다.");
+    throw new Error("비밀정보(키·토큰·로그인·지출 한도) 파일이나 폴더에는 접근할 수 없습니다.");
   }
   return absolute;
 }
 
 function toProjectRelative(absolutePath) {
   return normalizeRelative(path.relative(projectRoot, absolutePath));
+}
+
+// Project files are shown relative to the project; anything else by its absolute path.
+function displayPath(absolutePath) {
+  return isWithin(projectRoot, absolutePath) ? toProjectRelative(absolutePath) : path.resolve(absolutePath).replaceAll("\\", "/");
 }
 
 function isSkippedDirectory(name) {
@@ -180,19 +213,26 @@ function isReadableFile(absolutePath) {
   return READABLE_EXTENSIONS.has(path.extname(absolutePath).toLowerCase());
 }
 
-function assertWritablePath(absolutePath) {
-  const relative = toProjectRelative(absolutePath);
-  const lower = relative.toLowerCase();
-  const segments = lower.split("/");
-  if (segments.some((segment) => isSkippedDirectory(segment))) {
-    throw new Error("Unity 생성물, 캐시 또는 버전 관리 내부 폴더는 수정할 수 없습니다.");
-  }
-  if (lower === "90. tools/openaidevcli" || lower.startsWith("90. tools/openaidevcli/")) {
+function assertWritableLocation(absolutePath) {
+  if (isOwnToolPath(absolutePath)) {
     throw new Error("API 에이전트는 자신의 실행 코드와 권한 규칙을 수정할 수 없습니다.");
   }
-  if (writeScope === "assets" && !(lower === "assets" || lower.startsWith("assets/"))) {
-    throw new Error("현재 쓰기 범위는 Assets로 제한되어 있습니다. /scope project로 변경하세요.");
+  const insideProject = isWithin(projectRoot, absolutePath);
+  if (insideProject) {
+    const lower = toProjectRelative(absolutePath).toLowerCase();
+    if (lower.split("/").some((segment) => isSkippedDirectory(segment))) {
+      throw new Error("Unity 생성물, 캐시 또는 버전 관리 내부 폴더는 수정할 수 없습니다.");
+    }
+    if (writeScope === "assets" && !(lower === "assets" || lower.startsWith("assets/"))) {
+      throw new Error("현재 쓰기 범위는 Assets로 제한되어 있습니다.");
+    }
+  } else if (path.resolve(absolutePath).replaceAll("\\", "/").toLowerCase().split("/").includes(".git")) {
+    throw new Error("Git 내부 폴더는 직접 수정할 수 없습니다. 커밋은 git_commit을 사용하세요.");
   }
+}
+
+function assertWritablePath(absolutePath) {
+  assertWritableLocation(absolutePath);
   const extension = path.extname(absolutePath).toLowerCase();
   const fileName = path.basename(absolutePath).toLowerCase();
   if (!WRITABLE_EXTENSIONS.has(extension) && !WRITABLE_FILENAMES.has(fileName)) {
@@ -201,9 +241,10 @@ function assertWritablePath(absolutePath) {
 }
 
 async function assertNoSymlinkPath(absolutePath) {
-  const relative = path.relative(projectRoot, absolutePath);
-  const segments = relative.split(path.sep).filter(Boolean);
-  let current = projectRoot;
+  const resolved = path.resolve(absolutePath);
+  const { root } = path.parse(resolved);
+  const segments = resolved.slice(root.length).split(path.sep).filter(Boolean);
+  let current = root;
   for (const segment of segments) {
     current = path.join(current, segment);
     if (!existsSync(current)) break;
@@ -239,7 +280,7 @@ async function loadApiKey() {
   throw new Error(`사용 가능한 OPENAI_API_KEY가 없습니다: ${envPath}`);
 }
 
-async function walkFiles(startAbsolute, limit = 3000) {
+async function walkFiles(startAbsolute, limit = 3000, accept = null) {
   const files = [];
   const stack = [startAbsolute];
   while (stack.length && files.length < limit) {
@@ -256,7 +297,7 @@ async function walkFiles(startAbsolute, limit = 3000) {
       const absolute = path.join(current, entry.name);
       if (entry.isDirectory()) {
         if (!isSkippedDirectory(entry.name)) stack.push(absolute);
-      } else if (entry.isFile() && !isSecretPath(absolute)) {
+      } else if (entry.isFile() && !isSecretPath(absolute) && (!accept || accept(absolute))) {
         files.push(absolute);
         if (files.length >= limit) break;
       }
@@ -587,12 +628,11 @@ function memoryContext() {
 async function listFiles(args) {
   const start = resolveProjectPath(args.path || ".");
   const maxResults = Math.max(1, Math.min(args.max_results ?? 200, 1000));
-  const extension = args.extension?.trim().toLowerCase() || null;
-  const files = await walkFiles(start, 5000);
+  const raw = args.extension?.trim().toLowerCase() || null;
+  const extension = raw && (raw.startsWith(".") ? raw : `.${raw}`);
+  const files = await walkFiles(start, 5000, extension ? (file) => path.extname(file).toLowerCase() === extension : null);
   const filtered = files
-    .filter((file) => !extension || path.extname(file).toLowerCase() ===
-      (extension.startsWith(".") ? extension : `.${extension}`))
-    .map(toProjectRelative)
+    .map(displayPath)
     .sort()
     .slice(0, maxResults);
   return { files: filtered, count: filtered.length, truncated: filtered.length >= maxResults };
@@ -612,7 +652,7 @@ async function readTextFile(args) {
   const end = Math.min(lines.length, Math.max(start, Math.min(requestedEnd, start + 399)));
   readPaths.add(absolute.toLowerCase());
   return {
-    path: toProjectRelative(absolute),
+    path: displayPath(absolute),
     start_line: start,
     end_line: end,
     total_lines: lines.length,
@@ -625,7 +665,7 @@ async function searchText(args) {
   if (!query?.trim()) throw new Error("검색어가 비어 있습니다.");
   const start = resolveProjectPath(args.path || "Assets");
   const maxResults = Math.max(1, Math.min(args.max_results ?? 100, 300));
-  const files = await walkFiles(start, 5000);
+  const files = await walkFiles(start, 5000, isReadableFile);
   const needle = args.case_sensitive ? query : query.toLowerCase();
   const matches = [];
   for (const file of files) {
@@ -642,7 +682,7 @@ async function searchText(args) {
     for (let index = 0; index < lines.length; index += 1) {
       const haystack = args.case_sensitive ? lines[index] : lines[index].toLowerCase();
       if (haystack.includes(needle)) {
-        matches.push({ path: toProjectRelative(file), line: index + 1, text: lines[index].slice(0, 500) });
+        matches.push({ path: displayPath(file), line: index + 1, text: lines[index].slice(0, 500) });
         if (matches.length >= maxResults) {
           return { matches, count: matches.length, truncated: true };
         }
@@ -668,6 +708,7 @@ async function backupBeforeWrite(absolute) {
 }
 
 function noteAgentWrite(absolute, session) {
+  if (!isWithin(projectRoot, absolute)) return;
   agentWrites.set(toProjectRelative(absolute).toLowerCase(), { at: Date.now(), sessionId: session?.id ?? null });
 }
 
@@ -695,7 +736,7 @@ async function replaceText(args, session) {
   lastWrittenHashes.set(absolute.toLowerCase(), hashContent(updated));
   changedPaths.add(absolute);
   readPaths.add(absolute.toLowerCase());
-  return { path: toProjectRelative(absolute), replacements: args.replace_all ? count : 1 };
+  return { path: displayPath(absolute), replacements: args.replace_all ? count : 1 };
 }
 
 async function createFile(args, session) {
@@ -713,14 +754,85 @@ async function createFile(args, session) {
   lastWrittenHashes.set(absolute.toLowerCase(), hashContent(args.content));
   changedPaths.add(absolute);
   readPaths.add(absolute.toLowerCase());
-  return { path: toProjectRelative(absolute), created: true };
+  return { path: displayPath(absolute), created: true };
+}
+
+const DELETE_LIMIT_FILES = 20_000;
+
+// Folders whose removal would wipe out the project, the home folder or the system.
+function isProtectedFromDelete(absolute) {
+  const resolved = path.resolve(absolute).toLowerCase();
+  const exact = [
+    path.parse(absolute).root, homedir(), workspaceRoot, projectRoot,
+    path.join(projectRoot, "Assets"), path.join(projectRoot, "ProjectSettings"), path.join(projectRoot, "Packages"),
+    path.join(homedir(), "Desktop"), path.join(homedir(), "Documents"), path.join(homedir(), "Downloads"),
+    path.join(homedir(), "AppData"),
+  ].map((item) => path.resolve(item).toLowerCase());
+  if (exact.includes(resolved)) return true;
+  return /^[a-z]:\\(windows|program files|program files \(x86\)|programdata|users)(\\|$)/.test(resolved) && resolved.split("\\").length <= 3;
+}
+
+async function countEntries(directory, limit) {
+  let count = 0;
+  const stack = [directory];
+  while (stack.length) {
+    const entries = await readdir(stack.pop(), { withFileTypes: true });
+    for (const entry of entries) {
+      count += 1;
+      if (count > limit) return count;
+      if (entry.isDirectory() && !entry.isSymbolicLink()) stack.push(path.join(entry.parentPath ?? entry.path, entry.name));
+    }
+  }
+  return count;
+}
+
+// Deletes a file or folder after copying it to the session backup, so /undo can restore it.
+// Deleting a Unity asset also deletes its .meta file, as Unity expects.
+async function deletePath(args, session) {
+  const absolute = resolveProjectPath(args.path);
+  await assertNoSymlinkPath(absolute);
+  assertWritableLocation(absolute);
+  if (isProtectedFromDelete(absolute)) throw new Error("드라이브 루트, 홈·시스템 폴더, 프로젝트·Assets 폴더 자체는 삭제할 수 없습니다.");
+  if (!existsSync(absolute)) throw new Error("삭제할 파일이나 폴더가 없습니다.");
+  const info = await lstat(absolute);
+  if (info.isDirectory()) {
+    if (!args.recursive) throw new Error("폴더를 지우려면 recursive를 true로 지정하세요.");
+    const count = await countEntries(absolute, DELETE_LIMIT_FILES);
+    if (count > DELETE_LIMIT_FILES) throw new Error(`항목이 ${DELETE_LIMIT_FILES.toLocaleString()}개를 넘는 폴더는 한 번에 삭제할 수 없습니다.`);
+  }
+  const targets = [absolute];
+  const meta = `${absolute}.meta`;
+  if (isWithin(path.join(projectRoot, "Assets"), absolute) && existsSync(meta)) targets.push(meta);
+  const deleted = [];
+  for (const target of targets) {
+    const key = target.toLowerCase();
+    const targetInfo = await lstat(target);
+    if (!backups.has(key)) {
+      await mkdir(backupRoot, { recursive: true });
+      const backupPath = path.join(backupRoot, createHash("sha256").update(target).digest("hex"));
+      await cp(target, backupPath, { recursive: true, force: true });
+      backups.set(key, { absolute: target, existed: true, backupPath, isDirectory: targetInfo.isDirectory() });
+    }
+    backups.get(key).deleted = true;
+    noteAgentWrite(target, session);
+    await rm(target, { recursive: targetInfo.isDirectory(), force: false });
+    lastWrittenHashes.delete(key);
+    readPaths.delete(key);
+    changedPaths.add(target);
+    deleted.push(displayPath(target));
+  }
+  return { deleted, note: "삭제 전 상태를 백업했다. 이 서버 실행 중에는 /undo로 복원할 수 있다." };
 }
 
 function runProcess(command, args, options = {}) {
   const timeoutMs = options.timeoutMs ?? 120_000;
   const cwd = options.cwd ?? projectRoot;
   return new Promise((resolve) => {
-    const child = spawn(command, args, { cwd, shell: false, windowsHide: true });
+    // No stdin: a command that stops to ask a question fails instead of hanging until the timeout.
+    const child = spawn(command, args, {
+      cwd, shell: false, windowsHide: true, stdio: ["ignore", "pipe", "pipe"],
+      env: { ...process.env, UNITY_NON_INTERACTIVE: "1", GIT_TERMINAL_PROMPT: "0", ...(options.env || {}) },
+    });
     let stdout = "";
     let stderr = "";
     let timedOut = false;
@@ -748,7 +860,126 @@ async function gitStatusAndDiff() {
   return {
     status: statusResult.stdout,
     diff: diffResult.stdout.slice(-40_000),
-    changed_by_this_session: [...changedPaths].map(toProjectRelative).sort(),
+    changed_by_this_session: [...changedPaths].map(displayPath).sort(),
+  };
+}
+
+async function gitLog(args) {
+  const count = Math.max(1, Math.min(args.max_count ?? 15, 50));
+  const log = await runProcess("git", ["log", "--oneline", "-n", String(count)], { cwd: workspaceRoot });
+  const branch = await runProcess("git", ["branch", "--show-current"], { cwd: workspaceRoot });
+  return { branch: branch.stdout, log: log.stdout };
+}
+
+// Commits only the listed paths, so the user's other staged or unstaged work stays out of the commit.
+// There is no push, amend or history rewrite.
+async function gitCommit(args) {
+  const message = String(args.message || "").trim();
+  if (!message) throw new Error("커밋 메시지가 비어 있습니다.");
+  if (!Array.isArray(args.paths) || !args.paths.length) throw new Error("커밋할 파일 경로를 paths에 하나 이상 지정하세요.");
+  const repoPaths = [];
+  for (const item of args.paths) {
+    const value = String(item || "").trim();
+    // Relative paths are taken from the Unity project, like the file tools.
+    const absolute = path.isAbsolute(value) ? path.resolve(value) : path.resolve(projectRoot, normalizeRelative(value));
+    if (!isWithin(workspaceRoot, absolute) || absolute === path.resolve(workspaceRoot)) {
+      throw new Error(`저장소 안의 파일만 커밋할 수 있습니다: ${value}`);
+    }
+    if (isSecretPath(absolute)) throw new Error(`비밀정보 파일은 커밋할 수 없습니다: ${value}`);
+    repoPaths.push(normalizeRelative(path.relative(workspaceRoot, absolute)));
+  }
+  const add = await runProcess("git", ["add", "--", ...repoPaths], { cwd: workspaceRoot });
+  if (add.exit_code !== 0) throw new Error(`git add 실패: ${add.stderr || add.stdout}`);
+  const commit = await runProcess("git", ["commit", "-m", message, "--", ...repoPaths], { cwd: workspaceRoot });
+  if (commit.exit_code !== 0) throw new Error(`git commit 실패: ${commit.stderr || commit.stdout}`);
+  const head = await runProcess("git", ["log", "-1", "--stat", "--format=%h %s"], { cwd: workspaceRoot });
+  return { committed: true, summary: head.stdout, note: "푸시는 하지 않았다." };
+}
+
+// ---------------------------------------------------------------------------
+// Unity AI generators: spend Unity Credits within the limits the user set with
+// `unity ai consent set`. A quote ticket is never passed, so nothing above those
+// limits can run without the user.
+// ---------------------------------------------------------------------------
+
+async function unityAi(args, timeoutMs = 60_000) {
+  const result = await runProcess("unity", ["ai", ...args, "--format", "json"], { timeoutMs });
+  const parsed = parseJsonOutput(result.stdout);
+  if (result.exit_code !== 0) {
+    const events = parsed?.events || [];
+    const detail = events.map((event) => event.message || event.error).filter(Boolean).join(" / ") || result.stderr || result.stdout;
+    throw new Error(`unity ai ${args[0]} 실패: ${String(detail).slice(0, 2000)}${result.timed_out ? " (시간 초과)" : ""}`);
+  }
+  return parsed;
+}
+
+function parseParamsJson(value) {
+  if (value === null || value === undefined || value === "") return null;
+  let parsed;
+  try { parsed = JSON.parse(value); } catch { throw new Error("params_json이 올바른 JSON이 아닙니다."); }
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) throw new Error("params_json은 JSON 객체여야 합니다.");
+  return JSON.stringify(parsed);
+}
+
+let unityCreditsCache = { at: 0, value: null };
+
+async function unityCredits(force = false) {
+  if (!force && unityCreditsCache.value && Date.now() - unityCreditsCache.at < 60_000) return unityCreditsCache.value;
+  const points = (await unityAi(["credits"]))?.events?.find((event) => event.event === "points") || null;
+  const consent = await unityAi(["consent", "show"]).catch(() => null);
+  const limits = consent?.events?.find((event) => event.event === "consent")?.limits || [];
+  const limit = limits.find((item) => item.org === points?.org) || limits[0] || null;
+  const value = {
+    org: points?.orgName || points?.org || null,
+    credits_available: points?.pointsAvailable ?? null,
+    credits_allocated: points?.pointsAllocated ?? null,
+    max_per_run: limit?.maxPerRun ?? null,
+    daily_budget: limit?.dailyBudget ?? null,
+    remaining_today: limit?.remainingToday ?? null,
+    note: limit ? "1회·하루 한도 안의 생성만 실행된다. 한도는 사용자가 터미널에서 unity ai consent set으로 바꾼다." : "지출 한도가 없어 생성은 사용자의 승인이 필요하다.",
+  };
+  unityCreditsCache = { at: Date.now(), value };
+  return value;
+}
+
+async function unityAiModels(args) {
+  const commandArgs = ["models"];
+  if (args.modality) commandArgs.push("--modality", args.modality);
+  return unityAi(commandArgs);
+}
+
+async function unityAiModelSchema(args) {
+  return unityAi(["models", "show", args.model]);
+}
+
+async function unityAiQuote(args) {
+  const commandArgs = ["quote", "--model", args.model];
+  if (args.prompt) commandArgs.push("--prompt", args.prompt);
+  const params = parseParamsJson(args.params_json);
+  if (params) commandArgs.push("--params", params);
+  return unityAi(commandArgs);
+}
+
+async function unityAiGenerate(args, session) {
+  const absolute = resolveProjectPath(args.out);
+  await assertNoSymlinkPath(absolute);
+  assertWritableLocation(absolute);
+  if (existsSync(absolute)) throw new Error("출력 파일이 이미 있습니다. 다른 이름을 지정하세요.");
+  if (!existsSync(path.dirname(absolute))) throw new Error("출력 폴더가 없습니다. 기존 폴더를 지정하세요.");
+  const commandArgs = ["generate", "--model", args.model, "--out", absolute];
+  if (args.prompt) commandArgs.push("--prompt", args.prompt);
+  const params = parseParamsJson(args.params_json);
+  if (params) commandArgs.push("--params", params);
+  await backupBeforeWrite(absolute);
+  noteAgentWrite(absolute, session);
+  const result = await unityAi(commandArgs, 15 * 60 * 1000);
+  changedPaths.add(absolute);
+  unityCreditsCache = { at: 0, value: null };
+  const events = result?.events || [];
+  return {
+    out: displayPath(absolute),
+    charged: events.find((event) => event.charge !== undefined || event.credits !== undefined) || null,
+    events: events.slice(-6),
   };
 }
 
@@ -935,26 +1166,33 @@ async function undoSessionChanges() {
   const skipped = [];
   for (const entry of entries) {
     const key = entry.absolute.toLowerCase();
-    if (existsSync(entry.absolute) && lastWrittenHashes.has(key)) {
+    const exists = existsSync(entry.absolute);
+    // Leave alone anything someone else changed or re-created after the agent touched it.
+    if (exists && entry.deleted && !lastWrittenHashes.has(key)) {
+      skipped.push(displayPath(entry.absolute));
+      continue;
+    }
+    if (exists && !entry.isDirectory && lastWrittenHashes.has(key)) {
       const currentHash = hashContent(await readFile(entry.absolute));
       if (currentHash !== lastWrittenHashes.get(key)) {
-        skipped.push(toProjectRelative(entry.absolute));
+        skipped.push(displayPath(entry.absolute));
         continue;
       }
     }
     if (entry.existed) {
-      const content = await readFile(entry.backupPath);
-      await writeFile(entry.absolute, content);
-    } else if (existsSync(entry.absolute)) {
-      await rm(entry.absolute, { force: true });
+      await mkdir(path.dirname(entry.absolute), { recursive: true });
+      if (entry.isDirectory) {
+        await cp(entry.backupPath, entry.absolute, { recursive: true, force: true });
+      } else {
+        await writeFile(entry.absolute, await readFile(entry.backupPath));
+      }
+    } else if (exists) {
+      await rm(entry.absolute, { recursive: true, force: true });
     }
-    restored.push(toProjectRelative(entry.absolute));
-  }
-  for (const relative of restored) {
-    const absolute = resolveProjectPath(relative);
-    backups.delete(absolute.toLowerCase());
-    changedPaths.delete(absolute);
-    lastWrittenHashes.delete(absolute.toLowerCase());
+    restored.push(displayPath(entry.absolute));
+    backups.delete(key);
+    changedPaths.delete(entry.absolute);
+    lastWrittenHashes.delete(key);
   }
   readPaths.clear();
   return { restored, skipped };
@@ -966,7 +1204,7 @@ const tools = [
   {
     type: "function",
     name: "list_files",
-    description: "Unity 프로젝트 안의 파일 경로를 나열한다. Library, Temp 등 생성 폴더와 비밀정보 파일은 제외한다.",
+    description: "파일 경로를 나열한다. 상대 경로는 Unity 프로젝트 기준이며, 접근 범위가 컴퓨터 전체이면 절대 경로도 된다. Library, Temp 등 생성 폴더와 비밀정보 파일은 제외한다.",
     strict: true,
     parameters: {
       type: "object",
@@ -1041,6 +1279,21 @@ const tools = [
         content: { type: "string" },
       },
       required: ["path", "content"],
+      additionalProperties: false,
+    },
+  },
+  {
+    type: "function",
+    name: "delete_path",
+    description: "파일이나 폴더를 삭제한다. 삭제 전 백업되어 /undo로 복원할 수 있다. Assets 안의 에셋은 .meta도 함께 삭제된다. 폴더는 recursive를 true로 지정해야 한다.",
+    strict: true,
+    parameters: {
+      type: "object",
+      properties: {
+        path: { type: "string" },
+        recursive: { type: "boolean", description: "폴더와 그 안의 내용을 모두 삭제할 때 true" },
+      },
+      required: ["path", "recursive"],
       additionalProperties: false,
     },
   },
@@ -1145,6 +1398,97 @@ const tools = [
   },
   {
     type: "function",
+    name: "git_log",
+    description: "현재 브랜치와 최근 커밋 목록을 읽는다. 커밋 메시지 스타일을 맞출 때 먼저 확인한다.",
+    strict: true,
+    parameters: {
+      type: "object",
+      properties: { max_count: { type: ["integer", "null"] } },
+      required: ["max_count"],
+      additionalProperties: false,
+    },
+  },
+  {
+    type: "function",
+    name: "git_commit",
+    description: "지정한 파일만 스테이징해 현재 브랜치에 커밋한다. 사용자가 커밋을 요청했을 때만 쓴다. 푸시·amend는 하지 않는다.",
+    strict: true,
+    parameters: {
+      type: "object",
+      properties: {
+        paths: { type: "array", items: { type: "string" }, description: "커밋할 파일 경로. 프로젝트 기준 상대 경로 또는 저장소 안의 절대 경로." },
+        message: { type: "string", description: "저장소의 기존 커밋 메시지 형식을 따른 메시지" },
+      },
+      required: ["paths", "message"],
+      additionalProperties: false,
+    },
+  },
+  {
+    type: "function",
+    name: "unity_ai_credits",
+    description: "Unity AI 크레딧 잔액과 사용자가 정한 지출 한도(1회·하루, 오늘 남은 양)를 조회한다. 무료.",
+    strict: true,
+    parameters: NO_ARGS,
+  },
+  {
+    type: "function",
+    name: "unity_ai_models",
+    description: "Unity AI 생성 모델 목록을 조회한다. modality: Image, Texture2d, Sound, Model3d, Animate, Video, Skybox. 무료.",
+    strict: true,
+    parameters: {
+      type: "object",
+      properties: { modality: { type: ["string", "null"] } },
+      required: ["modality"],
+      additionalProperties: false,
+    },
+  },
+  {
+    type: "function",
+    name: "unity_ai_model_schema",
+    description: "Unity AI 모델 하나의 파라미터 스키마를 조회한다. generate 전에 필요한 파라미터를 확인한다. 무료.",
+    strict: true,
+    parameters: {
+      type: "object",
+      properties: { model: { type: "string" } },
+      required: ["model"],
+      additionalProperties: false,
+    },
+  },
+  {
+    type: "function",
+    name: "unity_ai_quote",
+    description: "Unity AI 생성 비용(크레딧)을 미리 계산한다. 무료이며 아무것도 생성하지 않는다.",
+    strict: true,
+    parameters: {
+      type: "object",
+      properties: {
+        model: { type: "string" },
+        prompt: { type: ["string", "null"] },
+        params_json: { type: ["string", "null"], description: "모델 파라미터 JSON 객체 문자열" },
+      },
+      required: ["model", "prompt", "params_json"],
+      additionalProperties: false,
+    },
+  },
+  {
+    type: "function",
+    name: "unity_ai_generate",
+    description: "Unity AI 크레딧을 써서 에셋(스프라이트·텍스처·사운드·3D 모델 등)을 생성해 out 경로에 저장한다. 사용자가 정한 1회·하루 지출 한도 안에서만 실행되며, 넘으면 실패한다.",
+    strict: true,
+    parameters: {
+      type: "object",
+      properties: {
+        model: { type: "string" },
+        prompt: { type: ["string", "null"] },
+        params_json: { type: ["string", "null"], description: "모델 파라미터 JSON 객체 문자열" },
+        out: { type: "string", description: "저장할 파일 경로. 보통 Assets 아래 기존 폴더. 예: Assets/03. Sprites/Coin.png" },
+      },
+      required: ["model", "prompt", "params_json", "out"],
+      additionalProperties: false,
+    },
+  },
+  {
+    type: "function",
     name: "memory_save",
     description: "다음 세션에서도 기억해야 할 내용을 장기 기억에 저장한다. decision: 사용자가 정한 규칙·설계 결정, summary: 완료한 작업 한 줄 요약, note: 기타 알아둘 사실.",
     strict: true,
@@ -1182,7 +1526,8 @@ const baseInstructions = `당신은 Unity 프로젝트를 직접 다루는 수�
 - 씬 상태, GameObject 구성, 인스펙터 값은 unity_scene_state, unity_hierarchy, unity_find_gameobjects, unity_component_fields, unity_selection으로 실시간 조회한다. 큰 씬은 root_path와 max_depth로 좁힌다.
 - 사용자의 기존 변경을 보존하고 요청과 무관한 파일은 수정하지 않는다.
 - 기존 파일을 수정하기 전에 반드시 read_file로 해당 부분을 읽는다.
-- Unity 프로젝트 전체의 허용된 텍스트 파일을 수정할 수 있지만, Library/Temp/Logs/Build/.git/비밀정보와 바이너리는 건드리지 않는다.
+- 접근 범위가 '컴퓨터 전체'이면 절대 경로(예: C:/Users/...)나 ~로 프로젝트 밖의 텍스트 파일도 읽고 쓸 수 있다. 프로젝트 밖 수정은 사용자가 요청했을 때만 한다. 현재 범위는 요청마다 안내된다.
+- 비밀정보(키·토큰·로그인·지출 한도)는 차단되어 있으며 우회하려 하지 않는다. Library/Temp/Logs/Build/.git과 바이너리는 직접 수정하지 않는다.
 - 씬, 프리팹, .meta는 사용자가 명시적으로 요구하거나 작업에 꼭 필요한 경우에만 수정하고, 가능한 Unity 도구를 우선한다.
 - 90. Tools/OpenAIDevCLI는 자신의 권한 코드이므로 수정하지 않는다.
 - 새 파일은 기존 폴더에만 만든다. 폴더를 만들거나 옮기지 않는다.
@@ -1191,14 +1536,17 @@ const baseInstructions = `당신은 Unity 프로젝트를 직접 다루는 수�
 - 관련 테스트가 있으면 가장 좁은 EditMode 테스트부터 실행한다.
 - 도구 결과가 실패하면 성공했다고 말하지 말고 원인과 필요한 다음 행동을 명확히 말한다.
 - 비밀 키나 .env 파일을 읽거나 요구하지 않는다.
-- 삭제, 커밋, 푸시, 패키지 설치, 빌드, Editor 종료, 씬 오브젝트 수정은 할 수 없으며 시도하지 않는다.
+- 커밋은 사용자가 요청했을 때만 git_commit으로 한다. 먼저 git_diff로 변경을 확인하고 git_log로 기존 메시지 형식(이모지·[태그] 접두어 등)을 따른다. 사용자의 다른 작업이 섞이지 않게 해당 작업 파일만 paths에 넣고, 대응하는 .meta 파일도 함께 넣는다.
+- 에셋 생성(이미지·스프라이트·사운드·3D 등)이 필요하면 Unity AI 도구를 쓴다. unity_ai_models/unity_ai_model_schema로 모델과 파라미터를 고르고, unity_ai_quote로 비용을 확인한 뒤 unity_ai_generate를 실행한다. 사용자가 생성을 요청한 경우에만 크레딧을 쓰고, 답변에 사용 크레딧과 남은 크레딧을 알린다. 한도를 넘어 실패하면 견적을 알리고 사용자가 한도를 조정하도록 안내한다.
+- 파일·폴더 삭제는 사용자가 요청했거나 작업에 꼭 필요할 때만 delete_path로 한다. 삭제 전 대상과 영향(참조하는 코드·씬·프리팹)을 확인하고, 답변에 삭제한 경로를 모두 적는다.
+- 푸시, 패키지 설치, 빌드, Editor 종료, 씬 오브젝트 수정은 할 수 없으며 시도하지 않는다.
 - 사용자가 규칙이나 설계 결정을 말하면 memory_save(decision)로 저장한다. 결정이 바뀌면 이전 항목을 memory_delete로 지운다.
 - 파일을 변경한 작업을 마치면 memory_save(summary)로 무엇을 왜 바꿨는지 한 줄 요약을 남긴다. 비밀정보는 저장하지 않는다.
 - 최종 답변에는 변경 파일, 검증 결과, 남은 문제를 간결하게 정리한다.`;
 
 function safeToolArgs(args) {
   const safe = {};
-  for (const key of ["path", "query", "filter", "mode", "scene_path", "root_path", "name", "tag", "component_type", "hierarchy_path", "target", "component", "field", "kind", "id"]) {
+  for (const key of ["path", "query", "filter", "mode", "scene_path", "root_path", "name", "tag", "component_type", "hierarchy_path", "target", "component", "field", "kind", "id", "model", "modality", "out", "paths", "message", "recursive"]) {
     if (args[key] !== undefined && args[key] !== null) safe[key] = args[key];
   }
   return safe;
@@ -1215,7 +1563,7 @@ function serializeMutation(task) {
   return result;
 }
 
-const SERIALIZED_TOOLS = new Set(["replace_text", "create_file", "unity_compile", "unity_editmode_tests"]);
+const SERIALIZED_TOOLS = new Set(["replace_text", "create_file", "delete_path", "unity_compile", "unity_editmode_tests", "git_commit", "unity_ai_generate"]);
 
 async function invokeTool(name, args, session) {
   switch (name) {
@@ -1233,6 +1581,14 @@ async function invokeTool(name, args, session) {
     case "unity_selection": return unitySelection();
     case "unity_compile": return unityCompile();
     case "unity_editmode_tests": return unityEditorTests(args);
+    case "delete_path": return deletePath(args, session);
+    case "git_log": return gitLog(args);
+    case "git_commit": return gitCommit(args);
+    case "unity_ai_credits": return unityCredits(true);
+    case "unity_ai_models": return unityAiModels(args);
+    case "unity_ai_model_schema": return unityAiModelSchema(args);
+    case "unity_ai_quote": return unityAiQuote(args);
+    case "unity_ai_generate": return unityAiGenerate(args, session);
     case "memory_save": return addMemory(args.kind, args.text, session?.title ?? null);
     case "memory_delete": return deleteMemory(args.id);
     default: throw new Error(`알 수 없는 도구: ${name}`);
@@ -1327,7 +1683,7 @@ function contextWindowFor() {
   return DEFAULT_CONTEXT_TOKENS;
 }
 
-async function createResponse(apiKey, input, { continuationId = null, selectedModel = model, effort = reasoningEffort, cacheKey = null } = {}) {
+async function createResponse(apiKey, input, { continuationId = null, selectedModel = model, effort = reasoningEffort, cacheKey = null, signal = null } = {}) {
   const context = await getProjectContext();
   const body = {
     model: selectedModel,
@@ -1354,7 +1710,9 @@ async function createResponse(apiKey, input, { continuationId = null, selectedMo
           "X-Client-Request-Id": randomUUID(),
         },
         body: JSON.stringify(body),
-        signal: AbortSignal.timeout(10 * 60 * 1000),
+        signal: signal
+          ? AbortSignal.any([signal, AbortSignal.timeout(10 * 60 * 1000)])
+          : AbortSignal.timeout(10 * 60 * 1000),
       });
       const requestId = response.headers.get("x-request-id");
       const payload = await response.json().catch(() => ({}));
@@ -1367,6 +1725,7 @@ async function createResponse(apiKey, input, { continuationId = null, selectedMo
       return payload;
     } catch (error) {
       lastError = error;
+      if (signal?.aborted || error.name === "AbortError" || error.name === "TimeoutError") throw error;
       if (error.status === 429 || (error.status && error.status < 500) || attempt === 2) throw error;
       await new Promise((resolve) => setTimeout(resolve, 750 * (attempt + 1)));
     }
@@ -1412,7 +1771,8 @@ async function buildTurnContext(message, session) {
   const since = session.lastTurnAt ? Date.parse(session.lastTurnAt) : serverStartedAt;
   const changes = recentChanges({ since, excludeSessionId: session.id, limit: 30 });
   const relevant = await selectRelevantFiles(message);
-  const parts = [];
+  const scopeLabel = { full: "컴퓨터 전체 (비밀정보 제외)", project: "Unity 프로젝트", assets: "Unity 프로젝트 읽기, Assets 쓰기" }[writeScope];
+  const parts = [`현재 파일 접근 범위: ${scopeLabel}`];
   if (changes.length) {
     const kindLabel = { added: "추가", modified: "수정", deleted: "삭제" };
     parts.push(`지난 요청 이후 변경된 파일 (다른 세션·사용자·Unity 변경 포함, 필요하면 다시 읽을 것):\n${changes
@@ -1425,6 +1785,12 @@ async function buildTurnContext(message, session) {
   return { text: parts.join("\n\n"), changes, relevant };
 }
 
+const FILE_CHANGING_TOOLS = new Set(["replace_text", "create_file", "delete_path", "unity_ai_generate"]);
+
+// One user request: the model calls tools until it answers. There is no round limit unless
+// OPENAI_DEV_MAX_TOOL_ROUNDS sets one; the user can stop a turn instead. Whatever was not yet
+// sent to the API when a turn stops or fails is kept in session.pendingInput, so the next request
+// continues the same work instead of losing it.
 async function runAgentTurn(apiKey, userInput, { silent = false, session = cliSession } = {}) {
   const toolLog = [];
   const turnUsage = emptyUsage();
@@ -1432,51 +1798,79 @@ async function runAgentTurn(apiKey, userInput, { silent = false, session = cliSe
   const effort = session.reasoningEffort || reasoningEffort;
   const turnContext = await buildTurnContext(userInput, session);
   session.lastTurnAt = new Date().toISOString();
-  const input = turnContext.text
+  session.cancelRequested = false;
+  session.abortController = new AbortController();
+  const carried = Array.isArray(session.pendingInput) ? session.pendingInput : [];
+  const fresh = turnContext.text
     ? [{ role: "developer", content: turnContext.text }, { role: "user", content: userInput }]
-    : userInput;
-  const options = { selectedModel, effort, cacheKey: `unity-game-jam-${session.id}` };
-  let response = await createResponse(apiKey, input, { ...options, continuationId: session.previousResponseId });
-  for (let round = 0; round < MAX_TOOL_ROUNDS; round += 1) {
-    recordUsage(response, session, turnUsage);
-    activeResponseId = response.id;
-    session.activeResponseId = response.id;
-    const calls = (response.output || []).filter((item) => item.type === "function_call");
-    if (calls.length === 0) {
+    : [{ role: "user", content: userInput }];
+  let nextInput = [...carried, ...fresh];
+  const options = { selectedModel, effort, cacheKey: `unity-game-jam-${session.id}`, signal: session.abortController.signal };
+  let finalResponse = null;
+  let stopReason = null;
+  let rounds = 0;
+  try {
+    while (true) {
+      if (session.cancelRequested) { stopReason = "cancel"; break; }
+      if (rounds >= MAX_TOOL_ROUNDS) { stopReason = "limit"; break; }
+      rounds += 1;
+      session.pendingInput = nextInput;
+      const response = await createResponse(apiKey, nextInput, { ...options, continuationId: session.previousResponseId });
+      recordUsage(response, session, turnUsage);
+      activeResponseId = response.id;
+      session.activeResponseId = response.id;
       session.previousResponseId = response.id;
-      session.updatedAt = new Date().toISOString();
-      const text = extractText(response);
-      if (!silent) {
-        console.log(`\n${text || "응답 텍스트가 없습니다."}`);
-        console.log(`\n[tokens] 이번 요청 input ${turnUsage.input.toLocaleString()} (캐시 ${turnUsage.cached.toLocaleString()}) / output ${turnUsage.output.toLocaleString()} · 세션 누적 input ${session.usage.input.toLocaleString()} / output ${session.usage.output.toLocaleString()}`);
+      session.pendingInput = [];
+      const calls = (response.output || []).filter((item) => item.type === "function_call");
+      if (calls.length === 0) { finalResponse = response; break; }
+      const outputs = [];
+      for (const call of calls) {
+        const output = session.cancelRequested
+          ? JSON.stringify({ ok: false, error: "사용자가 작업을 중단해 실행하지 않았다." })
+          : await executeTool(call, toolLog, session);
+        outputs.push({ type: "function_call_output", call_id: call.call_id, output });
       }
-      const changedFiles = [...new Set(toolLog
-        .filter((entry) => ["replace_text", "create_file"].includes(entry.name) && entry.status === "completed")
-        .map((entry) => entry.arguments.path))];
-      return {
-        text: text || "응답 텍스트가 없습니다.",
-        tools: toolLog,
-        model: selectedModel,
-        reasoning_effort: effort,
-        write_scope: writeScope,
-        usage: turnUsage,
-        changed_files: changedFiles,
-        relevant_files: turnContext.relevant.map((item) => item.path),
-        input_tokens: session.usage.input,
-        output_tokens: session.usage.output,
-      };
+      nextInput = outputs;
+      session.pendingInput = outputs;
     }
-    const outputs = [];
-    for (const call of calls) {
-      outputs.push({
-        type: "function_call_output",
-        call_id: call.call_id,
-        output: await executeTool(call, toolLog, session),
-      });
+  } catch (error) {
+    if (!session.cancelRequested && error.name !== "AbortError" && error.name !== "TimeoutError") {
+      error.message += ` (도구 ${toolLog.length}건까지의 진행 상황은 저장되어 다음 요청에서 이어집니다)`;
+      throw error;
     }
-    response = await createResponse(apiKey, outputs, { ...options, continuationId: response.id });
+    stopReason = session.cancelRequested ? "cancel" : "timeout";
+  } finally {
+    session.abortController = null;
+    session.cancelRequested = false;
+    session.updatedAt = new Date().toISOString();
   }
-  throw new Error(`도구 호출이 ${MAX_TOOL_ROUNDS}회를 넘었습니다. 작업을 더 작게 나눠주세요.`);
+
+  const stopText = {
+    cancel: `작업을 중단했습니다. 도구 ${toolLog.length}건을 실행했고, 다음 요청에서 이어서 진행할 수 있습니다.`,
+    limit: `도구 호출 상한(${MAX_TOOL_ROUNDS}회)에 도달해 멈췄습니다. "계속"이라고 보내면 이어서 진행합니다.`,
+    timeout: "API 응답 시간이 초과되어 멈췄습니다. 다음 요청에서 이어서 진행할 수 있습니다.",
+  };
+  const text = finalResponse ? extractText(finalResponse) || "응답 텍스트가 없습니다." : stopText[stopReason];
+  if (!silent) {
+    console.log(`\n${text}`);
+    console.log(`\n[tokens] 이번 요청 input ${turnUsage.input.toLocaleString()} (캐시 ${turnUsage.cached.toLocaleString()}) / output ${turnUsage.output.toLocaleString()} · 세션 누적 input ${session.usage.input.toLocaleString()} / output ${session.usage.output.toLocaleString()}`);
+  }
+  const changedFiles = [...new Set(toolLog
+    .filter((entry) => FILE_CHANGING_TOOLS.has(entry.name) && entry.status === "completed")
+    .map((entry) => entry.arguments.path || entry.arguments.out))];
+  return {
+    text,
+    stopped: stopReason,
+    tools: toolLog,
+    model: selectedModel,
+    reasoning_effort: effort,
+    write_scope: writeScope,
+    usage: turnUsage,
+    changed_files: changedFiles,
+    relevant_files: turnContext.relevant.map((item) => item.path),
+    input_tokens: session.usage.input,
+    output_tokens: session.usage.output,
+  };
 }
 
 // Saves a work summary when the model changed files but did not write one itself.
@@ -1500,7 +1894,7 @@ function printHelp() {
   /model                현재 모델과 선택 가능한 모델 확인
   /model <id|alias>     모델 변경 후 문맥 초기화 (예: /model gpt-6.1-sol, /model astra)
   /effort low|medium|high 추론 강도 변경
-  /scope assets|project 쓰기 범위 변경 후 문맥 초기화
+  /scope full|project|assets 파일 접근 범위 변경
   /status               모델, 토큰, 이번 세션 변경 파일 확인
   /memory               장기 기억 목록
   /undo                 이번 CLI 세션이 변경한 파일 전부 복원
@@ -1511,6 +1905,7 @@ function printHelp() {
 
 function resetConversation(session) {
   session.previousResponseId = null;
+  session.pendingInput = [];
   session.activeResponseId = null;
   session.contextTokens = 0;
   activeResponseId = null;
@@ -1551,12 +1946,11 @@ async function handleSlashCommand(input, apiKey) {
       }
       return true;
     case "/scope":
-      if (!value || !["assets", "project"].includes(value.toLowerCase())) {
-        console.log(`현재 쓰기 범위: ${writeScope}. 사용법: /scope assets|project`);
+      if (!value || !WRITE_SCOPES.includes(value.toLowerCase())) {
+        console.log(`현재 접근 범위: ${writeScope}. 사용법: /scope full|project|assets`);
       } else {
         writeScope = value.toLowerCase();
-        resetConversation(cliSession);
-        console.log(`쓰기 범위를 ${writeScope}(으)로 변경하고 대화 문맥을 초기화했습니다.`);
+        console.log(`접근 범위를 ${writeScope}(으)로 변경했습니다.`);
       }
       return true;
     case "/status":
@@ -1568,7 +1962,7 @@ async function handleSlashCommand(input, apiKey) {
         usage: cliSession.usage,
         context_tokens: cliSession.contextTokens,
         context_remaining_tokens: Math.max(0, contextWindowFor(cliSession.model) - cliSession.contextTokens),
-        changed_files: [...changedPaths].map(toProjectRelative).sort(),
+        changed_files: [...changedPaths].map(displayPath).sort(),
         project: projectRoot,
       }, null, 2));
       return true;
@@ -1613,6 +2007,9 @@ function createSessionRecord({ register = true } = {}) {
     history: [],
     busy: false,
     lastTurnAt: null,
+    pendingInput: [],
+    cancelRequested: false,
+    abortController: null,
     createdAt: now,
     updatedAt: now,
   };
@@ -1621,7 +2018,7 @@ function createSessionRecord({ register = true } = {}) {
 }
 
 function persistSessions() {
-  const sessions = [...webSessions.values()].map(({ busy, activeResponseId: _active, ...session }) => ({ ...session }));
+  const sessions = [...webSessions.values()].map(({ busy, activeResponseId: _active, abortController: _abort, cancelRequested: _cancel, ...session }) => ({ ...session }));
   const payload = JSON.stringify({ version: 2, savedAt: new Date().toISOString(), usage: usageTotals, sessions }, null, 2);
   stateSaveQueue = stateSaveQueue.then(() => writeFile(statePath, payload, "utf8"), () => writeFile(statePath, payload, "utf8"));
   return stateSaveQueue;
@@ -1651,6 +2048,7 @@ async function loadPersistentSessions() {
       messageCount: item.messageCount || 0,
       history: Array.isArray(item.history) ? item.history.slice(-500) : [],
       lastTurnAt: item.lastTurnAt || null,
+      pendingInput: Array.isArray(item.pendingInput) ? item.pendingInput : [],
       createdAt: item.createdAt || new Date().toISOString(),
       updatedAt: item.updatedAt || new Date().toISOString(),
     });
@@ -1698,7 +2096,7 @@ function webState(session) {
     ...contextView(session),
     totals: usageOverview(),
     history: session.history,
-    changed_files: [...changedPaths].map(toProjectRelative).sort(),
+    changed_files: [...changedPaths].map(displayPath).sort(),
     busy: session.busy,
     active_requests: activeWebRequests,
   };
@@ -1712,7 +2110,7 @@ function projectInfo() {
     recent_changes: recentChanges({ since: 0, limit: 40 }).map((entry) => ({
       path: entry.path, kind: entry.kind, by: entry.by, at: new Date(entry.at).toISOString(),
     })),
-    changed_by_agent: [...changedPaths].map(toProjectRelative).sort(),
+    changed_by_agent: [...changedPaths].map(displayPath).sort(),
     memory: [...memoryEntries].reverse(),
     totals: usageOverview(),
   };
@@ -1825,6 +2223,24 @@ async function startWebServer(apiKey) {
         sendJson(response, 200, { ...modelCatalog, default_model: model, efforts: REASONING_EFFORTS, default_effort: reasoningEffort });
         return;
       }
+      if (request.method === "GET" && requestUrl.pathname === "/api/unity-credits") {
+        try {
+          sendJson(response, 200, await unityCredits(requestUrl.searchParams.get("refresh") === "1"));
+        } catch (error) {
+          sendJson(response, 200, { error: error.message });
+        }
+        return;
+      }
+      if (request.method === "POST" && requestUrl.pathname === "/api/scope") {
+        const body = await readJsonBody(request);
+        if (!WRITE_SCOPES.includes(body.scope)) {
+          sendJson(response, 400, { error: "접근 범위는 full, project, assets 중 하나입니다." });
+          return;
+        }
+        writeScope = body.scope;
+        sendJson(response, 200, { write_scope: writeScope });
+        return;
+      }
       if (request.method === "GET" && requestUrl.pathname === "/api/project") {
         await scanProjectIndex();
         sendJson(response, 200, projectInfo());
@@ -1900,6 +2316,32 @@ async function startWebServer(apiKey) {
         session.updatedAt = new Date().toISOString();
         await persistSessions();
         sendJson(response, 200, webState(session));
+        return;
+      }
+      if (request.method === "POST" && requestUrl.pathname === "/api/undo") {
+        if (activeWebRequests > 0) {
+          sendJson(response, 409, { error: "진행 중인 작업이 끝난 뒤에 되돌릴 수 있습니다." });
+          return;
+        }
+        const result = await serializeMutation(() => undoSessionChanges());
+        sendJson(response, 200, { ...result, project: projectInfo() });
+        return;
+      }
+      if (request.method === "POST" && requestUrl.pathname === "/api/cancel") {
+        const body = await readJsonBody(request);
+        const session = getWebSession(body.session_id);
+        if (!session) {
+          sendJson(response, 404, { error: "세션을 찾을 수 없습니다." });
+          return;
+        }
+        if (!session.busy) {
+          sendJson(response, 409, { error: "진행 중인 작업이 없습니다." });
+          return;
+        }
+        // Stops after the tool that is running now; an in-flight API call is aborted at once.
+        session.cancelRequested = true;
+        session.abortController?.abort();
+        sendJson(response, 200, { cancelling: true });
         return;
       }
       if (request.method === "POST" && requestUrl.pathname === "/api/chat") {
@@ -2010,7 +2452,8 @@ async function runToolDirectly() {
   const index = process.argv.indexOf("--tool");
   const name = process.argv[index + 1];
   const allowed = new Set(["list_files", "read_file", "search_text", "git_diff", "unity_status", "unity_scene_state",
-    "unity_hierarchy", "unity_find_gameobjects", "unity_component_fields", "unity_selection", "project_context", "relevant_files"]);
+    "unity_hierarchy", "unity_find_gameobjects", "unity_component_fields", "unity_selection", "project_context", "relevant_files",
+    "git_log", "unity_ai_credits", "unity_ai_models", "unity_ai_model_schema", "unity_ai_quote"]);
   if (!allowed.has(name)) throw new Error(`--tool에는 읽기 전용 도구만 지정할 수 있습니다: ${[...allowed].join(", ")}`);
   const args = JSON.parse(process.argv[index + 2] || "{}");
   await scanProjectIndex(true);

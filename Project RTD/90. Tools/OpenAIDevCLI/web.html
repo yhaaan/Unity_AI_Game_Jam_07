@@ -50,6 +50,7 @@
     textarea { width: 100%; min-height: 50px; max-height: 180px; resize: vertical; border: 1px solid #343c49; border-radius: 12px; outline: none; background: #151920; padding: 13px; }
     textarea:focus { border-color: #4c82d7; box-shadow: 0 0 0 3px rgba(76,130,215,.16); }
     #send { min-width: 72px; min-height: 50px; border-color: #4076ca; background: #2862bd; }
+    #send.stop { border-color: #b8484c; background: #8e2b30; }
     #status { min-height: 17px; margin: 7px 2px 0; color: #8994a5; font-size: 12px; }
     dialog { width: min(760px, 94vw); max-height: 86vh; border: 1px solid #343c49; border-radius: 14px; background: #12161c; color: inherit; padding: 0; }
     dialog::backdrop { background: rgba(0,0,0,.55); }
@@ -87,6 +88,11 @@
           <option value="medium">medium</option>
           <option value="high">high · 깊게</option>
         </select></label>
+        <label>접근 범위<select id="scope" aria-label="파일 접근 범위" title="비밀정보(키·토큰·로그인·지출 한도)는 모든 범위에서 차단됩니다">
+          <option value="full">컴퓨터 전체</option>
+          <option value="project">프로젝트만</option>
+          <option value="assets">Assets만 쓰기</option>
+        </select></label>
       </div>
       <button id="project-btn" type="button" title="토큰 사용량, 장기 기억, 변경 파일">프로젝트·기억</button>
       <button id="reset" type="button">새 대화</button>
@@ -99,6 +105,7 @@
         <span id="usage-today"></span>
         <div class="meter" id="meter"><span id="meter-fill"></span></div>
         <span id="usage-session"></span>
+        <span id="usage-unity" title="Unity AI 에셋 생성에 쓰는 크레딧과 직접 정한 지출 한도"></span>
       </div>
       <form class="composer" id="form">
         <textarea id="input" maxlength="20000" aria-label="개발 요청" placeholder="예: 현재 플레이어 이동 코드를 분석하고 점프 버그를 고쳐줘 (Enter 전송, Shift+Enter 줄바꿈)" required></textarea>
@@ -227,6 +234,25 @@
       $("#usage-today").textContent = today ? `오늘 전체: 입력 ${fmt(today.input)} · 출력 ${fmt(today.output)}` : "";
     }
 
+    async function loadUnityCredits(refresh = false) {
+      const target = $("#usage-unity");
+      try {
+        const credits = await api(`/api/unity-credits${refresh ? "?refresh=1" : ""}`);
+        if (credits.error || credits.credits_available === null) { target.textContent = "Unity 크레딧 조회 불가"; return; }
+        target.textContent = `Unity 크레딧 ${fmt(credits.credits_available)} / ${fmt(credits.credits_allocated)}`
+          + (credits.remaining_today !== null ? ` · 오늘 남은 한도 ${fmt(credits.remaining_today)} (1회 최대 ${fmt(credits.max_per_run)})` : " · 지출 한도 없음");
+      } catch { target.textContent = "Unity 크레딧 조회 불가"; }
+    }
+
+    const scopeSelect = $("#scope");
+    scopeSelect.addEventListener("change", async () => {
+      try {
+        const result = await api("/api/scope", { method: "POST", body: JSON.stringify({ scope: scopeSelect.value }) });
+        status.textContent = `파일 접근 범위: ${scopeSelect.selectedOptions[0].text} (비밀정보는 항상 차단)`;
+        scopeSelect.value = result.write_scope;
+      } catch (error) { status.textContent = `범위 변경 실패: ${error.message}`; }
+    });
+
     function strong(text) { const element = document.createElement("strong"); element.textContent = text; return element; }
 
     // ----- messages ----------------------------------------------------
@@ -312,9 +338,22 @@
 
     // ----- sessions ----------------------------------------------------
     function updateControls() {
-      const busy = busySessions.has(activeSessionId);
-      for (const element of [send, reset, input, familySelect, versionSelect, effortSelect]) element.disabled = busy;
-      send.textContent = busy ? "작업 중…" : "전송";
+      const busy = busySessions.get(activeSessionId);
+      for (const element of [reset, input, familySelect, versionSelect, effortSelect]) element.disabled = Boolean(busy);
+      // While a turn runs, the send button stops it.
+      send.disabled = Boolean(busy?.cancelling);
+      send.textContent = busy ? (busy.cancelling ? "중단 중…" : "중단") : "전송";
+      send.classList.toggle("stop", Boolean(busy));
+    }
+
+    async function cancelActive() {
+      const busy = busySessions.get(activeSessionId);
+      if (!busy || busy.cancelling) return;
+      busy.cancelling = true;
+      updateControls();
+      status.textContent = "중단 요청함 · 실행 중인 도구가 끝나면 멈춥니다.";
+      try { await api("/api/cancel", { method: "POST", body: JSON.stringify({ session_id: activeSessionId }) }); }
+      catch (error) { busy.cancelling = false; updateControls(); status.textContent = `중단 실패: ${error.message}`; }
     }
 
     function renderSessions() {
@@ -360,6 +399,7 @@
       histories[sessionId] = state.history || [];
       renderHistory();
       setPicker(state.model, state.reasoning_effort);
+      scopeSelect.value = state.write_scope;
       updateUsage(state);
       updateControls();
       if (!busySessions.has(sessionId)) status.textContent = `${state.model} · ${state.reasoning_effort} · 쓰기 범위 ${state.write_scope}`;
@@ -395,8 +435,9 @@
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
+      if (busySessions.has(activeSessionId)) { cancelActive(); return; }
       const message = input.value.trim();
-      if (!message || busySessions.has(activeSessionId)) return;
+      if (!message) return;
       const requestSessionId = activeSessionId;
       const body = { session_id: requestSessionId, message, model: versionSelect.value, effort: effortSelect.value };
       (histories[requestSessionId] ||= []).push({ role: "user", text: message, tools: [] });
@@ -408,6 +449,7 @@
       status.textContent = `${body.model} · ${body.effort}로 작업 중…`;
       try {
         const result = await api("/api/chat", { method: "POST", body: JSON.stringify(body) });
+        if ((result.tools || []).some((tool) => tool.name === "unity_ai_generate")) loadUnityCredits(true);
         histories[requestSessionId].push({
           role: "assistant", text: result.text, tools: result.tools || [],
           meta: { model: result.model, effort: result.reasoning_effort, usage: result.usage, changed_files: result.changed_files },
@@ -417,7 +459,7 @@
         if (activeSessionId === requestSessionId) {
           activeState = { ...activeState, ...result, model: result.model, history: histories[requestSessionId] };
           updateUsage({ ...result, usage: result.session_usage });
-          status.textContent = `완료 · 이번 요청 입력 ${fmt(result.usage.input)} / 출력 ${fmt(result.usage.output)} 토큰`;
+          status.textContent = `${result.stopped ? "중단됨 · 다음 요청에서 이어집니다" : "완료"} · 이번 요청 입력 ${fmt(result.usage.input)} / 출력 ${fmt(result.usage.output)} 토큰`;
         }
       } catch (error) {
         histories[requestSessionId].push({ role: "assistant", text: `오류: ${error.message}`, tools: [] });
@@ -540,8 +582,30 @@
       indexNote.className = "muted";
       indexNote.textContent = `인덱스 파일 ${fmt(info.indexed_files)}개 · 마지막 스캔 ${info.index_scanned_at ? new Date(info.index_scanned_at).toLocaleTimeString("ko-KR") : "-"} · 20초마다 자동 갱신`;
 
+      const agentList = document.createElement("ul");
+      agentList.className = "list";
+      for (const file of info.changed_by_agent) agentList.append(Object.assign(document.createElement("li"), { textContent: file }));
+      if (!info.changed_by_agent.length) agentList.append(Object.assign(document.createElement("li"), { textContent: "이번 서버 실행에서 에이전트가 바꾼 파일이 없습니다." }));
+      const undo = document.createElement("button");
+      undo.type = "button";
+      undo.textContent = "에이전트 변경 모두 되돌리기";
+      undo.disabled = !info.changed_by_agent.length;
+      undo.style.marginTop = "10px";
+      undo.addEventListener("click", async () => {
+        if (!confirm(`에이전트가 이번 서버 실행에서 수정·생성·삭제한 ${info.changed_by_agent.length}개 항목을 시작 전 상태로 되돌릴까요?`)) return;
+        try {
+          const result = await api("/api/undo", { method: "POST", body: "{}" });
+          status.textContent = `되돌림 ${result.restored.length}건${result.skipped.length ? ` · 외부에서 다시 바뀌어 건너뜀 ${result.skipped.length}건` : ""}`;
+          renderProject(result.project);
+        } catch (error) { status.textContent = `되돌리기 실패: ${error.message}`; }
+      });
+      const undoNote = document.createElement("p");
+      undoNote.className = "muted";
+      undoNote.textContent = "삭제·수정 전 백업은 서버를 끄면 사라집니다. 그 뒤에는 Git으로 되돌리세요.";
+
       dialogBody.replaceChildren(
         ...section("토큰 사용량", usageGrid, usageNote),
+        ...section(`에이전트가 바꾼 파일 (${info.changed_by_agent.length})`, agentList, undo, undoNote),
         ...section(`장기 기억 (${info.memory.length})`, memoryList, memoryForm),
         ...section("최근 변경 파일", changes, indexNote),
       );
@@ -556,7 +620,7 @@
     $("#dialog-close").addEventListener("click", () => dialog.close());
 
     loadModels()
-      .then(() => refreshSessions())
+      .then(() => { loadUnityCredits(); return refreshSessions(); })
       .catch((error) => { $("#online").classList.add("offline"); status.textContent = `서버 연결 실패: ${error.message}`; });
     input.focus();
   </script>
