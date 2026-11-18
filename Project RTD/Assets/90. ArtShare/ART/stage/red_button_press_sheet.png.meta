@@ -2,6 +2,13 @@ fileFormatVersion: 2
 guid: 32f5cc7983194f3984ce07b899db3c88
 TextureImporter:
   externalObjects: {}
+  serializedVersion: 13
+  textureType: 0
+  textureShape: 1
+  nPOTScale: 0
+  alphaIsTransparency: 1
+  mipmaps:
+    enableMipMap: 0
   userData:
   assetBundleName:
   assetBundleVariant:
