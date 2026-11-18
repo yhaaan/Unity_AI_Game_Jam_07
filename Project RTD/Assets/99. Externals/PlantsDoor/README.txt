@@ -50,3 +50,7 @@ Unity  (Unity/PlantsDoor 폴더를 Assets 안에 넣기)
     "Jump Wall"          → 연구소 기둥 그림 (원래 크기 그대로)
     섬 바닥("Surface")   → 식물 꾸밈 (플레이어 뒤, 낮은 풀 몇 개는 앞). 시작점/문/벽/게이트/장치 자리는 비움
     배치는 씬 이름으로 고정 시드라 스테이지마다 항상 같은 모습
+
+섬 발판 (Resources/Islands)  8종: dirt-pipe, lab-rock, root-fossil, sand-fossil, dirt-roots, sand-arch, slate, red-strata
+  islands.json: size(px), top = 윗면(밟는 면) 외곽선이 시작하는 줄(px). 100 PPU, 가운데 피벗
+  배치: 스프라이트 위치 y = 바닥 콜라이더 윗면 - (top - size.y/2)/100 * scale

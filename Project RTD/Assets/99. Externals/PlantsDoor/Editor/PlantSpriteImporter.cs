@@ -8,7 +8,7 @@ namespace ChimeraGroove.Plants
     {
         void OnPreprocessTexture()
         {
-            if (!assetPath.Contains("/Resources/Plants/") && !assetPath.Contains("/Resources/LabDoor/") && !assetPath.Contains("/Resources/Walls/")) return;
+            if (!assetPath.Contains("/Resources/Plants/") && !assetPath.Contains("/Resources/LabDoor/") && !assetPath.Contains("/Resources/Walls/") && !assetPath.Contains("/Resources/Islands/")) return;
             var ti = (TextureImporter)assetImporter;
             ti.textureType = TextureImporterType.Sprite;
             ti.spriteImportMode = SpriteImportMode.Single;
