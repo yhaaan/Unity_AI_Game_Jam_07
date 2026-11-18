@@ -1,0 +1,38 @@
+{
+ "wall": "lab-barrier",
+ "width": 364,
+ "natural_height": 1082,
+ "min_height": 400,
+ "slices": [
+  {
+   "id": "cap",
+   "file": "cap.png",
+   "h": 123,
+   "stretch": false
+  },
+  {
+   "id": "top",
+   "file": "top.png",
+   "h": 84,
+   "stretch": false
+  },
+  {
+   "id": "mid",
+   "file": "mid.png",
+   "h": 726,
+   "stretch": true
+  },
+  {
+   "id": "bottom",
+   "file": "bottom.png",
+   "h": 81,
+   "stretch": false
+  },
+  {
+   "id": "base",
+   "file": "base.png",
+   "h": 72,
+   "stretch": false
+  }
+ ]
+}

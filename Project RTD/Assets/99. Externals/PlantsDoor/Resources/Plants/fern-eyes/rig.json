@@ -1,0 +1,104 @@
+{
+ "plant": "fern-eyes",
+ "size": [
+  389,
+  411
+ ],
+ "base": [
+  179,
+  404
+ ],
+ "layers": [
+  {
+   "id": "base",
+   "file": "parts/base.png",
+   "rect": [
+    86,
+    279,
+    201,
+    126
+   ],
+   "bend": {
+    "y0": 404,
+    "y1": 292,
+    "amp": 2,
+    "spread": 0.02,
+    "lag": 0
+   }
+  },
+  {
+   "id": "frond-right",
+   "file": "parts/frond-right.png",
+   "rect": [
+    185,
+    44,
+    198,
+    255
+   ],
+   "bend": {
+    "y0": 404,
+    "y1": 45,
+    "amp": 12,
+    "spread": 0.06,
+    "lag": 0.35
+   }
+  },
+  {
+   "id": "frond-left",
+   "file": "parts/frond-left.png",
+   "rect": [
+    6,
+    6,
+    199,
+    291
+   ],
+   "bend": {
+    "y0": 404,
+    "y1": 6,
+    "amp": 14,
+    "spread": 0.06,
+    "lag": 0
+   }
+  },
+  {
+   "id": "eye-0",
+   "file": "parts/eye-0.png",
+   "rect": [
+    86,
+    102,
+    81,
+    47
+   ],
+   "attach": "frond-left",
+   "anchor": [
+    124,
+    104
+   ],
+   "follow": 1.0,
+   "blink": [
+    3.4,
+    0.0
+   ]
+  },
+  {
+   "id": "eye-1",
+   "file": "parts/eye-1.png",
+   "rect": [
+    257,
+    186,
+    70,
+    47
+   ],
+   "attach": "frond-right",
+   "anchor": [
+    293,
+    188
+   ],
+   "follow": 1.0,
+   "blink": [
+    4.3,
+    0.37
+   ]
+  }
+ ]
+}

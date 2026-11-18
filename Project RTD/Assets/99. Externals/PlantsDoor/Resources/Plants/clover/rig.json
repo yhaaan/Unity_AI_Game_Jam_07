@@ -1,0 +1,64 @@
+{
+ "plant": "clover",
+ "size": [
+  311,
+  212
+ ],
+ "base": [
+  151,
+  205
+ ],
+ "layers": [
+  {
+   "id": "sprig-mid",
+   "file": "parts/sprig-mid.png",
+   "rect": [
+    87,
+    6,
+    210,
+    200
+   ],
+   "bend": {
+    "y0": 205,
+    "y1": 6,
+    "amp": 11,
+    "spread": 0.05,
+    "lag": 0
+   }
+  },
+  {
+   "id": "sprig-left",
+   "file": "parts/sprig-left.png",
+   "rect": [
+    6,
+    73,
+    97,
+    115
+   ],
+   "bend": {
+    "y0": 205,
+    "y1": 73,
+    "amp": 9,
+    "spread": 0.05,
+    "lag": 0.25
+   }
+  },
+  {
+   "id": "sprig-right",
+   "file": "parts/sprig-right.png",
+   "rect": [
+    195,
+    83,
+    110,
+    98
+   ],
+   "bend": {
+    "y0": 205,
+    "y1": 83,
+    "amp": 9,
+    "spread": 0.05,
+    "lag": 0.4
+   }
+  }
+ ]
+}

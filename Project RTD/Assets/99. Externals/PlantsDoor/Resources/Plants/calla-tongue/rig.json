@@ -1,0 +1,134 @@
+{
+ "plant": "calla-tongue",
+ "size": [
+  283,
+  333
+ ],
+ "base": [
+  124,
+  326
+ ],
+ "layers": [
+  {
+   "id": "leaf",
+   "file": "parts/leaf.png",
+   "rect": [
+    106,
+    240,
+    100,
+    87
+   ],
+   "attach": "stem",
+   "anchor": [
+    114,
+    288
+   ],
+   "follow": 0.25,
+   "wob": [
+    3.5,
+    2.6,
+    0.55
+   ]
+  },
+  {
+   "id": "stem",
+   "file": "parts/stem.png",
+   "rect": [
+    15,
+    183,
+    98,
+    144
+   ],
+   "bend": {
+    "y0": 326,
+    "y1": 200,
+    "amp": 10,
+    "spread": 0,
+    "lag": 0.12
+   }
+  },
+  {
+   "id": "head",
+   "file": "parts/head.png",
+   "rect": [
+    6,
+    6,
+    271,
+    210
+   ],
+   "attach": "stem",
+   "anchor": [
+    53,
+    201
+   ],
+   "follow": 1.0,
+   "wob": [
+    4,
+    2.2,
+    0.0
+   ],
+   "squash": 0.03
+  },
+  {
+   "id": "tongue",
+   "file": "parts/tongue.png",
+   "rect": [
+    159,
+    116,
+    59,
+    70
+   ],
+   "attach": "head",
+   "anchor": [
+    189,
+    118
+   ],
+   "follow": 1.0,
+   "wob": [
+    8,
+    0.9,
+    0
+   ]
+  },
+  {
+   "id": "head-eye-0",
+   "file": "parts/head-eye-0.png",
+   "rect": [
+    118,
+    63,
+    55,
+    33
+   ],
+   "attach": "head",
+   "anchor": [
+    145,
+    65
+   ],
+   "follow": 1.0,
+   "blink": [
+    3.6,
+    0.2
+   ]
+  },
+  {
+   "id": "head-eye-1",
+   "file": "parts/head-eye-1.png",
+   "rect": [
+    179,
+    68,
+    48,
+    30
+   ],
+   "attach": "head",
+   "anchor": [
+    203,
+    70
+   ],
+   "follow": 1.0,
+   "blink": [
+    3.65,
+    0.2
+   ]
+  }
+ ]
+}

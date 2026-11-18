@@ -1,0 +1,30 @@
+{
+ "plant": "grass-tall",
+ "size": [
+  272,
+  248
+ ],
+ "base": [
+  136,
+  241
+ ],
+ "layers": [
+  {
+   "id": "tuft",
+   "file": "parts/tuft.png",
+   "rect": [
+    6,
+    6,
+    260,
+    236
+   ],
+   "bend": {
+    "y0": 241,
+    "y1": 6,
+    "amp": 16,
+    "spread": 0.1,
+    "lag": 0
+   }
+  }
+ ]
+}

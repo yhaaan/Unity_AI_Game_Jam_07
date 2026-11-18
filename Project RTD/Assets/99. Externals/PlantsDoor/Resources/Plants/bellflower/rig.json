@@ -1,0 +1,156 @@
+{
+ "plant": "bellflower",
+ "size": [
+  316,
+  324
+ ],
+ "base": [
+  156,
+  317
+ ],
+ "layers": [
+  {
+   "id": "leaf-left",
+   "file": "parts/leaf-left.png",
+   "rect": [
+    45,
+    234,
+    108,
+    84
+   ],
+   "attach": "stem",
+   "anchor": [
+    146,
+    274
+   ],
+   "follow": 0.25,
+   "wob": [
+    3.5,
+    2.6,
+    0.15
+   ]
+  },
+  {
+   "id": "leaf-right",
+   "file": "parts/leaf-right.png",
+   "rect": [
+    184,
+    234,
+    88,
+    83
+   ],
+   "attach": "stem",
+   "anchor": [
+    192,
+    278
+   ],
+   "follow": 0.25,
+   "wob": [
+    -3.5,
+    2.6,
+    0.55
+   ]
+  },
+  {
+   "id": "stem",
+   "file": "parts/stem.png",
+   "rect": [
+    55,
+    6,
+    200,
+    312
+   ],
+   "bend": {
+    "y0": 317,
+    "y1": 25,
+    "amp": 12,
+    "spread": 0,
+    "lag": 0.12
+   }
+  },
+  {
+   "id": "head-0",
+   "file": "parts/head-0.png",
+   "rect": [
+    6,
+    95,
+    134,
+    130
+   ],
+   "attach": "stem",
+   "anchor": [
+    77,
+    103
+   ],
+   "follow": 0.35,
+   "wob": [
+    7,
+    2.2,
+    0.0
+   ],
+   "squash": 0
+  },
+  {
+   "id": "head-0-eye-0",
+   "file": "parts/head-0-eye-0.png",
+   "rect": [
+    42,
+    142,
+    49,
+    30
+   ],
+   "attach": "head-0",
+   "anchor": [
+    66,
+    144
+   ],
+   "follow": 1.0,
+   "blink": [
+    3.6,
+    0.2
+   ]
+  },
+  {
+   "id": "head-1",
+   "file": "parts/head-1.png",
+   "rect": [
+    170,
+    53,
+    140,
+    127
+   ],
+   "attach": "stem",
+   "anchor": [
+    201,
+    109
+   ],
+   "follow": 0.35,
+   "wob": [
+    7,
+    2.5,
+    0.4
+   ],
+   "squash": 0
+  },
+  {
+   "id": "head-1-eye-0",
+   "file": "parts/head-1-eye-0.png",
+   "rect": [
+    209,
+    98,
+    39,
+    28
+   ],
+   "attach": "head-1",
+   "anchor": [
+    228,
+    100
+   ],
+   "follow": 1.0,
+   "blink": [
+    4.3,
+    0.65
+   ]
+  }
+ ]
+}

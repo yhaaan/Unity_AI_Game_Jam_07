@@ -1,0 +1,119 @@
+{
+ "plant": "flower-nose",
+ "size": [
+  376,
+  457
+ ],
+ "base": [
+  194,
+  450
+ ],
+ "layers": [
+  {
+   "id": "leaf-left",
+   "file": "parts/leaf-left.png",
+   "rect": [
+    57,
+    343,
+    119,
+    89
+   ],
+   "attach": "stem",
+   "anchor": [
+    165,
+    403
+   ],
+   "follow": 0.25,
+   "wob": [
+    3.5,
+    2.6,
+    0.15
+   ]
+  },
+  {
+   "id": "leaf-right",
+   "file": "parts/leaf-right.png",
+   "rect": [
+    214,
+    338,
+    153,
+    98
+   ],
+   "attach": "stem",
+   "anchor": [
+    219,
+    410
+   ],
+   "follow": 0.25,
+   "wob": [
+    -3.5,
+    2.6,
+    0.55
+   ]
+  },
+  {
+   "id": "stem",
+   "file": "parts/stem.png",
+   "rect": [
+    159,
+    274,
+    84,
+    177
+   ],
+   "bend": {
+    "y0": 450,
+    "y1": 300,
+    "amp": 9,
+    "spread": 0,
+    "lag": 0.12
+   }
+  },
+  {
+   "id": "head",
+   "file": "parts/head.png",
+   "rect": [
+    6,
+    6,
+    364,
+    314
+   ],
+   "attach": "stem",
+   "anchor": [
+    201,
+    294
+   ],
+   "follow": 1.0,
+   "wob": [
+    4,
+    2.2,
+    0.0
+   ],
+   "squash": 0.03
+  },
+  {
+   "id": "nose",
+   "file": "parts/nose.png",
+   "rect": [
+    100,
+    104,
+    149,
+    154
+   ],
+   "attach": "head",
+   "anchor": [
+    177,
+    106
+   ],
+   "follow": 1.0,
+   "wob": [
+    5,
+    1.7,
+    0
+   ],
+   "sniff": [
+    0.08,
+    2.4
+   ]
+  }
+ ]
+}

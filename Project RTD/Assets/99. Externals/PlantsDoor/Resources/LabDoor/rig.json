@@ -1,0 +1,35 @@
+{
+ "door": "lab-door",
+ "size": [
+  671,
+  759
+ ],
+ "frame": {
+  "file": "frame.png"
+ },
+ "panel": {
+  "file": "panel.png",
+  "size": [
+   414,
+   698
+  ]
+ },
+ "opening": {
+  "x0": 126,
+  "x1": 542,
+  "top": 205,
+  "floor": 753,
+  "post_l": 29,
+  "post_r": 639
+ },
+ "lamp": {
+  "x": 330,
+  "y": 88,
+  "r": 38,
+  "rgb": [
+   229,
+   183,
+   70
+  ]
+ }
+}

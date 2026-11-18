@@ -1,0 +1,113 @@
+{
+ "plant": "flower-buck",
+ "size": [
+  284,
+  332
+ ],
+ "base": [
+  149,
+  325
+ ],
+ "layers": [
+  {
+   "id": "leaf",
+   "file": "parts/leaf.png",
+   "rect": [
+    91,
+    235,
+    177,
+    91
+   ],
+   "attach": "stem",
+   "anchor": [
+    194,
+    265
+   ],
+   "follow": 0.25,
+   "wob": [
+    3.5,
+    2.6,
+    0.55
+   ]
+  },
+  {
+   "id": "stem",
+   "file": "parts/stem.png",
+   "rect": [
+    135,
+    130,
+    143,
+    195
+   ],
+   "bend": {
+    "y0": 325,
+    "y1": 185,
+    "amp": 10,
+    "spread": 0,
+    "lag": 0.12
+   }
+  },
+  {
+   "id": "head",
+   "file": "parts/head.png",
+   "rect": [
+    6,
+    6,
+    244,
+    197
+   ],
+   "attach": "stem",
+   "anchor": [
+    228,
+    154
+   ],
+   "follow": 1.0,
+   "wob": [
+    4,
+    2.2,
+    0.0
+   ],
+   "squash": 0.03
+  },
+  {
+   "id": "head-eye-0",
+   "file": "parts/head-eye-0.png",
+   "rect": [
+    51,
+    91,
+    46,
+    32
+   ],
+   "attach": "head",
+   "anchor": [
+    74,
+    93
+   ],
+   "follow": 1.0,
+   "blink": [
+    3.6,
+    0.2
+   ]
+  },
+  {
+   "id": "head-eye-1",
+   "file": "parts/head-eye-1.png",
+   "rect": [
+    102,
+    92,
+    52,
+    33
+   ],
+   "attach": "head",
+   "anchor": [
+    128,
+    94
+   ],
+   "follow": 1.0,
+   "blink": [
+    3.65,
+    0.2
+   ]
+  }
+ ]
+}

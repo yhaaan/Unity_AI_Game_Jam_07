@@ -1,0 +1,51 @@
+{
+ "plant": "wheat",
+ "size": [
+  302,
+  251
+ ],
+ "base": [
+  158,
+  244
+ ],
+ "layers": [
+  {
+   "id": "grass",
+   "file": "parts/grass.png",
+   "rect": [
+    6,
+    6,
+    256,
+    239
+   ],
+   "bend": {
+    "y0": 244,
+    "y1": 6,
+    "amp": 13,
+    "spread": 0.08,
+    "lag": 0
+   }
+  },
+  {
+   "id": "seedhead",
+   "file": "parts/seedhead.png",
+   "rect": [
+    182,
+    6,
+    114,
+    111
+   ],
+   "attach": "grass",
+   "anchor": [
+    196,
+    26
+   ],
+   "follow": 1.0,
+   "wob": [
+    7,
+    2.1,
+    0.2
+   ]
+  }
+ ]
+}
