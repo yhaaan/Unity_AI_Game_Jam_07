@@ -37,13 +37,16 @@ namespace ProjectRTD.Debugging
 
             float scale = Mathf.Min(2f, Mathf.Min((Screen.width - 20f) / 330f, (Screen.height - 20f) / 270f));
             var previousMatrix = GUI.matrix;
+            var previousFont = GUI.skin.font;
             try
             {
+                GUI.skin.font = ProjectRTD.Core.GameTypography.GuiFont;
                 GUIUtility.ScaleAroundPivot(new Vector2(scale, scale), new Vector2(10f, 10f));
                 DrawPanel();
             }
             finally
             {
+                GUI.skin.font = previousFont;
                 GUI.matrix = previousMatrix;
             }
         }

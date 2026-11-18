@@ -92,13 +92,16 @@ namespace ProjectRTD.Core
             if (!showPanel) return;
             const float scale = 2f;
             var previousMatrix = GUI.matrix;
+            var previousFont = GUI.skin.font;
             try
             {
+                GUI.skin.font = GameTypography.GuiFont;
                 GUI.matrix = previousMatrix * Matrix4x4.Scale(new Vector3(scale, scale, 1f));
                 DrawPanel(scale);
             }
             finally
             {
+                GUI.skin.font = previousFont;
                 GUI.matrix = previousMatrix;
             }
         }
