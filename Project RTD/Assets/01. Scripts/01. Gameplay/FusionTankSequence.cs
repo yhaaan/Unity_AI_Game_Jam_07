@@ -137,16 +137,16 @@ namespace ProjectRTD.Gameplay
                 if (sh)
                 {
                     partMat = new Material(sh) { name = "Underwater Parts" };
-                    partMat.SetFloat("_Wave", .006f); partMat.SetFloat("_Caustic", .2f); partMat.SetFloat("_TintAmt", .28f);
+                    partMat.SetFloat("_Wave", .006f); partMat.SetFloat("_Caustic", .06f); partMat.SetFloat("_TintAmt", .28f);
                     waterMat = new Material(sh) { name = "Water Body" };
-                    waterMat.SetFloat("_Wave", .003f); waterMat.SetFloat("_Caustic", .55f); waterMat.SetFloat("_TintAmt", 0f);
+                    waterMat.SetFloat("_Wave", .003f); waterMat.SetFloat("_Caustic", 0f); waterMat.SetFloat("_TintAmt", 0f);
                     waterMat.SetFloat("_CausticScale", 1.1f);
                 }
                 waterTint = Sr("water", tank, stage, new Vector2(0f, TankY), k, 55);            // same silhouette, tinted cyan
                 if (waterMat) { waterMat.mainTexture = tank.texture; waterTint.sharedMaterial = waterMat; }
                 // the water's top seen a little from above
                 surfacePlane = Sr("surface plane", Disc, stage, new Vector2(0f, SurfaceY + TankY), 1f, 57);
-                surfacePlane.color = new Color(.8f, .97f, 1f, .32f);
+                surfacePlane.color = new Color(.8f, .97f, 1f, .2f);
                 // floating specks
                 for (int i = 0; i < 26; i++)
                 {
@@ -156,7 +156,6 @@ namespace ProjectRTD.Gameplay
                 }
                 var deep = Sr("water deep", tank, stage, new Vector2(0f, TankY - .5f), k * .96f, 56);
                 deep.color = new Color(.05f, .35f, .75f, .16f);
-                for (int i = 0; i < 24; i++) { var w = Sr("surface", Disc, stage, Vector2.zero, 1f, 57); w.color = new Color(.85f, 1f, 1f, .55f); surface.Add(w); }
                 for (int i = 0; i < 6; i++) { var c = Sr("caustic", Disc, stage, Vector2.zero, 1f, 54); c.color = new Color(1f, 1f, 1f, .07f); caustics.Add(c); }
                 var front = Sr("tank front", tank, stage, new Vector2(0f, TankY), k, 58);       // glass highlights over the parts
                 front.color = new Color(1f, 1f, 1f, .42f);
