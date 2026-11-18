@@ -8,6 +8,7 @@
 [Uu]ser[Ss]ettings/
 [Mm]emoryCaptures/
 [Rr]ecordings/
+[Cc]aptures/
 
 # IDE and editor state
 .vs/
@@ -35,5 +36,10 @@ crashlytics-build.properties
 .env.*
 !.env.example
 *.local.json
+.unity-game-jam-state.json
 npm-debug.log*
 
+
+# OS metadata
+__MACOSX/
+.DS_Store
