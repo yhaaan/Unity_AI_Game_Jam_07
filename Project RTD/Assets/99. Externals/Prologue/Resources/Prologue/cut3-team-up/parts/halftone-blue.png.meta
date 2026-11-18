@@ -1,0 +1,2030 @@
+fileFormatVersion: 2
+guid: 3b9d022984f5e4a70a351df5c26c6292
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6309616609546491602
+    second: halftone-blue_0
+  - first:
+      213: -4490459143540060354
+    second: halftone-blue_1
+  - first:
+      213: 6392128050381929040
+    second: halftone-blue_2
+  - first:
+      213: -3423824356680842730
+    second: halftone-blue_3
+  - first:
+      213: -8579174563244525898
+    second: halftone-blue_4
+  - first:
+      213: -1701065838689831803
+    second: halftone-blue_5
+  - first:
+      213: 7545560970706284811
+    second: halftone-blue_6
+  - first:
+      213: 436519756591836228
+    second: halftone-blue_7
+  - first:
+      213: -5481985058761814018
+    second: halftone-blue_8
+  - first:
+      213: -4993812186927669419
+    second: halftone-blue_9
+  - first:
+      213: 7618057150778693421
+    second: halftone-blue_10
+  - first:
+      213: 6105046878565950987
+    second: halftone-blue_11
+  - first:
+      213: -1847248801495394103
+    second: halftone-blue_12
+  - first:
+      213: -2078792333290556307
+    second: halftone-blue_13
+  - first:
+      213: 8531920958818498662
+    second: halftone-blue_14
+  - first:
+      213: 9183645785190900513
+    second: halftone-blue_15
+  - first:
+      213: -7477630748347457834
+    second: halftone-blue_16
+  - first:
+      213: -804566421252214524
+    second: halftone-blue_17
+  - first:
+      213: 9134669120572505551
+    second: halftone-blue_18
+  - first:
+      213: 9132001789696716310
+    second: halftone-blue_19
+  - first:
+      213: 2465317763781837257
+    second: halftone-blue_20
+  - first:
+      213: -7899827017103042001
+    second: halftone-blue_21
+  - first:
+      213: -9150673708059499296
+    second: halftone-blue_22
+  - first:
+      213: -8235480614738680274
+    second: halftone-blue_23
+  - first:
+      213: 7889303948195075133
+    second: halftone-blue_24
+  - first:
+      213: -4804093729528696697
+    second: halftone-blue_25
+  - first:
+      213: -1645844561958872584
+    second: halftone-blue_26
+  - first:
+      213: -2328839885733897336
+    second: halftone-blue_27
+  - first:
+      213: 8362867886343543557
+    second: halftone-blue_28
+  - first:
+      213: 5037498958972275038
+    second: halftone-blue_29
+  - first:
+      213: -3646519441796412073
+    second: halftone-blue_30
+  - first:
+      213: 1444961936880584983
+    second: halftone-blue_31
+  - first:
+      213: 8542940465620172946
+    second: halftone-blue_32
+  - first:
+      213: -7434504845757172195
+    second: halftone-blue_33
+  - first:
+      213: -1628032571564728908
+    second: halftone-blue_34
+  - first:
+      213: 3866724214756813847
+    second: halftone-blue_35
+  - first:
+      213: 6534143092067164080
+    second: halftone-blue_36
+  - first:
+      213: 6516100195915793257
+    second: halftone-blue_37
+  - first:
+      213: 2517796527122112272
+    second: halftone-blue_38
+  - first:
+      213: -896708487703628798
+    second: halftone-blue_39
+  - first:
+      213: -1287170791058571249
+    second: halftone-blue_40
+  - first:
+      213: -1469554620229948906
+    second: halftone-blue_41
+  - first:
+      213: 3358777691467954394
+    second: halftone-blue_42
+  - first:
+      213: -5815037651110448422
+    second: halftone-blue_43
+  - first:
+      213: 375604936033323308
+    second: halftone-blue_44
+  - first:
+      213: -6735783728326310051
+    second: halftone-blue_45
+  - first:
+      213: 4590039199491706613
+    second: halftone-blue_46
+  - first:
+      213: -921095527355268891
+    second: halftone-blue_47
+  - first:
+      213: 6936176421631680020
+    second: halftone-blue_48
+  - first:
+      213: 3522605293413159153
+    second: halftone-blue_49
+  - first:
+      213: -2519526561338628875
+    second: halftone-blue_50
+  - first:
+      213: 7511991713858866639
+    second: halftone-blue_51
+  - first:
+      213: 4259170044284991817
+    second: halftone-blue_52
+  - first:
+      213: 8194651105781868383
+    second: halftone-blue_53
+  - first:
+      213: 7141428861020471748
+    second: halftone-blue_54
+  - first:
+      213: 7835674303581010868
+    second: halftone-blue_55
+  - first:
+      213: -8020889728033228023
+    second: halftone-blue_56
+  - first:
+      213: 4561932638306040410
+    second: halftone-blue_57
+  - first:
+      213: 2881451800023204389
+    second: halftone-blue_58
+  - first:
+      213: -1163558346123347810
+    second: halftone-blue_59
+  - first:
+      213: -1971580232969707150
+    second: halftone-blue_60
+  - first:
+      213: -8864519810256694371
+    second: halftone-blue_61
+  - first:
+      213: 6412570707756162111
+    second: halftone-blue_62
+  - first:
+      213: -4741174194649715859
+    second: halftone-blue_63
+  - first:
+      213: -7251747070322929698
+    second: halftone-blue_64
+  - first:
+      213: -6218172370974611183
+    second: halftone-blue_65
+  - first:
+      213: 3289392782936497648
+    second: halftone-blue_66
+  - first:
+      213: -8569335780709365929
+    second: halftone-blue_67
+  - first:
+      213: 8464362761326673909
+    second: halftone-blue_68
+  - first:
+      213: -2816920277752121204
+    second: halftone-blue_69
+  - first:
+      213: -5593677113950023364
+    second: halftone-blue_70
+  - first:
+      213: 8247743158334853925
+    second: halftone-blue_71
+  - first:
+      213: -8941922599216812836
+    second: halftone-blue_72
+  - first:
+      213: 4356915786203849605
+    second: halftone-blue_73
+  - first:
+      213: 8704443113724668010
+    second: halftone-blue_74
+  - first:
+      213: 7994505086360765192
+    second: halftone-blue_75
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: halftone-blue_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1524
+        width: 20
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e29a3179f1dbf68a0800000000000000
+      internalID: -6309616609546491602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_1
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 1518
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3fc3ee433faea1c0800000000000000
+      internalID: -4490459143540060354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_2
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 1550
+        width: 17
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05a33d9489665b850800000000000000
+      internalID: 6392128050381929040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_3
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 1545
+        width: 27
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61245b643e12c70d0800000000000000
+      internalID: -3423824356680842730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_4
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 1539
+        width: 30
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b63ebb6036a0f880800000000000000
+      internalID: -8579174563244525898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_5
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 1532
+        width: 26
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5843751e1a99468e0800000000000000
+      internalID: -1701065838689831803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_6
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 1547
+        width: 20
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b01fff989b737b860800000000000000
+      internalID: 7545560970706284811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_7
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 1540
+        width: 21
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44ca815e764de0600800000000000000
+      internalID: 436519756591836228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_8
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 1535
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: effc08442a31ce3b0800000000000000
+      internalID: -5481985058761814018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_9
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 1536
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55fd82b364a62bab0800000000000000
+      internalID: -4993812186927669419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_10
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 1543
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d27d9cecd96c8b960800000000000000
+      internalID: 7618057150778693421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_11
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 1516
+        width: 31
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b06e7064acb79b450800000000000000
+      internalID: 6105046878565950987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_12
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1511
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c8d91f80014d56e0800000000000000
+      internalID: -1847248801495394103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_13
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1507
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6439640365a623e0800000000000000
+      internalID: -2078792333290556307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_14
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 1524
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 668361278e8776670800000000000000
+      internalID: 8531920958818498662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_15
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 1522
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12321514f2dd27f70800000000000000
+      internalID: 9183645785190900513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_16
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 1517
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6de163bd37e1a3890800000000000000
+      internalID: -7477630748347457834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_17
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 1531
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 401fd074a1b95d4f0800000000000000
+      internalID: -804566421252214524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1487
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcd3478ea2dd4ce70800000000000000
+      internalID: 9134669120572505551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_19
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 1502
+        width: 24
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61eaa1b8e336bbe70800000000000000
+      internalID: 9132001789696716310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_20
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 1499
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c14da0c171963220800000000000000
+      internalID: 2465317763781837257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_21
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 1499
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2a1a8ade2d2e5290800000000000000
+      internalID: -7899827017103042001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_22
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 1513
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e46b9faeb6420180800000000000000
+      internalID: -9150673708059499296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_23
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 1484
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e26a2eba302b5bd80800000000000000
+      internalID: -8235480614738680274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_24
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 1481
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d34114d34207c7d60800000000000000
+      internalID: 7889303948195075133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_25
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 1478
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 780b2c7c43e645db0800000000000000
+      internalID: -4804093729528696697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_26
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1474
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f9dee84719c829e0800000000000000
+      internalID: -1645844561958872584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_27
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 1496
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88bd110767c4eafd0800000000000000
+      internalID: -2328839885733897336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1453
+        width: 38
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50b5705c800ee0470800000000000000
+      internalID: 8362867886343543557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_29
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 1451
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5941f50d9ac8e540800000000000000
+      internalID: 5037498958972275038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_30
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 1474
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75d4b2543e5f46dc0800000000000000
+      internalID: -3646519441796412073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_31
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 1474
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7194ab1d9398d0410800000000000000
+      internalID: 1444961936880584983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_32
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 1477
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 290c99e471f9e8670800000000000000
+      internalID: 8542940465620172946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1420
+        width: 13
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1639b38b3553d890800000000000000
+      internalID: -7434504845757172195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_34
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 1448
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bd5e1970011869e0800000000000000
+      internalID: -1628032571564728908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_35
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 1448
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71c2bf0cf2d59a530800000000000000
+      internalID: 3866724214756813847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_36
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 1447
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bf5c3ad580fdaa50800000000000000
+      internalID: 6534143092067164080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_37
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 1448
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9630a6aba96dd6a50800000000000000
+      internalID: 6516100195915793257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_38
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 1420
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01f53dff99201f220800000000000000
+      internalID: 2517796527122112272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_39
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 1421
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 204f853a1604e83f0800000000000000
+      internalID: -896708487703628798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_40
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 1422
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0002b93cfc032ee0800000000000000
+      internalID: -1287170791058571249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_41
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 1421
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61ae823ebd71b9be0800000000000000
+      internalID: -1469554620229948906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_42
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 1392
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad8347bc386cc9e20800000000000000
+      internalID: 3358777691467954394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_43
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 1393
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad23a02d016dc4fa0800000000000000
+      internalID: -5815037651110448422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_44
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 1394
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c29462403ba663500800000000000000
+      internalID: 375604936033323308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_45
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 1396
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5701450360b582a0800000000000000
+      internalID: -6735783728326310051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_46
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1364
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fe42d6355813bf30800000000000000
+      internalID: 4590039199491706613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_47
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1364
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e0c9cf7f7c9733f0800000000000000
+      internalID: -921095527355268891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_48
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 1367
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41edbceb4bf324060800000000000000
+      internalID: 6936176421631680020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_49
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1335
+        width: 6
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f05dcdc9dec2e030800000000000000
+      internalID: 3522605293413159153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_50
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 1338
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f4ef3501f7d80dd0800000000000000
+      internalID: -2519526561338628875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_51
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1309
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcd4c3cd9a4ff3860800000000000000
+      internalID: 7511991713858866639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_52
+      rect:
+        serializedVersion: 2
+        x: 1906
+        y: 163
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9497797d69c9b1b30800000000000000
+      internalID: 4259170044284991817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_53
+      rect:
+        serializedVersion: 2
+        x: 1871
+        y: 130
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f57e36a73cf39b170800000000000000
+      internalID: 8194651105781868383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_54
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 134
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c109d156b37b1360800000000000000
+      internalID: 7141428861020471748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_55
+      rect:
+        serializedVersion: 2
+        x: 1915
+        y: 141
+        width: 5
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bb3a909348edbc60800000000000000
+      internalID: 7835674303581010868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_56
+      rect:
+        serializedVersion: 2
+        x: 1850
+        y: 98
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90bfff1f94310b090800000000000000
+      internalID: -8020889728033228023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_57
+      rect:
+        serializedVersion: 2
+        x: 1874
+        y: 101
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5afd7b709d3f4f30800000000000000
+      internalID: 4561932638306040410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_58
+      rect:
+        serializedVersion: 2
+        x: 1903
+        y: 108
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5220bc14529fcf720800000000000000
+      internalID: 2881451800023204389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_59
+      rect:
+        serializedVersion: 2
+        x: 1830
+        y: 70
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9870e759d53adfe0800000000000000
+      internalID: -1163558346123347810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_60
+      rect:
+        serializedVersion: 2
+        x: 1857
+        y: 70
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 271a8a7593a83a4e0800000000000000
+      internalID: -1971580232969707150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_61
+      rect:
+        serializedVersion: 2
+        x: 1885
+        y: 74
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d939c35e236eaf480800000000000000
+      internalID: -8864519810256694371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_62
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 77
+        width: 6
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3c91ec55170ef850800000000000000
+      internalID: 6412570707756162111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_63
+      rect:
+        serializedVersion: 2
+        x: 1810
+        y: 44
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6ba7a59037f33eb0800000000000000
+      internalID: -4741174194649715859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_64
+      rect:
+        serializedVersion: 2
+        x: 1836
+        y: 43
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edf0c60067e9c5b90800000000000000
+      internalID: -7251747070322929698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_65
+      rect:
+        serializedVersion: 2
+        x: 1865
+        y: 39
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 119e8e38c2d94b9a0800000000000000
+      internalID: -6218172370974611183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_66
+      rect:
+        serializedVersion: 2
+        x: 1893
+        y: 41
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fdd9a1ee4546ad20800000000000000
+      internalID: 3289392782936497648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_67
+      rect:
+        serializedVersion: 2
+        x: 1790
+        y: 21
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75706cd728a931980800000000000000
+      internalID: -8569335780709365929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_68
+      rect:
+        serializedVersion: 2
+        x: 1814
+        y: 16
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ffbbe6d515777570800000000000000
+      internalID: 8464362761326673909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_69
+      rect:
+        serializedVersion: 2
+        x: 1843
+        y: 13
+        width: 25
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c887dfb9ee948e8d0800000000000000
+      internalID: -2816920277752121204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_70
+      rect:
+        serializedVersion: 2
+        x: 1873
+        y: 9
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c31d6ca2d444f52b0800000000000000
+      internalID: -5593677113950023364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_71
+      rect:
+        serializedVersion: 2
+        x: 1908
+        y: 6
+        width: 12
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 523153f34bed57270800000000000000
+      internalID: 8247743158334853925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_72
+      rect:
+        serializedVersion: 2
+        x: 1771
+        y: 1
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdce4a8b5c8e7e380800000000000000
+      internalID: -8941922599216812836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_73
+      rect:
+        serializedVersion: 2
+        x: 1793
+        y: 0
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 583e8f8d2dfd67c30800000000000000
+      internalID: 4356915786203849605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_74
+      rect:
+        serializedVersion: 2
+        x: 1819
+        y: 0
+        width: 25
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a686721d4e46cc870800000000000000
+      internalID: 8704443113724668010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: halftone-blue_75
+      rect:
+        serializedVersion: 2
+        x: 1853
+        y: 0
+        width: 21
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8034693f40032fe60800000000000000
+      internalID: 7994505086360765192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

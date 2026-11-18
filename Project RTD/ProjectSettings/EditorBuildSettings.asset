@@ -9,11 +9,15 @@ EditorBuildSettings:
     path: Assets/00. Scenes/TitleScene.unity
     guid: b0f171df89ce2254586fba1eab090ece
   - enabled: 1
+    path: Assets/00. Scenes/PrologueScene.unity
+    guid: dd9b51ea27bab4b75ab8a20fd507c581
+  - enabled: 1
     path: Assets/00. Scenes/Stage01.unity
     guid: 48978b4c7ede4ab43904784e89a80048
   - enabled: 1
     path: Assets/00. Scenes/EndingScene.unity
     guid: 6efe5bc5351b65f479a54fc5f26233c6
   m_configObjects:
+    com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
