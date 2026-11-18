@@ -8,6 +8,22 @@ using UnityEngine;
 public sealed class PlayerPartBuildTests
 {
     [Test]
+    public void Stage01KeepsPlayerEffectsAlongsideAssemblyIntro()
+    {
+        var scene = UnityEditor.SceneManagement.EditorSceneManager.OpenPreviewScene("Assets/00. Scenes/Stage01.unity");
+        try
+        {
+            var roots = scene.GetRootGameObjects();
+            var player = roots.SelectMany(r => r.GetComponentsInChildren<PlayerPartLoadout>()).Single();
+            Assert.That(player.GetComponentInChildren<PlayerOutline>(), Is.Not.Null);
+            Assert.That(player.GetComponent<PlayerStatPopup>(), Is.Not.Null);
+            Assert.That(player.GetComponent<PlayerCombineFx>(), Is.Not.Null);
+            Assert.That(roots.SelectMany(r => r.GetComponentsInChildren<StageAssemblyIntro>()).Count(), Is.EqualTo(1));
+        }
+        finally { UnityEditor.SceneManagement.EditorSceneManager.ClosePreviewScene(scene); }
+    }
+
+    [Test]
     public void GlideBudgetComesFromBodySkillAndLastsTwoSeconds()
     {
         var catalog = AssetDatabase.LoadAssetAtPath<PartCatalog>("Assets/06. Data/PartCatalog.asset");
