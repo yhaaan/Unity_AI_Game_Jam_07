@@ -29,7 +29,7 @@ namespace ProjectRTD.Gameplay
             var art = SharedMenuArt.Loaded;
             if (!art) return;
             foreach (var crate in stage.GetComponentsInChildren<StagePowerCrate2D>())
-                DressCollider(crate.GetComponent<BoxCollider2D>(), art.crate, Vector2Int.one);
+                DressCrate(crate.GetComponent<BoxCollider2D>(), art.crate, art.crateBody);
             foreach (var plate in stage.GetComponentsInChildren<MassPressurePlate2D>())
             {
                 var visual = DressCollider(plate.GetComponent<BoxCollider2D>(), art.plateSheet, art.plateGrid);
@@ -54,6 +54,18 @@ namespace ProjectRTD.Gameplay
             foreach (var sr in root.GetComponentsInChildren<SpriteRenderer>()) sr.enabled = false;
         }
 
+        // The crate art is cropped to its opaque body so the sprite and the collider are the same box.
+        static void DressCrate(BoxCollider2D box, Texture2D texture, RectInt body)
+        {
+            if (!box || !texture) return;
+            if (body.width <= 0 || body.height <= 0) body = new RectInt(0, 0, texture.width, texture.height);
+            Hide(box.transform);
+            // Sink the art slightly so it sits in the island's grass instead of hovering on the collider line.
+            const float sink = 0.15f;
+            Make(box.transform, texture, Vector2Int.one, box.bounds.center + Vector3.down * sink, box.bounds.size, 4,
+                new Rect(body.x, body.y, body.width, body.height));
+        }
+
         static StageGimmickArt DressCollider(BoxCollider2D box, Texture2D texture, Vector2Int grid)
         {
             if (!box || !texture || grid.x < 1 || grid.y < 1) return null;
@@ -62,7 +74,7 @@ namespace ProjectRTD.Gameplay
             return Make(box.transform, texture, grid, box.bounds.center, box.bounds.size, 4);
         }
 
-        static StageGimmickArt Make(Transform parent, Texture2D tex, Vector2Int grid, Vector3 center, Vector2 size, int order)
+        static StageGimmickArt Make(Transform parent, Texture2D tex, Vector2Int grid, Vector3 center, Vector2 size, int order, Rect? crop = null)
         {
             var go = new GameObject(tex.name);
             go.transform.position = center;
@@ -72,11 +84,12 @@ namespace ProjectRTD.Gameplay
             float w = (float)tex.width / grid.x, h = (float)tex.height / grid.y;
             for (int i = 0; i < visual.frames.Length; ++i)
             {
-                var rect = new Rect(i % grid.x * w, (grid.y - 1 - i / grid.x) * h, w, h);
+                var rect = crop ?? new Rect(i % grid.x * w, (grid.y - 1 - i / grid.x) * h, w, h);
                 visual.frames[i] = Sprite.Create(tex, rect, Vector2.one * .5f, 100, 0, SpriteMeshType.FullRect);
             }
             visual.view.sprite = visual.frames[0];
             visual.view.sortingOrder = order;
+            if (crop.HasValue) { w = crop.Value.width; h = crop.Value.height; }
             go.transform.localScale = new Vector3(size.x * 100 / w, size.y * 100 / h, 1);
             go.transform.SetParent(parent, true);
             visual.enabled = visual.frames.Length > 1;
