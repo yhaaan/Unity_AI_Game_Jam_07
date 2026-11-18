@@ -25,19 +25,17 @@ namespace ProjectRTD.Core
             if (confirmAction == ConfirmAction.ReturnToTitle && gameObject.scene.name == SceneFlow.EndingScene)
             {
                 var summary = GameObject.Find("/Ending Canvas");
-                if (!summary || !Camera.main) yield break;
-                summary.SetActive(false);
+                if (summary) summary.SetActive(false);
                 // The old Enter/Space handler and the title button must not consume credit-card input.
                 confirmAction = ConfirmAction.None;
                 var roll = new GameObject("Ending Credits").AddComponent<ChimeraGroove.Ending.EndingCreditsPlayer>();
                 roll.transform.SetParent(transform, false);
-                roll.Finished += () => StartCoroutine(ShowSummary());
-                System.Collections.IEnumerator ShowSummary()
+                roll.Finished += FinishCredits;
+                void FinishCredits()
                 {
-                    yield return null; // do not submit the return prompt with the last card's click
-                    Destroy(roll.gameObject);
-                    summary.SetActive(true);
-                    confirmAction = ConfirmAction.ReturnToTitle;
+                    roll.Finished -= FinishCredits;
+                    roll.enabled = false; // keep the final card visible without accepting further input
+                    StartCoroutine(FadeToPrologue());
                 }
                 yield break;
             }
@@ -45,15 +43,7 @@ namespace ProjectRTD.Core
 
             var logoObject = GameObject.Find("/Title Canvas/Title Logo");
             if (logoObject == null || !logoObject.TryGetComponent<RectTransform>(out var logo)) yield break;
-
-            var art = SharedMenuArt.Loaded;
-            if (art)
-            {
-                logo.GetComponent<UnityEngine.UI.Image>().enabled = false;
-                MenuArtView.Art(logo, art.title, 0,0,1,1);
-                var levels = MenuArtView.Action(logo.parent, art.resumePanel, "Level Select", .67f,.09f,.26f,.12f, OpenLevelSelect);
-                MenuArtView.Label(levels.transform, "LEVEL SELECT");
-            }
+            // The logo and the Start / Exit buttons are placed in TitleScene itself; only the intro runs here.
             if (titleIntroShown) yield break;
             titleIntroShown = true;
             var group = logoObject.AddComponent<CanvasGroup>();
@@ -67,6 +57,27 @@ namespace ProjectRTD.Core
             }
             group.alpha = 1f;
             logo.localScale = Vector3.one;
+        }
+
+        private System.Collections.IEnumerator FadeToPrologue()
+        {
+            var overlay = new GameObject("Credits fade", typeof(Canvas)).GetComponent<Canvas>();
+            overlay.renderMode = RenderMode.ScreenSpaceOverlay;
+            overlay.sortingOrder = short.MaxValue;
+            var curtain = new GameObject("Curtain", typeof(UnityEngine.UI.Image)).GetComponent<UnityEngine.UI.Image>();
+            curtain.rectTransform.SetParent(overlay.transform, false);
+            curtain.rectTransform.anchorMin = Vector2.zero;
+            curtain.rectTransform.anchorMax = Vector2.one;
+            curtain.rectTransform.offsetMin = curtain.rectTransform.offsetMax = Vector2.zero;
+            const float duration = .4f;
+            for (float t = 0; t < duration; t += Time.unscaledDeltaTime)
+            {
+                curtain.color = new Color(0, 0, 0, Mathf.SmoothStep(0, 1, t / duration));
+                yield return null;
+            }
+            curtain.color = Color.black;
+            ResetTitleIntro();
+            SceneFlow.LoadPrologue();
         }
 
         public void Configure(ConfirmAction action)
@@ -96,6 +107,16 @@ namespace ProjectRTD.Core
         {
             SoundManager.Play(Sfx.Confirm);
             SceneFlow.LoadLevelSelect();
+        }
+
+        public void QuitGame()
+        {
+            SoundManager.Play(Sfx.Confirm);
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
         }
 
         private void Update()

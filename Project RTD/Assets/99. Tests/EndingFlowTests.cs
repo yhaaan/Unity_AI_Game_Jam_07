@@ -8,7 +8,7 @@ using UnityEngine.TestTools;
 public class EndingFlowTests
 {
     [UnityTest]
-    public IEnumerator FinishingCreditsRestoresTheReturnScreen()
+    public IEnumerator FinishingCreditsLeadsThroughPrologueToTitle()
     {
         yield return new EnterPlayMode();
         yield return SceneManager.LoadSceneAsync(SceneFlow.EndingScene);
@@ -22,10 +22,20 @@ public class EndingFlowTests
         // Exercise the real final-card completion callback without waiting for all four holds.
         roll.SendMessage("Show", 3);
         roll.SendMessage("Next");
+        float timeout = Time.realtimeSinceStartup + 10f;
+        while (SceneManager.GetActiveScene().name == SceneFlow.EndingScene && Time.realtimeSinceStartup < timeout)
+        {
+            Assert.That(GameObject.Find("/Ending Canvas"), Is.Null);
+            yield return null;
+        }
+        Assert.That(SceneManager.GetActiveScene().name, Is.EqualTo(SceneFlow.PrologueScene));
+        yield return null;
+        var flow = Object.FindFirstObjectByType<ProjectRTD.Gameplay.PrologueFlow>();
+        Assert.That(flow, Is.Not.Null);
+        flow.SendMessage("Leave");
         yield return null;
         yield return null;
-        Assert.That(GameObject.Find("/Ending Canvas"), Is.Not.Null);
-        Assert.That(GameObject.Find("/Screen Flow/Ending Credits"), Is.Null);
+        Assert.That(SceneManager.GetActiveScene().name, Is.EqualTo(SceneFlow.TitleScene));
         yield return new ExitPlayMode();
     }
 }

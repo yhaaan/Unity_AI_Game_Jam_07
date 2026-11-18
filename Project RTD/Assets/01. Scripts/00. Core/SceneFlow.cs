@@ -19,6 +19,8 @@ namespace ProjectRTD.Core
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetSession() => levelSelectReturnScene = TitleScene;
 
+        public static void LoadPrologue() => Load(PrologueScene);
+
         public static void LoadTitle()
         {
             Load(TitleScene);
