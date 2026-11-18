@@ -24,4 +24,5 @@ MonoBehaviour:
     weightDelta: 0
     healthDelta: 0
     effectIds: 07000000
-  sprite: {fileID: 0}
+  sprite: {fileID: 2602703668656435996, guid: 7de9031d830cf9341b7f25f0f511b212, type: 3}
+  groundYpx: 0

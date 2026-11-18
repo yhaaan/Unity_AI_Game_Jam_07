@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ProjectRTD.Gameplay
 {
-    public enum PartAnimal { Chicken, Monkey, Lion, Kangaroo, Duck }
+    public enum PartAnimal { Rabbit = 0, Bear = 1, Lion = 2, Axolotl = 3, Duck = 4 }
     public enum PartSlot { Head, Body, Legs }
     public enum PartEffect { SideDrift, Glide, ShortStature, BananaFrenzy, WallClimb, PredatorSafe, HunterVulnerable, Float }
 
@@ -35,6 +35,9 @@ namespace ProjectRTD.Gameplay
         public int HealthDelta => sheet.healthDelta;
         public IReadOnlyList<PartEffect> EffectIds => sheet.effectIds;
         public Sprite Sprite => sprite;
+        [SerializeField, Tooltip("다리 PNG의 위쪽부터 발바닥까지의 픽셀 거리")]
+        private int groundYpx;
+        public int GroundYpx => groundYpx;
 #if UNITY_EDITOR
         internal void ApplySheet(PartSheetRow row) => sheet = row;
 #endif
