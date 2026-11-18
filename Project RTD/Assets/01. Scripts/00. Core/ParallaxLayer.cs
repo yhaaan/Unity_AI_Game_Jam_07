@@ -19,6 +19,11 @@ namespace ProjectRTD.Core
         [Tooltip("0보다 크면 자식 타일이 이 폭 간격으로 반복된다고 보고, 카메라 주변으로 순환시킨다.")]
         [SerializeField] float loopWidth;
 
+        public enum ViewEdge { None, Bottom, Top }
+
+        [Tooltip("전경용: 세로 위치를 화면 아래/위 가장자리에 붙인다. 편집 위치의 y가 그 가장자리로부터의 오프셋이 되고 followFactor.y는 무시된다. 카메라 줌이 바뀌어도 가장자리에 붙어 있다.")]
+        [SerializeField] ViewEdge pinToViewEdge;
+
         Vector3 authoredPosition;
         Camera targetCamera;
 
@@ -55,6 +60,12 @@ namespace ProjectRTD.Core
             Vector2 cameraPosition = renderingCamera.transform.position;
             Vector2 delta = cameraPosition - referenceCameraPosition;
             Vector3 position = authoredPosition + new Vector3(delta.x * followFactor.x, delta.y * followFactor.y, 0f);
+
+            if (pinToViewEdge != ViewEdge.None && renderingCamera.orthographic)
+            {
+                float halfHeight = renderingCamera.orthographicSize;
+                position.y = cameraPosition.y + (pinToViewEdge == ViewEdge.Bottom ? -halfHeight : halfHeight) + authoredPosition.y;
+            }
 
             if (loopWidth > 0f)
                 position.x += Mathf.Round((cameraPosition.x - position.x) / loopWidth) * loopWidth;
