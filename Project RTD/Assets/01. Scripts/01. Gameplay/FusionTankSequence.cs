@@ -145,8 +145,6 @@ namespace ProjectRTD.Gameplay
                 waterTint = Sr("water", tank, stage, new Vector2(0f, TankY), k, 55);            // same silhouette, tinted cyan
                 if (waterMat) { waterMat.mainTexture = tank.texture; waterTint.sharedMaterial = waterMat; }
                 // the water's top seen a little from above
-                surfacePlane = Sr("surface plane", Disc, stage, new Vector2(0f, SurfaceY + TankY), 1f, 57);
-                surfacePlane.color = new Color(.8f, .97f, 1f, .2f);
                 // floating specks
                 for (int i = 0; i < 26; i++)
                 {
@@ -533,7 +531,8 @@ namespace ProjectRTD.Gameplay
             for (int i = dots.Count - 1; i >= 0; i--)
             {
                 var d = dots[i]; float da = t - d.t0;
-                if (da > d.life || (d.bubble && d.p.y > SurfaceY + TankY + .05f)) { Destroy(d.sr.gameObject); dots.RemoveAt(i); continue; }
+                float top = SurfaceY + TankY - .25f - (d.phase % 1f) * .9f;        // each bubble fades out at its own height
+                if (da > d.life || (d.bubble && d.p.y > top)) { Destroy(d.sr.gameObject); dots.RemoveAt(i); continue; }
                 if (d.bubble)
                 {
                     d.v.x = Mathf.Lerp(d.v.x, (d.p.x > 0f ? -1f : 1f) * whirl * 2.2f, dt * 2f);   // the whirlpool drags them round
@@ -543,7 +542,8 @@ namespace ProjectRTD.Gameplay
                     float wob = Mathf.Sin(t * 5f + d.phase) * .12f;
                     d.sr.transform.localPosition = new Vector2(d.p.x + wob, d.p.y);
                     d.sr.transform.localScale = Vector3.one * d.r * 2f * Mathf.Clamp01(da / .1f);
-                    d.sr.color = new Color(.9f, 1f, 1f, .9f);
+                    float fade = Mathf.Clamp01((top - d.p.y) / .6f);
+                    d.sr.color = new Color(.9f, 1f, 1f, .9f * fade);
                     d.sr.transform.localScale = new Vector3(d.r * 2f * (1f + Mathf.Sin(t * 9f + d.phase) * .08f), d.r * 2f * (1f - Mathf.Sin(t * 9f + d.phase) * .08f), 1f) * Mathf.Clamp01(da / .1f);
                 }
                 else
