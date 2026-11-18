@@ -27,6 +27,7 @@ namespace ProjectRTD.Gameplay
                 return;
             }
 
+            SoundManager.Play(Sfx.Respawn);
             if (player.TryGetComponent(out Rigidbody2D body))
             {
                 body.position = spawnPoint.position;

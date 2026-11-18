@@ -47,8 +47,11 @@ namespace ProjectRTD.Core
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             var camera = Camera.main;
-            if (camera != null)
-                camera.GetUniversalAdditionalCameraData().renderPostProcessing = true;
+            if (camera == null) return;
+
+            // The title art is already finished key art: show it clean, without the CRT treatment.
+            bool isTitle = scene.name == SceneFlow.TitleScene;
+            camera.GetUniversalAdditionalCameraData().renderPostProcessing = !isTitle;
         }
 
         private void RestoreDefaults()
@@ -87,9 +90,24 @@ namespace ProjectRTD.Core
         private void OnGUI()
         {
             if (!showPanel) return;
-            float width = Mathf.Min(280f, Screen.width - 16f);
-            float height = Mathf.Min(390f, Screen.height - 16f);
-            GUILayout.BeginArea(new Rect(Screen.width - width - 8f, 8f, width, height), GUI.skin.box);
+            const float scale = 2f;
+            var previousMatrix = GUI.matrix;
+            try
+            {
+                GUI.matrix = previousMatrix * Matrix4x4.Scale(new Vector3(scale, scale, 1f));
+                DrawPanel(scale);
+            }
+            finally
+            {
+                GUI.matrix = previousMatrix;
+            }
+        }
+
+        private void DrawPanel(float scale)
+        {
+            float width = Mathf.Min(280f, (Screen.width - 16f) / scale);
+            float height = Mathf.Min(390f, (Screen.height - 16f) / scale);
+            GUILayout.BeginArea(new Rect((Screen.width - 8f) / scale - width, 8f / scale, width, height), GUI.skin.box);
             GUILayout.Label("Retro TV  [F6]");
             panelScroll = GUILayout.BeginScrollView(panelScroll);
             Slider("CRT curvature", lens.intensity);

@@ -41,11 +41,14 @@ namespace ProjectRTD.Gameplay
         {
             bodies.RemoveWhere(body => body == null || !body.simulated);
 
+            bool wasPressed = IsPressed;
             CurrentMass = 0f;
             foreach (Rigidbody2D body in bodies)
             {
                 CurrentMass += body.mass;
             }
+
+            if (wasPressed != IsPressed) SoundManager.Play(IsPressed ? Sfx.PlateDown : Sfx.PlateUp);
 
             if (plateRenderer != null)
             {

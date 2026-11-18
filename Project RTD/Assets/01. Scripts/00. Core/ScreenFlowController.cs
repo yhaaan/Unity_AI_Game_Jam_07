@@ -22,16 +22,19 @@ namespace ProjectRTD.Core
 
         public void StartStage01()
         {
+            SoundManager.Play(Sfx.Confirm);
             SceneFlow.LoadStage01();
         }
 
         public void ReturnToTitle()
         {
+            SoundManager.Play(Sfx.Confirm);
             SceneFlow.LoadTitle();
         }
 
         public void RestartCurrentScene()
         {
+            SoundManager.Play(Sfx.Confirm);
             SceneFlow.RestartActiveScene();
         }
 

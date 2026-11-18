@@ -42,6 +42,7 @@ namespace ProjectRTD.Gameplay
             motor.MoveSpeed = baseSpeed * speedScale.Evaluate(next.Speed);
             motor.JumpVelocity = baseJump * jumpScale.Evaluate(next.Jump);
             Current = next;
+            ProjectRTD.Core.SoundManager.Play(ProjectRTD.Core.Sfx.Summon);
             Changed?.Invoke(next);
             return true;
         }

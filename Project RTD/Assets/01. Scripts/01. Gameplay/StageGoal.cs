@@ -11,6 +11,7 @@ namespace ProjectRTD.Gameplay
         {
             if (other.CompareTag("Player"))
             {
+                SoundManager.Play(Sfx.Goal);
                 SceneFlow.LoadEnding();
             }
         }
