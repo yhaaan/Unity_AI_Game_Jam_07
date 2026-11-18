@@ -1,5 +1,5 @@
 {
     "name": "ProjectRTD.Gameplay",
     "rootNamespace": "ProjectRTD.Gameplay",
-    "references": ["Unity.InputSystem", "ProjectRTD.Core", "UnityEngine.UI", "Unity.TextMeshPro", "ChimeraGroove", "ChimeraGroove.Prologue", "ChimeraGroove.Plants", "Unity.RenderPipelines.Universal.Runtime"]
+    "references": ["Unity.InputSystem", "Unity.Cinemachine", "ProjectRTD.Core", "UnityEngine.UI", "Unity.TextMeshPro", "ChimeraGroove", "ChimeraGroove.Prologue", "ChimeraGroove.Plants", "Unity.RenderPipelines.Universal.Runtime"]
 }

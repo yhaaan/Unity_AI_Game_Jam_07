@@ -49,6 +49,13 @@ namespace ProjectRTD.Gameplay
 
             var holder = new GameObject(Marker);
             SceneManager.MoveGameObjectToScene(holder, scene);
+            // Remove only static world signs. The drone's live target label and canvas HUD are gameplay UI.
+            foreach (var sign in stage.GetComponentsInChildren<TMPro.TextMeshPro>(true))
+                if (sign.name is "Start Marker" or "Exit Marker" or "Jump Analysis" or "Glide Instructions"
+                    or "Weight Limit" or "Swimming Requirement" or "Height Limit" or "Power Limit")
+                    Object.Destroy(sign.gameObject);
+
+            StageGimmickArt.Install(stage);
             Transform player = stage.Player;
             var rng = new System.Random(StableHash(scene.name));
             var blocked = new List<Vector2>();   // x-intervals where nothing decorative may stand
@@ -83,18 +90,31 @@ namespace ProjectRTD.Gameplay
             var b = col.bounds;
             // the pole + flag placeholder make way for the door
             var group = goal.transform.parent ? goal.transform.parent : goal.transform;
-            foreach (var sr in group.GetComponentsInChildren<SpriteRenderer>(true)) sr.enabled = false;
+            // Keep the authored marker visible if a custom stage has no door art.
 
-            var go = new GameObject("Exit Door");
-            go.transform.SetParent(holder, false);
-            go.transform.position = new Vector3(b.center.x, b.min.y, 0f);
-            go.transform.localScale = Vector3.one * DoorScale;
-            var door = go.AddComponent<LabDoor>();
-            door.autoOpen = false;              // opens by distance instead of a trigger collider
-            door.blockWhenClosed = false;       // never stand between the player and the goal
-            door.watch = player;
-            door.openDistance = 2.4f;
-            door.sortingOrder = DoorOrder;
+            var stage = goal.GetComponentInParent<StageRuntime>();
+            var art = ProjectRTD.Core.SharedMenuArt.Loaded;
+            if (!stage || !player || !stage.SpawnPoint || !art || !art.doorSheet || art.doorGrid.x < 1 || art.doorGrid.y < 1) return;
+            foreach (var r in group.GetComponentsInChildren<Renderer>(true)) r.enabled = false;
+            Vector3 spawn = stage.SpawnPoint.position;
+            Vector3 Ground(float x, float fallback)
+            {
+                float nearest = float.PositiveInfinity, ground = fallback;
+                foreach (var surface in stage.GetComponentsInChildren<BoxCollider2D>())
+                {
+                    if (!IsSurface(surface)) continue;
+                    var bounds = surface.bounds;
+                    if (x < bounds.min.x || x > bounds.max.x) continue;
+                    float distance = Mathf.Abs(fallback - bounds.max.y);
+                    if (distance < nearest) { ground = bounds.max.y; nearest = distance; }
+                }
+                // Seat the bottom of the frame slightly into the illustrated island lip.
+                return new Vector3(x, ground - .12f, 0f);
+            }
+            var exit = StageGimmickArt.Portal(holder, Ground(b.center.x, b.min.y), art, "Exit Door");
+            var entrance = StageGimmickArt.Portal(holder, Ground(spawn.x - .6f, spawn.y - .7f), art, "Entrance Door");
+            blocked.Add(new Vector2(entrance.transform.position.x - 1.5f, spawn.x + .6f));
+            goal.BindDoors(stage, entrance, exit);
             blocked.Add(new Vector2(b.center.x - 1.4f, b.center.x + 1.4f));
         }
 
