@@ -1,0 +1,6 @@
+{
+    "name": "ProjectRTD.FusionTank.Editor",
+    "rootNamespace": "ProjectRTD.FusionTank",
+    "references": [],
+    "includePlatforms": ["Editor"]
+}
