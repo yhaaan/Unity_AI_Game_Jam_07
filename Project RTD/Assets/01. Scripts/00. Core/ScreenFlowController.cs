@@ -97,12 +97,6 @@ namespace ProjectRTD.Core
             SceneFlow.LoadTitle();
         }
 
-        public void RestartCurrentScene()
-        {
-            SoundManager.Play(Sfx.Confirm);
-            SceneFlow.RestartActiveScene();
-        }
-
         public void OpenLevelSelect()
         {
             SoundManager.Play(Sfx.Confirm);

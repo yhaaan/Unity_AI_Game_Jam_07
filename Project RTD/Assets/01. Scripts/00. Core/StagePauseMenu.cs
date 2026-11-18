@@ -4,14 +4,13 @@ using static ProjectRTD.Core.MenuArtView;
 
 namespace ProjectRTD.Core
 {
-    // Esc opens PAUSED (resume / restart / settings / quit); SETTINGS holds music and effects volume.
+    // Esc opens PAUSED (resume / settings / quit); SETTINGS holds music and effects volume.
     public sealed class StagePauseMenu : MonoBehaviour
     {
         // UV regions of pause.png (panel on the left, title and buttons stacked on the right).
         private static readonly Rect PanelUv = new(.0485f,.0213f,.4393f,.9575f);
         private static readonly Rect PausedUv = new(.5380f,.7343f,.4093f,.2285f);
         private static readonly Rect ResumeUv = new(.6056f,.5643f,.2609f,.1498f);
-        private static readonly Rect RestartUv = new(.6110f,.3964f,.2555f,.1435f);
         private static readonly Rect SettingsUv = new(.5458f,.2051f,.3896f,.1902f);
         private static readonly Rect QuitUv = new(.6080f,.0276f,.2597f,.1403f);
         // settings.png title, sound icon.png (on / muted), sound bar.png (empty / full bolt), handle.png knob.
@@ -49,7 +48,7 @@ namespace ProjectRTD.Core
                 rect.anchorMin = new Vector2(.22f, .86f);
                 rect.anchorMax = new Vector2(.84f, .99f);
                 rect.offsetMin = rect.offsetMax = Vector2.zero;
-                hint.text = "SHIFT : REASSEMBLE     R : RESTART\n<size=60%>A/D : MOVE     SPACE : JUMP / GLIDE</size>";
+                hint.text = "R : REASSEMBLE\n<size=60%>A/D : MOVE     SPACE : JUMP / GLIDE</size>";
                 hint.enableAutoSizing = true;
                 hint.fontSizeMin = 18;
                 hint.fontSizeMax = 52;
@@ -69,10 +68,9 @@ namespace ProjectRTD.Core
             // Positions below are fractions of the panel art, so the layout keeps its shape at any resolution.
             pausePage = Page(art, "Pause");
             Cropped(pausePage, art.pause, "Paused title", PausedUv, .04f,.66f,.92f,.24f);
-            CroppedAction(pausePage, art.pause, "Resume", ResumeUv, .30f,.43f,.40f,.105f, Close);
-            CroppedAction(pausePage, art.pause, "Restart", RestartUv, .30f,.31f,.40f,.105f, Restart);
-            CroppedAction(pausePage, art.pause, "Settings", SettingsUv, .20f,.165f,.60f,.135f, ShowSettings);
-            CroppedAction(pausePage, art.pause, "Quit", QuitUv, .30f,.045f,.40f,.10f, Quit);
+            CroppedAction(pausePage, art.pause, "Resume", ResumeUv, .30f,.40f,.40f,.105f, Close);
+            CroppedAction(pausePage, art.pause, "Settings", SettingsUv, .20f,.215f,.60f,.135f, ShowSettings);
+            CroppedAction(pausePage, art.pause, "Quit", QuitUv, .30f,.07f,.40f,.10f, Quit);
 
             settingsPage = Page(art, "Settings");
             Cropped(settingsPage, art.settings, "Settings title", SettingsTitleUv, -.02f,.66f,1.04f,.24f);
@@ -200,13 +198,6 @@ namespace ProjectRTD.Core
             paused = false;
             Time.timeScale = previousScale;
             if (modal) modal.gameObject.SetActive(false);
-        }
-
-        private void Restart()
-        {
-            Close();
-            SoundManager.Play(Sfx.Confirm);
-            SceneFlow.RestartActiveScene();
         }
 
         private void Quit()

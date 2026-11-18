@@ -182,8 +182,7 @@ namespace ProjectRTD.Gameplay
         {
             Keyboard keyboard = Keyboard.current;
             if (keyboard == null || InDoorway || IsRespawning || Time.timeScale <= 0f) return;
-            if (keyboard.rKey.wasPressedThisFrame) SceneFlow.RestartActiveScene();
-            else if (keyboard.leftShiftKey.wasPressedThisFrame || keyboard.rightShiftKey.wasPressedThisFrame) Reroll();
+            if (keyboard.rKey.wasPressedThisFrame) Reroll();
         }
     }
 }

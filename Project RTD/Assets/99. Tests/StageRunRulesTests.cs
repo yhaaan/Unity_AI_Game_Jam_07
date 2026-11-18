@@ -27,7 +27,7 @@ public class StageRunRulesTests
         Assert.That(new[] { Parts.Current.Head.Animal, Parts.Current.Body.Animal, Parts.Current.Legs.Animal }, Is.EqualTo(new[] { PartAnimal.Axolotl, PartAnimal.Bear, PartAnimal.Chicken }));
         Assert.That(Parts.TryResummon(), Is.True);
         var selected = Parts.Current;
-        SceneFlow.RestartActiveScene();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         yield return null; yield return null;
         yield return Ready();
         Assert.That(Parts.Current, Is.SameAs(selected));
@@ -58,7 +58,7 @@ public class StageRunRulesTests
         while (!reset && Time.realtimeSinceStartup < deadline) yield return null;
         Assert.That(reset, Is.True);
         Assert.That(Vector2.Distance(enemy.position, initial), Is.LessThan(.02f));
-        SceneFlow.RestartActiveScene();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         yield return null; yield return null;
         var restarted = StageRuntime.Instance.GetComponentInChildren<PlatformEnemy>().GetComponent<Rigidbody2D>();
         Assert.That(Vector2.Distance(restarted.position, initial), Is.LessThan(.02f));

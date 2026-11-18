@@ -72,7 +72,7 @@ namespace ProjectRTD.Debugging
                     $"이동속도 {build.Speed}/5   ({motor.MoveSpeed:0.##} 유닛/초)\n" +
                     $"파워 {build.Power}/3   |   점프력 {build.Jump}/3   (초속 {motor.JumpVelocity:0.##} 유닛/초)");
             }
-            GUILayout.Label("파츠 재조합: Shift");
+            GUILayout.Label("파츠 재조합: R");
             GUILayout.EndVertical();
             GUILayout.EndArea();
         }
