@@ -13,7 +13,7 @@ namespace ProjectRTD.Gameplay
         {
             if (completed || !other.CompareTag("Player")) return;
             var stage = StageRuntime.Instance;
-            if (stage && (stage.IsRespawning || stage.IsAssembling)) return;
+            if (stage && stage.IsRespawning) return;
 
             completed = true;
             SoundManager.Play(Sfx.Goal);

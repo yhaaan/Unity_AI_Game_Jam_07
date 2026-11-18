@@ -8,7 +8,7 @@ using UnityEngine;
 public sealed class PlayerPartBuildTests
 {
     [Test]
-    public void Stage01KeepsPlayerEffectsAlongsideAssemblyIntro()
+    public void Stage01KeepsInGamePlayerEffects()
     {
         var scene = UnityEditor.SceneManagement.EditorSceneManager.OpenPreviewScene("Assets/00. Scenes/Stage01.unity");
         try
@@ -18,7 +18,7 @@ public sealed class PlayerPartBuildTests
             Assert.That(player.GetComponentInChildren<PlayerOutline>(), Is.Not.Null);
             Assert.That(player.GetComponent<PlayerStatPopup>(), Is.Not.Null);
             Assert.That(player.GetComponent<PlayerCombineFx>(), Is.Not.Null);
-            Assert.That(roots.SelectMany(r => r.GetComponentsInChildren<StageAssemblyIntro>()).Count(), Is.EqualTo(1));
+
         }
         finally { UnityEditor.SceneManagement.EditorSceneManager.ClosePreviewScene(scene); }
     }

@@ -26,7 +26,7 @@ namespace ProjectRTD.Debugging
             var keyboard = Keyboard.current;
             if (keyboard == null) return;
             if (keyboard.f1Key.wasPressedThisFrame) visible = !visible;
-            if (keyboard.f8Key.wasPressedThisFrame) Reroll();
+
         }
 
         private void Reroll()
@@ -37,7 +37,7 @@ namespace ProjectRTD.Debugging
         private static bool CanReassemble()
         {
             var stage = StageRuntime.Instance;
-            return !stage || (!stage.IsAssembling && !stage.IsRespawning);
+            return stage && !stage.IsRespawning && Time.timeScale > 0f;
         }
 
         private void OnGUI()

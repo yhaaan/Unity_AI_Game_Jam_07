@@ -14,7 +14,6 @@ namespace ProjectRTD.Gameplay
         [SerializeField] private Transform player;
         [SerializeField] private Transform spawnPoint;
         [SerializeField] private UnityEngine.UI.Image deathFade;
-        [SerializeField] private StageAssemblyIntro assemblyIntro;
         [SerializeField] private Challenge challenge;
 
         private PlayerPartLoadout loadout;
@@ -31,7 +30,7 @@ namespace ProjectRTD.Gameplay
         public int Health { get; private set; } = 1;
         public int MaxHealth { get; private set; } = 1;
         public bool IsRespawning { get; private set; }
-        public bool IsAssembling => assemblyIntro && assemblyIntro.IsPlaying;
+
         public event Action HealthChanged;
         public event Action ResetMechanics;
 
@@ -159,6 +158,7 @@ namespace ProjectRTD.Gameplay
         private void Awake()
         {
             Instance = this;
+            StageCourseLayout.Apply(this);
             if (challenge == Challenge.Drone) drone = GetComponentInChildren<PlatformEnemy>();
             if (spawnPoint) safePosition = spawnPoint.position;
             if (!player) return;
@@ -184,7 +184,8 @@ namespace ProjectRTD.Gameplay
         private void Update()
         {
             Keyboard keyboard = Keyboard.current;
-            if (keyboard == null || IsAssembling || IsRespawning) return;
+            if (keyboard == null || IsRespawning || Time.timeScale <= 0f) return;
+            if (keyboard.f8Key.wasPressedThisFrame && loadout) loadout.TryResummon();
             if (keyboard.rKey.wasPressedThisFrame)
             {
                 SceneFlow.RestartActiveScene();

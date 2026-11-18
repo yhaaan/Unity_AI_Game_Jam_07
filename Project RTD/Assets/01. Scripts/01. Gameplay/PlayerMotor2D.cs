@@ -126,7 +126,7 @@ namespace ProjectRTD.Gameplay
         {
             IsGliding = false;
             var stage = StageRuntime.Instance;
-            if (stage && stage.Player == transform && (stage.IsRespawning || stage.IsAssembling))
+            if (stage && stage.Player == transform && stage.IsRespawning)
             {
                 body.linearVelocityX = 0f;
                 jumpBufferTimer = 0f;

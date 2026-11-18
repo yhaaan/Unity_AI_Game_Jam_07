@@ -18,9 +18,6 @@ namespace ProjectRTD.Gameplay
         public PlayerPartBuild Current { get; private set; }
         public event Action<PlayerPartBuild> Changed;
         internal event Action<PlayerPartBuild, PlayerPartBuild> Revealed;
-        private PlayerPartBuild previous;
-
-        internal void RevealCurrent() => Revealed?.Invoke(previous, Current);
 
         private void Start()
         {
@@ -44,12 +41,11 @@ namespace ProjectRTD.Gameplay
             }
             var next = new PlayerPartBuild(head, body, legs);
             motor.JumpVelocity = baseJump * jumpScale.Evaluate(next.Jump);
-            previous = Current;
+            var previous = Current;
             Current = next;
             ProjectRTD.Core.SoundManager.Play(ProjectRTD.Core.Sfx.Summon);
             Changed?.Invoke(next);
-            var stage = StageRuntime.Instance;
-            if (!stage || stage.Player != transform || !stage.IsAssembling) RevealCurrent();
+            Revealed?.Invoke(previous, next);
             return true;
         }
 
