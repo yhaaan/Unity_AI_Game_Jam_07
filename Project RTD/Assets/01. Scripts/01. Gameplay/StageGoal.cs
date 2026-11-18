@@ -46,7 +46,7 @@ namespace ProjectRTD.Gameplay
             {
                 yield return new WaitForSeconds(.5f);
                 yield return Tween(1.1f, t => overview.Weight = 1f - t);
-                Destroy(overview);
+                overview.Weight = 0;   // stays on as the room's camera bounds
             }
             yield return Tween(.45f, t => {
                 player.position = Vector3.Lerp(inside, spawn, t);
