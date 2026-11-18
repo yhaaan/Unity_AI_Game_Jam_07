@@ -59,6 +59,14 @@ namespace ChimeraGroove.Plants
         readonly List<Gust> gusts = new List<Gust>();
         float bx, by, time;
         static Material spriteMat;
+        static readonly Dictionary<Texture, Material> bendMats = new Dictionary<Texture, Material>();
+        static Material MaterialFor(Texture tex)
+        {
+            if (bendMats.TryGetValue(tex, out var m) && m != null) return m;
+            m = new Material(spriteMat) { name = "Bend " + tex.name, mainTexture = tex };
+            bendMats[tex] = m;
+            return m;
+        }
 
         public bool Built => parts != null;
         public Vector2 SizeUnits => rig == null ? Vector2.zero : new Vector2(rig.size[0], rig.size[1]) / PPU;
@@ -98,10 +106,8 @@ namespace ChimeraGroove.Plants
                 {
                     var mf = go.AddComponent<MeshFilter>();
                     var mr = go.AddComponent<MeshRenderer>();
-                    mr.sharedMaterial = spriteMat;
-                    var mpb = new MaterialPropertyBlock();
-                    mpb.SetTexture("_MainTex", sprite.texture);
-                    mr.SetPropertyBlock(mpb);
+                    // own material per texture: a property block gets wiped by the 2D renderer at runtime
+                    mr.sharedMaterial = MaterialFor(sprite.texture);
                     mr.sortingLayerName = sortingLayerName;
                     mr.sortingOrder = sortingOrder + i;
                     var tex = sprite.texture; var tr = sprite.textureRect;

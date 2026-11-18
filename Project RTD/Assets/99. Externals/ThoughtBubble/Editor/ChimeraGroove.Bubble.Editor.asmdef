@@ -1,0 +1,6 @@
+{
+    "name": "ChimeraGroove.Bubble.Editor",
+    "rootNamespace": "ChimeraGroove.Bubble",
+    "references": ["ChimeraGroove.Bubble"],
+    "includePlatforms": ["Editor"]
+}
