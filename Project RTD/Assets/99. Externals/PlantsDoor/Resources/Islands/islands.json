@@ -1,0 +1,66 @@
+{
+ "dirt-pipe": {
+  "file": "dirt-pipe.png",
+  "size": [
+   1512,
+   394
+  ],
+  "top": 2
+ },
+ "lab-rock": {
+  "file": "lab-rock.png",
+  "size": [
+   1509,
+   381
+  ],
+  "top": 2
+ },
+ "root-fossil": {
+  "file": "root-fossil.png",
+  "size": [
+   1502,
+   408
+  ],
+  "top": 5
+ },
+ "sand-fossil": {
+  "file": "sand-fossil.png",
+  "size": [
+   1515,
+   413
+  ],
+  "top": 1
+ },
+ "dirt-roots": {
+  "file": "dirt-roots.png",
+  "size": [
+   1519,
+   390
+  ],
+  "top": 0
+ },
+ "sand-arch": {
+  "file": "sand-arch.png",
+  "size": [
+   1523,
+   388
+  ],
+  "top": 0
+ },
+ "slate": {
+  "file": "slate.png",
+  "size": [
+   1478,
+   435
+  ],
+  "top": 0
+ },
+ "red-strata": {
+  "file": "red-strata.png",
+  "size": [
+   1494,
+   405
+  ],
+  "top": 0
+ }
+}

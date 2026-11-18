@@ -1,0 +1,20 @@
+{
+ "wall": "mossy-cliff",
+ "width": 382,
+ "natural_height": 1081,
+ "min_height": 209,
+ "slices": [
+  {
+   "id": "cap",
+   "file": "cap.png",
+   "h": 169,
+   "stretch": false
+  },
+  {
+   "id": "body",
+   "file": "body.png",
+   "h": 913,
+   "stretch": true
+  }
+ ]
+}

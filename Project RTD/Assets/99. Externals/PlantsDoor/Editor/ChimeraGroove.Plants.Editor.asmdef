@@ -1,0 +1,6 @@
+{
+    "name": "ChimeraGroove.Plants.Editor",
+    "rootNamespace": "ChimeraGroove.Plants",
+    "references": ["ChimeraGroove.Plants"],
+    "includePlatforms": ["Editor"]
+}
