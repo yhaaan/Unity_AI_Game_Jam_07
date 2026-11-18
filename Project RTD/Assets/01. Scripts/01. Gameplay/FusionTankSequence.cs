@@ -144,13 +144,6 @@ namespace ProjectRTD.Gameplay
                 }
                 waterTint = Sr("water", tank, stage, new Vector2(0f, TankY), k, 55);            // same silhouette, tinted cyan
                 if (waterMat) { waterMat.mainTexture = tank.texture; waterTint.sharedMaterial = waterMat; }
-                // light shafts from the top of the tube
-                for (int i = 0; i < 5; i++)
-                {
-                    var r = Sr("light ray", Disc, stage, Vector2.zero, 1f, 54);
-                    r.color = new Color(1f, 1f, 1f, .07f);
-                    rays.Add(r);
-                }
                 // the water's top seen a little from above
                 surfacePlane = Sr("surface plane", Disc, stage, new Vector2(0f, SurfaceY + TankY), 1f, 57);
                 surfacePlane.color = new Color(.8f, .97f, 1f, .32f);
