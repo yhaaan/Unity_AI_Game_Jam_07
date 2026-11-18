@@ -1,0 +1,5 @@
+{
+    "name": "ChimeraGroove.Bubble",
+    "rootNamespace": "ChimeraGroove.Bubble",
+    "references": ["Unity.TextMeshPro", "UnityEngine.UI"]
+}
