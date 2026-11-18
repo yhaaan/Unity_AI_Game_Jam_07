@@ -7,11 +7,18 @@ namespace ProjectRTD.Core
     {
         public const string TitleScene = "TitleScene";
         public const string Stage01Scene = "Stage01";
+        public const string PrologueScene = "PrologueScene";
         public const string EndingScene = "EndingScene";
 
         public static void LoadTitle()
         {
             Load(TitleScene);
+        }
+
+        // New game from the title: comic prologue first when it is in the build, otherwise straight to Stage01.
+        public static void StartNewGame()
+        {
+            Load(Application.CanStreamedLevelBeLoaded(PrologueScene) ? PrologueScene : Stage01Scene);
         }
 
         public static void LoadStage(int stageNumber)

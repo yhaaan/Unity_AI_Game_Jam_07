@@ -1,0 +1,2505 @@
+fileFormatVersion: 2
+guid: 3019cf9ae93dc434ab4003eec3efb826
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 815970368343144429
+    second: lower-dots_0
+  - first:
+      213: -3153251372689153225
+    second: lower-dots_1
+  - first:
+      213: 3043358282277079156
+    second: lower-dots_2
+  - first:
+      213: -331825631011886247
+    second: lower-dots_3
+  - first:
+      213: -3202665363389068940
+    second: lower-dots_4
+  - first:
+      213: -2331719875009151703
+    second: lower-dots_5
+  - first:
+      213: 9201753877152350509
+    second: lower-dots_6
+  - first:
+      213: -7261215113710967325
+    second: lower-dots_7
+  - first:
+      213: -7597928455247218358
+    second: lower-dots_8
+  - first:
+      213: -4255836441821946604
+    second: lower-dots_9
+  - first:
+      213: -5317615268620935013
+    second: lower-dots_10
+  - first:
+      213: 5753099134723886987
+    second: lower-dots_11
+  - first:
+      213: -8460240482398163034
+    second: lower-dots_12
+  - first:
+      213: 7132823864066637135
+    second: lower-dots_13
+  - first:
+      213: -2341747790960091622
+    second: lower-dots_14
+  - first:
+      213: -7838997513477442332
+    second: lower-dots_15
+  - first:
+      213: 270100322502011992
+    second: lower-dots_16
+  - first:
+      213: 3785801828040287377
+    second: lower-dots_17
+  - first:
+      213: -3819326962736239964
+    second: lower-dots_18
+  - first:
+      213: 1144280971153637498
+    second: lower-dots_19
+  - first:
+      213: 8303860881520964590
+    second: lower-dots_20
+  - first:
+      213: -4496788658570061693
+    second: lower-dots_21
+  - first:
+      213: 1598685231018490452
+    second: lower-dots_22
+  - first:
+      213: 1635951349500194106
+    second: lower-dots_23
+  - first:
+      213: 1126139122045880302
+    second: lower-dots_24
+  - first:
+      213: 7201190301797904142
+    second: lower-dots_25
+  - first:
+      213: -8397808679356583682
+    second: lower-dots_26
+  - first:
+      213: -3978260004176192695
+    second: lower-dots_27
+  - first:
+      213: -4218323430921711794
+    second: lower-dots_28
+  - first:
+      213: -4297576417738425146
+    second: lower-dots_29
+  - first:
+      213: -431720683105846986
+    second: lower-dots_30
+  - first:
+      213: 8324363596796959387
+    second: lower-dots_31
+  - first:
+      213: -312229241663685380
+    second: lower-dots_32
+  - first:
+      213: 821896142150381057
+    second: lower-dots_33
+  - first:
+      213: 8386165357992382540
+    second: lower-dots_34
+  - first:
+      213: -8155876214362110502
+    second: lower-dots_35
+  - first:
+      213: 4263437511857529229
+    second: lower-dots_36
+  - first:
+      213: -2349886797077933670
+    second: lower-dots_37
+  - first:
+      213: -3278202318012631974
+    second: lower-dots_38
+  - first:
+      213: -4993736299376976926
+    second: lower-dots_39
+  - first:
+      213: -7735240247376686660
+    second: lower-dots_40
+  - first:
+      213: 6932462227650629793
+    second: lower-dots_41
+  - first:
+      213: 564414960517778721
+    second: lower-dots_42
+  - first:
+      213: -1058950926798887104
+    second: lower-dots_43
+  - first:
+      213: -8851749419095223261
+    second: lower-dots_44
+  - first:
+      213: -5701209630994374206
+    second: lower-dots_45
+  - first:
+      213: -4009944264229989614
+    second: lower-dots_46
+  - first:
+      213: -3281489277078040822
+    second: lower-dots_47
+  - first:
+      213: -2946524814484104805
+    second: lower-dots_48
+  - first:
+      213: 8585115849451965589
+    second: lower-dots_49
+  - first:
+      213: -6544044317136382193
+    second: lower-dots_50
+  - first:
+      213: -5039665523614316462
+    second: lower-dots_51
+  - first:
+      213: -2354818009052189136
+    second: lower-dots_52
+  - first:
+      213: 1288086292325923780
+    second: lower-dots_53
+  - first:
+      213: 5183531830514311422
+    second: lower-dots_54
+  - first:
+      213: -2642477208730466549
+    second: lower-dots_55
+  - first:
+      213: -7832864510611264156
+    second: lower-dots_56
+  - first:
+      213: -1346027627760531449
+    second: lower-dots_57
+  - first:
+      213: -2026994655697477483
+    second: lower-dots_58
+  - first:
+      213: -5306463997897236632
+    second: lower-dots_59
+  - first:
+      213: -6554944468546879397
+    second: lower-dots_60
+  - first:
+      213: -3426489763240620933
+    second: lower-dots_61
+  - first:
+      213: -1636641918995088374
+    second: lower-dots_62
+  - first:
+      213: 6522890765532694072
+    second: lower-dots_63
+  - first:
+      213: -2132106702975390550
+    second: lower-dots_64
+  - first:
+      213: -266067432762156534
+    second: lower-dots_65
+  - first:
+      213: -7191817374194021889
+    second: lower-dots_66
+  - first:
+      213: 6495438874308987623
+    second: lower-dots_67
+  - first:
+      213: 112992205642933912
+    second: lower-dots_68
+  - first:
+      213: 4014992219949325312
+    second: lower-dots_69
+  - first:
+      213: -3060610056776861203
+    second: lower-dots_70
+  - first:
+      213: 6606666304917736935
+    second: lower-dots_71
+  - first:
+      213: 879636251690559560
+    second: lower-dots_72
+  - first:
+      213: -6316993038010821028
+    second: lower-dots_73
+  - first:
+      213: 8942683836572682389
+    second: lower-dots_74
+  - first:
+      213: 8485057499152940320
+    second: lower-dots_75
+  - first:
+      213: -6893545285743547716
+    second: lower-dots_76
+  - first:
+      213: -2140332132797900552
+    second: lower-dots_77
+  - first:
+      213: -7495550862467838427
+    second: lower-dots_78
+  - first:
+      213: 6513363315658164328
+    second: lower-dots_79
+  - first:
+      213: -1591532785087633588
+    second: lower-dots_80
+  - first:
+      213: -611969299021421690
+    second: lower-dots_81
+  - first:
+      213: -8587675761811274454
+    second: lower-dots_82
+  - first:
+      213: -8667297421227767513
+    second: lower-dots_83
+  - first:
+      213: 841723517442982573
+    second: lower-dots_84
+  - first:
+      213: 6251727486858877078
+    second: lower-dots_85
+  - first:
+      213: 1290221615102454469
+    second: lower-dots_86
+  - first:
+      213: 2417762787711935194
+    second: lower-dots_87
+  - first:
+      213: -3621260664559208218
+    second: lower-dots_88
+  - first:
+      213: -6394488554182070804
+    second: lower-dots_89
+  - first:
+      213: -4076148900407447070
+    second: lower-dots_90
+  - first:
+      213: -5822881658932608568
+    second: lower-dots_91
+  - first:
+      213: 6153424351494520661
+    second: lower-dots_92
+  - first:
+      213: 8211837149987187220
+    second: lower-dots_93
+  - first:
+      213: 4351538586651242286
+    second: lower-dots_94
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: lower-dots_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 289
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de776501ab8e25b00800000000000000
+      internalID: 815970368343144429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 286
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 733a95b45966d34d0800000000000000
+      internalID: -3153251372689153225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_2
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 286
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4784e5bbb3e2c3a20800000000000000
+      internalID: 3043358282277079156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_3
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 287
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95baa20c85e156bf0800000000000000
+      internalID: -331825631011886247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 266
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4794fb802d8dd83d0800000000000000
+      internalID: -3202665363389068940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_5
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 249
+        width: 28
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92d7c5ea02114afd0800000000000000
+      internalID: -2331719875009151703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_6
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 267
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d214d36f56233bf70800000000000000
+      internalID: 9201753877152350509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_7
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 252
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e56f8d535bfa3b90800000000000000
+      internalID: -7261215113710967325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_8
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 271
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a493824535cbe8690800000000000000
+      internalID: -7597928455247218358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_9
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 256
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41d5a07fd4b30f4c0800000000000000
+      internalID: -4255836441821946604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_10
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 271
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b90e7ad46190436b0800000000000000
+      internalID: -5317615268620935013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 253
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8f03da8e2d17df40800000000000000
+      internalID: 5753099134723886987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 218
+        width: 22
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6af27440b10379a80800000000000000
+      internalID: -8460240482398163034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_13
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 235
+        width: 20
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4dfe175381ecf260800000000000000
+      internalID: 7132823864066637135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_14
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 237
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1e944e8ac0708fd0800000000000000
+      internalID: -2341747790960091622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_15
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 241
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e4b1065b49463390800000000000000
+      internalID: -7838997513477442332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_16
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 218
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85c6370ffc69fb300800000000000000
+      internalID: 270100322502011992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_17
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 221
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 194ad5e54bed98430800000000000000
+      internalID: 3785801828040287377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_18
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 225
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4aae801fc560ffac0800000000000000
+      internalID: -3819326962736239964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_19
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 201
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a700ad80b7d41ef00800000000000000
+      internalID: 1144280971153637498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_20
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 204
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee3b15bd97d3d3370800000000000000
+      internalID: 8303860881520964590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_21
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 210
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3881def3a823891c0800000000000000
+      internalID: -4496788658570061693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 180
+        width: 10
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45a35865fbbaf2610800000000000000
+      internalID: 1598685231018490452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_23
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 187
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3da7c0b51114b610800000000000000
+      internalID: 1635951349500194106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_24
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 191
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee70731a099d0af00800000000000000
+      internalID: 1126139122045880302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_25
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 165
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0fe6aa0d64cfe360800000000000000
+      internalID: 7201190301797904142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_26
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 153
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef03247ef7df47b80800000000000000
+      internalID: -8397808679356583682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_27
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 172
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94b1fea9a916ac8c0800000000000000
+      internalID: -3978260004176192695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_28
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 160
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4f443070318575c0800000000000000
+      internalID: -4218323430921711794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 149
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ccfa918401fb54c0800000000000000
+      internalID: -4297576417738425146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_30
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 125
+        width: 31
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63979497358320af0800000000000000
+      internalID: -431720683105846986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_31
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 143
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9a96404694168370800000000000000
+      internalID: 8324363596796959387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 124
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfc7522b82dbaabf0800000000000000
+      internalID: -312229241663685380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_33
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 127
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10e232bcf26f76b00800000000000000
+      internalID: 821896142150381057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_34
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 130
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4092d616f4a16470800000000000000
+      internalID: 8386165357992382540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_35
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 102
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad583e27bc180de80800000000000000
+      internalID: -8155876214362110502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_36
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 89
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d81e75014d5ca2b30800000000000000
+      internalID: 4263437511857529229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_37
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 70
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a911ac58866836fd0800000000000000
+      internalID: -2349886797077933670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_38
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 74
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a54bef44c5c7182d0800000000000000
+      internalID: -3278202318012631974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_39
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 58
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2eb59ad2b4fa2bab0800000000000000
+      internalID: -4993736299376976926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_40
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 44
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb1dec26af7e6a490800000000000000
+      internalID: -7735240247376686660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_41
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 47
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a0dde19aad053060800000000000000
+      internalID: 6932462227650629793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_42
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 39
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12d049b8a6435d700800000000000000
+      internalID: 564414960517778721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_43
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 24
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 047e49d1eb9dd41f0800000000000000
+      internalID: -1058950926798887104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_44
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 28
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3241f0a4dc4482580800000000000000
+      internalID: -8851749419095223261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_45
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 32
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c16b820c0c31e0b0800000000000000
+      internalID: -5701209630994374206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_46
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 36
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 213d471ffe0d958c0800000000000000
+      internalID: -4009944264229989614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_47
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 9
+        width: 24
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0f828973eec572d0800000000000000
+      internalID: -3281489277078040822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_48
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 37
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b991dc6ea47db17d0800000000000000
+      internalID: -2946524814484104805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_49
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 16
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59c09221165742770800000000000000
+      internalID: 8585115849451965589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_50
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 20
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f071caa8d52ee25a0800000000000000
+      internalID: -6544044317136382193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_51
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 5
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2588f2658e28f0ab0800000000000000
+      internalID: -5039665523614316462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_52
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 21
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03e60c34f71025fd0800000000000000
+      internalID: -2354818009052189136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_53
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 6
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cbf22688a330e110800000000000000
+      internalID: 1288086292325923780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_54
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 23
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef06cbf7cba9fe740800000000000000
+      internalID: 5183531830514311422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_55
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 9
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b070e86aaf8045bd0800000000000000
+      internalID: -2642477208730466549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_56
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 11
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46d60475a331c4390800000000000000
+      internalID: -7832864510611264156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_57
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 17
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 708c87d0103f15de0800000000000000
+      internalID: -1346027627760531449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_58
+      rect:
+        serializedVersion: 2
+        x: 753
+        y: 20
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5906981a91baed3e0800000000000000
+      internalID: -2026994655697477483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_59
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 20
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86f9fe7db17ab56b0800000000000000
+      internalID: -5306463997897236632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_60
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 13
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b500ad54cb82805a0800000000000000
+      internalID: -6554944468546879397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_61
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 13
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7cc783f6b9a270d0800000000000000
+      internalID: -3426489763240620933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_62
+      rect:
+        serializedVersion: 2
+        x: 1156
+        y: 11
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0cb8c198da7949e0800000000000000
+      internalID: -1636641918995088374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_63
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 0
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 836804c6796f58a50800000000000000
+      internalID: 6522890765532694072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_64
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 0
+        width: 21
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aac2ce1004c3962e0800000000000000
+      internalID: -2132106702975390550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_65
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 5
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0a59ef541dbe4cf0800000000000000
+      internalID: -266067432762156534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_66
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 0
+        width: 19
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff9cea9b338813c90800000000000000
+      internalID: -7191817374194021889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_67
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 0
+        width: 19
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ea437bed3f642a50800000000000000
+      internalID: 6495438874308987623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_68
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 0
+        width: 19
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8962cb7ffcd619100800000000000000
+      internalID: 112992205642933912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_69
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 0
+        width: 18
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00c5906d62e18b730800000000000000
+      internalID: 4014992219949325312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_70
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 0
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de9b3d18e578685d0800000000000000
+      internalID: -3060610056776861203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_71
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 0
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ed0a2e20089fab50800000000000000
+      internalID: 6606666304917736935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_72
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8486299a288153c00800000000000000
+      internalID: 879636251690559560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_73
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 0
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c56dfb00d488558a0800000000000000
+      internalID: -6316993038010821028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_74
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 0
+        width: 30
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 598ca89a19bca1c70800000000000000
+      internalID: 8942683836572682389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_75
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 0
+        width: 18
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02d76c7f6daf0c570800000000000000
+      internalID: 8485057499152940320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_76
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 0
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbaef2016153550a0800000000000000
+      internalID: -6893545285743547716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_77
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 0
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f81a33e3430c42e0800000000000000
+      internalID: -2140332132797900552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_78
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 1
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52e4bb624347af790800000000000000
+      internalID: -7495550862467838427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_79
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 0
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8688dd22d6d146a50800000000000000
+      internalID: 6513363315658164328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_80
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 2
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c47a6704d5db9e9e0800000000000000
+      internalID: -1591532785087633588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_81
+      rect:
+        serializedVersion: 2
+        x: 813
+        y: 0
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68322663a29d187f0800000000000000
+      internalID: -611969299021421690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_82
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 1
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a25c103e46272d880800000000000000
+      internalID: -8587675761811274454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_83
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 0
+        width: 20
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7294f0daae297b780800000000000000
+      internalID: -8667297421227767513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_84
+      rect:
+        serializedVersion: 2
+        x: 857
+        y: 1
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da2084854176eab00800000000000000
+      internalID: 841723517442982573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_85
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 0
+        width: 21
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 698d4c6b60992c650800000000000000
+      internalID: 6251727486858877078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_86
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 1
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ca66b919b9c7e110800000000000000
+      internalID: 1290221615102454469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_87
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 0
+        width: 18
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad26ab0127e9d8120800000000000000
+      internalID: 2417762787711935194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_88
+      rect:
+        serializedVersion: 2
+        x: 915
+        y: 1
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e87ad1ac92bebdc0800000000000000
+      internalID: -3621260664559208218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_89
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 0
+        width: 16
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ced2da71a863247a0800000000000000
+      internalID: -6394488554182070804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_90
+      rect:
+        serializedVersion: 2
+        x: 1079
+        y: 0
+        width: 19
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e17d93eb2c9e67c0800000000000000
+      internalID: -4076148900407447070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_91
+      rect:
+        serializedVersion: 2
+        x: 1111
+        y: 0
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c14f2e6bf7f03fa0800000000000000
+      internalID: -5822881658932608568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_92
+      rect:
+        serializedVersion: 2
+        x: 1140
+        y: 0
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55fb11f68da556550800000000000000
+      internalID: 6153424351494520661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_93
+      rect:
+        serializedVersion: 2
+        x: 1167
+        y: 0
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41aa756316e46f170800000000000000
+      internalID: 8211837149987187220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-dots_94
+      rect:
+        serializedVersion: 2
+        x: 1194
+        y: 0
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2fa0c30a45c36c30800000000000000
+      internalID: 4351538586651242286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

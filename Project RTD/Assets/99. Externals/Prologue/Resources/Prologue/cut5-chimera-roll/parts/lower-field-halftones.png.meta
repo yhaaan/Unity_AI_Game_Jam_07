@@ -1,0 +1,2930 @@
+fileFormatVersion: 2
+guid: 98e25aea789f848db849c9ded7d85f51
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1178140475115158187
+    second: lower-field-halftones_0
+  - first:
+      213: 4128487743343273770
+    second: lower-field-halftones_1
+  - first:
+      213: -9192649333352774329
+    second: lower-field-halftones_2
+  - first:
+      213: -6983416236859783075
+    second: lower-field-halftones_3
+  - first:
+      213: 5722964796246244641
+    second: lower-field-halftones_4
+  - first:
+      213: 486695413468404869
+    second: lower-field-halftones_5
+  - first:
+      213: -8038851079286964245
+    second: lower-field-halftones_6
+  - first:
+      213: -3622507961510359514
+    second: lower-field-halftones_7
+  - first:
+      213: 4059568816547579416
+    second: lower-field-halftones_8
+  - first:
+      213: -3052082459310255718
+    second: lower-field-halftones_9
+  - first:
+      213: 4939644536441450114
+    second: lower-field-halftones_10
+  - first:
+      213: 3512021376714909225
+    second: lower-field-halftones_11
+  - first:
+      213: 3913807653801790379
+    second: lower-field-halftones_12
+  - first:
+      213: 4209118240288135560
+    second: lower-field-halftones_13
+  - first:
+      213: 3844410541276830805
+    second: lower-field-halftones_14
+  - first:
+      213: 4900117900703111039
+    second: lower-field-halftones_15
+  - first:
+      213: 5467397980504156301
+    second: lower-field-halftones_16
+  - first:
+      213: -5607390068168090423
+    second: lower-field-halftones_17
+  - first:
+      213: -8084393181202998997
+    second: lower-field-halftones_18
+  - first:
+      213: 1167492828878325096
+    second: lower-field-halftones_19
+  - first:
+      213: 7177100154301479681
+    second: lower-field-halftones_20
+  - first:
+      213: 4640567108708600416
+    second: lower-field-halftones_21
+  - first:
+      213: 6167511774190654082
+    second: lower-field-halftones_22
+  - first:
+      213: -5990756917570777156
+    second: lower-field-halftones_23
+  - first:
+      213: -2214380091015457146
+    second: lower-field-halftones_24
+  - first:
+      213: -8633518699492223160
+    second: lower-field-halftones_25
+  - first:
+      213: 3348086707332387053
+    second: lower-field-halftones_26
+  - first:
+      213: 4706957216083313090
+    second: lower-field-halftones_27
+  - first:
+      213: 9152494244577378783
+    second: lower-field-halftones_28
+  - first:
+      213: 5241296042418157263
+    second: lower-field-halftones_29
+  - first:
+      213: -3883971274553684836
+    second: lower-field-halftones_30
+  - first:
+      213: -6111114184158719096
+    second: lower-field-halftones_31
+  - first:
+      213: 3799028971347978412
+    second: lower-field-halftones_32
+  - first:
+      213: 8026605120803525641
+    second: lower-field-halftones_33
+  - first:
+      213: 1193591654277595478
+    second: lower-field-halftones_34
+  - first:
+      213: 8700937396177525249
+    second: lower-field-halftones_35
+  - first:
+      213: -7461181759519987281
+    second: lower-field-halftones_36
+  - first:
+      213: 9134173640370033453
+    second: lower-field-halftones_37
+  - first:
+      213: -2487131372321615717
+    second: lower-field-halftones_38
+  - first:
+      213: -1526648196474662781
+    second: lower-field-halftones_39
+  - first:
+      213: -3326162474364874455
+    second: lower-field-halftones_40
+  - first:
+      213: -1050950336389671613
+    second: lower-field-halftones_41
+  - first:
+      213: -3427671800549179039
+    second: lower-field-halftones_42
+  - first:
+      213: 34630573646264869
+    second: lower-field-halftones_43
+  - first:
+      213: -2423588269810410558
+    second: lower-field-halftones_44
+  - first:
+      213: -8897666970596045015
+    second: lower-field-halftones_45
+  - first:
+      213: 6901214463998780846
+    second: lower-field-halftones_46
+  - first:
+      213: 9095650311040621563
+    second: lower-field-halftones_47
+  - first:
+      213: -3341613490564290704
+    second: lower-field-halftones_48
+  - first:
+      213: 4915146594734205959
+    second: lower-field-halftones_49
+  - first:
+      213: -2403724869401769509
+    second: lower-field-halftones_50
+  - first:
+      213: -5670388871109567141
+    second: lower-field-halftones_51
+  - first:
+      213: 1540377656149251624
+    second: lower-field-halftones_52
+  - first:
+      213: 589372882320361085
+    second: lower-field-halftones_53
+  - first:
+      213: 6850278807394594725
+    second: lower-field-halftones_54
+  - first:
+      213: 6742977680146150532
+    second: lower-field-halftones_55
+  - first:
+      213: -7315030201401931152
+    second: lower-field-halftones_56
+  - first:
+      213: -5302685349946101998
+    second: lower-field-halftones_57
+  - first:
+      213: -8830303360971615372
+    second: lower-field-halftones_58
+  - first:
+      213: -9056276594975982352
+    second: lower-field-halftones_59
+  - first:
+      213: -4745894712247183735
+    second: lower-field-halftones_60
+  - first:
+      213: 487818102632872942
+    second: lower-field-halftones_61
+  - first:
+      213: 4578788231780505469
+    second: lower-field-halftones_62
+  - first:
+      213: -6404603951970898326
+    second: lower-field-halftones_63
+  - first:
+      213: 4486248465967798322
+    second: lower-field-halftones_64
+  - first:
+      213: -2343787453385133613
+    second: lower-field-halftones_65
+  - first:
+      213: 119185851619351387
+    second: lower-field-halftones_66
+  - first:
+      213: -6842932258523421561
+    second: lower-field-halftones_67
+  - first:
+      213: -748696800809959760
+    second: lower-field-halftones_68
+  - first:
+      213: 3103241542896748303
+    second: lower-field-halftones_69
+  - first:
+      213: -1318125999657203355
+    second: lower-field-halftones_70
+  - first:
+      213: 6611269731039309049
+    second: lower-field-halftones_71
+  - first:
+      213: 3141498208795749182
+    second: lower-field-halftones_72
+  - first:
+      213: -3331699481223020615
+    second: lower-field-halftones_73
+  - first:
+      213: 759694959701330243
+    second: lower-field-halftones_74
+  - first:
+      213: -3865826839308478239
+    second: lower-field-halftones_75
+  - first:
+      213: -8565805350354730336
+    second: lower-field-halftones_76
+  - first:
+      213: 1894049521561686426
+    second: lower-field-halftones_77
+  - first:
+      213: -1967580539344156954
+    second: lower-field-halftones_78
+  - first:
+      213: 7365712091435595117
+    second: lower-field-halftones_79
+  - first:
+      213: 265495803821233008
+    second: lower-field-halftones_80
+  - first:
+      213: 3502759320472077560
+    second: lower-field-halftones_81
+  - first:
+      213: -5024612183889539146
+    second: lower-field-halftones_82
+  - first:
+      213: -1640816195094094229
+    second: lower-field-halftones_83
+  - first:
+      213: 8675275641106314050
+    second: lower-field-halftones_84
+  - first:
+      213: 2871768587209968227
+    second: lower-field-halftones_85
+  - first:
+      213: 4173694625094478611
+    second: lower-field-halftones_86
+  - first:
+      213: 2431718473649329556
+    second: lower-field-halftones_87
+  - first:
+      213: 5166808080438081959
+    second: lower-field-halftones_88
+  - first:
+      213: -7890504675824778947
+    second: lower-field-halftones_89
+  - first:
+      213: 4649232809699009984
+    second: lower-field-halftones_90
+  - first:
+      213: -1921288584135858862
+    second: lower-field-halftones_91
+  - first:
+      213: 1330405903014896284
+    second: lower-field-halftones_92
+  - first:
+      213: -7938514433048548274
+    second: lower-field-halftones_93
+  - first:
+      213: 5475207294613640845
+    second: lower-field-halftones_94
+  - first:
+      213: -229554227785203854
+    second: lower-field-halftones_95
+  - first:
+      213: 1346956541116626256
+    second: lower-field-halftones_96
+  - first:
+      213: -253217781750578284
+    second: lower-field-halftones_97
+  - first:
+      213: 8019522939660327422
+    second: lower-field-halftones_98
+  - first:
+      213: 419853618814949157
+    second: lower-field-halftones_99
+  - first:
+      213: 2321635583844162443
+    second: lower-field-halftones_100
+  - first:
+      213: 8593079673389730899
+    second: lower-field-halftones_101
+  - first:
+      213: 7452031356695615310
+    second: lower-field-halftones_102
+  - first:
+      213: -5327223648124446912
+    second: lower-field-halftones_103
+  - first:
+      213: -4855585316581206881
+    second: lower-field-halftones_104
+  - first:
+      213: 705980887876420600
+    second: lower-field-halftones_105
+  - first:
+      213: -3127041519341456220
+    second: lower-field-halftones_106
+  - first:
+      213: 282104628501965599
+    second: lower-field-halftones_107
+  - first:
+      213: -2437896416277476220
+    second: lower-field-halftones_108
+  - first:
+      213: 1809615395651974255
+    second: lower-field-halftones_109
+  - first:
+      213: 4937841125712517481
+    second: lower-field-halftones_110
+  - first:
+      213: -5773377235036597939
+    second: lower-field-halftones_111
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: lower-field-halftones_0
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 173
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 555404dda7766afe0800000000000000
+      internalID: -1178140475115158187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_1
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 173
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a27a7899ab55b4930800000000000000
+      internalID: 4128487743343273770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_2
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 173
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 745c6c4d2262d6080800000000000000
+      internalID: -9192649333352774329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_3
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 173
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d58074baeebe51f90800000000000000
+      internalID: -6983416236859783075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_4
+      rect:
+        serializedVersion: 2
+        x: 1030
+        y: 173
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12db25e192e0c6f40800000000000000
+      internalID: 5722964796246244641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_5
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 159
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58c989166e611c600800000000000000
+      internalID: 486695413468404869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_6
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 159
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: befb5d8f883407090800000000000000
+      internalID: -8038851079286964245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_7
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 159
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62e862ea3344abdc0800000000000000
+      internalID: -3622507961510359514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_8
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 159
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8164293845c765830800000000000000
+      internalID: 4059568816547579416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_9
+      rect:
+        serializedVersion: 2
+        x: 1030
+        y: 159
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a919c938c23d4a5d0800000000000000
+      internalID: -3052082459310255718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_10
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 146
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28eaa47d8842d8440800000000000000
+      internalID: 4939644536441450114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_11
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 146
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 926abaaa5d43db030800000000000000
+      internalID: 3512021376714909225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_12
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 146
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bab8f0c2353a05630800000000000000
+      internalID: 3913807653801790379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_13
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 146
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 889ddf91dbac96a30800000000000000
+      internalID: 4209118240288135560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_14
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 146
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55c929bc4071a5530800000000000000
+      internalID: 3844410541276830805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_15
+      rect:
+        serializedVersion: 2
+        x: 1030
+        y: 146
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7711fcc447b00440800000000000000
+      internalID: 4900117900703111039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_16
+      rect:
+        serializedVersion: 2
+        x: 952
+        y: 132
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8863a9ee7910eb40800000000000000
+      internalID: 5467397980504156301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_17
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 132
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cc99c5317c8e22b0800000000000000
+      internalID: -5607390068168090423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_18
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 132
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b291ec11c377ecf80800000000000000
+      internalID: -8084393181202998997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_19
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 132
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 865cb1fca84c33010800000000000000
+      internalID: 1167492828878325096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_20
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 132
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10b7a8e709e2a9360800000000000000
+      internalID: 7177100154301479681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_21
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 132
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06a00f6d23b966040800000000000000
+      internalID: 4640567108708600416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_22
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 119
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2825ca02847679550800000000000000
+      internalID: 6167511774190654082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_23
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 119
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbfca78e25e8cdca0800000000000000
+      internalID: -5990756917570777156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_24
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 119
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 686935d1a01f441e0800000000000000
+      internalID: -2214380091015457146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_25
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 119
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 847d2133c749f2880800000000000000
+      internalID: -8633518699492223160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_26
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 119
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de011c31f1bc67e20800000000000000
+      internalID: 3348086707332387053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_27
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 119
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c18b9546a8725140800000000000000
+      internalID: 4706957216083313090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_28
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 105
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd187d00601340f70800000000000000
+      internalID: 9152494244577378783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_29
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 105
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc6bef22bf2dcb840800000000000000
+      internalID: 5241296042418157263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_30
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 105
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9c086634bc591ac0800000000000000
+      internalID: -3883971274553684836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_31
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 105
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8835e5f0706f03ba0800000000000000
+      internalID: -6111114184158719096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_32
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 105
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca82d98a8bcd8b430800000000000000
+      internalID: 3799028971347978412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_33
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 105
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90453d1a4da346f60800000000000000
+      internalID: 8026605120803525641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_34
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 105
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6514610294d709010800000000000000
+      internalID: 1193591654277595478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_35
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 91
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10ad2185670ffb870800000000000000
+      internalID: 8700937396177525249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_36
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 91
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa9ef2388be847890800000000000000
+      internalID: -7461181759519987281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_37
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 91
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d231efee78a13ce70800000000000000
+      internalID: 9134173640370033453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_38
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 91
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b905a0bb13feb7dd0800000000000000
+      internalID: -2487131372321615717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_39
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 91
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3801328cd8140dae0800000000000000
+      internalID: -1526648196474662781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_40
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 91
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9215f323ad817d1d0800000000000000
+      internalID: -3326162474364874455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_41
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 91
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3459aeabc364a61f0800000000000000
+      internalID: -1050950336389671613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_42
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 91
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16184a178a67e60d0800000000000000
+      internalID: -3427671800549179039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_43
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 78
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52abd80c2580b7000800000000000000
+      internalID: 34630573646264869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_44
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 78
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cb95203f4fad5ed0800000000000000
+      internalID: -2423588269810410558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_45
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 78
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92f85e73803258480800000000000000
+      internalID: -8897666970596045015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_46
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 78
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea56f65adf906cf50800000000000000
+      internalID: 6901214463998780846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_47
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 78
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfb5fbe54cd3a3e70800000000000000
+      internalID: 9095650311040621563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_48
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 78
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07723462c3430a1d0800000000000000
+      internalID: -3341613490564290704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_49
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 78
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70c6a1e49cb163440800000000000000
+      internalID: 4915146594734205959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_50
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 78
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd9098d77f044aed0800000000000000
+      internalID: -2403724869401769509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_51
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 397
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5d9f2f5d5bbe41b0800000000000000
+      internalID: -5670388871109567141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_52
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 64
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82699b62155806510800000000000000
+      internalID: 1540377656149251624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_53
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 64
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7604fa838fdd2800800000000000000
+      internalID: 589372882320361085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_54
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 64
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5af242fe744111f50800000000000000
+      internalID: 6850278807394594725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_55
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 64
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 484bf79697ed39d50800000000000000
+      internalID: 6742977680146150532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_56
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 64
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07a0f2cd9cacb7a90800000000000000
+      internalID: -7315030201401931152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_57
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 64
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21f6bc0e4c31966b0800000000000000
+      internalID: -5302685349946101998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_58
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 64
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 473595ec0e5747580800000000000000
+      internalID: -8830303360971615372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_59
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 64
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fcb5c84b64a15280800000000000000
+      internalID: -9056276594975982352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_60
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 64
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9861a1f67e1332eb0800000000000000
+      internalID: -4745894712247183735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_61
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 52
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eebff62daf315c600800000000000000
+      internalID: 487818102632872942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_62
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 51
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d77140923af1b8f30800000000000000
+      internalID: 4578788231780505469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_63
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 51
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6e26b383a64e17a0800000000000000
+      internalID: -6404603951970898326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_64
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 51
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 238d62ce53b524e30800000000000000
+      internalID: 4486248465967798322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_65
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 51
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d136f3aab1397fd0800000000000000
+      internalID: -2343787453385133613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_66
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 51
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5b160c86ee67a100800000000000000
+      internalID: 119185851619351387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_67
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 51
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78466a4cd550901a0800000000000000
+      internalID: -6842932258523421561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_68
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 51
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0be3047f9381c95f0800000000000000
+      internalID: -748696800809959760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_69
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 51
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f078898ddbde01b20800000000000000
+      internalID: 3103241542896748303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_70
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 52
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 569c935136315bde0800000000000000
+      internalID: -1318125999657203355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_71
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 37
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fce3e8dac2ffbb50800000000000000
+      internalID: 6611269731039309049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_72
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 37
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3bebcdf9f7d89b20800000000000000
+      internalID: 3141498208795749182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_73
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 37
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bf395359fc63c1d0800000000000000
+      internalID: -3331699481223020615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_74
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 37
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34907a27a8afa8a00800000000000000
+      internalID: 759694959701330243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_75
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 37
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e8d8dfb8f2d95ac0800000000000000
+      internalID: -3865826839308478239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_76
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 37
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a247fcda65202980800000000000000
+      internalID: -8565805350354730336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_77
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 37
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a91dea73104094a10800000000000000
+      internalID: 1894049521561686426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_78
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 37
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e68b659cefb1b4e0800000000000000
+      internalID: -1967580539344156954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_79
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 37
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6571d73f14483660800000000000000
+      internalID: 7365712091435595117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_80
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 40
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0731f14e60b3fa300800000000000000
+      internalID: 265495803821233008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_81
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 24
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f44d662b0d4c9030800000000000000
+      internalID: 3502759320472077560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_82
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 24
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bf0a2d17ddf44ab0800000000000000
+      internalID: -5024612183889539146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_83
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 24
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6e55bd2d56aa39e0800000000000000
+      internalID: -1640816195094094229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_84
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 24
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 243bdb46b35c46870800000000000000
+      internalID: 8675275641106314050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_85
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 24
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36a86c590529ad720800000000000000
+      internalID: 2871768587209968227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_86
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 24
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31ba6b9f521fbe930800000000000000
+      internalID: 4173694625094478611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_87
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 24
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4959f9761133fb120800000000000000
+      internalID: 2431718473649329556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_88
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 24
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a93121039034b740800000000000000
+      internalID: 5166808080438081959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_89
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 24
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d31c7e29dcb4f7290800000000000000
+      internalID: -7890504675824778947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_90
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 24
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c563349b94658040800000000000000
+      internalID: 4649232809699009984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_91
+      rect:
+        serializedVersion: 2
+        x: 881
+        y: 10
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 255a19f46363655e0800000000000000
+      internalID: -1921288584135858862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_92
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 10
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c922948be1d867210800000000000000
+      internalID: 1330405903014896284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_93
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 10
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4c64d5ee2bb4d190800000000000000
+      internalID: -7938514433048548274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_94
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 10
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d86d21b8608dbfb40800000000000000
+      internalID: 5475207294613640845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_95
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 10
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27f7c2465a570dcf0800000000000000
+      internalID: -229554227785203854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_96
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 10
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 055352176d951b210800000000000000
+      internalID: 1346956541116626256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_97
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 10
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 493c1f3e4c36c7cf0800000000000000
+      internalID: -253217781750578284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_98
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 10
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef9dc86df911b4f60800000000000000
+      internalID: 8019522939660327422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_99
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 10
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 527902f44ae93d500800000000000000
+      internalID: 419853618814949157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_100
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 10
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8b10f0534b183020800000000000000
+      internalID: 2321635583844162443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_101
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 0
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35c46035f60c04770800000000000000
+      internalID: 8593079673389730899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_102
+      rect:
+        serializedVersion: 2
+        x: 881
+        y: 0
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e471aee490fea6760800000000000000
+      internalID: 7452031356695615310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_103
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 0
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0475b7e1156e116b0800000000000000
+      internalID: -5327223648124446912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_104
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 0
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f94139c61ee7d9cb0800000000000000
+      internalID: -4855585316581206881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_105
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 0
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f3c61880e52cc900800000000000000
+      internalID: 705980887876420600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_106
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 0
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a431c15e448a94d0800000000000000
+      internalID: -3127041519341456220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_107
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 0
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1b6a5b3aac3ae300800000000000000
+      internalID: 282104628501965599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_108
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 0
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48c459c302ada2ed0800000000000000
+      internalID: -2437896416277476220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_109
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 0
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f64f9e55d9b0d1910800000000000000
+      internalID: 1809615395651974255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_110
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 0
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 969d86f875cb68440800000000000000
+      internalID: 4937841125712517481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lower-field-halftones_111
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 0
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d41115f4ef7d0efa0800000000000000
+      internalID: -5773377235036597939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

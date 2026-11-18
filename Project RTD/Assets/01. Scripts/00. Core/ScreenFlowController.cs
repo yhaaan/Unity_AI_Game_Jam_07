@@ -50,7 +50,7 @@ namespace ProjectRTD.Core
         public void StartStage01()
         {
             SoundManager.Play(Sfx.Confirm);
-            SceneFlow.LoadStage01();
+            SceneFlow.StartNewGame();
         }
 
         public void ReturnToTitle()

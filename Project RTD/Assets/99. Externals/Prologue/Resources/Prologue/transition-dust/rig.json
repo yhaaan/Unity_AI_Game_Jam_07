@@ -1,0 +1,89 @@
+{
+ "cut": "transition-dust",
+ "size": [
+  1920,
+  886
+ ],
+ "layers": [
+  {
+   "id": "ivory-cloud",
+   "file": "parts/ivory-cloud.png",
+   "parent": null,
+   "role": "transition-background",
+   "pivot": [
+    960,
+    443
+   ],
+   "rect": [
+    0,
+    0,
+    1920,
+    886
+   ]
+  },
+  {
+   "id": "cloud-crease-1",
+   "file": "parts/cloud-crease-1.png",
+   "parent": "ivory-cloud",
+   "role": "swirl",
+   "pivot": [
+    229,
+    670
+   ],
+   "rect": [
+    0,
+    267,
+    592,
+    619
+   ]
+  },
+  {
+   "id": "cloud-crease-2",
+   "file": "parts/cloud-crease-2.png",
+   "parent": "ivory-cloud",
+   "role": "swirl",
+   "pivot": [
+    63,
+    35
+   ],
+   "rect": [
+    0,
+    0,
+    132,
+    94
+   ]
+  },
+  {
+   "id": "cloud-crease-3",
+   "file": "parts/cloud-crease-3.png",
+   "parent": "ivory-cloud",
+   "role": "swirl",
+   "pivot": [
+    33,
+    464
+   ],
+   "rect": [
+    0,
+    383,
+    56,
+    196
+   ]
+  },
+  {
+   "id": "cloud-crease-4",
+   "file": "parts/cloud-crease-4.png",
+   "parent": "ivory-cloud",
+   "role": "swirl",
+   "pivot": [
+    895,
+    843
+   ],
+   "rect": [
+    850,
+    778,
+    116,
+    108
+   ]
+  }
+ ]
+}

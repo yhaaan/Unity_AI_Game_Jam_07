@@ -1,0 +1,910 @@
+{
+ "cut": "cut3-team-up",
+ "intro": 1.6,
+ "pivots": [],
+ "tracks": [
+  {
+   "t": [
+    "burst-red"
+   ],
+   "ch": "s",
+   "f": "wave",
+   "amp": 0.025,
+   "per": 0.5,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "burst-red"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 1.5,
+   "per": 4,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "halftone-blue"
+   ],
+   "ch": "s",
+   "f": "wave",
+   "amp": 0.02,
+   "per": 0.5,
+   "ph": 0.25,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "bear-torso"
+   ],
+   "ch": "y",
+   "f": "keys",
+   "amp": 0.0,
+   "per": 1.0,
+   "ph": 0.0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [
+    0.0,
+    420.0,
+    0.0,
+    420.0,
+    0.45,
+    0.0
+   ],
+   "e": "back"
+  },
+  {
+   "t": [
+    "bear-torso"
+   ],
+   "ch": "y",
+   "f": "hop",
+   "amp": -14,
+   "per": 0.5,
+   "ph": 0.0,
+   "frm": 0.7,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "hen-torso"
+   ],
+   "ch": "y",
+   "f": "keys",
+   "amp": 0.0,
+   "per": 1.0,
+   "ph": 0.0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [
+    0.0,
+    420.0,
+    0.08,
+    420.0,
+    0.53,
+    0.0
+   ],
+   "e": "back"
+  },
+  {
+   "t": [
+    "hen-torso"
+   ],
+   "ch": "y",
+   "f": "hop",
+   "amp": -14,
+   "per": 0.5,
+   "ph": 0.15,
+   "frm": 0.7,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "duck-torso"
+   ],
+   "ch": "y",
+   "f": "keys",
+   "amp": 0.0,
+   "per": 1.0,
+   "ph": 0.0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [
+    0.0,
+    420.0,
+    0.16,
+    420.0,
+    0.61,
+    0.0
+   ],
+   "e": "back"
+  },
+  {
+   "t": [
+    "duck-torso"
+   ],
+   "ch": "y",
+   "f": "hop",
+   "amp": -14,
+   "per": 0.5,
+   "ph": 0.3,
+   "frm": 0.7,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "rabbit-torso"
+   ],
+   "ch": "y",
+   "f": "keys",
+   "amp": 0.0,
+   "per": 1.0,
+   "ph": 0.0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [
+    0.0,
+    420.0,
+    0.1,
+    420.0,
+    0.55,
+    0.0
+   ],
+   "e": "back"
+  },
+  {
+   "t": [
+    "rabbit-torso"
+   ],
+   "ch": "y",
+   "f": "hop",
+   "amp": -14,
+   "per": 0.5,
+   "ph": 0.44999999999999996,
+   "frm": 0.7,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "axolotl-torso"
+   ],
+   "ch": "y",
+   "f": "keys",
+   "amp": 0.0,
+   "per": 1.0,
+   "ph": 0.0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [
+    0.0,
+    420.0,
+    0.2,
+    420.0,
+    0.65,
+    0.0
+   ],
+   "e": "back"
+  },
+  {
+   "t": [
+    "axolotl-torso"
+   ],
+   "ch": "y",
+   "f": "hop",
+   "amp": -14,
+   "per": 0.5,
+   "ph": 0.6,
+   "frm": 0.7,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "bear-arm-near"
+   ],
+   "ch": "r",
+   "f": "keys",
+   "amp": 0.0,
+   "per": 1.0,
+   "ph": 0.0,
+   "frm": 0.7,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.5,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [
+    0.0,
+    0.0,
+    0.1,
+    -13.0,
+    0.5,
+    0.0
+   ],
+   "e": "out"
+  },
+  {
+   "t": [
+    "bear-arm-outer"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 5,
+   "per": 0.5,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "hen-wing-raised"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 14,
+   "per": 0.25,
+   "ph": 0,
+   "frm": 0.5,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "hen-wing-folded"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 5,
+   "per": 0.5,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "duck-wing-raised"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 6,
+   "per": 0.5,
+   "ph": 0,
+   "frm": 0.5,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "duck-wing-folded"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 4,
+   "per": 0.5,
+   "ph": 0.5,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "rabbit-arm-left",
+    "rabbit-arm-right"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 7,
+   "per": 0.5,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "rabbit-hand-left"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 10,
+   "per": 0.25,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "rabbit-hand-right"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": -10,
+   "per": 0.25,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "axolotl-arm-left",
+    "axolotl-arm-right"
+   ],
+   "ch": "y",
+   "f": "hop",
+   "amp": -10,
+   "per": 0.25,
+   "ph": 0.2,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "bear-head"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 3,
+   "per": 1.0,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "hen-head"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 3,
+   "per": 1.0,
+   "ph": 0.2,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "duck-head"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 3,
+   "per": 1.0,
+   "ph": 0.4,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "rabbit-head"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 3,
+   "per": 1.0,
+   "ph": 0.6,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "axolotl-head"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 3,
+   "per": 1.0,
+   "ph": 0.8,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "bear-mouth",
+    "hen-mouth",
+    "duck-mouth",
+    "rabbit-mouth",
+    "axolotl-mouth"
+   ],
+   "ch": "sy",
+   "f": "wave",
+   "amp": 0.12,
+   "per": 0.22,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "bear-ear-left",
+    "bear-ear-right",
+    "rabbit-ear-left",
+    "rabbit-ear-right"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 5,
+   "per": 0.5,
+   "ph": 0.3,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "axolotl-gills-left"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 8,
+   "per": 0.25,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "axolotl-gills-right"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": -8,
+   "per": 0.25,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "rabbit-tail",
+    "hen-tail",
+    "axolotl-tail-fin"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 7,
+   "per": 0.25,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "hen-comb"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 4,
+   "per": 0.5,
+   "ph": 0.4,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "bear-eye-left",
+    "bear-eye-right",
+    "duck-eye-left",
+    "duck-eye-right"
+   ],
+   "ch": "sy",
+   "f": "blink",
+   "amp": 0.0,
+   "per": 3.2,
+   "ph": 0.2,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "hen-eye-left",
+    "hen-eye-right",
+    "rabbit-eye-left",
+    "rabbit-eye-right",
+    "axolotl-eye-left",
+    "axolotl-eye-right"
+   ],
+   "ch": "sy",
+   "f": "blink",
+   "amp": 0.0,
+   "per": 3.7,
+   "ph": 0.6,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "exclamation-balloon"
+   ],
+   "ch": "s",
+   "f": "pop",
+   "amp": 0.0,
+   "per": 1.0,
+   "ph": 0.0,
+   "frm": 0.25,
+   "ramp": 0.25,
+   "dur": 0.35,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "exclamation-lettering"
+   ],
+   "ch": "y",
+   "f": "keys",
+   "amp": 0.0,
+   "per": 1.0,
+   "ph": 0.0,
+   "frm": 0.6,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.5,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [
+    0.0,
+    0.0,
+    0.08,
+    -12.0,
+    0.2,
+    0.0
+   ],
+   "e": "out"
+  },
+  {
+   "t": [
+    "team-up-balloon"
+   ],
+   "ch": "s",
+   "f": "pop",
+   "amp": 0.0,
+   "per": 1.0,
+   "ph": 0.0,
+   "frm": 0.55,
+   "ramp": 0.25,
+   "dur": 0.5,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "team-up-balloon"
+   ],
+   "ch": "s",
+   "f": "wave",
+   "amp": 0.018,
+   "per": 0.5,
+   "ph": 0,
+   "frm": 1.1,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "team-up-lettering"
+   ],
+   "ch": "s",
+   "f": "keys",
+   "amp": 0.0,
+   "per": 1.0,
+   "ph": 0.0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [
+    0.0,
+    0.0,
+    0.75,
+    0.0,
+    0.9,
+    1.18,
+    1.02,
+    1.0
+   ],
+   "e": "out"
+  },
+  {
+   "t": [
+    "team-up-lettering"
+   ],
+   "ch": "r",
+   "f": "jit",
+   "amp": 1.2,
+   "per": 1.0,
+   "ph": 0.0,
+   "frm": 1.0,
+   "ramp": 0.1,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 14,
+   "seed": 0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "@cam"
+   ],
+   "ch": "s",
+   "f": "keys",
+   "amp": 0.0,
+   "per": 1.0,
+   "ph": 0.0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [
+    0.0,
+    1.0,
+    0.55,
+    1.0,
+    0.62,
+    1.04,
+    0.95,
+    1.0
+   ],
+   "e": "io"
+  }
+ ]
+}
