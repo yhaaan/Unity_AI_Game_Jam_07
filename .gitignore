@@ -37,6 +37,7 @@ crashlytics-build.properties
 !.env.example
 *.local.json
 .unity-game-jam-state.json
+.unity-game-jam-memory.json
 npm-debug.log*
 
 

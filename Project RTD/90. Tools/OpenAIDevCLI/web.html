@@ -8,200 +8,341 @@
     :root { color-scheme: dark; font-family: Inter, Pretendard, "Segoe UI", sans-serif; background: #0d0f12; color: #edf0f5; }
     * { box-sizing: border-box; }
     body { margin: 0; min-height: 100vh; background: radial-gradient(circle at top, #18202e 0, #0d0f12 45%); }
-    .app { width: min(960px, 100%); min-height: 100vh; margin: auto; display: grid; grid-template-rows: auto 1fr auto; }
-    header { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; padding: 14px 20px 10px; border-bottom: 1px solid #2a303a; background: rgba(13,15,18,.92); backdrop-filter: blur(12px); }
+    .app { width: min(1000px, 100%); min-height: 100vh; margin: auto; display: grid; grid-template-rows: auto 1fr auto; }
+    header { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; padding: 14px 20px 10px; border-bottom: 1px solid #2a303a; background: rgba(13,15,18,.92); backdrop-filter: blur(12px); }
     h1 { margin: 0 auto 0 0; font-size: 18px; }
     .online { width: 9px; height: 9px; border-radius: 50%; background: #43d17b; box-shadow: 0 0 12px #43d17b; }
-    button, select, textarea { font: inherit; color: inherit; }
-    button, select { border: 1px solid #343c49; border-radius: 9px; background: #191e26; padding: 8px 11px; }
+    .online.offline { background: #e0565b; box-shadow: 0 0 12px #e0565b; }
+    button, select, textarea, input { font: inherit; color: inherit; }
+    button, select, input { border: 1px solid #343c49; border-radius: 9px; background: #191e26; padding: 7px 10px; }
     button { cursor: pointer; }
     button:hover { background: #222a35; }
-    button:disabled { cursor: wait; opacity: .55; }
+    button:disabled, select:disabled { cursor: wait; opacity: .55; }
+    .picker { display: flex; gap: 6px; align-items: center; }
+    .picker label { display: flex; flex-direction: column; gap: 2px; font-size: 11px; color: #8994a5; }
     .sessions { order: 3; width: 100%; display: flex; gap: 7px; overflow-x: auto; padding: 2px 0 4px; scrollbar-width: thin; }
     .session-tab { flex: 0 0 auto; display: flex; border: 1px solid #303845; border-radius: 9px; overflow: hidden; background: #151920; }
     .session-tab.active { border-color: #4c82d7; background: #1a2c48; }
     .session-tab.working::before { content: ""; width: 7px; height: 7px; margin: auto 0 auto 9px; border-radius: 50%; background: #f0b84b; animation: pulse 1s infinite alternate; }
-    .session-tab button { border: 0; border-radius: 0; background: transparent; padding: 7px 10px; }
+    .session-tab button { border: 0; border-radius: 0; background: transparent; padding: 7px 10px; max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .session-tab .close { padding-inline: 8px; color: #8994a5; border-left: 1px solid #303845; }
-    #add-session { flex: 0 0 auto; padding: 7px 11px; }
-    #messages { padding: 24px 20px 160px; overflow-wrap: anywhere; }
+    #messages { padding: 24px 20px 230px; overflow-wrap: anywhere; }
     .message { display: flex; margin: 0 0 20px; }
-    .bubble { max-width: 84%; padding: 13px 15px; border: 1px solid #2c3440; border-radius: 14px; line-height: 1.55; white-space: pre-wrap; background: #171b22; }
+    .bubble { max-width: 86%; padding: 13px 15px; border: 1px solid #2c3440; border-radius: 14px; line-height: 1.55; white-space: pre-wrap; background: #171b22; }
     .user { justify-content: flex-end; }
     .user .bubble { border-color: #355fa6; background: #17335d; }
-    .meta { margin-top: 9px; color: #9aa5b5; font-size: 12px; white-space: normal; }
-    details { margin-top: 10px; color: #b8c1ce; }
+    .pending .bubble { color: #9aa5b5; }
+    .pending .bubble::after { content: " ●"; animation: pulse 0.8s infinite alternate; color: #f0b84b; }
+    .meta { margin-top: 10px; padding-top: 8px; border-top: 1px solid #262d38; color: #8f9aab; font-size: 12px; white-space: normal; display: flex; flex-wrap: wrap; gap: 4px 12px; }
+    .meta b { color: #c6cfdb; font-weight: 600; }
+    details { margin-top: 10px; color: #b8c1ce; white-space: normal; }
     details ul { margin: 8px 0 0; padding-left: 20px; }
-    .empty { color: #9aa5b5; text-align: center; padding-top: 18vh; }
-    footer { position: fixed; bottom: 0; width: min(960px, 100%); padding: 12px 20px 16px; border-top: 1px solid #2a303a; background: rgba(13,15,18,.94); backdrop-filter: blur(12px); }
+    li.failed { color: #f08b8f; }
+    .empty { color: #9aa5b5; text-align: center; padding-top: 18vh; line-height: 1.7; }
+    footer { position: fixed; bottom: 0; width: min(1000px, 100%); padding: 10px 20px 14px; border-top: 1px solid #2a303a; background: rgba(13,15,18,.95); backdrop-filter: blur(12px); }
+    .usage { display: grid; grid-template-columns: 1fr auto; gap: 4px 14px; align-items: center; margin-bottom: 9px; font-size: 12px; color: #9aa5b5; }
+    .meter { grid-column: 1 / -1; height: 6px; border-radius: 4px; background: #222832; overflow: hidden; }
+    .meter span { display: block; height: 100%; width: 0; background: #43a2d1; transition: width .3s; }
+    .meter.warn span { background: #f0b84b; }
+    .meter.danger span { background: #e0565b; }
+    .usage strong { color: #dbe2ec; font-weight: 600; }
     .composer { display: flex; gap: 10px; align-items: flex-end; }
     textarea { width: 100%; min-height: 50px; max-height: 180px; resize: vertical; border: 1px solid #343c49; border-radius: 12px; outline: none; background: #151920; padding: 13px; }
     textarea:focus { border-color: #4c82d7; box-shadow: 0 0 0 3px rgba(76,130,215,.16); }
     #send { min-width: 72px; min-height: 50px; border-color: #4076ca; background: #2862bd; }
-    #status { min-height: 17px; margin: 8px 2px 0; color: #8994a5; font-size: 12px; }
+    #status { min-height: 17px; margin: 7px 2px 0; color: #8994a5; font-size: 12px; }
+    dialog { width: min(760px, 94vw); max-height: 86vh; border: 1px solid #343c49; border-radius: 14px; background: #12161c; color: inherit; padding: 0; }
+    dialog::backdrop { background: rgba(0,0,0,.55); }
+    .dialog-head { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; border-bottom: 1px solid #2a303a; background: #12161c; }
+    .dialog-head h2 { margin: 0; font-size: 16px; }
+    .dialog-body { padding: 6px 18px 18px; }
+    .dialog-body h3 { margin: 18px 0 8px; font-size: 14px; color: #c6cfdb; }
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+    .stat { border: 1px solid #2a303a; border-radius: 10px; padding: 10px; background: #171b22; font-size: 12px; color: #9aa5b5; }
+    .stat strong { display: block; margin-top: 3px; font-size: 16px; color: #edf0f5; }
+    .list { list-style: none; margin: 0; padding: 0; font-size: 13px; }
+    .list li { display: flex; gap: 8px; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid #222832; }
+    .list li span.grow { flex: 1; }
+    .tag { flex: 0 0 auto; font-size: 11px; padding: 1px 7px; border-radius: 6px; background: #243146; color: #9cc1f3; }
+    .tag.decision { background: #3a2e17; color: #f0c56b; }
+    .tag.summary { background: #1f3428; color: #7fd8a1; }
+    .muted { color: #7d8797; font-size: 12px; }
+    .memory-form { display: flex; gap: 6px; margin-top: 10px; }
+    .memory-form input { flex: 1; }
+    .small { padding: 3px 8px; font-size: 12px; }
     @keyframes pulse { to { opacity: .3; } }
-    @media (max-width: 620px) { header { flex-wrap: wrap; } h1 { width: calc(100% - 24px); } .bubble { max-width: 94%; } }
+    @media (max-width: 720px) { h1 { width: calc(100% - 24px); } .bubble { max-width: 96%; } .picker { flex-wrap: wrap; } }
   </style>
 </head>
 <body>
   <main class="app">
     <header>
-      <span class="online" aria-label="로컬 서버 연결됨"></span>
+      <span class="online" id="online" aria-label="로컬 서버 연결됨"></span>
       <h1>Unity Game Jam</h1>
-      <label>
-        <span hidden>모델</span>
-        <select id="model">
-          <option value="sol">Sol · 일반 구현</option>
-          <option value="astra">Astra · 복잡한 작업</option>
-          <option value="luna">Luna · 단순 작업</option>
-        </select>
-      </label>
+      <div class="picker">
+        <label>모델 계열<select id="family" aria-label="모델 계열"></select></label>
+        <label>버전<select id="version" aria-label="모델 버전"></select></label>
+        <label>추론 강도<select id="effort" aria-label="추론 강도">
+          <option value="low">low · 빠름</option>
+          <option value="medium">medium</option>
+          <option value="high">high · 깊게</option>
+        </select></label>
+      </div>
+      <button id="project-btn" type="button" title="토큰 사용량, 장기 기억, 변경 파일">프로젝트·기억</button>
       <button id="reset" type="button">새 대화</button>
       <nav class="sessions" id="sessions" aria-label="개발 세션"></nav>
     </header>
-    <section id="messages" aria-live="polite">
-      <div class="empty" id="empty">Unity 프로젝트 작업을 입력하세요.<br>이 채팅은 OpenAI API 크레딧을 사용합니다.</div>
-    </section>
+    <section id="messages" aria-live="polite"></section>
     <footer>
+      <div class="usage" id="usage">
+        <span id="usage-context">컨텍스트 정보 불러오는 중…</span>
+        <span id="usage-today"></span>
+        <div class="meter" id="meter"><span id="meter-fill"></span></div>
+        <span id="usage-session"></span>
+      </div>
       <form class="composer" id="form">
-        <textarea id="input" maxlength="20000" aria-label="개발 요청" placeholder="예: 현재 플레이어 이동 코드를 분석하고 점프 버그를 고쳐줘" required></textarea>
+        <textarea id="input" maxlength="20000" aria-label="개발 요청" placeholder="예: 현재 플레이어 이동 코드를 분석하고 점프 버그를 고쳐줘 (Enter 전송, Shift+Enter 줄바꿈)" required></textarea>
         <button id="send" type="submit">전송</button>
       </form>
       <div id="status">서버 상태 확인 중…</div>
     </footer>
   </main>
+
+  <dialog id="project-dialog">
+    <div class="dialog-head">
+      <h2>프로젝트·기억</h2>
+      <button type="button" class="small" id="dialog-close">닫기</button>
+    </div>
+    <div class="dialog-body" id="dialog-body"></div>
+  </dialog>
+
   <script>
     const API_TOKEN = __API_DEV_TOKEN__;
-    const MODEL_IDS = { "gpt-6.2-astra": "astra", "gpt-6.2-sol": "sol", "gpt-6.1-sol": "sol", "gpt-6-luna": "luna" };
-    const messages = document.querySelector("#messages");
-    const sessionsElement = document.querySelector("#sessions");
-    const form = document.querySelector("#form");
-    const input = document.querySelector("#input");
-    const send = document.querySelector("#send");
-    const reset = document.querySelector("#reset");
-    const model = document.querySelector("#model");
-    const status = document.querySelector("#status");
+    const FAMILY_LABELS = { astra: "Astra · 복잡한 작업", sol: "Sol · 일반 구현", luna: "Luna · 단순 작업", other: "기타" };
+    const FAMILY_ORDER = ["astra", "sol", "luna"];
+    const $ = (selector) => document.querySelector(selector);
+    const messages = $("#messages");
+    const sessionsElement = $("#sessions");
+    const form = $("#form");
+    const input = $("#input");
+    const send = $("#send");
+    const reset = $("#reset");
+    const familySelect = $("#family");
+    const versionSelect = $("#version");
+    const effortSelect = $("#effort");
+    const status = $("#status");
+    const dialog = $("#project-dialog");
+    const dialogBody = $("#dialog-body");
     let sessions = [];
-    let activeSessionId = sessionStorage.getItem("api-dev-active-session");
-    let histories = {};
-    const busySessions = new Set();
-    try { histories = JSON.parse(sessionStorage.getItem("api-dev-histories") || "{}"); } catch { histories = {}; }
+    let activeSessionId = sessionStorage.getItem("unity-game-jam-active-session");
+    let activeState = null;
+    let catalog = [];
+    const histories = {};
+    const busySessions = new Map();
+
+    const fmt = (value) => Number(value || 0).toLocaleString("ko-KR");
 
     async function api(path, options = {}) {
       const response = await fetch(path, {
         ...options,
         headers: { "Content-Type": "application/json", "X-API-Dev-Token": API_TOKEN, ...(options.headers || {}) },
       });
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
+      $("#online").classList.remove("offline");
       if (!response.ok) throw new Error(data.error || `HTTP ${response.status}`);
       return data;
     }
 
-    function saveHistories() { sessionStorage.setItem("api-dev-histories", JSON.stringify(histories)); }
-
-    function activeHistory() {
-      histories[activeSessionId] ||= [];
-      return histories[activeSessionId];
+    // ----- model picker -------------------------------------------------
+    function describe(id) {
+      const match = id.match(/^gpt-(\d+(?:\.\d+)*)-([a-z]+)(?:-(.+))?$/i);
+      return match ? { id, version: match[1], family: match[2].toLowerCase(), variant: match[3] || null } : { id, version: id, family: "other", variant: null };
     }
 
-    function addMessage(role, text, tools = [], persist = true, sessionId = activeSessionId) {
-      if (sessionId !== activeSessionId) {
-        if (persist) {
-          histories[sessionId] ||= [];
-          histories[sessionId].push({ role, text, tools });
-          saveHistories();
-        }
-        return null;
+    function families() {
+      const found = [...new Set(catalog.map((item) => item.family))];
+      return found.sort((a, b) => {
+        const rank = (family) => { const index = FAMILY_ORDER.indexOf(family); return index < 0 ? (family === "other" ? 99 : 50) : index; };
+        return rank(a) - rank(b) || a.localeCompare(b);
+      });
+    }
+
+    function renderFamilies() {
+      familySelect.replaceChildren(...families().map((family) => new Option(FAMILY_LABELS[family] || family, family)));
+    }
+
+    function renderVersions(family, selectedId = null) {
+      const options = catalog.filter((item) => item.family === family).map((item) => {
+        const label = item.family === "other" ? item.id : `${item.version}${item.variant ? ` · ${item.variant}` : ""}`;
+        const option = new Option(label, item.id);
+        option.title = item.id;
+        return option;
+      });
+      versionSelect.replaceChildren(...options);
+      if (selectedId && options.some((option) => option.value === selectedId)) versionSelect.value = selectedId;
+    }
+
+    function setPicker(modelId, effort) {
+      if (modelId && !catalog.some((item) => item.id === modelId)) {
+        catalog.push(describe(modelId));
+        renderFamilies();
       }
+      const item = catalog.find((entry) => entry.id === modelId) || catalog[0];
+      if (!item) return;
+      familySelect.value = item.family;
+      renderVersions(item.family, item.id);
+      if (effort) effortSelect.value = effort;
+    }
+
+    async function loadModels(refresh = false) {
+      const result = await api(`/api/models${refresh ? "?refresh=1" : ""}`);
+      catalog = result.models;
+      renderFamilies();
+      if (result.error) status.textContent = `모델 목록 API 조회 실패, 기본 목록 사용: ${result.error}`;
+    }
+
+    function noteModelChange() {
+      if (activeState && versionSelect.value !== activeState.model && activeState.history?.length) {
+        status.textContent = `다음 요청부터 ${versionSelect.value} 사용 · 모델을 바꾸면 이 세션의 대화 문맥이 초기화됩니다(기록은 유지).`;
+      }
+    }
+
+    familySelect.addEventListener("change", () => { renderVersions(familySelect.value); noteModelChange(); });
+    versionSelect.addEventListener("change", noteModelChange);
+
+    // ----- token usage ---------------------------------------------------
+    function updateUsage(state) {
+      const used = Number(state.context_used_tokens || 0);
+      const window = Number(state.context_window_tokens || 0) || 1;
+      const percent = Math.min(100, (used / window) * 100);
+      $("#meter-fill").style.width = `${percent}%`;
+      $("#meter").className = `meter${percent >= 90 ? " danger" : percent >= 70 ? " warn" : ""}`;
+      $("#usage-context").innerHTML = "";
+      $("#usage-context").append(
+        "컨텍스트 ", strong(`${fmt(used)}`), ` / ${fmt(window)} 사용 (${percent.toFixed(1)}%) · 남은 토큰 약 `, strong(fmt(state.context_remaining_tokens)),
+      );
+      const session = state.usage || state.session_usage || {};
+      $("#usage-session").textContent = `이 세션 누적: 입력 ${fmt(session.input)} (캐시 ${fmt(session.cached)}) · 출력 ${fmt(session.output)} (추론 ${fmt(session.reasoning)}) · API ${fmt(session.calls)}회`;
+      const today = state.totals?.today;
+      $("#usage-today").textContent = today ? `오늘 전체: 입력 ${fmt(today.input)} · 출력 ${fmt(today.output)}` : "";
+    }
+
+    function strong(text) { const element = document.createElement("strong"); element.textContent = text; return element; }
+
+    // ----- messages ----------------------------------------------------
+    function metaLine(meta) {
+      if (!meta?.usage) return null;
+      const line = document.createElement("div");
+      line.className = "meta";
+      const usage = meta.usage;
+      const parts = [
+        [meta.model, meta.effort],
+        ["입력", `${fmt(usage.input)}${usage.cached ? ` (캐시 ${fmt(usage.cached)})` : ""}`],
+        ["출력", `${fmt(usage.output)}${usage.reasoning ? ` (추론 ${fmt(usage.reasoning)})` : ""}`],
+        ["API", `${fmt(usage.calls)}회`],
+      ];
+      for (const [label, value] of parts) {
+        const span = document.createElement("span");
+        span.append(strong(label), ` ${value}`);
+        line.append(span);
+      }
+      if (meta.changed_files?.length) {
+        const span = document.createElement("span");
+        span.append(strong("변경"), ` ${meta.changed_files.join(", ")}`);
+        line.append(span);
+      }
+      return line;
+    }
+
+    function renderMessage(item) {
       document.querySelector("#empty")?.remove();
       const row = document.createElement("article");
-      row.className = `message ${role}`;
+      row.className = `message ${item.role}${item.pending ? " pending" : ""}`;
       const bubble = document.createElement("div");
       bubble.className = "bubble";
-      bubble.textContent = text;
-      if (tools.length) {
+      bubble.textContent = item.text;
+      if (item.tools?.length) {
         const details = document.createElement("details");
         const summary = document.createElement("summary");
-        summary.textContent = `도구 실행 ${tools.length}건`;
+        const failed = item.tools.filter((tool) => tool.status === "failed").length;
+        summary.textContent = `도구 실행 ${item.tools.length}건${failed ? ` (실패 ${failed})` : ""}`;
         const list = document.createElement("ul");
-        for (const tool of tools) {
-          const item = document.createElement("li");
+        for (const tool of item.tools) {
+          const entry = document.createElement("li");
           const args = Object.keys(tool.arguments || {}).length ? ` ${JSON.stringify(tool.arguments)}` : "";
-          item.textContent = `${tool.name}${args} · ${tool.status}`;
-          list.append(item);
+          entry.textContent = `${tool.name}${args} · ${tool.status}${tool.error ? ` — ${tool.error}` : ""}`;
+          if (tool.status === "failed") entry.className = "failed";
+          list.append(entry);
         }
         details.append(summary, list);
         bubble.append(details);
       }
+      const meta = metaLine(item.meta);
+      if (meta) bubble.append(meta);
       row.append(bubble);
       messages.append(row);
-      if (persist) { activeHistory().push({ role, text, tools }); saveHistories(); }
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
       return row;
-    }
-
-    function updateStatus(state) {
-      const remaining = Number(state.context_remaining_tokens ?? 0).toLocaleString();
-      status.textContent = `${state.model} · 누적 input ${Number(state.input_tokens).toLocaleString()} / output ${Number(state.output_tokens).toLocaleString()} · 현재 컨텍스트 잔여 약 ${remaining} 토큰`;
-    }
-
-    function updateControls() {
-      const busy = busySessions.has(activeSessionId);
-      send.disabled = busy;
-      reset.disabled = busy;
-      model.disabled = busy;
-      input.disabled = busy;
-      send.textContent = busy ? "작업 중…" : "전송";
-    }
-
-    function setSessionBusy(sessionId, value) {
-      if (value) busySessions.add(sessionId); else busySessions.delete(sessionId);
-      const session = sessions.find((item) => item.id === sessionId);
-      if (session) session.busy = value;
-      renderSessions();
-      updateControls();
     }
 
     function renderHistory() {
       messages.replaceChildren();
-      const history = activeHistory();
+      const history = histories[activeSessionId] || [];
       if (!history.length) {
         const notice = document.createElement("div");
         notice.className = "empty";
         notice.id = "empty";
-        notice.textContent = "이 세션에서 Unity 프로젝트 작업을 입력하세요.";
+        notice.textContent = "이 세션에서 Unity 프로젝트 작업을 입력하세요.\n프로젝트 구조·씬 상태·장기 기억을 자동으로 참고합니다. OpenAI API 크레딧을 사용합니다.";
+        notice.style.whiteSpace = "pre-line";
         messages.append(notice);
-        return;
       }
-      for (const item of history) addMessage(item.role, item.text, item.tools || [], false);
+      for (const item of history) renderMessage(item);
+      const busy = busySessions.get(activeSessionId);
+      if (busy) busy.row = renderMessage({ role: "assistant", text: pendingText(busy.startedAt), pending: true });
+      window.scrollTo({ top: document.body.scrollHeight });
+    }
+
+    function pendingText(startedAt) {
+      return `프로젝트를 확인하며 작업 중… ${Math.round((Date.now() - startedAt) / 1000)}초`;
+    }
+
+    setInterval(() => {
+      const busy = busySessions.get(activeSessionId);
+      if (busy?.row) busy.row.querySelector(".bubble").textContent = pendingText(busy.startedAt);
+    }, 1000);
+
+    // ----- sessions ----------------------------------------------------
+    function updateControls() {
+      const busy = busySessions.has(activeSessionId);
+      for (const element of [send, reset, input, familySelect, versionSelect, effortSelect]) element.disabled = busy;
+      send.textContent = busy ? "작업 중…" : "전송";
     }
 
     function renderSessions() {
       sessionsElement.replaceChildren();
       for (const session of sessions) {
+        const working = session.busy || busySessions.has(session.id);
         const tab = document.createElement("div");
-        tab.className = `session-tab${session.id === activeSessionId ? " active" : ""}${session.busy || busySessions.has(session.id) ? " working" : ""}`;
+        tab.className = `session-tab${session.id === activeSessionId ? " active" : ""}${working ? " working" : ""}`;
         const select = document.createElement("button");
         select.type = "button";
-        select.className = "session-action";
         select.textContent = session.title;
-        select.title = session.title;
-        select.addEventListener("click", () => switchSession(session.id));
+        select.title = `${session.title}\n${session.model} · 입력 ${fmt(session.usage?.input)} / 출력 ${fmt(session.usage?.output)}`;
+        select.addEventListener("click", () => {
+          switchSession(session.id).catch((error) => { status.textContent = `세션 전환 실패: ${error.message}`; });
+        });
         const close = document.createElement("button");
         close.type = "button";
-        close.className = "close session-action";
+        close.className = "close";
         close.textContent = "×";
         close.title = `${session.title} 닫기`;
         close.setAttribute("aria-label", close.title);
-        close.disabled = session.busy || busySessions.has(session.id);
+        close.disabled = working;
         close.addEventListener("click", () => closeSession(session.id));
         tab.append(select, close);
         sessionsElement.append(tab);
       }
       const add = document.createElement("button");
-      add.id = "add-session";
       add.type = "button";
-      add.className = "session-action";
       add.textContent = "+ 세션";
       add.addEventListener("click", createSession);
       sessionsElement.append(add);
@@ -209,19 +350,19 @@
 
     async function switchSession(sessionId) {
       activeSessionId = sessionId;
-      sessionStorage.setItem("api-dev-active-session", sessionId);
+      sessionStorage.setItem("unity-game-jam-active-session", sessionId);
       renderSessions();
       renderHistory();
-      const state = await api(`/api/state?session_id=${encodeURIComponent(sessionId)}`);
-      if (Array.isArray(state.history)) {
-        histories[sessionId] = state.history;
-        saveHistories();
-        renderHistory();
-      }
-      if (state.busy) busySessions.add(sessionId); else busySessions.delete(sessionId);
-      model.value = MODEL_IDS[state.model] || "sol";
-      updateStatus(state);
       updateControls();
+      const state = await api(`/api/state?session_id=${encodeURIComponent(sessionId)}`);
+      if (activeSessionId !== sessionId) return;
+      activeState = state;
+      histories[sessionId] = state.history || [];
+      renderHistory();
+      setPicker(state.model, state.reasoning_effort);
+      updateUsage(state);
+      updateControls();
+      if (!busySessions.has(sessionId)) status.textContent = `${state.model} · ${state.reasoning_effort} · 쓰기 범위 ${state.write_scope}`;
       input.focus();
     }
 
@@ -247,7 +388,6 @@
       try {
         await api(`/api/sessions/${encodeURIComponent(sessionId)}`, { method: "DELETE" });
         delete histories[sessionId];
-        saveHistories();
         if (activeSessionId === sessionId) activeSessionId = null;
         await refreshSessions();
       } catch (error) { status.textContent = `세션 닫기 실패: ${error.message}`; }
@@ -256,31 +396,41 @@
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       const message = input.value.trim();
-      if (!message) return;
+      if (!message || busySessions.has(activeSessionId)) return;
       const requestSessionId = activeSessionId;
-      const requestModel = model.value;
-      addMessage("user", message, [], true, requestSessionId);
+      const body = { session_id: requestSessionId, message, model: versionSelect.value, effort: effortSelect.value };
+      (histories[requestSessionId] ||= []).push({ role: "user", text: message, tools: [] });
       input.value = "";
-      setSessionBusy(requestSessionId, true);
-      status.textContent = "API가 프로젝트를 확인하고 있습니다…";
+      busySessions.set(requestSessionId, { startedAt: Date.now(), row: null });
+      renderSessions();
+      renderHistory();
+      updateControls();
+      status.textContent = `${body.model} · ${body.effort}로 작업 중…`;
       try {
-        const result = await api("/api/chat", { method: "POST", body: JSON.stringify({ session_id: requestSessionId, message, model: requestModel }) });
-        addMessage("assistant", result.text, result.tools || [], true, requestSessionId);
+        const result = await api("/api/chat", { method: "POST", body: JSON.stringify(body) });
+        histories[requestSessionId].push({
+          role: "assistant", text: result.text, tools: result.tools || [],
+          meta: { model: result.model, effort: result.reasoning_effort, usage: result.usage, changed_files: result.changed_files },
+        });
         const index = sessions.findIndex((session) => session.id === requestSessionId);
         if (index >= 0) sessions[index] = result.session;
-        renderSessions();
-        if (activeSessionId === requestSessionId) updateStatus(result);
+        if (activeSessionId === requestSessionId) {
+          activeState = { ...activeState, ...result, model: result.model, history: histories[requestSessionId] };
+          updateUsage({ ...result, usage: result.session_usage });
+          status.textContent = `완료 · 이번 요청 입력 ${fmt(result.usage.input)} / 출력 ${fmt(result.usage.output)} 토큰`;
+        }
       } catch (error) {
-        addMessage("assistant", `오류: ${error.message}`, [], true, requestSessionId);
+        histories[requestSessionId].push({ role: "assistant", text: `오류: ${error.message}`, tools: [] });
         if (activeSessionId === requestSessionId) status.textContent = "요청 실패";
       } finally {
-        setSessionBusy(requestSessionId, false);
-        if (activeSessionId === requestSessionId) input.focus();
+        busySessions.delete(requestSessionId);
+        renderSessions();
+        if (activeSessionId === requestSessionId) { renderHistory(); updateControls(); input.focus(); }
       }
     });
 
     input.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); form.requestSubmit(); }
+      if (event.key === "Enter" && !event.shiftKey && !event.isComposing) { event.preventDefault(); form.requestSubmit(); }
     });
 
     reset.addEventListener("click", async () => {
@@ -288,17 +438,126 @@
       try {
         const state = await api("/api/reset", { method: "POST", body: JSON.stringify({ session_id: activeSessionId }) });
         histories[activeSessionId] = [];
-        saveHistories();
+        activeState = state;
         const index = sessions.findIndex((session) => session.id === activeSessionId);
-        if (index >= 0) sessions[index] = { ...sessions[index], title: state.title, input_tokens: state.input_tokens, output_tokens: state.output_tokens };
+        if (index >= 0) sessions[index] = { ...sessions[index], title: state.title };
         renderSessions();
         renderHistory();
-        updateStatus(state);
+        updateUsage(state);
       } catch (error) { status.textContent = `초기화 실패: ${error.message}`; }
       finally { updateControls(); input.focus(); }
     });
 
-    refreshSessions().catch((error) => { status.textContent = `서버 연결 실패: ${error.message}`; });
+    // ----- project & memory dialog --------------------------------------
+    function section(title, ...children) {
+      const heading = document.createElement("h3");
+      heading.textContent = title;
+      return [heading, ...children];
+    }
+
+    function stat(label, value, sub = "") {
+      const box = document.createElement("div");
+      box.className = "stat";
+      box.append(label, strong(value));
+      if (sub) { const note = document.createElement("div"); note.className = "muted"; note.textContent = sub; box.append(note); }
+      return box;
+    }
+
+    function renderProject(info) {
+      const usageGrid = document.createElement("div");
+      usageGrid.className = "stat-grid";
+      const { today, all } = info.totals;
+      usageGrid.append(
+        stat("오늘 입력", fmt(today.input), `캐시 ${fmt(today.cached)}`),
+        stat("오늘 출력", fmt(today.output), `추론 ${fmt(today.reasoning)}`),
+        stat("전체 입력", fmt(all.input), `캐시 ${fmt(all.cached)}`),
+        stat("전체 출력", fmt(all.output), `API ${fmt(all.calls)}회`),
+      );
+      const usageNote = document.createElement("p");
+      usageNote.className = "muted";
+      usageNote.textContent = "남은 크레딧 잔액은 API 키로 조회할 수 없어 OpenAI Platform의 Usage 화면에서 확인해야 합니다. 캐시된 입력 토큰은 일반 입력보다 저렴하게 과금됩니다.";
+
+      const memoryList = document.createElement("ul");
+      memoryList.className = "list";
+      if (!info.memory.length) memoryList.append(Object.assign(document.createElement("li"), { textContent: "아직 저장된 기억이 없습니다." }));
+      for (const entry of info.memory) {
+        const item = document.createElement("li");
+        const tag = document.createElement("span");
+        tag.className = `tag ${entry.kind}`;
+        tag.textContent = { decision: "결정", summary: "작업", note: "메모" }[entry.kind] || entry.kind;
+        const text = document.createElement("span");
+        text.className = "grow";
+        text.textContent = entry.text;
+        const date = document.createElement("span");
+        date.className = "muted";
+        date.textContent = entry.at.slice(5, 10);
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "small";
+        remove.textContent = "삭제";
+        remove.addEventListener("click", async () => {
+          try { renderProject(await api(`/api/memory/${entry.id}`, { method: "DELETE" })); }
+          catch (error) { status.textContent = `기억 삭제 실패: ${error.message}`; }
+        });
+        item.append(tag, text, date, remove);
+        memoryList.append(item);
+      }
+      const memoryForm = document.createElement("form");
+      memoryForm.className = "memory-form";
+      const kind = document.createElement("select");
+      kind.append(new Option("결정", "decision"), new Option("메모", "note"));
+      const text = document.createElement("input");
+      text.placeholder = "예: 적 AI는 PlatformEnemy 하나로 통합한다";
+      text.maxLength = 600;
+      const add = document.createElement("button");
+      add.textContent = "기억 추가";
+      memoryForm.append(kind, text, add);
+      memoryForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (!text.value.trim()) return;
+        try { renderProject(await api("/api/memory", { method: "POST", body: JSON.stringify({ kind: kind.value, text: text.value }) })); }
+        catch (error) { status.textContent = `기억 추가 실패: ${error.message}`; }
+      });
+
+      const changes = document.createElement("ul");
+      changes.className = "list";
+      if (!info.recent_changes.length) changes.append(Object.assign(document.createElement("li"), { textContent: "서버 시작 후 감지된 변경이 없습니다." }));
+      for (const change of info.recent_changes) {
+        const item = document.createElement("li");
+        const tag = document.createElement("span");
+        tag.className = "tag";
+        tag.textContent = { added: "추가", modified: "수정", deleted: "삭제" }[change.kind];
+        const name = document.createElement("span");
+        name.className = "grow";
+        name.textContent = change.path;
+        const by = document.createElement("span");
+        by.className = "muted";
+        by.textContent = `${change.by === "agent" ? "API" : "외부"} · ${new Date(change.at).toLocaleTimeString("ko-KR")}`;
+        item.append(tag, name, by);
+        changes.append(item);
+      }
+      const indexNote = document.createElement("p");
+      indexNote.className = "muted";
+      indexNote.textContent = `인덱스 파일 ${fmt(info.indexed_files)}개 · 마지막 스캔 ${info.index_scanned_at ? new Date(info.index_scanned_at).toLocaleTimeString("ko-KR") : "-"} · 20초마다 자동 갱신`;
+
+      dialogBody.replaceChildren(
+        ...section("토큰 사용량", usageGrid, usageNote),
+        ...section(`장기 기억 (${info.memory.length})`, memoryList, memoryForm),
+        ...section("최근 변경 파일", changes, indexNote),
+      );
+    }
+
+    $("#project-btn").addEventListener("click", async () => {
+      dialogBody.textContent = "불러오는 중…";
+      dialog.showModal();
+      try { renderProject(await api("/api/project")); }
+      catch (error) { dialogBody.textContent = `불러오기 실패: ${error.message}`; }
+    });
+    $("#dialog-close").addEventListener("click", () => dialog.close());
+
+    loadModels()
+      .then(() => refreshSessions())
+      .catch((error) => { $("#online").classList.add("offline"); status.textContent = `서버 연결 실패: ${error.message}`; });
     input.focus();
   </script>
 </body>
