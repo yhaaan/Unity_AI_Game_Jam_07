@@ -1,0 +1,65 @@
+{
+ "_note": "카드 6장 오른쪽 이름 칸의 글자입니다. title은 큰 제목, lines의 role은 역할, name은 이름. 이 파일만 고치면 웹과 Unity 모두 바뀝니다.",
+ "cards": [
+  {
+   "title": "Let's Bust Out!",
+   "lines": [
+    {
+     "role": "Game Jam",
+     "name": "Unity AI Game Jam 07"
+    },
+    {
+     "role": "Director",
+     "name": "Name"
+    },
+    {
+     "role": "Game Design",
+     "name": "Name"
+    },
+    {
+     "role": "Character Art",
+     "name": "Name"
+    },
+    {
+     "role": "Animation",
+     "name": "Name"
+    }
+   ]
+  },
+  {
+   "title": "Programming",
+   "lines": [
+    {
+     "role": "Gameplay",
+     "name": "Name"
+    },
+    {
+     "role": "Tools",
+     "name": "Name"
+    }
+   ]
+  },
+  {
+   "title": "Sound",
+   "lines": [
+    {
+     "role": "Music",
+     "name": "Name"
+    },
+    {
+     "role": "Sound FX",
+     "name": "Name"
+    }
+   ]
+  },
+  {
+   "title": "Thanks for playing!",
+   "lines": [
+    {
+     "role": "Special Thanks",
+     "name": "Everyone who played"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,552 @@
+{
+ "cut": "09-sneak-away",
+ "intro": 1.0,
+ "pivots": [
+  {
+   "id": "cover",
+   "x": 1303,
+   "y": 368
+  },
+  {
+   "id": "scientist-coat",
+   "x": 298,
+   "y": 364
+  }
+ ],
+ "tracks": [
+  {
+   "t": [
+    "cover"
+   ],
+   "ch": "y",
+   "f": "hop",
+   "amp": -14,
+   "per": 0.35,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "cover"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 3,
+   "per": 0.7,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "cover"
+   ],
+   "ch": "sy",
+   "f": "hop",
+   "amp": 0.04,
+   "per": 0.35,
+   "ph": 0.5,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "shadow"
+   ],
+   "ch": "sx",
+   "f": "hop",
+   "amp": -0.06,
+   "per": 0.35,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "rear-duck-foot"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 24,
+   "per": 0.7,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "near-duck-foot"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 22,
+   "per": 0.7,
+   "ph": 0.5,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "bear-paw"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 14,
+   "per": 0.7,
+   "ph": 0.25,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "ear-left",
+    "ear-right"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 8,
+   "per": 0.35,
+   "ph": 0.3,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "left-gills"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 9,
+   "per": 0.35,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "right-gills"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": -9,
+   "per": 0.35,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "rear-motion"
+   ],
+   "ch": "a",
+   "f": "keys",
+   "amp": 0.0,
+   "per": 1.0,
+   "ph": 0.0,
+   "frm": 0.0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.7,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [
+    0.0,
+    1.0,
+    0.315,
+    0.15,
+    0.385,
+    1.0,
+    0.7,
+    1.0
+   ],
+   "e": "lin"
+  },
+  {
+   "t": [
+    "rear-motion"
+   ],
+   "ch": "x",
+   "f": "wave",
+   "amp": 6,
+   "per": 0.7,
+   "ph": 0.0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "paw-motion"
+   ],
+   "ch": "a",
+   "f": "keys",
+   "amp": 0.0,
+   "per": 1.0,
+   "ph": 0.0,
+   "frm": 0.2333333333333333,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.7,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [
+    0.0,
+    1.0,
+    0.315,
+    0.15,
+    0.385,
+    1.0,
+    0.7,
+    1.0
+   ],
+   "e": "lin"
+  },
+  {
+   "t": [
+    "paw-motion"
+   ],
+   "ch": "x",
+   "f": "wave",
+   "amp": 6,
+   "per": 0.7,
+   "ph": 0.3,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "ear-left",
+    "ear-right"
+   ],
+   "ch": "y",
+   "f": "keys",
+   "amp": 0.0,
+   "per": 1.0,
+   "ph": 0.0,
+   "frm": 1.6,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 3.2,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [
+    0.0,
+    0.0,
+    0.15,
+    14.0,
+    0.9,
+    14.0,
+    1.05,
+    0.0,
+    3.2,
+    0.0
+   ],
+   "e": "io"
+  },
+  {
+   "t": [
+    "scientist-coat"
+   ],
+   "ch": "y",
+   "f": "hop",
+   "amp": -5,
+   "per": 0.4,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "scientist-coat"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 2,
+   "per": 0.8,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "scientist-far-leg"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 18,
+   "per": 0.8,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "scientist-near-leg"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 18,
+   "per": 0.8,
+   "ph": 0.5,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "scientist-far-boot"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 10,
+   "per": 0.8,
+   "ph": 0.15,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "scientist-near-boot"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 10,
+   "per": 0.8,
+   "ph": 0.65,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "scientist-hair"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 3,
+   "per": 0.8,
+   "ph": 0.3,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "scientist-hair"
+   ],
+   "ch": "sy",
+   "f": "wave",
+   "amp": 0.04,
+   "per": 0.4,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "scientist-shadow"
+   ],
+   "ch": "sx",
+   "f": "hop",
+   "amp": -0.06,
+   "per": 0.4,
+   "ph": 0,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "scientist-steps"
+   ],
+   "ch": "a",
+   "f": "keys",
+   "amp": 0.0,
+   "per": 1.0,
+   "ph": 0.0,
+   "frm": 0.0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.8,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [
+    0.0,
+    1.0,
+    0.36000000000000004,
+    0.15,
+    0.44000000000000006,
+    1.0,
+    0.8,
+    1.0
+   ],
+   "e": "lin"
+  },
+  {
+   "t": [
+    "scientist-steps"
+   ],
+   "ch": "x",
+   "f": "wave",
+   "amp": 6,
+   "per": 0.8,
+   "ph": 0.0,
+   "frm": 0,
+   "ramp": 0.25,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  }
+ ]
+}

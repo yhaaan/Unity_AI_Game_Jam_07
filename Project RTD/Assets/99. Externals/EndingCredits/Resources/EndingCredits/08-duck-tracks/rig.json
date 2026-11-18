@@ -1,0 +1,473 @@
+{
+ "cut": "08-duck-tracks",
+ "size": [
+  1920,
+  475
+ ],
+ "layers": [
+  {
+   "id": "clean-background",
+   "file": "parts/clean-background.png",
+   "parent": null,
+   "role": "clean-background",
+   "pivot": [
+    960,
+    237
+   ],
+   "rect": [
+    0,
+    0,
+    1920,
+    475
+   ]
+  },
+  {
+   "id": "shadow",
+   "file": "parts/shadow.png",
+   "parent": null,
+   "role": "shadow",
+   "pivot": [
+    345,
+    434
+   ],
+   "rect": [
+    99,
+    421,
+    498,
+    43
+   ]
+  },
+  {
+   "id": "far-shoe",
+   "file": "parts/far-shoe.png",
+   "parent": "coat",
+   "role": "far-shoe",
+   "pivot": [
+    199,
+    410
+   ],
+   "rect": [
+    131,
+    366,
+    152,
+    87
+   ]
+  },
+  {
+   "id": "near-shoe",
+   "file": "parts/near-shoe.png",
+   "parent": "coat",
+   "role": "near-shoe",
+   "pivot": [
+    487,
+    396
+   ],
+   "rect": [
+    411,
+    361,
+    150,
+    96
+   ]
+  },
+  {
+   "id": "far-arm",
+   "file": "parts/far-arm.png",
+   "parent": "coat",
+   "role": "far-arm",
+   "pivot": [
+    528,
+    324
+   ],
+   "rect": [
+    490,
+    305,
+    106,
+    114
+   ]
+  },
+  {
+   "id": "far-forearm",
+   "file": "parts/far-forearm.png",
+   "parent": "far-arm",
+   "role": "far-forearm",
+   "pivot": [
+    559,
+    365
+   ],
+   "rect": [
+    541,
+    304,
+    91,
+    124
+   ]
+  },
+  {
+   "id": "coat",
+   "file": "parts/coat.png",
+   "parent": null,
+   "role": "coat",
+   "pivot": [
+    343,
+    317
+   ],
+   "rect": [
+    144,
+    203,
+    377,
+    239
+   ]
+  },
+  {
+   "id": "near-sleeve",
+   "file": "parts/near-sleeve.png",
+   "parent": "coat",
+   "role": "near-sleeve",
+   "pivot": [
+    379,
+    271
+   ],
+   "rect": [
+    301,
+    237,
+    168,
+    128
+   ]
+  },
+  {
+   "id": "near-forearm",
+   "file": "parts/near-forearm.png",
+   "parent": "near-sleeve",
+   "role": "near-forearm",
+   "pivot": [
+    367,
+    341
+   ],
+   "rect": [
+    266,
+    329,
+    164,
+    109
+   ]
+  },
+  {
+   "id": "near-hand",
+   "file": "parts/near-hand.png",
+   "parent": "near-forearm",
+   "role": "near-hand",
+   "pivot": [
+    343,
+    417
+   ],
+   "rect": [
+    285,
+    400,
+    170,
+    70
+   ]
+  },
+  {
+   "id": "hair",
+   "file": "parts/hair.png",
+   "parent": "head",
+   "role": "hair",
+   "pivot": [
+    511,
+    158
+   ],
+   "rect": [
+    291,
+    12,
+    465,
+    256
+   ]
+  },
+  {
+   "id": "head",
+   "file": "parts/head.png",
+   "parent": "coat",
+   "role": "head",
+   "pivot": [
+    523,
+    245
+   ],
+   "rect": [
+    399,
+    131,
+    282,
+    210
+   ]
+  },
+  {
+   "id": "glasses-frame",
+   "file": "parts/glasses-frame.png",
+   "parent": "head",
+   "role": "glasses-frame",
+   "pivot": [
+    554,
+    211
+   ],
+   "rect": [
+    433,
+    173,
+    244,
+    105
+   ]
+  },
+  {
+   "id": "lens-left",
+   "file": "parts/lens-left.png",
+   "parent": "glasses-frame",
+   "role": "lens-left",
+   "pivot": [
+    526,
+    216
+   ],
+   "rect": [
+    481,
+    191,
+    93,
+    63
+   ]
+  },
+  {
+   "id": "lens-right",
+   "file": "parts/lens-right.png",
+   "parent": "glasses-frame",
+   "role": "lens-right",
+   "pivot": [
+    617,
+    218
+   ],
+   "rect": [
+    585,
+    200,
+    82,
+    58
+   ]
+  },
+  {
+   "id": "pupil-left",
+   "file": "parts/pupil-left.png",
+   "parent": "lens-left",
+   "role": "pupil-left",
+   "pivot": [
+    533,
+    211
+   ],
+   "rect": [
+    505,
+    193,
+    59,
+    38
+   ]
+  },
+  {
+   "id": "pupil-right",
+   "file": "parts/pupil-right.png",
+   "parent": "lens-right",
+   "role": "pupil-right",
+   "pivot": [
+    619,
+    216
+   ],
+   "rect": [
+    599,
+    201,
+    39,
+    40
+   ]
+  },
+  {
+   "id": "nose",
+   "file": "parts/nose.png",
+   "parent": "head",
+   "role": "nose",
+   "pivot": [
+    583,
+    259
+   ],
+   "rect": [
+    558,
+    222,
+    123,
+    115
+   ]
+  },
+  {
+   "id": "smile",
+   "file": "parts/smile.png",
+   "parent": "head",
+   "role": "smile",
+   "pivot": [
+    540,
+    283
+   ],
+   "rect": [
+    503,
+    261,
+    73,
+    39
+   ]
+  },
+  {
+   "id": "magnifier",
+   "file": "parts/magnifier.png",
+   "parent": "gripping-hand",
+   "role": "magnifier",
+   "pivot": [
+    670,
+    357
+   ],
+   "rect": [
+    637,
+    163,
+    208,
+    233
+   ]
+  },
+  {
+   "id": "gripping-hand",
+   "file": "parts/gripping-hand.png",
+   "parent": "far-forearm",
+   "role": "gripping-hand",
+   "pivot": [
+    614,
+    386
+   ],
+   "rect": [
+    591,
+    318,
+    130,
+    114
+   ]
+  },
+  {
+   "id": "track-near",
+   "file": "parts/track-near.png",
+   "parent": null,
+   "role": "track-near",
+   "pivot": [
+    816,
+    441
+   ],
+   "rect": [
+    733,
+    367,
+    185,
+    99
+   ]
+  },
+  {
+   "id": "track-middle",
+   "file": "parts/track-middle.png",
+   "parent": null,
+   "role": "track-middle",
+   "pivot": [
+    1042,
+    391
+   ],
+   "rect": [
+    973,
+    326,
+    151,
+    78
+   ]
+  },
+  {
+   "id": "track-far",
+   "file": "parts/track-far.png",
+   "parent": null,
+   "role": "track-far",
+   "pivot": [
+    1224,
+    343
+   ],
+   "rect": [
+    1172,
+    294,
+    107,
+    59
+   ]
+  },
+  {
+   "id": "hidden-ear-left",
+   "file": "parts/hidden-ear-left.png",
+   "parent": "hay-cover",
+   "role": "hidden-ear-left",
+   "pivot": [
+    1553,
+    118
+   ],
+   "rect": [
+    1512,
+    11,
+    115,
+    121
+   ]
+  },
+  {
+   "id": "hidden-ear-right",
+   "file": "parts/hidden-ear-right.png",
+   "parent": "hay-cover",
+   "role": "hidden-ear-right",
+   "pivot": [
+    1651,
+    113
+   ],
+   "rect": [
+    1600,
+    12,
+    128,
+    110
+   ]
+  },
+  {
+   "id": "hay-cover",
+   "file": "parts/hay-cover.png",
+   "parent": null,
+   "role": "hay-cover",
+   "pivot": [
+    1601,
+    285
+   ],
+   "rect": [
+    1291,
+    93,
+    599,
+    237
+   ]
+  },
+  {
+   "id": "speech-balloon",
+   "file": "parts/speech-balloon.png",
+   "parent": null,
+   "role": "speech-balloon",
+   "pivot": [
+    977,
+    128
+   ],
+   "rect": [
+    701,
+    15,
+    553,
+    226
+   ]
+  },
+  {
+   "id": "words",
+   "file": "parts/words.png",
+   "parent": "speech-balloon",
+   "role": "words",
+   "pivot": [
+    1023,
+    126
+   ],
+   "rect": [
+    920,
+    88,
+    206,
+    76
+   ]
+  }
+ ]
+}

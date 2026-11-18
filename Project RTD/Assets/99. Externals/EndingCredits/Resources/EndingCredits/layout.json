@@ -1,0 +1,150 @@
+[
+  {
+    "layout": "Card-03.psd",
+    "canvas_px": [
+      1920,
+      1080
+    ],
+    "shots": [
+      {
+        "shot": 4,
+        "origin_px": [
+          45,
+          74
+        ],
+        "render_size_px": [
+          1180,
+          369
+        ]
+      },
+      {
+        "shot": 5,
+        "origin_px": [
+          45,
+          461
+        ],
+        "render_size_px": [
+          1180,
+          545
+        ]
+      }
+    ],
+    "credit_area_px": [
+      1248,
+      0,
+      1920,
+      1080
+    ]
+  },
+  {
+    "layout": "Card-04.psd",
+    "canvas_px": [
+      1920,
+      1080
+    ],
+    "shots": [
+      {
+        "shot": 6,
+        "origin_px": [
+          45,
+          237
+        ],
+        "render_size_px": [
+          1180,
+          312
+        ]
+      },
+      {
+        "shot": 7,
+        "origin_px": [
+          45,
+          567
+        ],
+        "render_size_px": [
+          1180,
+          275
+        ]
+      }
+    ],
+    "credit_area_px": [
+      1248,
+      0,
+      1920,
+      1080
+    ]
+  },
+  {
+    "layout": "Card-05.psd",
+    "canvas_px": [
+      1920,
+      1080
+    ],
+    "shots": [
+      {
+        "shot": 8,
+        "origin_px": [
+          45,
+          238
+        ],
+        "render_size_px": [
+          1180,
+          292
+        ]
+      },
+      {
+        "shot": 9,
+        "origin_px": [
+          45,
+          548
+        ],
+        "render_size_px": [
+          1180,
+          293
+        ]
+      }
+    ],
+    "credit_area_px": [
+      1248,
+      0,
+      1920,
+      1080
+    ]
+  },
+  {
+    "layout": "Card-06.psd",
+    "canvas_px": [
+      1920,
+      1080
+    ],
+    "shots": [
+      {
+        "shot": 10,
+        "origin_px": [
+          157,
+          55
+        ],
+        "render_size_px": [
+          956,
+          476
+        ]
+      },
+      {
+        "shot": 11,
+        "origin_px": [
+          157,
+          549
+        ],
+        "render_size_px": [
+          956,
+          476
+        ]
+      }
+    ],
+    "credit_area_px": [
+      1248,
+      0,
+      1920,
+      1080
+    ]
+  }
+]
