@@ -8,12 +8,11 @@ namespace ProjectRTD.Gameplay
     public sealed class PlayerPartLoadout : MonoBehaviour
     {
         [SerializeField] private PartCatalog catalog;
-        [Header("Prototype multipliers by level (1–5)")]
-        [SerializeField] private AnimationCurve speedScale = AnimationCurve.Linear(1f, 0.8f, 5f, 1.2f);
+        [Header("Jump multiplier by level (1–3)")]
         [SerializeField] private AnimationCurve jumpScale = AnimationCurve.Linear(1f, 0.8f, 5f, 1.2f);
 
         private PlayerMotor2D motor;
-        private float baseSpeed, baseJump;
+        private float baseJump;
         public PlayerPartBuild Current { get; private set; }
         public event Action<PlayerPartBuild> Changed;
 
@@ -35,11 +34,9 @@ namespace ProjectRTD.Gameplay
             if (!motor)
             {
                 motor = GetComponent<PlayerMotor2D>();
-                baseSpeed = motor.MoveSpeed;
                 baseJump = motor.JumpVelocity;
             }
             var next = new PlayerPartBuild(head, body, legs);
-            motor.MoveSpeed = baseSpeed * speedScale.Evaluate(next.Speed);
             motor.JumpVelocity = baseJump * jumpScale.Evaluate(next.Jump);
             Current = next;
             ProjectRTD.Core.SoundManager.Play(ProjectRTD.Core.Sfx.Summon);

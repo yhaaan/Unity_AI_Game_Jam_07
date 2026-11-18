@@ -56,12 +56,20 @@ public sealed class PlayerPartBuildTests
         var bodies = catalog.ForSlot(PartSlot.Body).ToArray();
         var legs = catalog.ForSlot(PartSlot.Legs).ToArray();
         Assert.That(new[] { heads.Length, bodies.Length, legs.Length }, Is.All.EqualTo(6));
+        // Indexed by weight + 6, from the lightest to the heaviest build.
+        int[] jump = { 3, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1 };
+        int[] power = { 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3 };
         foreach (var h in heads)
         foreach (var b in bodies)
         foreach (var l in legs)
         {
             var build = new PlayerPartBuild(h, b, l);
-            Assert.That(new[] { build.Speed, build.Jump, build.Weight, build.Health }, Is.All.InRange(1, 5));
+            Assert.That(build.Weight, Is.EqualTo(h.WeightDelta + b.WeightDelta + l.WeightDelta));
+            Assert.That(build.Weight, Is.InRange(-6, 6));
+            Assert.That(build.Jump, Is.EqualTo(jump[build.Weight + 6]));
+            Assert.That(build.Power, Is.EqualTo(power[build.Weight + 6]));
+            Assert.That(build.Speed, Is.EqualTo(3));
+            Assert.That(build.Health, Is.InRange(1, 5));
             foreach (var effect in h.EffectIds.Concat(b.EffectIds).Concat(l.EffectIds)) Assert.That(build.HasEffect(effect));
         }
     }
@@ -195,11 +203,11 @@ public sealed class PlayerPartBuildTests
     }
 
     [Test]
-    public void HeavyLionLosesOneSpeedAfterClamping()
+    public void LionHasHeavyBuildStats()
     {
         AnimalPartDefinition Part(string slot) => AssetDatabase.LoadAssetAtPath<AnimalPartDefinition>("Assets/06. Data/Part_lion_" + slot + ".asset");
         var lion = new PlayerPartBuild(Part("head"), Part("body"), Part("legs"));
-        Assert.That(new[] { lion.Speed, lion.Jump, lion.Weight, lion.Health }, Is.EqualTo(new[] { 2, 3, 5, 5 }));
+        Assert.That(new[] { lion.Power, lion.Jump, lion.Weight, lion.Health }, Is.EqualTo(new[] { 3, 1, 3, 5 }));
         Assert.That(lion.Height, Is.EqualTo(4));
         Assert.That(lion.HasEffect(PartEffect.CanPass), Is.True);
         Assert.That(lion.HasEffect(PartEffect.Glide), Is.False);
@@ -217,12 +225,12 @@ public sealed class PlayerPartBuildTests
             var motor = player.GetComponent<PlayerMotor2D>();
             float speed = motor.MoveSpeed, jump = motor.JumpVelocity;
             var config = new SerializedObject(loadout);
-            var speedCurve = config.FindProperty("speedScale").animationCurveValue;
+            Random.InitState(42);
             var jumpCurve = config.FindProperty("jumpScale").animationCurveValue;
             for (int i = 0; i < 10; i++)
             {
                 Assert.That(loadout.TryResummon(), Is.True);
-                Assert.That(motor.MoveSpeed, Is.EqualTo(speed * speedCurve.Evaluate(loadout.Current.Speed)).Within(0.0001f));
+                Assert.That(motor.MoveSpeed, Is.EqualTo(speed));
                 Assert.That(motor.JumpVelocity, Is.EqualTo(jump * jumpCurve.Evaluate(loadout.Current.Jump)).Within(0.0001f));
             }
             var previous = loadout.Current;

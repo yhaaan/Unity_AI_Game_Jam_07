@@ -9,7 +9,8 @@ namespace ProjectRTD.Gameplay
         public AnimalPartDefinition Head { get; }
         public AnimalPartDefinition Body { get; }
         public AnimalPartDefinition Legs { get; }
-        public int Speed { get; }
+        public int Speed => 3; // Fixed HUD level; movement uses the motor's configured speed.
+        public int Power { get; }
         public int Jump { get; }
         public int Height { get; }
         public int Weight { get; }
@@ -22,9 +23,9 @@ namespace ProjectRTD.Gameplay
             Body = RequireSlot(body, PartSlot.Body);
             Legs = RequireSlot(legs, PartSlot.Legs);
             Height = head.HeightDelta + body.HeightDelta + legs.HeightDelta;
-            Weight = Level(head.WeightDelta, body.WeightDelta, legs.WeightDelta);
-            Speed = Weight >= 4 ? 2 : 3;
-            Jump = 3; // Height is stature, not jump power.
+            Weight = head.WeightDelta + body.WeightDelta + legs.WeightDelta;
+            Jump = Weight >= 3 ? 1 : Weight <= -3 ? 3 : 2;
+            Power = Weight >= 3 ? 3 : Weight <= -2 ? 1 : 2;
             Health = Level(head.HealthDelta, body.HealthDelta, legs.HealthDelta);
             effects.UnionWith(head.EffectIds);
             effects.UnionWith(body.EffectIds);

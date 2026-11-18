@@ -174,7 +174,7 @@ namespace ProjectRTD.Gameplay
             if (!gait.Tick(body.position.x, walking, IsFloating, Mathf.Max(.5f, moveSpeed * Time.fixedDeltaTime * 2f))) return;
             if (IsFloating) { SoundManager.Play(Sfx.Paddle, .4f); return; }
 
-            float weight = Mathf.InverseLerp(1f, 5f, loadout?.Current?.Weight ?? 3);
+            float weight = Mathf.InverseLerp(-6f, 6f, loadout?.Current?.Weight ?? 0);
             SoundManager.Play(rightFoot ? Sfx.StepRight : Sfx.StepLeft, Mathf.Lerp(.33f, .57f, weight));
             rightFoot = !rightFoot;
         }
