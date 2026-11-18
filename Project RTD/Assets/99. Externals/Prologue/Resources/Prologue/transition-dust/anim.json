@@ -1,0 +1,159 @@
+{
+ "cut": "transition-dust",
+ "intro": 0,
+ "pivots": [],
+ "tracks": [
+  {
+   "t": [
+    "cloud-crease-1"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 4,
+   "per": 0.6,
+   "ph": 0.0,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "cloud-crease-1"
+   ],
+   "ch": "s",
+   "f": "wave",
+   "amp": 0.05,
+   "per": 0.45,
+   "ph": 0.0,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "cloud-crease-2"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 4,
+   "per": 0.6,
+   "ph": 0.25,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "cloud-crease-2"
+   ],
+   "ch": "s",
+   "f": "wave",
+   "amp": 0.05,
+   "per": 0.45,
+   "ph": 0.3,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "cloud-crease-3"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 4,
+   "per": 0.6,
+   "ph": 0.5,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "cloud-crease-3"
+   ],
+   "ch": "s",
+   "f": "wave",
+   "amp": 0.05,
+   "per": 0.45,
+   "ph": 0.6,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "cloud-crease-4"
+   ],
+   "ch": "r",
+   "f": "wave",
+   "amp": 4,
+   "per": 0.6,
+   "ph": 0.75,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  },
+  {
+   "t": [
+    "cloud-crease-4"
+   ],
+   "ch": "s",
+   "f": "wave",
+   "amp": 0.05,
+   "per": 0.45,
+   "ph": 0.8999999999999999,
+   "frm": 0,
+   "ramp": 0,
+   "dur": 0.3,
+   "rep": 0.0,
+   "speed": 0.0,
+   "rate": 10.0,
+   "seed": 0.0,
+   "k": [],
+   "e": "io"
+  }
+ ]
+}

@@ -1,0 +1,857 @@
+{
+ "cut": "cut5-chimera-roll",
+ "size": [
+  1920,
+  886
+ ],
+ "layers": [
+  {
+   "id": "navy-field",
+   "file": "parts/navy-field.png",
+   "parent": null,
+   "role": "background",
+   "pivot": [
+    959,
+    443
+   ],
+   "rect": [
+    0,
+    0,
+    1920,
+    886
+   ]
+  },
+  {
+   "id": "mint-field",
+   "file": "parts/mint-field.png",
+   "parent": null,
+   "role": "background",
+   "pivot": [
+    550,
+    443
+   ],
+   "rect": [
+    0,
+    0,
+    1170,
+    886
+   ]
+  },
+  {
+   "id": "field-halftones",
+   "file": "parts/field-halftones.png",
+   "parent": null,
+   "role": "graphic",
+   "pivot": [
+    148,
+    187
+   ],
+   "rect": [
+    0,
+    0,
+    483,
+    264
+   ]
+  },
+  {
+   "id": "radial-rays",
+   "file": "parts/radial-rays.png",
+   "parent": null,
+   "role": "graphic",
+   "pivot": [
+    609,
+    511
+   ],
+   "rect": [
+    0,
+    0,
+    1111,
+    886
+   ]
+  },
+  {
+   "id": "lower-field-halftones",
+   "file": "parts/lower-field-halftones.png",
+   "parent": null,
+   "role": "graphic",
+   "pivot": [
+    566,
+    807
+   ],
+   "rect": [
+    0,
+    704,
+    1039,
+    182
+   ]
+  },
+  {
+   "id": "top-stripe",
+   "file": "parts/top-stripe.png",
+   "parent": null,
+   "role": "graphic",
+   "pivot": [
+    344,
+    17
+   ],
+   "rect": [
+    0,
+    0,
+    764,
+    39
+   ]
+  },
+  {
+   "id": "diagonal-rail",
+   "file": "parts/diagonal-rail.png",
+   "parent": null,
+   "role": "interface",
+   "pivot": [
+    1097,
+    442
+   ],
+   "rect": [
+    1015,
+    0,
+    167,
+    886
+   ]
+  },
+  {
+   "id": "corner-stripes",
+   "file": "parts/corner-stripes.png",
+   "parent": null,
+   "role": "graphic",
+   "pivot": [
+    1857,
+    95
+   ],
+   "rect": [
+    1744,
+    0,
+    176,
+    289
+   ]
+  },
+  {
+   "id": "hero-halo",
+   "file": "parts/hero-halo.png",
+   "parent": null,
+   "role": "highlight",
+   "pivot": [
+    568,
+    449
+   ],
+   "rect": [
+    268,
+    212,
+    598,
+    465
+   ]
+  },
+  {
+   "id": "platform-shadow",
+   "file": "parts/platform-shadow.png",
+   "parent": null,
+   "role": "shadow",
+   "pivot": [
+    577,
+    724
+   ],
+   "rect": [
+    237,
+    672,
+    680,
+    104
+   ]
+  },
+  {
+   "id": "hero-platform",
+   "file": "parts/hero-platform.png",
+   "parent": null,
+   "role": "platform",
+   "pivot": [
+    577,
+    652
+   ],
+   "rect": [
+    242,
+    584,
+    668,
+    154
+   ]
+  },
+  {
+   "id": "hero-contact-shadow",
+   "file": "parts/hero-contact-shadow.png",
+   "parent": "hero-platform",
+   "role": "shadow",
+   "pivot": [
+    597,
+    652
+   ],
+   "rect": [
+    419,
+    636,
+    356,
+    33
+   ]
+  },
+  {
+   "id": "sparkle-1",
+   "file": "parts/sparkle-1.png",
+   "parent": null,
+   "role": "sparkle",
+   "pivot": [
+    293,
+    317
+   ],
+   "rect": [
+    272,
+    298,
+    44,
+    41
+   ]
+  },
+  {
+   "id": "sparkle-2",
+   "file": "parts/sparkle-2.png",
+   "parent": null,
+   "role": "sparkle",
+   "pivot": [
+    835,
+    322
+   ],
+   "rect": [
+    812,
+    299,
+    50,
+    48
+   ]
+  },
+  {
+   "id": "sparkle-3",
+   "file": "parts/sparkle-3.png",
+   "parent": null,
+   "role": "sparkle",
+   "pivot": [
+    916,
+    434
+   ],
+   "rect": [
+    904,
+    422,
+    27,
+    26
+   ]
+  },
+  {
+   "id": "title-die",
+   "file": "parts/title-die.png",
+   "parent": null,
+   "role": "icon",
+   "pivot": [
+    148,
+    126
+   ],
+   "rect": [
+    91,
+    68,
+    104,
+    105
+   ]
+  },
+  {
+   "id": "parts-card",
+   "file": "parts/parts-card.png",
+   "parent": null,
+   "role": "interface",
+   "pivot": [
+    1476,
+    357
+   ],
+   "rect": [
+    1165,
+    119,
+    629,
+    479
+   ]
+  },
+  {
+   "id": "head-slot",
+   "file": "parts/head-slot.png",
+   "parent": "parts-card",
+   "role": "slot",
+   "pivot": [
+    1271,
+    208
+   ],
+   "rect": [
+    1203,
+    155,
+    138,
+    111
+   ]
+  },
+  {
+   "id": "separator-body",
+   "file": "parts/separator-body.png",
+   "parent": "parts-card",
+   "role": "divider",
+   "pivot": [
+    1476,
+    289
+   ],
+   "rect": [
+    1203,
+    287,
+    553,
+    5
+   ]
+  },
+  {
+   "id": "body-slot",
+   "file": "parts/body-slot.png",
+   "parent": "parts-card",
+   "role": "slot",
+   "pivot": [
+    1271,
+    354
+   ],
+   "rect": [
+    1203,
+    301,
+    138,
+    111
+   ]
+  },
+  {
+   "id": "separator-legs",
+   "file": "parts/separator-legs.png",
+   "parent": "parts-card",
+   "role": "divider",
+   "pivot": [
+    1476,
+    436
+   ],
+   "rect": [
+    1203,
+    433,
+    553,
+    6
+   ]
+  },
+  {
+   "id": "legs-slot",
+   "file": "parts/legs-slot.png",
+   "parent": "parts-card",
+   "role": "slot",
+   "pivot": [
+    1271,
+    501
+   ],
+   "rect": [
+    1203,
+    448,
+    138,
+    111
+   ]
+  },
+  {
+   "id": "reroll-button",
+   "file": "parts/reroll-button.png",
+   "parent": null,
+   "role": "button",
+   "pivot": [
+    1474,
+    680
+   ],
+   "rect": [
+    1160,
+    611,
+    627,
+    143
+   ]
+  },
+  {
+   "id": "reroll-die",
+   "file": "parts/reroll-die.png",
+   "parent": "reroll-button",
+   "role": "icon",
+   "pivot": [
+    1352,
+    679
+   ],
+   "rect": [
+    1317,
+    643,
+    64,
+    66
+   ]
+  },
+  {
+   "id": "edge-puff-1",
+   "file": "parts/edge-puff-1.png",
+   "parent": null,
+   "role": "dust",
+   "pivot": [
+    -25,
+    108
+   ],
+   "rect": [
+    0,
+    39,
+    70,
+    105
+   ]
+  },
+  {
+   "id": "edge-puff-2",
+   "file": "parts/edge-puff-2.png",
+   "parent": null,
+   "role": "dust",
+   "pivot": [
+    2,
+    843
+   ],
+   "rect": [
+    0,
+    753,
+    125,
+    133
+   ]
+  },
+  {
+   "id": "edge-puff-3",
+   "file": "parts/edge-puff-3.png",
+   "parent": null,
+   "role": "dust",
+   "pivot": [
+    1937,
+    20
+   ],
+   "rect": [
+    1821,
+    0,
+    99,
+    68
+   ]
+  },
+  {
+   "id": "edge-puff-4",
+   "file": "parts/edge-puff-4.png",
+   "parent": null,
+   "role": "dust",
+   "pivot": [
+    1942,
+    837
+   ],
+   "rect": [
+    1803,
+    743,
+    117,
+    143
+   ]
+  },
+  {
+   "id": "edge-puff-5",
+   "file": "parts/edge-puff-5.png",
+   "parent": null,
+   "role": "dust",
+   "pivot": [
+    79,
+    758
+   ],
+   "rect": [
+    64,
+    747,
+    31,
+    23
+   ]
+  },
+  {
+   "id": "edge-puff-6",
+   "file": "parts/edge-puff-6.png",
+   "parent": null,
+   "role": "dust",
+   "pivot": [
+    1865,
+    767
+   ],
+   "rect": [
+    1853,
+    757,
+    24,
+    21
+   ]
+  },
+  {
+   "id": "duck-upper-leg-right",
+   "file": "parts/duck-upper-leg-right.png",
+   "parent": "bear-core",
+   "role": "upper_leg",
+   "pivot": [
+    754,
+    514
+   ],
+   "rect": [
+    725,
+    485,
+    64,
+    90
+   ]
+  },
+  {
+   "id": "duck-lower-leg-right",
+   "file": "parts/duck-lower-leg-right.png",
+   "parent": "duck-upper-leg-right",
+   "role": "lower_leg",
+   "pivot": [
+    764,
+    555
+   ],
+   "rect": [
+    698,
+    539,
+    152,
+    103
+   ]
+  },
+  {
+   "id": "duck-upper-leg-left",
+   "file": "parts/duck-upper-leg-left.png",
+   "parent": "bear-core",
+   "role": "upper_leg",
+   "pivot": [
+    551,
+    514
+   ],
+   "rect": [
+    523,
+    484,
+    61,
+    98
+   ]
+  },
+  {
+   "id": "duck-lower-leg-left",
+   "file": "parts/duck-lower-leg-left.png",
+   "parent": "duck-upper-leg-left",
+   "role": "lower_leg",
+   "pivot": [
+    546,
+    560
+   ],
+   "rect": [
+    444,
+    541,
+    178,
+    112
+   ]
+  },
+  {
+   "id": "bear-tail",
+   "file": "parts/bear-tail.png",
+   "parent": "bear-core",
+   "role": "tail",
+   "pivot": [
+    806,
+    412
+   ],
+   "rect": [
+    776,
+    362,
+    97,
+    85
+   ]
+  },
+  {
+   "id": "bear-core",
+   "file": "parts/bear-core.png",
+   "parent": null,
+   "role": "core",
+   "pivot": [
+    641,
+    459
+   ],
+   "rect": [
+    424,
+    315,
+    426,
+    263
+   ]
+  },
+  {
+   "id": "axolotl-gill-left",
+   "file": "parts/axolotl-gill-left.png",
+   "parent": "axolotl-core",
+   "role": "gill",
+   "pivot": [
+    395,
+    346
+   ],
+   "rect": [
+    296,
+    219,
+    152,
+    222
+   ]
+  },
+  {
+   "id": "axolotl-gill-right",
+   "file": "parts/axolotl-gill-right.png",
+   "parent": "axolotl-core",
+   "role": "gill",
+   "pivot": [
+    647,
+    346
+   ],
+   "rect": [
+    609,
+    219,
+    151,
+    212
+   ]
+  },
+  {
+   "id": "axolotl-core",
+   "file": "parts/axolotl-core.png",
+   "parent": "bear-core",
+   "role": "core",
+   "pivot": [
+    535,
+    391
+   ],
+   "rect": [
+    386,
+    234,
+    279,
+    214
+   ]
+  },
+  {
+   "id": "axolotl-mouth",
+   "file": "parts/axolotl-mouth.png",
+   "parent": "axolotl-core",
+   "role": "mouth",
+   "pivot": [
+    510,
+    365
+   ],
+   "rect": [
+    467,
+    349,
+    90,
+    35
+   ]
+  },
+  {
+   "id": "axolotl-eye-left",
+   "file": "parts/axolotl-eye-left.png",
+   "parent": "axolotl-core",
+   "role": "eye",
+   "pivot": [
+    430,
+    347
+   ],
+   "rect": [
+    418,
+    335,
+    26,
+    27
+   ]
+  },
+  {
+   "id": "axolotl-eye-right",
+   "file": "parts/axolotl-eye-right.png",
+   "parent": "axolotl-core",
+   "role": "eye",
+   "pivot": [
+    592,
+    347
+   ],
+   "rect": [
+    580,
+    336,
+    28,
+    27
+   ]
+  },
+  {
+   "id": "head-thumbnail",
+   "file": "parts/head-thumbnail.png",
+   "parent": "head-slot",
+   "role": "thumbnail",
+   "pivot": [
+    1271,
+    208
+   ],
+   "rect": [
+    1220,
+    183,
+    103,
+    52
+   ]
+  },
+  {
+   "id": "body-thumbnail",
+   "file": "parts/body-thumbnail.png",
+   "parent": "body-slot",
+   "role": "thumbnail",
+   "pivot": [
+    1271,
+    354
+   ],
+   "rect": [
+    1220,
+    325,
+    103,
+    61
+   ]
+  },
+  {
+   "id": "legs-thumbnail",
+   "file": "parts/legs-thumbnail.png",
+   "parent": "legs-slot",
+   "role": "thumbnail",
+   "pivot": [
+    1271,
+    501
+   ],
+   "rect": [
+    1220,
+    480,
+    104,
+    44
+   ]
+  },
+  {
+   "id": "chimera-roll-title",
+   "file": "parts/chimera-roll-title.png",
+   "parent": null,
+   "role": "lettering",
+   "pivot": [
+    514,
+    133
+   ],
+   "rect": [
+    221,
+    88,
+    570,
+    86
+   ]
+  },
+  {
+   "id": "head-label",
+   "file": "parts/head-label.png",
+   "parent": "head-slot",
+   "role": "lettering",
+   "pivot": [
+    1427,
+    196
+   ],
+   "rect": [
+    1376,
+    180,
+    86,
+    31
+   ]
+  },
+  {
+   "id": "axolotl-label",
+   "file": "parts/axolotl-label.png",
+   "parent": "head-slot",
+   "role": "lettering",
+   "pivot": [
+    1494,
+    246
+   ],
+   "rect": [
+    1370,
+    219,
+    218,
+    54
+   ]
+  },
+  {
+   "id": "body-label",
+   "file": "parts/body-label.png",
+   "parent": "body-slot",
+   "role": "lettering",
+   "pivot": [
+    1427,
+    342
+   ],
+   "rect": [
+    1376,
+    326,
+    84,
+    38
+   ]
+  },
+  {
+   "id": "bear-label",
+   "file": "parts/bear-label.png",
+   "parent": "body-slot",
+   "role": "lettering",
+   "pivot": [
+    1494,
+    393
+   ],
+   "rect": [
+    1373,
+    367,
+    149,
+    52
+   ]
+  },
+  {
+   "id": "legs-label",
+   "file": "parts/legs-label.png",
+   "parent": "legs-slot",
+   "role": "lettering",
+   "pivot": [
+    1427,
+    489
+   ],
+   "rect": [
+    1376,
+    474,
+    79,
+    37
+   ]
+  },
+  {
+   "id": "duck-label",
+   "file": "parts/duck-label.png",
+   "parent": "legs-slot",
+   "role": "lettering",
+   "pivot": [
+    1494,
+    539
+   ],
+   "rect": [
+    1373,
+    512,
+    159,
+    53
+   ]
+  },
+  {
+   "id": "reroll-text",
+   "file": "parts/reroll-text.png",
+   "parent": "reroll-button",
+   "role": "lettering",
+   "pivot": [
+    1507,
+    690
+   ],
+   "rect": [
+    1428,
+    666,
+    160,
+    48
+   ]
+  }
+ ]
+}

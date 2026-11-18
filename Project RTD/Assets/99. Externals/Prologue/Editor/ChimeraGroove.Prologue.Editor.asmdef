@@ -1,0 +1,6 @@
+{
+    "name": "ChimeraGroove.Prologue.Editor",
+    "rootNamespace": "ChimeraGroove.Prologue",
+    "references": ["ChimeraGroove.Prologue"],
+    "includePlatforms": ["Editor"]
+}
