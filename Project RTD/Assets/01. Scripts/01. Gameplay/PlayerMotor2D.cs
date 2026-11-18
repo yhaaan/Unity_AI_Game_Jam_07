@@ -26,9 +26,21 @@ namespace ProjectRTD.Gameplay
         [SerializeField, Min(0.001f)] private float groundCheckDistance = 0.08f;
         [SerializeField, Range(0f, 1f)] private float minimumGroundNormalY = 0.65f;
 
+        [Header("Flotation")]
+        [SerializeField, Range(0.2f, 0.8f)] private float submergedFraction = 0.5f;
+        [SerializeField, Range(0f, 0.2f)] private float bobHeightFraction = 0.10f;
+        [SerializeField, Min(0.5f)] private float bobPeriod = 2.2f;
+        private float bobPhase;
+        private bool leavingWater;
+        public bool IsFloating { get; private set; }
+
         private readonly List<RaycastHit2D> groundHits = new(8);
 
         private Rigidbody2D body;
+        private Collider2D playerCollider;
+        private PlayerPartLoadout loadout;
+        private ContactFilter2D waterFilter;
+        private readonly List<Collider2D> waters = new(2);
         private PlayerInputReader input;
         private ContactFilter2D groundFilter;
         private float coyoteTimer;
@@ -52,6 +64,10 @@ namespace ProjectRTD.Gameplay
         {
             body = GetComponent<Rigidbody2D>();
             input = GetComponent<PlayerInputReader>();
+            playerCollider = GetComponent<Collider2D>();
+            loadout = GetComponent<PlayerPartLoadout>();
+            waterFilter.SetLayerMask(LayerMask.GetMask("Water"));
+            waterFilter.useTriggers = true;
             ConfigureGroundFilter();
         }
 
@@ -74,9 +90,11 @@ namespace ProjectRTD.Gameplay
 
         private void FixedUpdate()
         {
+            IsFloating = ApplyFlotation();
             IsGrounded = CheckGrounded();
+            if (!IsFloating) bobPhase = 0f;
 
-            if (IsGrounded)
+            if (IsGrounded || IsFloating)
             {
                 coyoteTimer = coyoteTime;
             }
@@ -90,6 +108,35 @@ namespace ProjectRTD.Gameplay
             LimitFallSpeed();
 
             jumpBufferTimer = Mathf.Max(0f, jumpBufferTimer - Time.fixedDeltaTime);
+        }
+
+        private bool ApplyFlotation()
+        {
+            if (loadout == null || loadout.Current?.HasEffect(PartEffect.Float) != true)
+                return false;
+
+            int count = playerCollider.Overlap(waterFilter, waters);
+            float surface = float.NegativeInfinity;
+            for (int i = 0; i < count; i++)
+                if (waters[i].isTrigger) surface = Mathf.Max(surface, waters[i].bounds.max.y);
+            if (float.IsNegativeInfinity(surface)) { leavingWater = false; return false; }
+            Vector2 velocity = body.linearVelocity;
+            if (leavingWater && velocity.y > 0f) return false;
+            leavingWater = false;
+
+            // Follow a moving waterline with a damped spring instead of snapping
+            // to a height. Use collider proportions so different sizes sit alike.
+            Bounds bounds = playerCollider.bounds;
+            float dt = Time.fixedDeltaTime;
+            float omega = 2f * Mathf.PI / Mathf.Max(0.5f, bobPeriod);
+            bobPhase = Mathf.Repeat(bobPhase + omega * dt, 2f * Mathf.PI);
+            float amplitude = bounds.size.y * bobHeightFraction;
+            float targetFeet = surface - bounds.size.y * submergedFraction + amplitude * Mathf.Sin(bobPhase);
+            float waveSpeed = amplitude * omega * Mathf.Cos(bobPhase);
+            float acceleration = 36f * (targetFeet - bounds.min.y) + 11f * (waveSpeed - velocity.y);
+            velocity.y += (acceleration - Physics2D.gravity.y * body.gravityScale) * dt;
+            body.linearVelocity = velocity;
+            return true;
         }
 
         private void ApplyHorizontalMovement()
@@ -113,6 +160,8 @@ namespace ProjectRTD.Gameplay
                 velocity.y = jumpVelocity;
                 body.linearVelocity = velocity;
 
+                leavingWater = IsFloating;
+                IsFloating = false;
                 jumpBufferTimer = 0f;
                 coyoteTimer = 0f;
                 IsGrounded = false;
