@@ -48,7 +48,7 @@ namespace ProjectRTD.Core
                 rect.anchorMin = new Vector2(.22f, .86f);
                 rect.anchorMax = new Vector2(.84f, .99f);
                 rect.offsetMin = rect.offsetMax = Vector2.zero;
-                hint.text = "R : REASSEMBLE\n<size=60%>A/D : MOVE     SPACE : JUMP / GLIDE</size>";
+                hint.text = "R : New Collaboration!\n<size=60%>A/D : MOVE     SPACE : JUMP / GLIDE</size>";
                 hint.enableAutoSizing = true;
                 hint.fontSizeMin = 18;
                 hint.fontSizeMax = 52;

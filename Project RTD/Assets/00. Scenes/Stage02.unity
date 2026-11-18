@@ -6103,7 +6103,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: REASSEMBLE  R
+  m_text: New Collaboration!  R
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3f82882ada419f443ba84b4db89c5358, type: 2}
   m_sharedMaterial: {fileID: -1873953731298723051, guid: 3f82882ada419f443ba84b4db89c5358, type: 2}
@@ -6390,7 +6390,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MOVE A/D    JUMP / GLIDE SPACE    REASSEMBLE R
+  m_text: MOVE A/D    JUMP / GLIDE SPACE    New Collaboration! R
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 1107389926}
