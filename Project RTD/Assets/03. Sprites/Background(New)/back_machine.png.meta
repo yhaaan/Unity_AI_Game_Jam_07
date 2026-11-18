@@ -1,40 +1,40 @@
 fileFormatVersion: 2
-guid: b8295c4498adc3b438073642d2037eec
+guid: ddc1abfbf7eb0d141acb5cf9db5c171d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7867068486288227190
-    second: "\uAE30\uACC4_0"
+      213: -3867633270888013653
+    second: back_machine_0
   - first:
-      213: -2114143122289208102
-    second: "\uAE30\uACC4_1"
+      213: 2909878652021732035
+    second: back_machine_1
   - first:
-      213: 7506009298653784954
-    second: "\uAE30\uACC4_2"
+      213: -2627852299590398889
+    second: back_machine_2
   - first:
-      213: -8014452922645152429
-    second: "\uAE30\uACC4_3"
+      213: -5066600153919821685
+    second: back_machine_3
   - first:
-      213: -5092591690281021419
-    second: "\uAE30\uACC4_4"
+      213: -6117482704616039418
+    second: back_machine_4
   - first:
-      213: 7559513099161918324
-    second: "\uAE30\uACC4_5"
+      213: 2826210340381767706
+    second: back_machine_5
   - first:
-      213: -5965390368825207223
-    second: "\uAE30\uACC4_6"
+      213: -8564302243399724180
+    second: back_machine_6
   - first:
-      213: 4852835860364743688
-    second: "\uAE30\uACC4_7"
+      213: 893870553968943924
+    second: back_machine_7
   - first:
-      213: 2733598056601464960
-    second: "\uAE30\uACC4_8"
+      213: -4479495169250146091
+    second: back_machine_8
   - first:
-      213: -6924263746827018567
-    second: "\uAE30\uACC4_9"
+      213: 4064374912142511967
+    second: back_machine_9
   - first:
-      213: 480344804124105180
-    second: "\uAE30\uACC4_10"
+      213: 8552095361462148097
+    second: back_machine_10
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -130,7 +130,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uAE30\uACC4_0"
+      name: back_machine_0
       rect:
         serializedVersion: 2
         x: 0
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a84ce1ba4ee82d290800000000000000
-      internalID: -7867068486288227190
+      spriteID: ba0ec3f1808635ac0800000000000000
+      internalID: -3867633270888013653
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uAE30\uACC4_1"
+      name: back_machine_1
       rect:
         serializedVersion: 2
         x: 449
@@ -167,14 +167,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ad4dd9f080e09a2e0800000000000000
-      internalID: -2114143122289208102
+      spriteID: 3c27f318737f16820800000000000000
+      internalID: 2909878652021732035
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uAE30\uACC4_2"
+      name: back_machine_2
       rect:
         serializedVersion: 2
         x: 496
@@ -189,14 +189,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a7ba90740b3ba2860800000000000000
-      internalID: 7506009298653784954
+      spriteID: 75c88b8a14ef78bd0800000000000000
+      internalID: -2627852299590398889
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uAE30\uACC4_3"
+      name: back_machine_3
       rect:
         serializedVersion: 2
         x: 522
@@ -211,14 +211,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 35df4ac7781f6c090800000000000000
-      internalID: -8014452922645152429
+      spriteID: b886ba60102dfa9b0800000000000000
+      internalID: -5066600153919821685
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uAE30\uACC4_4"
+      name: back_machine_4
       rect:
         serializedVersion: 2
         x: 711
@@ -233,14 +233,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 51091b2e6da7359b0800000000000000
-      internalID: -5092591690281021419
+      spriteID: 60cd3c754e55a1ba0800000000000000
+      internalID: -6117482704616039418
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uAE30\uACC4_5"
+      name: back_machine_5
       rect:
         serializedVersion: 2
         x: 737
@@ -255,14 +255,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 47b55769c19c8e860800000000000000
-      internalID: 7559513099161918324
+      spriteID: a18bdf6a457b83720800000000000000
+      internalID: 2826210340381767706
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uAE30\uACC4_6"
+      name: back_machine_6
       rect:
         serializedVersion: 2
         x: 799
@@ -277,14 +277,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 94613a7c01da63da0800000000000000
-      internalID: -5965390368825207223
+      spriteID: c6314193c7c752980800000000000000
+      internalID: -8564302243399724180
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uAE30\uACC4_7"
+      name: back_machine_7
       rect:
         serializedVersion: 2
         x: 626
@@ -299,14 +299,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 804515ae08cb85340800000000000000
-      internalID: 4852835860364743688
+      spriteID: 433208c688aa76c00800000000000000
+      internalID: 893870553968943924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uAE30\uACC4_8"
+      name: back_machine_8
       rect:
         serializedVersion: 2
         x: 642
@@ -321,14 +321,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 080bd6203f0bfe520800000000000000
-      internalID: 2733598056601464960
+      spriteID: 5d844cf70e2a5d1c0800000000000000
+      internalID: -4479495169250146091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uAE30\uACC4_9"
+      name: back_machine_9
       rect:
         serializedVersion: 2
         x: 706
@@ -343,14 +343,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9be924ffec218ef90800000000000000
-      internalID: -6924263746827018567
+      spriteID: f5f8348d27f876830800000000000000
+      internalID: 4064374912142511967
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uAE30\uACC4_10"
+      name: back_machine_10
       rect:
         serializedVersion: 2
         x: 768
@@ -365,8 +365,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cd9958bed078aa600800000000000000
-      internalID: 480344804124105180
+      spriteID: 10c97399b652fa670800000000000000
+      internalID: 8552095361462148097
       vertices: []
       indices: 
       edges: []
@@ -385,17 +385,17 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\uAE30\uACC4_0": -7867068486288227190
-      "\uAE30\uACC4_1": -2114143122289208102
-      "\uAE30\uACC4_10": 480344804124105180
-      "\uAE30\uACC4_2": 7506009298653784954
-      "\uAE30\uACC4_3": -8014452922645152429
-      "\uAE30\uACC4_4": -5092591690281021419
-      "\uAE30\uACC4_5": 7559513099161918324
-      "\uAE30\uACC4_6": -5965390368825207223
-      "\uAE30\uACC4_7": 4852835860364743688
-      "\uAE30\uACC4_8": 2733598056601464960
-      "\uAE30\uACC4_9": -6924263746827018567
+      back_machine_0: -3867633270888013653
+      back_machine_1: 2909878652021732035
+      back_machine_10: 8552095361462148097
+      back_machine_2: -2627852299590398889
+      back_machine_3: -5066600153919821685
+      back_machine_4: -6117482704616039418
+      back_machine_5: 2826210340381767706
+      back_machine_6: -8564302243399724180
+      back_machine_7: 893870553968943924
+      back_machine_8: -4479495169250146091
+      back_machine_9: 4064374912142511967
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
