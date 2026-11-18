@@ -26,15 +26,13 @@ namespace ProjectRTD.Gameplay
             Weight = head.WeightDelta + body.WeightDelta + legs.WeightDelta;
             Jump = Weight >= 3 ? 1 : Weight <= -3 ? 3 : 2;
             Power = Weight >= 3 ? 3 : Weight <= -2 ? 1 : 2;
-            Health = Level(head.HealthDelta, body.HealthDelta, legs.HealthDelta);
+            Health = (int)Math.Clamp(1L + head.HealthDelta + body.HealthDelta + legs.HealthDelta, 1L, 3L);
             effects.UnionWith(head.EffectIds);
             effects.UnionWith(body.EffectIds);
             effects.UnionWith(legs.EffectIds);
         }
 
         public bool HasEffect(PartEffect effect) => effects.Contains(effect);
-
-        private static int Level(int a, int b, int c) => (int)Math.Clamp(3L + a + b + c, 1L, 5L);
 
         private static AnimalPartDefinition RequireSlot(AnimalPartDefinition part, PartSlot slot) =>
             part && part.Slot == slot ? part : throw new ArgumentException($"Expected a {slot} part.");

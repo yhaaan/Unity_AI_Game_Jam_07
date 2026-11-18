@@ -11,6 +11,9 @@ namespace ProjectRTD.Gameplay
         [SerializeField] private Kind kind;
         [SerializeField, Tooltip("Drone only: heads returned to spawn. Scientists check canPass instead.")]
         private AnimalPartDefinition[] matchingHeads = Array.Empty<AnimalPartDefinition>();
+        [SerializeField] private bool islandGuard;
+        [SerializeField] private TMPro.TMP_Text targetLabel;
+        private PartAnimal targetAnimal;
         [SerializeField, Min(0)] private float speed = 1.1f;
         [SerializeField] private LayerMask platforms = Physics2D.DefaultRaycastLayers;
         private Rigidbody2D body;
@@ -30,6 +33,17 @@ namespace ProjectRTD.Gameplay
 
         private void Start()
         {
+            if (islandGuard)
+            {
+                if (kind == Kind.Drone)
+                {
+                    var animals = (PartAnimal[])Enum.GetValues(typeof(PartAnimal));
+                    targetAnimal = animals[UnityEngine.Random.Range(0, animals.Length)];
+                    if (targetLabel) targetLabel.text = $"TARGET: {targetAnimal.ToString().ToUpperInvariant()}";
+                }
+                return;
+            }
+
             body = GetComponent<Rigidbody2D>();
             hitbox = GetComponent<BoxCollider2D>();
             var visual = transform.Find("Visual");
@@ -65,12 +79,27 @@ namespace ProjectRTD.Gameplay
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent<PlayerPartLoadout>(out var player))
+            StageRuntime stage = StageRuntime.Instance;
+            if (!stage || stage.IsRespawning || !other.attachedRigidbody ||
+                !other.attachedRigidbody.TryGetComponent(out PlayerPartLoadout player) ||
+                stage.Player != player.transform || player.Current == null)
+                return;
+
+            var head = player.Current.Head;
+            bool attacks = kind == Kind.Drone
+                ? (islandGuard ? head.Animal == targetAnimal : Array.IndexOf(matchingHeads, head) >= 0)
+                : (islandGuard ? head.Animal is not (PartAnimal.Bear or PartAnimal.Lion) : !player.Current.HasEffect(PartEffect.CanPass));
+            if (!attacks) return;
+
+            if (islandGuard)
             {
-                if (kind == Kind.Scientist && player.Current?.HasEffect(PartEffect.CanPass) == true) return;
+                SoundManager.Play(Sfx.Scare);
+            }
+            else
+            {
                 player.GetComponentInChildren<PlayerPartVisual>()?.PlayScare();
             }
-            CheckHead(other);
+            stage.TakeDamage();
         }
 
         private void Update()
@@ -88,19 +117,5 @@ namespace ProjectRTD.Gameplay
             nextAttack = Time.time + attackCooldown;
         }
 
-        private void OnTriggerStay2D(Collider2D other) => CheckHead(other);
-        private void CheckHead(Collider2D other)
-        {
-            if (!other.attachedRigidbody || !other.attachedRigidbody.TryGetComponent<PlayerPartLoadout>(out var player)) return;
-            var head = player.Current?.Head;
-            if (!head) return;
-            if (kind == Kind.Scientist)
-            {
-                if (player.Current.HasEffect(PartEffect.CanPass)) return;
-
-            }
-            else if (Array.IndexOf(matchingHeads, head) < 0) return;
-            if (StageRuntime.Instance && StageRuntime.Instance.Player == player.transform) StageRuntime.Instance.RespawnPlayer();
-        }
     }
 }

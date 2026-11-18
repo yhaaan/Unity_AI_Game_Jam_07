@@ -54,12 +54,15 @@ namespace ProjectRTD.Gameplay
 
         private void OnDisable()
         {
+            StopClimbing();
             gait = default;
             jumpHeldLastTick = false;
         }
         private float bobPhase;
         private bool leavingWater;
         public bool IsFloating { get; private set; }
+        public bool IsClimbing => ladder;
+        internal Collider2D GroundCollider { get; private set; }
 
         private readonly List<RaycastHit2D> groundHits = new(8);
 
@@ -68,6 +71,9 @@ namespace ProjectRTD.Gameplay
         private PlayerPartLoadout loadout;
         private ContactFilter2D waterFilter;
         private readonly List<Collider2D> waters = new(2);
+        private readonly List<Collider2D> ladderOverlaps = new(4);
+        private StageLadder2D ladder;
+        private float gravityBeforeClimbing;
         private PlayerInputReader input;
         private ContactFilter2D groundFilter;
         private float coyoteTimer;
@@ -117,6 +123,14 @@ namespace ProjectRTD.Gameplay
 
         private void FixedUpdate()
         {
+            if (StageRuntime.Instance && StageRuntime.Instance.Player == transform && StageRuntime.Instance.IsRespawning)
+            {
+                body.linearVelocityX = 0f;
+                jumpBufferTimer = 0f;
+                return;
+            }
+
+            if (UpdateClimbing()) return;
             bool jumpHeld = input.JumpHeld;
             bool freshHold = jumpHeld && !jumpHeldLastTick;
             jumpHeldLastTick = jumpHeld;
@@ -164,6 +178,73 @@ namespace ProjectRTD.Gameplay
             LimitFallSpeed();
 
             jumpBufferTimer = Mathf.Max(0f, jumpBufferTimer - Time.fixedDeltaTime);
+        }
+
+        private bool UpdateClimbing()
+        {
+            const float climbSpeed = 4.75f;
+            Vector2 move = input.Move;
+            float feetOffset = playerCollider.bounds.min.y - transform.position.y;
+            float feet = body.position.y + feetOffset;
+            if (!ladder)
+            {
+                if (IsScareLocked || Mathf.Abs(move.y) < .25f) return false;
+                playerCollider.Overlap(new ContactFilter2D { useTriggers = true }, ladderOverlaps);
+                foreach (Collider2D overlap in ladderOverlaps)
+                {
+                    if (!overlap.TryGetComponent(out StageLadder2D candidate) ||
+                        !candidate.CanGrab(overlap.bounds, body.position.x, feet))
+                        continue;
+                    ladder = candidate;
+                    gravityBeforeClimbing = body.gravityScale;
+                    body.gravityScale = 0f;
+                    ladder.SetClimbing(playerCollider, true);
+                    break;
+                }
+                if (!ladder) return false;
+            }
+
+            float step = climbSpeed * Time.fixedDeltaTime;
+            if (Mathf.Abs(move.x) >= .25f && Mathf.Abs(move.y) < .25f &&
+                ladder.TryGetLanding(feet, .25f, out float landing))
+            {
+                body.position = new Vector2(ladder.CenterX, landing - feetOffset + .01f);
+                body.linearVelocity = Vector2.zero;
+                StopClimbing();
+                jumpBufferTimer = 0f;
+                return false;
+            }
+
+            float nextFeet = Mathf.Clamp(feet + move.y * step, ladder.LowestSurface, ladder.HighestSurface);
+            body.linearVelocity = Vector2.zero;
+            body.MovePosition(new Vector2(ladder.CenterX, nextFeet - feetOffset));
+            IsGrounded = false;
+            GroundCollider = null;
+            IsFloating = false;
+            airborneSeconds = 0f;
+            coyoteTimer = 0f;
+            jumpBufferTimer = 0f;
+            gait = default;
+            return true;
+        }
+
+        private void StopClimbing()
+        {
+            if (!ladder) return;
+            ladder.SetClimbing(playerCollider, false);
+            body.gravityScale = gravityBeforeClimbing;
+            ladder = null;
+        }
+
+        internal void ResetAfterTeleport()
+        {
+            StopClimbing();
+            IsGrounded = IsFloating = leavingWater = false;
+            GroundCollider = null;
+            coyoteTimer = jumpBufferTimer = airborneSeconds = bobPhase = 0f;
+            glideRemaining = GlideDuration;
+            input.ConsumeJumpPressed();
+            gait = default;
         }
 
         private void UpdateTravelSound(bool wasGrounded, bool wasFloating)
@@ -260,6 +341,7 @@ namespace ProjectRTD.Gameplay
 
         private bool CheckGrounded()
         {
+            GroundCollider = null;
             ConfigureGroundFilter();
             groundHits.Clear();
 
@@ -269,6 +351,7 @@ namespace ProjectRTD.Gameplay
             {
                 if (groundHits[index].normal.y >= minimumGroundNormalY)
                 {
+                    GroundCollider = groundHits[index].collider;
                     return true;
                 }
             }

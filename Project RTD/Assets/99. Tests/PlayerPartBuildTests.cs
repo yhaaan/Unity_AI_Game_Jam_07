@@ -69,7 +69,7 @@ public sealed class PlayerPartBuildTests
             Assert.That(build.Jump, Is.EqualTo(jump[build.Weight + 6]));
             Assert.That(build.Power, Is.EqualTo(power[build.Weight + 6]));
             Assert.That(build.Speed, Is.EqualTo(3));
-            Assert.That(build.Health, Is.InRange(1, 5));
+            Assert.That(build.Health, Is.InRange(1, 3));
             foreach (var effect in h.EffectIds.Concat(b.EffectIds).Concat(l.EffectIds)) Assert.That(build.HasEffect(effect));
         }
     }
@@ -207,7 +207,7 @@ public sealed class PlayerPartBuildTests
     {
         AnimalPartDefinition Part(string slot) => AssetDatabase.LoadAssetAtPath<AnimalPartDefinition>("Assets/06. Data/Part_lion_" + slot + ".asset");
         var lion = new PlayerPartBuild(Part("head"), Part("body"), Part("legs"));
-        Assert.That(new[] { lion.Power, lion.Jump, lion.Weight, lion.Health }, Is.EqualTo(new[] { 3, 1, 3, 5 }));
+        Assert.That(new[] { lion.Power, lion.Jump, lion.Weight, lion.Health }, Is.EqualTo(new[] { 3, 1, 3, 3 }));
         Assert.That(lion.Height, Is.EqualTo(4));
         Assert.That(lion.HasEffect(PartEffect.CanPass), Is.True);
         Assert.That(lion.HasEffect(PartEffect.Glide), Is.False);

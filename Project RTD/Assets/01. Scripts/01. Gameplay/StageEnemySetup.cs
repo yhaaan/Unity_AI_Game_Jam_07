@@ -34,11 +34,12 @@ namespace ProjectRTD.Gameplay
                 bool changed = false;
                 foreach (var kind in new[] {PlatformEnemy.Kind.Drone, PlatformEnemy.Kind.Scientist})
                 {
+                    var ledge = stage.GetComponentsInChildren<BoxCollider2D>().SingleOrDefault(c => c.name == (kind == PlatformEnemy.Kind.Drone ? "Head Ledge B" : "Lower Floor A"));
+                    if (!ledge) continue;
                     string path = Prefabs+kind+".prefab";
                     var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
                     if (!prefab) prefab = Build(kind,path);
                     if (stage.GetComponentsInChildren<PlatformEnemy>(true).Any(enemy => PrefabUtility.GetCorrespondingObjectFromSource(enemy.gameObject) == prefab)) continue;
-                    var ledge = stage.GetComponentsInChildren<BoxCollider2D>().Single(c => c.name == (kind == PlatformEnemy.Kind.Drone ? "Head Ledge B" : "Lower Floor A"));
                     var instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab,stage.transform);
                     instance.transform.position = new Vector3(ledge.bounds.center.x,ledge.bounds.max.y,0);
                     PrefabUtility.RecordPrefabInstancePropertyModifications(instance.transform);

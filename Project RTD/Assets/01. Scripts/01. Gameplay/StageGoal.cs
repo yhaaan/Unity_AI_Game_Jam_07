@@ -9,7 +9,7 @@ namespace ProjectRTD.Gameplay
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player") && (!StageRuntime.Instance || !StageRuntime.Instance.IsRespawning))
             {
                 SoundManager.Play(Sfx.Goal);
                 SceneFlow.LoadEnding();

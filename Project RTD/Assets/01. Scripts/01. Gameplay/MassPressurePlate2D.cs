@@ -13,9 +13,11 @@ namespace ProjectRTD.Gameplay
         [SerializeField] private Transform door;
         [SerializeField] private Vector3 closedDoorPosition;
         [SerializeField] private Vector3 openDoorPosition;
+        [SerializeField] private Rigidbody2D requiredBody;
 
         private readonly HashSet<Rigidbody2D> bodies = new();
         private SpriteRenderer plateRenderer;
+        private StageRuntime stage;
 
         public float CurrentMass { get; private set; }
         public bool IsPressed => CurrentMass >= requiredMass;
@@ -35,6 +37,25 @@ namespace ProjectRTD.Gameplay
         private void Awake()
         {
             plateRenderer = GetComponent<SpriteRenderer>();
+        }
+
+        private void Start()
+        {
+            stage = StageRuntime.Instance;
+            if (stage) stage.ResetMechanics += ResetPlate;
+        }
+
+        private void OnDestroy()
+        {
+            if (stage) stage.ResetMechanics -= ResetPlate;
+        }
+
+        private void ResetPlate()
+        {
+            bodies.Clear();
+            CurrentMass = 0f;
+            if (plateRenderer) plateRenderer.color = PrototypePalette.Danger;
+            if (door) door.position = closedDoorPosition;
         }
 
         private void FixedUpdate()
@@ -65,7 +86,7 @@ namespace ProjectRTD.Gameplay
         private void OnTriggerEnter2D(Collider2D other)
         {
             Rigidbody2D body = other.attachedRigidbody;
-            if (body != null && body.bodyType == RigidbodyType2D.Dynamic)
+            if (body != null && body.bodyType == RigidbodyType2D.Dynamic && (!requiredBody || body == requiredBody))
             {
                 bodies.Add(body);
             }
