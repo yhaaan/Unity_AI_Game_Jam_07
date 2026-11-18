@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "name": "unity-ai",
+    "version": "0.1.0-beta.1"
+  },
+  "modelId": "elevenlabs-sound-effects-v2",
+  "orgId": "14569670066960",
+  "jobId": "01a1ee83-6059-7355-a24e-17e96ec12e10",
+  "assetId": "01a1ee83-951f-7372-aa8e-9e385b4f7123",
+  "approval": "limits",
+  "limitsGrantedVia": "terminal",
+  "prompt": "A small chimera leaps in a playful laboratory platformer: one rubbery paw pushes off, layering a short rising air flick. Immediate clean attack and quick dry decay, no landing, music, speech or room tone.",
+  "modelName": "ElevenLabs Sound Effects V2",
+  "modality": "Sound",
+  "params": {
+    "prompt": "A small chimera leaps in a playful laboratory platformer: one rubbery paw pushes off, layering a short rising air flick. Immediate clean attack and quick dry decay, no landing, music, speech or room tone.",
+    "duration": 0.5,
+    "output_format": "wav_mono"
+  },
+  "output": {
+    "index": 1,
+    "count": 1,
+    "generationId": "01a1ee83-6059-7355-a24e-17e96ec12e10",
+    "format": "wav"
+  },
+  "pointsCost": 27,
+  "createdAt": "2026-11-18T11:56:05.5840660+00:00"
+}

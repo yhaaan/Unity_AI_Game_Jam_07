@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "name": "unity-ai",
+    "version": "0.1.0-beta.1"
+  },
+  "modelId": "elevenlabs-sound-effects-v2",
+  "orgId": "14569670066960",
+  "jobId": "01a1ee84-7143-7f33-af89-6b45241ff40f",
+  "assetId": "01a1ee84-920e-71b3-9a93-2ef0b0ca5445",
+  "approval": "limits",
+  "limitsGrantedVia": "terminal",
+  "prompt": "One small animal plops into a shallow laboratory basin. Crisp liquid slap followed by two tiny droplets, close dry cartoon foley, immediate onset. No swimming, music, room tone or voice.",
+  "modelName": "ElevenLabs Sound Effects V2",
+  "modality": "Sound",
+  "params": {
+    "prompt": "One small animal plops into a shallow laboratory basin. Crisp liquid slap followed by two tiny droplets, close dry cartoon foley, immediate onset. No swimming, music, room tone or voice.",
+    "duration": 0.5,
+    "output_format": "wav_mono"
+  },
+  "output": {
+    "index": 1,
+    "count": 1,
+    "generationId": "01a1ee84-7143-7f33-af89-6b45241ff40f",
+    "format": "wav"
+  },
+  "pointsCost": 27,
+  "createdAt": "2026-11-18T11:57:09.2252004+00:00"
+}

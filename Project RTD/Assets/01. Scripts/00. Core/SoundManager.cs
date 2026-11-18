@@ -31,6 +31,7 @@ namespace ProjectRTD.Core
             foreach (Sfx cue in System.Enum.GetValues(typeof(Sfx)))
             {
                 var clip = Resources.Load<AudioClip>("SFX/" + cue);
+                if (!clip) clip = Resources.Load<AudioClip>("RTD_SFX_" + cue);
                 if (!clip) { clip = RetroSfx.Create(cue); generated.Add(clip); }
                 clips.Add(cue, clip);
             }

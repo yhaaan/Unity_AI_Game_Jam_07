@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "name": "unity-ai",
+    "version": "0.1.0-beta.1"
+  },
+  "modelId": "elevenlabs-sound-effects-v2",
+  "orgId": "14569670066960",
+  "jobId": "01a1ee84-df7b-7d4e-8b74-8430aee7ba61",
+  "assetId": "01a1ee85-1459-7acf-8f2a-98024ecec4e9",
+  "approval": "limits",
+  "limitsGrantedVia": "terminal",
+  "prompt": "A startled little hybrid animal's single squeaky gasp, tiny flurry of fur, abrupt stop. Playfully surprised, not distressed. Close dry game one-shot, immediate attack, no speech, background or music.",
+  "modelName": "ElevenLabs Sound Effects V2",
+  "modality": "Sound",
+  "params": {
+    "prompt": "A startled little hybrid animal's single squeaky gasp, tiny flurry of fur, abrupt stop. Playfully surprised, not distressed. Close dry game one-shot, immediate attack, no speech, background or music.",
+    "duration": 0.5,
+    "output_format": "wav_mono"
+  },
+  "output": {
+    "index": 1,
+    "count": 1,
+    "generationId": "01a1ee84-df7b-7d4e-8b74-8430aee7ba61",
+    "format": "wav"
+  },
+  "pointsCost": 27,
+  "createdAt": "2026-11-18T11:57:42.1397591+00:00"
+}

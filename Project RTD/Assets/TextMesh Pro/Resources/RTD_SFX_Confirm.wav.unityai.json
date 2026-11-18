@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "name": "unity-ai",
+    "version": "0.1.0-beta.1"
+  },
+  "modelId": "elevenlabs-sound-effects-v2",
+  "orgId": "14569670066960",
+  "jobId": "01a1ee87-cc03-7964-a2d9-2ab4155fe8d7",
+  "assetId": "01a1ee87-eaa4-77b0-8c73-944785ef15bc",
+  "approval": "limits",
+  "limitsGrantedVia": "terminal",
+  "prompt": "A single close tactile laboratory terminal confirmation: soft switch click with a bright upward glass ping, immediate onset, dead quiet after 0.2s. No music, voices or ambience.",
+  "modelName": "ElevenLabs Sound Effects V2",
+  "modality": "Sound",
+  "params": {
+    "prompt": "A single close tactile laboratory terminal confirmation: soft switch click with a bright upward glass ping, immediate onset, dead quiet after 0.2s. No music, voices or ambience.",
+    "duration": 0.5,
+    "output_format": "wav_mono"
+  },
+  "output": {
+    "index": 1,
+    "count": 1,
+    "generationId": "01a1ee87-cc03-7964-a2d9-2ab4155fe8d7",
+    "format": "wav"
+  },
+  "pointsCost": 27,
+  "createdAt": "2026-11-18T12:00:48.3256084+00:00"
+}

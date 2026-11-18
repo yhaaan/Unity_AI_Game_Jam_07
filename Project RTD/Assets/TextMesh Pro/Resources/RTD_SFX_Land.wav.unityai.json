@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "name": "unity-ai",
+    "version": "0.1.0-beta.1"
+  },
+  "modelId": "elevenlabs-sound-effects-v2",
+  "orgId": "14569670066960",
+  "jobId": "01a1ee84-2043-7277-9eed-6be46faa586f",
+  "assetId": "01a1ee84-4041-7e62-b559-ceb036f02b4a",
+  "approval": "limits",
+  "limitsGrantedVia": "terminal",
+  "prompt": "Single soft padded paw landing on a lab floor, light compact low thup and delicate claw tick together. Immediately at start; dry, subtle repeatable platformer foley. No steps, voices, music or ambience.",
+  "modelName": "ElevenLabs Sound Effects V2",
+  "modality": "Sound",
+  "params": {
+    "prompt": "Single soft padded paw landing on a lab floor, light compact low thup and delicate claw tick together. Immediately at start; dry, subtle repeatable platformer foley. No steps, voices, music or ambience.",
+    "duration": 0.5,
+    "output_format": "wav_mono"
+  },
+  "output": {
+    "index": 1,
+    "count": 1,
+    "generationId": "01a1ee84-2043-7277-9eed-6be46faa586f",
+    "format": "wav"
+  },
+  "pointsCost": 27,
+  "createdAt": "2026-11-18T11:56:47.9567428+00:00"
+}
