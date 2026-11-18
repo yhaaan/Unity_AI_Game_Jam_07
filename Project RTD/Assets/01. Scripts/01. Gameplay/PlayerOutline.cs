@@ -23,6 +23,16 @@ namespace ProjectRTD.Gameplay
         private readonly HashSet<SpriteRenderer> ownCopies = new();
         private readonly List<SpriteRenderer> found = new();
         private readonly List<SpriteRenderer> stale = new();
+        private MaterialPropertyBlock block;
+        private float pulseStart = float.NegativeInfinity, pulseLength = 1f;
+        private static readonly int ColorId = Shader.PropertyToID("_Color");
+
+        // Briefly thickens the outline and flashes it white, easing back to the material colour.
+        public void Pulse(float seconds)
+        {
+            pulseStart = Time.unscaledTime;
+            pulseLength = Mathf.Max(0.05f, seconds);
+        }
 
         private void LateUpdate()
         {
@@ -32,6 +42,12 @@ namespace ProjectRTD.Gameplay
             foreach (var sr in found)
                 if (!ownCopies.Contains(sr) && sr.enabled && sr.sprite) lowest = Mathf.Min(lowest, sr.sortingOrder);
             if (lowest == int.MaxValue) return;
+
+            float pulse = 1f - Mathf.Clamp01((Time.unscaledTime - pulseStart) / pulseLength);
+            pulse *= pulse;
+            float drawWidth = width * (1f + 1.6f * pulse);
+            block ??= new MaterialPropertyBlock();
+            block.SetColor(ColorId, Color.Lerp(silhouette.GetColor(ColorId), Color.white, pulse));
 
             foreach (var source in found)
             {
@@ -48,7 +64,8 @@ namespace ProjectRTD.Gameplay
                     copy.flipX = source.flipX; copy.flipY = source.flipY;
                     copy.sortingLayerID = source.sortingLayerID;
                     copy.sortingOrder = lowest - orderBelow;
-                    var offset = Directions[i] * width; // world space, so it ignores the rig's scale and facing flip
+                    copy.SetPropertyBlock(block);
+                    var offset = Directions[i] * drawWidth; // world space, so it ignores the rig's scale and facing flip
                     copy.transform.localPosition = new Vector3(Safe(offset.x, scale.x), Safe(offset.y, scale.y), 0f);
                 }
             }

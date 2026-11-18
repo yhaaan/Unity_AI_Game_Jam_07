@@ -17,6 +17,7 @@ namespace ProjectRTD.Gameplay
         [SerializeField] private float headroom = 0.45f, spacing = 0.95f, iconSize = 0.42f;
         [SerializeField] private float lifetime = 1.6f, rise = 0.7f;
         [SerializeField] private int sortingOrder = 80;
+        [SerializeField, Tooltip("Wait for the combine cloud to burst before popping.")] private float startDelay = 0.6f;
 
         private PlayerPartLoadout loadout;
         private CapsuleCollider2D capsule;
@@ -57,7 +58,7 @@ namespace ProjectRTD.Gameplay
             for (int i = 0; i < changes.Count; i++)
             {
                 float x = (i - (changes.Count - 1) * 0.5f) * spacing;
-                live.Add(Spawn(changes[i].icon, changes[i].delta, new Vector3(x, Top() + headroom, 0f), i * 0.07f));
+                live.Add(Spawn(changes[i].icon, changes[i].delta, new Vector3(x, Top() + headroom, 0f), startDelay + i * 0.07f));
             }
         }
 

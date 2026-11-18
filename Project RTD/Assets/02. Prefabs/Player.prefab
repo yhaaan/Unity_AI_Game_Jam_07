@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 4536210098497003011}
   - component: {fileID: 8845059130766407123}
   - component: {fileID: 1211709775131771481}
+  - component: {fileID: 5186376444315036312}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -423,6 +424,7 @@ MonoBehaviour:
   submergedFraction: 0.5
   bobHeightFraction: 0.1
   bobPeriod: 2.2
+  glideDescentSpeed: 1.5
 --- !u!114 &4536210098497003011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,30 +438,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectRTD.Gameplay.PlayerPartLoadout
   catalog: {fileID: 11400000, guid: 8919e785152a2e742b5e75df211d9602, type: 2}
-  speedScale:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 1
-      value: 0.8
-      inSlope: 0
-      outSlope: 0.10000001
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 5
-      value: 1.2
-      inSlope: 0.10000001
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   jumpScale:
     serializedVersion: 2
     m_Curve:
@@ -522,6 +500,50 @@ MonoBehaviour:
   lifetime: 1.6
   rise: 0.7
   sortingOrder: 80
+  startDelay: 0.88
+--- !u!114 &5186376444315036312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6708139678698787303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16068e0b8ed394c5492f64ac4b294ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ProjectRTD.Gameplay::ProjectRTD.Gameplay.PlayerCombineFx
+  lettering: {fileID: 21300000, guid: f0639e14d451841d0a777b4ac6c485f8, type: 3}
+  lightning: {fileID: 21300000, guid: 762e1043c4dce473a9f46fb14234c300, type: 3}
+  stars:
+  - {fileID: 21300000, guid: 1da856bf2be434c2a99806b051e66615, type: 3}
+  - {fileID: 21300000, guid: 42982f7dd729d4e89b7b55cd61af974d, type: 3}
+  limbs:
+  - {fileID: 21300000, guid: 559929b1931804ae9a4aa3e4bbac5945, type: 3}
+  - {fileID: 21300000, guid: 24d9c2132732e4fe48ec61433fa6dab4, type: 3}
+  - {fileID: 21300000, guid: 702cf20fe70c542b5be99e47751d52f9, type: 3}
+  - {fileID: 21300000, guid: 2e5f818ff4a2d4e14ad66dddc304017a, type: 3}
+  puffs:
+  - {fileID: 21300000, guid: 130cc70e46066440aad6d8dc49c8508c, type: 3}
+  - {fileID: 21300000, guid: f4c2938ef0c7b4aea883c36a84a747d1, type: 3}
+  - {fileID: 21300000, guid: 9ff2ec3604e06414794634ad9a2577aa, type: 3}
+  - {fileID: 21300000, guid: 7f348e992677f49249f3db6c255289bf, type: 3}
+  speedLines:
+  - {fileID: 21300000, guid: 83cd3e5df9dde491b9b9c17e42566739, type: 3}
+  - {fileID: 21300000, guid: 196e451253371480a889ad006558ae49, type: 3}
+  - {fileID: 21300000, guid: 57b2cccf0bced4f639f321ec57dab448, type: 3}
+  font: {fileID: 11400000, guid: 3f82882ada419f443ba84b4db89c5358, type: 2}
+  cream: {r: 0.9843137, g: 0.9529412, b: 0.8862745, a: 1}
+  ink: {r: 0.11372549, g: 0.105882354, b: 0.14901961, a: 1}
+  glow: {r: 1, g: 0.81960785, b: 0.4, a: 1}
+  cloudRadius: {x: 0.82, y: 0.86}
+  sortingOrder: 70
+  behindOrder: 6
+  visual: {fileID: 6083068704116012300}
+  slamAt: 0.18
+  burstAt: 0.8
+  duration: 1.35
+  hitStop: 0.07
 --- !u!1 &7905768342016610193
 GameObject:
   m_ObjectHideFlags: 0
