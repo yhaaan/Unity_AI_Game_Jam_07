@@ -137,9 +137,9 @@ namespace ProjectRTD.Gameplay
                 if (sh)
                 {
                     partMat = new Material(sh) { name = "Underwater Parts" };
-                    partMat.SetFloat("_Wave", .006f); partMat.SetFloat("_Caustic", .06f); partMat.SetFloat("_TintAmt", .28f);
+                    partMat.SetFloat("_Wave", 0f); partMat.SetFloat("_Caustic", .06f); partMat.SetFloat("_TintAmt", .28f);
                     waterMat = new Material(sh) { name = "Water Body" };
-                    waterMat.SetFloat("_Wave", .003f); waterMat.SetFloat("_Caustic", 0f); waterMat.SetFloat("_TintAmt", 0f);
+                    waterMat.SetFloat("_Wave", 0f); waterMat.SetFloat("_Caustic", 0f); waterMat.SetFloat("_TintAmt", 0f);
                     waterMat.SetFloat("_CausticScale", 1.1f);
                 }
                 waterTint = Sr("water", tank, stage, new Vector2(0f, TankY), k, 55);            // same silhouette, tinted cyan
