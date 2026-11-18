@@ -13,18 +13,21 @@ MonoBehaviour:
   m_Name: PartCatalog
   m_EditorClassIdentifier: Assembly-CSharp::ProjectRTD.Gameplay.PartCatalog
   parts:
+  - {fileID: 11400000, guid: 2db43443bf36c64469cb4b714a5fd8d3, type: 2}
+  - {fileID: 11400000, guid: c8a9002c9b712534d87feda9912ed493, type: 2}
+  - {fileID: 11400000, guid: c979c586043600141b8a94bd3a914792, type: 2}
   - {fileID: 11400000, guid: 97fa7804fe334fa49bdc530e100912bd, type: 2}
   - {fileID: 11400000, guid: 050ba002d12fd064dad33b65006c150a, type: 2}
   - {fileID: 11400000, guid: 8d7aae9e89463fb4da79ef84066c9370, type: 2}
-  - {fileID: 11400000, guid: 3f422f380cd86c845b3f0c779dc95dc0, type: 2}
-  - {fileID: 11400000, guid: a4d2705ce2f90aa4fba3138d85fb7808, type: 2}
-  - {fileID: 11400000, guid: 5a2a748582c303640b8033396ccc78bc, type: 2}
   - {fileID: 11400000, guid: 7d6ec6ac40bc4544098cc429272d3084, type: 2}
   - {fileID: 11400000, guid: 97f14978d3b03c44e9b0706a43f9ee1d, type: 2}
   - {fileID: 11400000, guid: 1bdc98533d9bc6449a5fe7390f3d1804, type: 2}
-  - {fileID: 11400000, guid: 8b089f802281ed747a69bf2c5f61f736, type: 2}
-  - {fileID: 11400000, guid: 6a0e1e07ace906b4ebbb2d35ee7ad5b1, type: 2}
-  - {fileID: 11400000, guid: adeabc4540aa8c5418db8450da46ea5a, type: 2}
+  - {fileID: 11400000, guid: 3f422f380cd86c845b3f0c779dc95dc0, type: 2}
+  - {fileID: 11400000, guid: a4d2705ce2f90aa4fba3138d85fb7808, type: 2}
+  - {fileID: 11400000, guid: 5a2a748582c303640b8033396ccc78bc, type: 2}
   - {fileID: 11400000, guid: e70d3a15778e25f4aa458e4fe1623b11, type: 2}
   - {fileID: 11400000, guid: e701a745f79781e40b3ca54a5103f54a, type: 2}
   - {fileID: 11400000, guid: 7b38a7c5e1e30c24da29d8c8aa3b331d, type: 2}
+  - {fileID: 11400000, guid: 8b089f802281ed747a69bf2c5f61f736, type: 2}
+  - {fileID: 11400000, guid: 6a0e1e07ace906b4ebbb2d35ee7ad5b1, type: 2}
+  - {fileID: 11400000, guid: adeabc4540aa8c5418db8450da46ea5a, type: 2}

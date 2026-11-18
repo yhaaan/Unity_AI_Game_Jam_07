@@ -13,15 +13,14 @@ MonoBehaviour:
   m_Name: Part_axolotl_head
   m_EditorClassIdentifier: Assembly-CSharp::ProjectRTD.Gameplay.AnimalPartDefinition
   sheet:
-    partId: axolotl_head
+    partId: upa_head
     displayName: "\uC6B0\uD30C\uB8E8\uD30C \uBA38\uB9AC"
     description: 
     animal: 3
     slot: 0
-    speedDelta: 0
-    jumpDelta: 0
-    weightDelta: 0
+    weightDelta: -2
     healthDelta: 0
+    heightDelta: 0
     effectIds: 
   sprite: {fileID: 2246087704368079521, guid: 7de9031d830cf9341b7f25f0f511b212, type: 3}
   groundYpx: 0

@@ -8,6 +8,28 @@ using UnityEngine;
 public sealed class PlayerPartBuildTests
 {
     [Test]
+    public void FinalCsvAndClipboardMatchCatalog()
+    {
+        string csv = System.IO.File.ReadAllText("Assets/99. Documents/PartsTemplate.txt");
+        string tsv = csv.Replace("\"canFly, canSwim\"", "canFly| canSwim").Replace(',', '\t').Replace('|', ',');
+        var catalog = AssetDatabase.LoadAssetAtPath<PartCatalog>("Assets/06. Data/PartCatalog.asset");
+        foreach (var text in new[] { csv, tsv })
+        {
+            var rows = AnimalPartCsv.Parse(text);
+            Assert.That(rows.Count, Is.EqualTo(18));
+            foreach (var row in rows)
+            {
+                var part = catalog.ForSlot(row.slot).Single(p => p.PartId == row.partId);
+                Assert.That(part.Animal, Is.EqualTo(row.animal), row.partId);
+                Assert.That(part.DisplayName, Is.EqualTo(row.displayName), row.partId);
+                Assert.That(new[] { part.WeightDelta, part.HealthDelta, part.HeightDelta },
+                    Is.EqualTo(new[] { row.weightDelta, row.healthDelta, row.heightDelta }), row.partId);
+                Assert.That(part.EffectIds, Is.EquivalentTo(row.effectIds), row.partId);
+            }
+        }
+    }
+
+    [Test]
     public void EveryImportedCombinationHasValidLevels()
     {
         var catalog = AssetDatabase.LoadAssetAtPath<PartCatalog>("Assets/06. Data/PartCatalog.asset");
@@ -15,7 +37,7 @@ public sealed class PlayerPartBuildTests
         var heads = catalog.ForSlot(PartSlot.Head).ToArray();
         var bodies = catalog.ForSlot(PartSlot.Body).ToArray();
         var legs = catalog.ForSlot(PartSlot.Legs).ToArray();
-        Assert.That(new[] { heads.Length, bodies.Length, legs.Length }, Is.All.EqualTo(5));
+        Assert.That(new[] { heads.Length, bodies.Length, legs.Length }, Is.All.EqualTo(6));
         foreach (var h in heads)
         foreach (var b in bodies)
         foreach (var l in legs)
@@ -40,7 +62,7 @@ public sealed class PlayerPartBuildTests
             Assert.That(part.Sprite.pixelsPerUnit, Is.EqualTo(100), part.PartId);
             if (part.Slot == PartSlot.Legs) Assert.That(part.GroundYpx, Is.InRange(331, 512), part.PartId);
         }
-        Assert.That(paths.Count, Is.EqualTo(15));
+        Assert.That(paths.Count, Is.EqualTo(18));
         var player = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/02. Prefabs/Player.prefab");
         var visual = player.transform.Find("Visual");
         Assert.That(visual.childCount, Is.EqualTo(3));
@@ -62,7 +84,7 @@ public sealed class PlayerPartBuildTests
         Assert.That(library, Is.Not.Null, "Reimport the PlayerLayers recipe");
         foreach (var set in new[] { library.parts.heads, library.parts.bodies, library.parts.legs })
         {
-            Assert.That(set.Select(p => p.id), Is.EquivalentTo(new[] { "duck", "rabbit", "lion", "bear", "axolotl" }));
+            Assert.That(set.Select(p => p.id), Is.EquivalentTo(new[] { "duck", "rabbit", "lion", "bear", "axolotl", "chicken" }));
             foreach (var p in set) foreach (var l in p.layers)
             {
                 Assert.That(l.sprite, Is.Not.Null, l.path);
@@ -159,7 +181,9 @@ public sealed class PlayerPartBuildTests
     {
         AnimalPartDefinition Part(string slot) => AssetDatabase.LoadAssetAtPath<AnimalPartDefinition>("Assets/06. Data/Part_lion_" + slot + ".asset");
         var lion = new PlayerPartBuild(Part("head"), Part("body"), Part("legs"));
-        Assert.That(new[] { lion.Speed, lion.Jump, lion.Weight, lion.Health }, Is.EqualTo(new[] { 3, 3, 4, 5 }));
+        Assert.That(new[] { lion.Speed, lion.Jump, lion.Weight, lion.Health }, Is.EqualTo(new[] { 2, 3, 5, 5 }));
+        Assert.That(lion.Height, Is.EqualTo(4));
+        Assert.That(lion.HasEffect(PartEffect.CanPass), Is.True);
         Assert.That(lion.HasEffect(PartEffect.Glide), Is.False);
     }
 

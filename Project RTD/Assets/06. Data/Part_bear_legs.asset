@@ -18,10 +18,9 @@ MonoBehaviour:
     description: 
     animal: 1
     slot: 2
-    speedDelta: 0
-    jumpDelta: 0
-    weightDelta: 0
+    weightDelta: 2
     healthDelta: 0
+    heightDelta: 2
     effectIds: 
   sprite: {fileID: 3530776751379196150, guid: 7de9031d830cf9341b7f25f0f511b212, type: 3}
   groundYpx: 438

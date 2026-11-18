@@ -15,13 +15,12 @@ MonoBehaviour:
   sheet:
     partId: lion_legs
     displayName: "\uC0AC\uC790 \uB2E4\uB9AC"
-    description: "\uC774\uB3D9\uC18D\uB3C4\uAC00 \uB192\uC544\uC9C4\uB2E4"
+    description: 
     animal: 2
     slot: 2
-    speedDelta: 1
-    jumpDelta: 0
-    weightDelta: 0
+    weightDelta: 1
     healthDelta: 0
+    heightDelta: 2
     effectIds: 
   sprite: {fileID: 8839165037248210438, guid: 7de9031d830cf9341b7f25f0f511b212, type: 3}
   groundYpx: 435

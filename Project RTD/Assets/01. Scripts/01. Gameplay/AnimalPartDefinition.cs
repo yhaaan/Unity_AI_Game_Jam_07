@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace ProjectRTD.Gameplay
 {
-    public enum PartAnimal { Rabbit = 0, Bear = 1, Lion = 2, Axolotl = 3, Duck = 4 }
+    public enum PartAnimal { Rabbit = 0, Bear = 1, Lion = 2, Axolotl = 3, Duck = 4, Chicken = 5 }
     public enum PartSlot { Head, Body, Legs }
-    public enum PartEffect { SideDrift, Glide, ShortStature, BananaFrenzy, WallClimb, PredatorSafe, HunterVulnerable, Float }
+    public enum PartEffect { SideDrift, Glide, ShortStature, BananaFrenzy, WallClimb, PredatorSafe, HunterVulnerable, Float, CanPass }
 
     [Serializable]
     public sealed class PartSheetRow
@@ -15,7 +15,8 @@ namespace ProjectRTD.Gameplay
         [TextArea] public string description;
         public PartAnimal animal;
         public PartSlot slot;
-        public int speedDelta, jumpDelta, weightDelta, healthDelta;
+        public int weightDelta, healthDelta, heightDelta;
+
         public PartEffect[] effectIds = Array.Empty<PartEffect>();
     }
 
@@ -29,8 +30,9 @@ namespace ProjectRTD.Gameplay
         public PartSlot Slot => sheet.slot;
         public string DisplayName => sheet.displayName;
         public string Description => sheet.description;
-        public int SpeedDelta => sheet.speedDelta;
-        public int JumpDelta => sheet.jumpDelta;
+
+
+        public int HeightDelta => sheet.heightDelta;
         public int WeightDelta => sheet.weightDelta;
         public int HealthDelta => sheet.healthDelta;
         public IReadOnlyList<PartEffect> EffectIds => sheet.effectIds;
@@ -39,6 +41,12 @@ namespace ProjectRTD.Gameplay
         private int groundYpx;
         public int GroundYpx => groundYpx;
 #if UNITY_EDITOR
+        internal void ApplyArt(ChimeraLayerLibrary.Part art)
+        {
+            if (art == null) return;
+            sprite = art.preview;
+            groundYpx = art.ground_y_px;
+        }
         internal void ApplySheet(PartSheetRow row) => sheet = row;
 #endif
     }

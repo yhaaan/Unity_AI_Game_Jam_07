@@ -61,7 +61,7 @@ namespace ProjectRTD.Debugging
             else
             {
                 GUILayout.Label($"머리: {build.Head.DisplayName}\n몸통: {build.Body.DisplayName}\n다리: {build.Legs.DisplayName}");
-                GUILayout.Label($"무게 {build.Weight}/5   |   체력 단계 {build.Health}/5\n" +
+                GUILayout.Label($"키 {build.Height}   |   무게 {build.Weight}/5   |   체력 단계 {build.Health}/5\n" +
                     $"이동속도 {build.Speed}/5   ({motor.MoveSpeed:0.##} 유닛/초)\n" +
                     $"점프력 {build.Jump}/5   (초속 {motor.JumpVelocity:0.##} 유닛/초)");
             }

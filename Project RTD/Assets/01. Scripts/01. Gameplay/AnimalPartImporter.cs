@@ -39,9 +39,13 @@ namespace ProjectRTD.Gameplay
                     }
                     catch (Exception e) { ReleaseRequest(); Fail(e); }
                 }
-                if (GUILayout.Button("로컬 CSV 가져오기"))
+                if (GUILayout.Button("시트에서 복사한 표 가져오기 (헤더 포함)"))
                 {
-                    var path = EditorUtility.OpenFilePanelWithFilters("Parts CSV", "", new[] { "Parts CSV", "csv,txt" });
+                    try { Import(EditorGUIUtility.systemCopyBuffer); } catch (Exception e) { Fail(e); }
+                }
+                if (GUILayout.Button("로컬 CSV / TSV 가져오기"))
+                {
+                    var path = EditorUtility.OpenFilePanelWithFilters("Parts CSV", "", new[] { "Parts CSV", "csv,tsv,txt" });
                     if (path.Length != 0)
                         try { Import(File.ReadAllText(path)); } catch (Exception e) { Fail(e); }
                 }
@@ -77,6 +81,21 @@ namespace ProjectRTD.Gameplay
 
         private void Import(string csv)
         {
+            message = ImportSheet(csv);
+            failed = false;
+        }
+
+        // Upgrade the shipped five-animal catalog once. Subsequent sheet changes are explicit imports.
+        [InitializeOnLoadMethod]
+        private static void UpgradeCatalog() => EditorApplication.delayCall += () =>
+        {
+            var legacy = AssetDatabase.LoadAssetAtPath<AnimalPartDefinition>(Data + "Part_axolotl_head.asset");
+            if (!EditorApplication.isPlayingOrWillChangePlaymode && legacy && legacy.PartId == "axolotl_head" && !File.Exists(Data + "Part_chicken_head.asset"))
+                Debug.Log(ImportSheet(File.ReadAllText("Assets/99. Documents/PartsTemplate.txt")));
+        };
+
+        private static string ImportSheet(string csv)
+        {
             var rows = AnimalPartCsv.Parse(csv);
             var existing = new Dictionary<string, AnimalPartDefinition>(StringComparer.Ordinal);
             foreach (var guid in AssetDatabase.FindAssets("t:AnimalPartDefinition", new[] { "Assets" }))
@@ -86,6 +105,17 @@ namespace ProjectRTD.Gameplay
                 if (!part || string.IsNullOrWhiteSpace(part.PartId) || !existing.TryAdd(part.PartId, part))
                     throw new InvalidOperationException("기존 에셋의 partId 누락 또는 중복: " + path);
             }
+            // Change the sheet key in place, not the asset/GUID used by prefabs and art.
+            foreach (var row in rows.Where(r => r.animal == PartAnimal.Axolotl))
+            {
+                string suffix = row.slot.ToString().ToLowerInvariant();
+                string legacy = "axolotl_" + suffix;
+                if (row.partId == "upa_" + suffix && !existing.ContainsKey(row.partId) && existing.TryGetValue(legacy, out var part) && part.Animal == row.animal && part.Slot == row.slot)
+                {
+                    existing.Remove(legacy);
+                    existing.Add(row.partId, part);
+                }
+            }
             var missing = existing.Keys.Except(rows.Select(r => r.partId)).ToArray();
             if (missing.Length > 0) throw new InvalidOperationException("시트에서 사라진 기존 ID (변경 전 확인 필요): " + string.Join(", ", missing));
             string NewPath(string id) => Data + "Part_" + id + ".asset";
@@ -94,12 +124,14 @@ namespace ProjectRTD.Gameplay
             var catalog = AssetDatabase.LoadAssetAtPath<PartCatalog>(CatalogPath);
             if (!catalog) RequireFreePath(CatalogPath);
 
+            var library = AssetDatabase.LoadAssetAtPath<ChimeraLayerLibrary>("Assets/04. Animations/PlayerLayers.yaml");
             var imported = new List<AnimalPartDefinition>();
             foreach (var row in rows)
             {
                 bool isNew = !existing.TryGetValue(row.partId, out var part);
                 if (isNew) part = CreateInstance<AnimalPartDefinition>();
                 part.ApplySheet(row);
+                if (isNew && library) part.ApplyArt(library.Find(part));
                 if (isNew) AssetDatabase.CreateAsset(part, NewPath(row.partId));
                 else EditorUtility.SetDirty(part);
                 imported.Add(part);
@@ -110,8 +142,7 @@ namespace ProjectRTD.Gameplay
             if (newCatalog) AssetDatabase.CreateAsset(catalog, CatalogPath);
             else EditorUtility.SetDirty(catalog);
             AssetDatabase.SaveAssets();
-            failed = false;
-            message = $"신규 {rows.Count - existing.Count}개, 갱신 {existing.Count}개. 카탈로그: {CatalogPath}";
+            return $"신규 {rows.Count - existing.Count}개, 갱신 {existing.Count}개. 카탈로그: {CatalogPath}";
         }
 
         private static void RequireFreePath(string path)

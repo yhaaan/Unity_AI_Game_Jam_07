@@ -15,14 +15,12 @@ MonoBehaviour:
   sheet:
     partId: duck_body
     displayName: "\uC624\uB9AC \uBAB8\uD1B5"
-    description: "\uBB3C\uC5D0 \uB5A0\uC11C \uC218\uBA74 \uACBD\uB85C\uB97C \uC774\uC6A9\uD560
-      \uC218 \uC788\uB2E4"
+    description: 
     animal: 4
     slot: 1
-    speedDelta: 0
-    jumpDelta: 0
     weightDelta: 0
-    healthDelta: 0
-    effectIds: 07000000
+    healthDelta: 1
+    heightDelta: 0
+    effectIds: 0100000007000000
   sprite: {fileID: 2602703668656435996, guid: 7de9031d830cf9341b7f25f0f511b212, type: 3}
   groundYpx: 0

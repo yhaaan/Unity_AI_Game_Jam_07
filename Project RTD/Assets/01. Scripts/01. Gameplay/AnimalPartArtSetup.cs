@@ -25,7 +25,7 @@ namespace ProjectRTD.Gameplay
                 var art = library.Find(part);
                 if (art?.preview == null) throw new InvalidDataException(path);
                 string id = art.id + "_" + part.Slot.ToString().ToLowerInvariant();
-                if (part.PartId.StartsWith("chicken_") || part.PartId.StartsWith("monkey_") || part.PartId.StartsWith("kangaroo_"))
+                if ((part.Animal == PartAnimal.Rabbit && part.PartId.StartsWith("chicken_")) || part.PartId.StartsWith("monkey_") || part.PartId.StartsWith("kangaroo_"))
                 {
                     string label = part.Animal == PartAnimal.Rabbit ? "토끼" : part.Animal == PartAnimal.Bear ? "곰" : "우파루파";
                     string slot = part.Slot == PartSlot.Head ? "머리" : part.Slot == PartSlot.Body ? "몸통" : "다리";
@@ -53,7 +53,8 @@ namespace ProjectRTD.Gameplay
         [InitializeOnLoadMethod]
         private static void DetectLegacyParts() => EditorApplication.delayCall += () =>
         {
-            if (File.Exists("Assets/06. Data/Part_chicken_head.asset")) Setup();
+            var legacy = AssetDatabase.LoadAssetAtPath<AnimalPartDefinition>("Assets/06. Data/Part_chicken_head.asset");
+            if (legacy && legacy.Animal == PartAnimal.Rabbit) Setup();
         };
     }
 }

@@ -15,14 +15,12 @@ MonoBehaviour:
   sheet:
     partId: lion_head
     displayName: "\uC0AC\uC790 \uBA38\uB9AC"
-    description: "\uD3EC\uC2DD\uC790\uB97C \uC548\uC804\uD558\uAC8C \uC9C0\uB098\uAC08
-      \uC218 \uC788\uACE0 \uBB34\uAC8C\uAC00 \uB298\uC5B4\uB09C\uB2E4"
+    description: 
     animal: 2
     slot: 0
-    speedDelta: 0
-    jumpDelta: 0
     weightDelta: 1
     healthDelta: 0
-    effectIds: 05000000
+    heightDelta: 2
+    effectIds: 08000000
   sprite: {fileID: 3893905123080552950, guid: 7de9031d830cf9341b7f25f0f511b212, type: 3}
   groundYpx: 0

@@ -11,6 +11,7 @@ namespace ProjectRTD.Gameplay
         public AnimalPartDefinition Legs { get; }
         public int Speed { get; }
         public int Jump { get; }
+        public int Height { get; }
         public int Weight { get; }
         public int Health { get; }
         private readonly HashSet<PartEffect> effects = new();
@@ -20,9 +21,10 @@ namespace ProjectRTD.Gameplay
             Head = RequireSlot(head, PartSlot.Head);
             Body = RequireSlot(body, PartSlot.Body);
             Legs = RequireSlot(legs, PartSlot.Legs);
+            Height = head.HeightDelta + body.HeightDelta + legs.HeightDelta;
             Weight = Level(head.WeightDelta, body.WeightDelta, legs.WeightDelta);
-            Speed = Math.Max(1, Level(head.SpeedDelta, body.SpeedDelta, legs.SpeedDelta) - (Weight >= 4 ? 1 : 0));
-            Jump = Level(head.JumpDelta, body.JumpDelta, legs.JumpDelta);
+            Speed = Weight >= 4 ? 2 : 3;
+            Jump = 3; // Height is stature, not jump power.
             Health = Level(head.HealthDelta, body.HealthDelta, legs.HealthDelta);
             effects.UnionWith(head.EffectIds);
             effects.UnionWith(body.EffectIds);
