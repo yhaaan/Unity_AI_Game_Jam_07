@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 namespace ProjectRTD.Gameplay
 {
     // Gives the Drone and Scientist prefabs an animated "Art" child (Chimera DroneAnimator / ScientistAnimator).
-    // The flat composite sprite stays on the root for editor preview and is hidden in play mode.
+    // The flat composite sprite stays on Visual for editor preview and is hidden in play mode.
     internal static class StageEnemyAnimationSetup
     {
         const string Prefabs = "Assets/02. Prefabs/";
@@ -42,7 +42,7 @@ namespace ProjectRTD.Gameplay
                     var art = new GameObject(ArtName).transform;
                     art.SetParent(root.transform, false);
                     var group = art.gameObject.AddComponent<SortingGroup>();
-                    group.sortingOrder = root.GetComponent<SpriteRenderer>().sortingOrder;
+                    group.sortingOrder = root.transform.Find("Visual").GetComponent<SpriteRenderer>().sortingOrder;
 
                     if (kind == PlatformEnemy.Kind.Scientist)
                     {
