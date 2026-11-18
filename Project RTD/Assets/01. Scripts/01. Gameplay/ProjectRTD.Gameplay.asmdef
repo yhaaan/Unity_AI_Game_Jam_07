@@ -1,5 +1,5 @@
 {
     "name": "ProjectRTD.Gameplay",
     "rootNamespace": "ProjectRTD.Gameplay",
-    "references": ["Unity.InputSystem"]
+    "references": ["Unity.InputSystem", "ProjectRTD.Core"]
 }

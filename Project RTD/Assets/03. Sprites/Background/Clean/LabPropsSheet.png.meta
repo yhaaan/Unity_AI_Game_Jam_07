@@ -1,0 +1,339 @@
+fileFormatVersion: 2
+guid: 3fb834a7d755c6e45a36acae2f643947
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3480890092151309486
+    second: LabPropsSheet_0
+  - first:
+      213: 5575046925360303798
+    second: LabPropsSheet_1
+  - first:
+      213: 7464766079502075428
+    second: LabPropsSheet_2
+  - first:
+      213: 5304828750211906081
+    second: LabPropsSheet_3
+  - first:
+      213: 3121226560264808627
+    second: LabPropsSheet_4
+  - first:
+      213: 6636570832078475209
+    second: LabPropsSheet_5
+  - first:
+      213: -2501329204357386765
+    second: LabPropsSheet_6
+  - first:
+      213: 6281611347523830808
+    second: LabPropsSheet_7
+  - first:
+      213: -2137008520443669474
+    second: LabPropsSheet_8
+  - first:
+      213: 4421175346267470083
+    second: LabPropsSheet_9
+  - first:
+      213: -7070006590719659762
+    second: LabProps_MonitorConsole
+  - first:
+      213: 2383402263286642286
+    second: LabProps_CeilingLight
+  - first:
+      213: -595465528755693459
+    second: LabProps_CeilingArm
+  - first:
+      213: 2214258025724278215
+    second: LabProps_Microscope
+  - first:
+      213: -4688214784433642023
+    second: LabProps_TankCabinet
+  - first:
+      213: 7801725907711472123
+    second: LabProps_Bench
+  - first:
+      213: 7433985468157088974
+    second: LabProps_Chair
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LabProps_MonitorConsole
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 878
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e01fb78d67a42ed90800000000000000
+      internalID: -7070006590719659762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LabProps_CeilingLight
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 670
+        width: 395
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e66ff0c0bbb831120800000000000000
+      internalID: 2383402263286642286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LabProps_CeilingArm
+      rect:
+        serializedVersion: 2
+        x: 1519
+        y: 418
+        width: 240
+        height: 443
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d68d68aa14b7cb7f0800000000000000
+      internalID: -595465528755693459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LabProps_Microscope
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 365
+        width: 301
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c57a5851ff9abe10800000000000000
+      internalID: 2214258025724278215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LabProps_TankCabinet
+      rect:
+        serializedVersion: 2
+        x: 1179
+        y: 0
+        width: 582
+        height: 769
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d529172e7d10feb0800000000000000
+      internalID: -4688214784433642023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LabProps_Bench
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 23
+        width: 848
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf1ba14b06c454c60800000000000000
+      internalID: 7801725907711472123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LabProps_Chair
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 25
+        width: 308
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec45be67562da2760800000000000000
+      internalID: 7433985468157088974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      LabPropsSheet_0: -3480890092151309486
+      LabPropsSheet_1: 5575046925360303798
+      LabPropsSheet_2: 7464766079502075428
+      LabPropsSheet_3: 5304828750211906081
+      LabPropsSheet_4: 3121226560264808627
+      LabPropsSheet_5: 6636570832078475209
+      LabPropsSheet_6: -2501329204357386765
+      LabPropsSheet_7: 6281611347523830808
+      LabPropsSheet_8: -2137008520443669474
+      LabPropsSheet_9: 4421175346267470083
+      LabProps_Bench: 7801725907711472123
+      LabProps_CeilingArm: -595465528755693459
+      LabProps_CeilingLight: 2383402263286642286
+      LabProps_Chair: 7433985468157088974
+      LabProps_Microscope: 2214258025724278215
+      LabProps_MonitorConsole: -7070006590719659762
+      LabProps_TankCabinet: -4688214784433642023
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
