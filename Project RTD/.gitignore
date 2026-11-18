@@ -13,15 +13,6 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
-
-# Unity project is stored one level below the repository root
-/Project RTD/[Ll]ibrary/
-/Project RTD/[Tt]emp/
-/Project RTD/[Oo]bj/
-/Project RTD/[Bb]uild/
-/Project RTD/[Bb]uilds/
-/Project RTD/[Ll]ogs/
-/Project RTD/[Uu]ser[Ss]ettings/
 *.log
 
 # Memory Profiler generated files
