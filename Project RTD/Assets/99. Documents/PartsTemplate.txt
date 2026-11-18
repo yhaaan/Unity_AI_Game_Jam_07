@@ -1,0 +1,16 @@
+partId,animal,slot,displayName,description,speedDelta,jumpDelta,weightDelta,healthDelta,effectIds
+chicken_head,Chicken,Head,닭 머리,가벼우나 이동 중 좌우로 쏠림,0,0,-1,0,SideDrift
+chicken_body,Chicken,Body,닭 몸통,활강 가능 / 체력 감소,0,0,0,-1,Glide
+chicken_legs,Chicken,Legs,닭 다리,빠르고 가벼우며 점프 증가 / 작은 키,1,1,-1,0,ShortStature
+monkey_head,Monkey,Head,원숭이 머리,바나나 발견 시 광분,0,0,0,0,BananaFrenzy
+monkey_body,Monkey,Body,원숭이 몸통,벽타기 가능 / 체력 증가,0,0,0,1,WallClimb
+monkey_legs,Monkey,Legs,원숭이 다리,별도 보정 없음,0,0,0,0,
+lion_head,Lion,Head,사자 머리,포식자에게 안전 / 무게 증가,0,0,1,0,PredatorSafe
+lion_body,Lion,Body,사자 몸통,체력 증가,0,0,0,2,
+lion_legs,Lion,Legs,사자 다리,이동속도 증가,1,0,0,0,
+kangaroo_head,Kangaroo,Head,캥거루 머리,사냥꾼에게 불리,0,0,0,0,HunterVulnerable
+kangaroo_body,Kangaroo,Body,캥거루 몸통,체력 증가,0,0,0,2,
+kangaroo_legs,Kangaroo,Legs,캥거루 다리,점프 증가,0,1,0,0,
+duck_head,Duck,Head,오리 머리,사냥꾼에게 불리,0,0,0,0,HunterVulnerable
+duck_body,Duck,Body,오리 몸통,수면 경로 이용,0,0,0,0,Float
+duck_legs,Duck,Legs,오리 다리,점프 감소,0,-1,0,0,
