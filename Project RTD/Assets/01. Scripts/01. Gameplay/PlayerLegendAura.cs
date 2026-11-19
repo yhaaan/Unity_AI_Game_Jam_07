@@ -44,7 +44,8 @@ namespace ProjectRTD.Gameplay
             string legend = loadout.Current?.Legend;
             if (legend == null)
             {
-                if (tinted) { Paint(Color.white); tinted = false; if (glow) glow.enabled = false; }
+                if (tinted) { Paint(Color.white); tinted = false; }
+                if (glow) glow.enabled = false;
                 return;
             }
             float t = Time.time;
@@ -52,9 +53,13 @@ namespace ProjectRTD.Gameplay
             Color a, b;
             if (legend == "불사조") { a = new Color(1f, 0.5f, 0.22f); b = new Color(1f, 0.86f, 0.4f); }
             else { a = new Color(0.45f, 1f, 0.62f); b = new Color(0.75f, 0.6f, 1f); }
-            var tint = Color.Lerp(a, b, 0.5f + 0.5f * Mathf.Sin(t * 6f));
-            Paint(tint);
-            tinted = true;
+            // Real legendary art needs no tint; only stand-in parts are coloured.
+            if (loadout.Current.Head.Animal < PartAnimal.Dragon)
+            {
+                Paint(Color.Lerp(a, b, 0.5f + 0.5f * Mathf.Sin(t * 6f)));
+                tinted = true;
+            }
+            else if (tinted) { Paint(Color.white); tinted = false; }
 
             if (!glow) BuildGlow();
             glow.enabled = true;

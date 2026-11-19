@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace ProjectRTD.Gameplay
 {
-    public enum PartAnimal { Rabbit = 0, Bear = 1, Lion = 2, Axolotl = 3, Duck = 4, Chicken = 5 }
+    // Dragon and Phoenix are legendary: never in the normal catalog or the parts sheet, only rolled as a whole legendary build.
+    public enum PartAnimal { Rabbit = 0, Bear = 1, Lion = 2, Axolotl = 3, Duck = 4, Chicken = 5, Dragon = 6, Phoenix = 7 }
     public enum PartSlot { Head, Body, Legs }
     public enum PartEffect { SideDrift, Glide, ShortStature, BananaFrenzy, WallClimb, PredatorSafe, HunterVulnerable, Float, CanPass }
 

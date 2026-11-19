@@ -9,7 +9,7 @@ using UnityEngine;
 namespace ProjectRTD.Gameplay
 {
     // Opt in only the player recipe; do not claim other YAML files.
-    [ScriptedImporter(2, null, new[] { "yaml" })]
+    [ScriptedImporter(3, null, new[] { "yaml" })]
     public sealed class ChimeraLayerImporter : ScriptedImporter
     {
         public override void OnImportAsset(AssetImportContext ctx)

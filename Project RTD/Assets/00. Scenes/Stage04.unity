@@ -2808,6 +2808,9 @@ MonoBehaviour:
   animatedArt: {fileID: 0}
   noticeRange: 2.6
   attackCooldown: 2.2
+  shootRange: 6
+  shotWindup: 0.35
+  muzzle: {x: 0.62, y: 0.95}
   bubbleOffset: {x: 0, y: 1.85, z: 0}
   bubbleScale: 0.22
 --- !u!50 &1319832420
@@ -3409,6 +3412,8 @@ MonoBehaviour:
   spawnPoint: {fileID: 1715542592}
   deathFade: {fileID: 1958250911}
   challenge: 3
+  entryRerollDelay: 1.2
+  rollPlan: 0100000000000000000000000000000002000000000000000000000000000000000000000200000000000000000000000000000000000000020000000000000000000000000000000000000002000000
 --- !u!1 &1534128007
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,7 +46,7 @@ namespace ProjectRTD.Gameplay
         private void Awake()
         {
             if (!islandGuard || kind != Kind.Drone) return;
-            var animals = (PartAnimal[])Enum.GetValues(typeof(PartAnimal));
+            var animals = Array.FindAll((PartAnimal[])Enum.GetValues(typeof(PartAnimal)), a => a < PartAnimal.Dragon); // not the legendary ones
             targetAnimal = animals[UnityEngine.Random.Range(0, animals.Length)];
             if (targetLabel) targetLabel.text = $"TARGET: {targetAnimal.ToString().ToUpperInvariant()}";
         }

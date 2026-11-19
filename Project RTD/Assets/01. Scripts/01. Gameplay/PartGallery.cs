@@ -290,11 +290,13 @@ namespace ProjectRTD.Gameplay
             // Legendary builds at the end of the rail. They have no art of their own yet, so a tinted part stands in.
             foreach (var (legend, animal, tint) in new[] { ("불사조", PartAnimal.Chicken, new Color(1f, 0.62f, 0.3f)), ("용", PartAnimal.Lion, new Color(0.5f, 1f, 0.65f)) })
             {
-                var stand = loadout.Catalog.ForSlot(PartSlot.Head).FirstOrDefault(p => p.Animal == animal);
+                // The legend's own head art when it exists; otherwise a tinted ordinary head stands in.
+                var own = Resources.Load<AnimalPartDefinition>($"LegendParts/Part_{(legend == "불사조" ? "phoenix" : "dragon")}_head");
+                var stand = own ? own : loadout.Catalog.ForSlot(PartSlot.Head).FirstOrDefault(p => p.Animal == animal);
                 if (!stand) continue;
                 var card = MakeCard(rail, stand);
                 card.legend = legend;
-                card.tint = tint;
+                card.tint = own ? Color.white : tint;
                 cards.Add(card);
             }
 

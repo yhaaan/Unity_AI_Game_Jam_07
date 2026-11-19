@@ -91,8 +91,17 @@ namespace ProjectRTD.Gameplay
             return true;
         }
 
-        private static PlayerPartBuild Legendary(PlayerPartBuild from) =>
-            new PlayerPartBuild(from.Head, from.Body, from.Legs, Legends[UnityEngine.Random.Range(0, Legends.Length)]);
+        // A legend wears its own three parts (Resources/LegendParts). If they are missing, the current parts stand in.
+        private static PlayerPartBuild Legendary(PlayerPartBuild from)
+        {
+            string legend = Legends[UnityEngine.Random.Range(0, Legends.Length)];
+            string id = legend == "불사조" ? "phoenix" : "dragon";
+            var head = Resources.Load<AnimalPartDefinition>($"LegendParts/Part_{id}_head");
+            var body = Resources.Load<AnimalPartDefinition>($"LegendParts/Part_{id}_body");
+            var legs = Resources.Load<AnimalPartDefinition>($"LegendParts/Part_{id}_legs");
+            return head && body && legs ? new PlayerPartBuild(head, body, legs, legend)
+                                        : new PlayerPartBuild(from.Head, from.Body, from.Legs, legend);
+        }
 
         // Dev/test: turn the current build into a legend right now.
         internal void ForceLegend()

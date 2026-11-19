@@ -339,6 +339,8 @@ namespace ProjectRTD.Gameplay
             PartAnimal.Axolotl => "우파루파",
             PartAnimal.Duck => "오리",
             PartAnimal.Chicken => "닭",
+            PartAnimal.Dragon => "용",
+            PartAnimal.Phoenix => "불사조",
             _ => animal.ToString()
         };
 

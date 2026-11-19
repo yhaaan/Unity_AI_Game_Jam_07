@@ -56,6 +56,7 @@ namespace ProjectRTD.Gameplay
                 parts.Add(p);
             }
             foreach (PartAnimal animal in Enum.GetValues(typeof(PartAnimal)))
+                if (animal < PartAnimal.Dragon) // legendary animals are not on the sheet
                 foreach (PartSlot slot in Enum.GetValues(typeof(PartSlot)))
                     if (!pairs.Contains((animal, slot))) throw new FormatException($"animal/slot 조합 누락: {animal}/{slot}");
             return parts;

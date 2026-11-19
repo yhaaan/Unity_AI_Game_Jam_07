@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b2ad212023c8fb4ab95627a2a4527df, type: 3}
+  m_Name: Part_dragon_body
+  m_EditorClassIdentifier: ProjectRTD.Gameplay::ProjectRTD.Gameplay.AnimalPartDefinition
+  sheet:
+    partId: dragon_body
+    animal: dragon
+    slot: 1
+    displayName: "\uC6A9 \uBAB8\uD1B5"
+    description: 
+    weightDelta: 0
+    heightDelta: '-'
+    skill: canFly, canSwim
+  sprite: {fileID: 3395301223010494259, guid: 7de9031d830cf9341b7f25f0f511b212, type: 3}
+  groundYpx: 0
