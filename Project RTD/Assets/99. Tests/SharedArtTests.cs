@@ -12,8 +12,8 @@ public class SharedArtTests
     public void StageGimmickTexturesAndFrameGridsAreReady()
     {
         var bank = AssetDatabase.LoadAssetAtPath<SharedMenuArt>("Assets/05. Arts/SharedMenuArt.asset");
-        var textures = new[] { bank.crate, bank.cupboardLeft, bank.cupboardRight, bank.reroll, bank.plateSheet, bank.doorSheet };
-        var paths = new[] { "stage/box.png", "stage/cupboard (1).png", "stage/cupboard (2).png", "UI/DNA_icon.png", "stage/red_button_press_sheet.png", "Background/door_animation_sheet.png" };
+        var textures = new[] { bank.crate, bank.caveRoof, bank.reroll, bank.plateSheet, bank.doorSheet, bank.pressSheet };
+        var paths = new[] { "stage/box.png", "stage/cave 1.png", "UI/DNA_icon.png", "stage/red_button_press_sheet.png", "Background/door_animation_sheet.png", "stage/press_retract_sheet.png" };
         var missing = new System.Collections.Generic.List<string>();
         for (int i = 0; i < textures.Length; ++i)
         {
@@ -24,6 +24,7 @@ public class SharedArtTests
         Assert.That(missing, Is.Empty, string.Join("\n", missing));
         Assert.That(bank.plateGrid, Is.EqualTo(new Vector2Int(4, 1)));
         Assert.That(bank.doorGrid, Is.EqualTo(new Vector2Int(4, 2)));
+        Assert.That(bank.pressGrid, Is.EqualTo(new Vector2Int(4, 2)));
     }
 
     [Test]

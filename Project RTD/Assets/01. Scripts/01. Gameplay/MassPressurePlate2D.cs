@@ -21,6 +21,22 @@ namespace ProjectRTD.Gameplay
 
         public float CurrentMass { get; private set; }
         public bool IsPressed => CurrentMass >= requiredMass;
+        internal Transform Door => door;
+        internal Vector3 ClosedDoorPosition => closedDoorPosition;
+
+        /// <summary>0 = door at its closed position, 1 = fully open.</summary>
+        internal float DoorOpen
+        {
+            get
+            {
+                if (!door) return 0f;
+                float travel = Vector3.Distance(closedDoorPosition, openDoorPosition);
+                return travel > 0f ? Mathf.Clamp01(Vector3.Distance(closedDoorPosition, door.position) / travel) : 0f;
+            }
+        }
+
+        /// <summary>Keeps the closed position and makes the door open straight up by <paramref name="rise"/>.</summary>
+        internal void SetOpenRise(float rise) => openDoorPosition = closedDoorPosition + Vector3.up * rise;
 
         public void Configure(
             Transform doorTransform,

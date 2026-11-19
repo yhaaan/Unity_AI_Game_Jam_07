@@ -8,7 +8,7 @@ namespace ProjectRTD.Gameplay
     /// Stage art that stands in for the grey placeholders:
     ///   * the spawn and the exit (StageGoal) get the lab shutter doors (children of Spawn Point / Goal)
     ///   * "Jump Wall" blocks get the lab-barrier pillar art at their exact size (child of the Jump Wall)
-    ///   * crates, pressure plates and cupboards get their art (StageGimmickArt.Install)
+    ///   * crates, pressure plates, the cave roof and the press door get their art (StageGimmickArt.Install)
     /// Built once in the editor and saved into the scene (Tools/RTD/Bake Stage Layout), so it shows and can be
     /// moved in the Scene view. On load in Play it is only bound to the goal; a stage that was never baked
     /// is still dressed on the fly.
@@ -56,6 +56,7 @@ namespace ProjectRTD.Gameplay
             var stage = Find(scene);
             if (!stage || !Application.isPlaying) return;
             if (!IsDressed(stage)) Build(stage);
+            else StageGimmickArt.Upgrade(stage);
             var entrance = stage.SpawnPoint ? stage.SpawnPoint.Find(EntranceName) : null;
             foreach (var goal in stage.GetComponentsInChildren<StageGoal>(true))
             {

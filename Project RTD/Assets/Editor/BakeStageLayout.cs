@@ -8,7 +8,7 @@ using UnityEngine;
 // Saves the stage layout into every stage scene so it can be seen and edited in the Scene view before Play:
 //   * course: widened floors + lab floor art, pit floors, moved spawn/player/goal, invisible side walls and
 //     the camera bounds on the Cinemachine camera ("Course Boundaries")
-//   * dressing: entrance/exit doors, jump wall pillars, crate/plate/cupboard art
+//   * dressing: entrance/exit doors, jump wall pillars, crate/plate/cave roof/press door art
 //   * cleanup: deletes the placeholders this art replaces and the retired "Assembly Canvas" panel
 // Each step skips what a scene already has, so running it again is safe.
 // Menu: Tools/RTD/Bake Stage Layout (All Stages)
@@ -36,6 +36,7 @@ public static class BakeStageLayout
             if (!stage.transform.Find("Course Boundaries")) StageCourseLayout.Apply(stage);
             else StageCourseLayout.RetirePlaceholders(stage);
             StageDressing.Build(stage);
+            StageGimmickArt.Upgrade(stage); // art added after a scene was first baked (cave roof, press door)
             foreach (var root in scene.GetRootGameObjects())
                 if (root.name == "Assembly Canvas") Object.DestroyImmediate(root);
 
