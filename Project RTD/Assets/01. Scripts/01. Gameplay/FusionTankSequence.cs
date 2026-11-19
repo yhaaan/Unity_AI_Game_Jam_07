@@ -242,7 +242,13 @@ namespace ProjectRTD.Gameplay
 
         void Enter(Phase p) { phase = p; phaseAt = t; }
 
-        void Update() => Step(Time.deltaTime);
+        void Update() { if (!externalClock) Step(Time.deltaTime); }
+
+        /// <summary>driven from outside (old-film intro): no auto play, the owner calls Step itself</summary>
+        internal void UseExternalClock(PartCatalog parts) { catalog = parts; playOnStart = false; loop = false; externalClock = true; }
+        bool externalClock;
+        /// <summary>0 Idle 1 Drop 2 Whirl 3 Brake 4 Gather 5 Fuse 6 Done</summary>
+        internal int PhaseIndex => (int)phase;
 
         /// <summary>advances the show by dt seconds (also used to bake previews)</summary>
         internal void Step(float dt)

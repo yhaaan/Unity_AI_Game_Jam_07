@@ -88,7 +88,7 @@ namespace ProjectRTD.Core
         public void StartStage01()
         {
             SoundManager.Play(Sfx.Confirm);
-            SceneFlow.StartNewGame();
+            GameStartIntro.Run(SceneFlow.StartNewGame);
         }
 
         public void ReturnToTitle()
