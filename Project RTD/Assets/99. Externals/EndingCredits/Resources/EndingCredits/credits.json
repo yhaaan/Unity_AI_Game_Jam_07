@@ -2,27 +2,32 @@
  "_note": "카드 6장 오른쪽 이름 칸의 글자입니다. title은 큰 제목, lines의 role은 역할, name은 이름. 이 파일만 고치면 웹과 Unity 모두 바뀝니다.",
  "cards": [
   {
-   "title": "Let's Bust Out!",
+   "title": "Team 게임냥이",
    "lines": [
     {
      "role": "Game Jam",
      "name": "Unity AI Game Jam 07"
     },
     {
-     "role": "Director",
-     "name": "Name"
+     "role": "팀명",
+     "name": "게임냥이"
     },
     {
-     "role": "Game Design",
-     "name": "Name"
+     "role": "팀장 겸 기획자",
+     "name": "안성현"
+    }
+   ]
+  },
+  {
+   "title": "Art",
+   "lines": [
+    {
+     "role": "아트",
+     "name": "배기민"
     },
     {
-     "role": "Character Art",
-     "name": "Name"
-    },
-    {
-     "role": "Animation",
-     "name": "Name"
+     "role": "아트",
+     "name": "김지민"
     }
    ]
   },
@@ -30,31 +35,18 @@
    "title": "Programming",
    "lines": [
     {
-     "role": "Gameplay",
-     "name": "Name"
-    },
-    {
-     "role": "Tools",
-     "name": "Name"
-    }
-   ]
-  },
-  {
-   "title": "Sound",
-   "lines": [
-    {
-     "role": "Music",
-     "name": "Name"
-    },
-    {
-     "role": "Sound FX",
-     "name": "Name"
+     "role": "프로그래머",
+     "name": "김요한"
     }
    ]
   },
   {
    "title": "Thanks for playing!",
    "lines": [
+    {
+     "role": "Made by",
+     "name": "게임냥이"
+    },
     {
      "role": "Special Thanks",
      "name": "Everyone who played"

@@ -28,6 +28,9 @@ namespace ProjectRTD.Gameplay
         private Transform animatedArt;
         [SerializeField, Min(0)] private float noticeRange = 2.6f;
         [SerializeField, Min(0.1f)] private float attackCooldown = 2.2f;
+        [SerializeField, Min(0), Tooltip("Scientists open fire on their target from this far away.")] private float shootRange = 6f;
+        [SerializeField, Min(0), Tooltip("Gun raise before the shot leaves the barrel.")] private float shotWindup = 0.35f;
+        [SerializeField, Tooltip("Muzzle offset from the feet when facing right.")] private Vector2 muzzle = new(0.62f, 0.95f);
         private ChimeraGroove.ScientistAnimator scientist;
         private ChimeraGroove.DroneAnimator drone;
         private float nextAttack;
@@ -133,7 +136,8 @@ namespace ProjectRTD.Gameplay
         {
             if (PatrolPaused || (!scientist && !drone)) return;
             var player = StageRuntime.Instance ? StageRuntime.Instance.Player : null;
-            bool near = player && Mathf.Abs(player.position.x - transform.position.x) < noticeRange
+            float range = scientist ? Mathf.Max(noticeRange, shootRange) : noticeRange;
+            bool near = player && Mathf.Abs(player.position.x - transform.position.x) < range
                         && Mathf.Abs(player.position.y - transform.position.y) < 2f;
             if (drone) drone.state = near ? ChimeraGroove.DroneState.Alert : ChimeraGroove.DroneState.Scan;
             if (!scientist) return;
@@ -142,6 +146,14 @@ namespace ProjectRTD.Gameplay
             direction = player.position.x > transform.position.x ? 1 : -1; // turn to face the player
             scientist.Attack();
             nextAttack = Time.time + attackCooldown;
+            StartCoroutine(Shoot(direction));
+        }
+
+        System.Collections.IEnumerator Shoot(int facing)
+        {
+            yield return new WaitForSeconds(shotWindup);
+            if (PatrolPaused) yield break;
+            ScientistBullet.Fire(transform.position + new Vector3(muzzle.x * facing, muzzle.y, 0f), facing);
         }
 
         /// <summary>Whether this enemy goes after a player wearing <paramref name="build"/>.</summary>

@@ -12,29 +12,50 @@ public class StageRunRulesTests
     static IEnumerator Ready()
     {
         float until = Time.realtimeSinceStartup + 30f;
-        while ((!StageRuntime.Instance || !Parts || !Parts.didStart || StageRuntime.Instance.InDoorway) && Time.realtimeSinceStartup < until) yield return null;
+        while ((!StageRuntime.Instance || !Parts || !Parts.didStart || StageRuntime.Instance.InDoorway || StageRuntime.Instance.AwaitingEntryRoll) && Time.realtimeSinceStartup < until) yield return null;
         Assert.That(Parts.Current, Is.Not.Null);
         Assert.That(StageRuntime.Instance.InDoorway, Is.False);
     }
 
-    [UnityTest] public IEnumerator StarterAndRerollSurviveStageLoads()
+    [Test] public void RollPlanMissesThreeThenGuaranteesEveryFifth()
+    {
+        var plan = StageRuntime.DefaultRollPlan();
+        Assert.That(plan.Length, Is.EqualTo(20));
+        for (int roll = 1; roll <= 20; roll++)
+        {
+            var expected = roll <= 3 ? StageRuntime.RollOutcome.CannotClear
+                : roll % 5 == 0 ? StageRuntime.RollOutcome.CanClear : StageRuntime.RollOutcome.Random;
+            Assert.That(plan[roll - 1], Is.EqualTo(expected), $"roll {roll}");
+        }
+    }
+
+    [UnityTest] public IEnumerator FirstEntryRerollsOnceAndRestartKeepsBuild()
     {
         yield return new EnterPlayMode();
         yield return SceneManager.LoadSceneAsync(SceneFlow.TitleScene);
         yield return SceneManager.LoadSceneAsync(SceneFlow.Stage01Scene);
         yield return null;
-        yield return Ready();
+        float until = Time.realtimeSinceStartup + 30f;
+        while ((!StageRuntime.Instance || !Parts || !Parts.didStart) && Time.realtimeSinceStartup < until) yield return null;
+        // The starter shows first; the delayed entry roll then replaces it with a build that cannot clear yet.
+        Assert.That(StageRuntime.Instance.AwaitingEntryRoll, Is.True);
         Assert.That(new[] { Parts.Current.Head.Animal, Parts.Current.Body.Animal, Parts.Current.Legs.Animal }, Is.EqualTo(new[] { PartAnimal.Axolotl, PartAnimal.Bear, PartAnimal.Chicken }));
+        yield return Ready();
+        Assert.That(StageRuntime.Instance.CanClearWith(Parts.Current), Is.False);
+
         Assert.That(Parts.TryResummon(), Is.True);
         var selected = Parts.Current;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         yield return null; yield return null;
         yield return Ready();
-        Assert.That(Parts.Current, Is.SameAs(selected));
+        Assert.That(StageRuntime.Instance.AwaitingEntryRoll, Is.False);
+        Assert.That(Parts.Current, Is.SameAs(selected), "restarting a stage keeps the build");
+
         yield return SceneManager.LoadSceneAsync("Stage02");
         yield return null;
         yield return Ready();
-        Assert.That(Parts.Current, Is.SameAs(selected));
+        Assert.That(Parts.Current, Is.Not.SameAs(selected), "a new stage rerolls on entry");
+        Assert.That(StageRuntime.Instance.CanClearWith(Parts.Current), Is.False);
         yield return new ExitPlayMode();
     }
 

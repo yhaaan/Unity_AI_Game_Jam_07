@@ -7,10 +7,12 @@ namespace ProjectRTD.Core
     {
         public const string TitleScene = "TitleScene";
         public const string Stage01Scene = "Stage01";
+        // Tutorial room played before Stage 01 on a new game; not counted in StageCount or the level select.
+        public const string TutorialScene = "Stage00";
         public const string PrologueScene = "PrologueScene";
         public const string EndingScene = "EndingScene";
         public const string LevelSelectScene = "LevelSelectScene";
-        public const int StageCount = 7;
+        public const int StageCount = 10; // 08: drone security zone, 09-10: long mixed-gimmick finals
         private const string UnlockedStageKey = "rtd.highest-unlocked-stage";
         private static string levelSelectReturnScene;
 
@@ -28,7 +30,8 @@ namespace ProjectRTD.Core
 
         public static void StartNewGame()
         {
-            LoadStage(1);
+            if (Application.CanStreamedLevelBeLoaded(TutorialScene)) Load(TutorialScene);
+            else LoadStage(1);
         }
 
         public static void LoadStage(int stageNumber)
@@ -49,6 +52,7 @@ namespace ProjectRTD.Core
         public static void CompleteActiveStage()
         {
             string scene = SceneManager.GetActiveScene().name;
+            if (scene == TutorialScene) { LoadStage(1); return; }
             for (int stage = 1; stage <= StageCount; stage++)
             {
                 if (scene != $"Stage{stage:00}") continue;

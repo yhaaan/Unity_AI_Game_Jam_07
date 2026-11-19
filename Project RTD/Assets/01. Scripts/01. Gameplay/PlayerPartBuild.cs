@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ProjectRTD.Gameplay
 {
@@ -15,9 +16,12 @@ namespace ProjectRTD.Gameplay
         public int Height { get; }
         public int Weight { get; }
         private readonly HashSet<PartEffect> effects = new();
+        // "불사조" / "용" when this is a legendary roll: every skill, top jump and power, and it fits anywhere.
+        public string Legend { get; }
 
-        public PlayerPartBuild(AnimalPartDefinition head, AnimalPartDefinition body, AnimalPartDefinition legs)
+        public PlayerPartBuild(AnimalPartDefinition head, AnimalPartDefinition body, AnimalPartDefinition legs, string legend = null)
         {
+            Legend = legend;
             Head = RequireSlot(head, PartSlot.Head);
             Body = RequireSlot(body, PartSlot.Body);
             Legs = RequireSlot(legs, PartSlot.Legs);
@@ -28,6 +32,11 @@ namespace ProjectRTD.Gameplay
             effects.UnionWith(head.EffectIds);
             effects.UnionWith(body.EffectIds);
             effects.UnionWith(legs.EffectIds);
+            if (Legend == null) return;
+            Jump = 3; Power = 3;
+            Weight = Mathf.Clamp(Weight, -2, 2);   // light enough for weak bridges
+            Height = Mathf.Clamp(Height, 0, 2);    // short enough for low ceilings
+            effects.Add(PartEffect.Glide); effects.Add(PartEffect.Float); effects.Add(PartEffect.CanPass);
         }
 
         public bool HasEffect(PartEffect effect) => effects.Contains(effect);

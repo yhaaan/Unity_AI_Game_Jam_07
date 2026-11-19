@@ -58,7 +58,9 @@ namespace ProjectRTD.Gameplay
 
         public event Action ResetMechanics;
 
-        public string Requirement => challenge switch
+        public string Requirement => RequirementFor(challenge);
+
+        public static string RequirementFor(Challenge c) => c switch
         {
             Challenge.HighJump => "JUMP LEVEL 3",
             Challenge.Glide => "GLIDING BODY",
@@ -70,7 +72,13 @@ namespace ProjectRTD.Gameplay
             _ => ""
         };
 
-        public bool CanClearWith(PlayerPartBuild build) => build != null && (challenge switch
+        // Multi-gimmick stages (StageSections) judge a build against the obstacle just ahead of the player.
+        public Challenge CurrentChallenge =>
+            StageSections.Instance && player ? StageSections.Instance.ChallengeAt(player.position.x) : challenge;
+
+        public bool CanClearWith(PlayerPartBuild build) => Passes(CurrentChallenge, build);
+
+        public bool Passes(Challenge c, PlayerPartBuild build) => build != null && (c switch
         {
             Challenge.HighJump => build.Jump >= 3,
             Challenge.Glide => build.HasEffect(PartEffect.Glide),
@@ -165,6 +173,15 @@ namespace ProjectRTD.Gameplay
             player.TryGetComponent(out loadout);
         }
 
+        // If the entry roll is interrupted (scene unload, play-mode hot reload kills coroutines), never leave the
+        // player frozen.
+        private void OnDisable()
+        {
+            if (!AwaitingEntryRoll) return;
+            AwaitingEntryRoll = false;
+            if (motor) motor.enabled = true;
+        }
+
         private void OnDestroy()
         {
             if (Instance == this)
@@ -173,9 +190,101 @@ namespace ProjectRTD.Gameplay
             }
         }
 
+        // ---------- rerolls ----------
+
+        public enum RollOutcome { Random, CannotClear, CanClear }
+
+        [Header("Reroll")]
+        [Tooltip("스테이지에 처음 들어온 뒤 자동 리롤까지 기다리는 시간(초). 그동안 플레이어는 움직일 수 없다.")]
+        [SerializeField, Min(0f)] private float entryRerollDelay = 1.2f;
+        [Tooltip("이 스테이지에서 n번째 리롤의 결과 (자동 리롤이 1번째). 끝까지 쓰면 처음부터 다시 반복.")]
+        [SerializeField] private RollOutcome[] rollPlan = DefaultRollPlan();
+
+        // Roll count per stage for this run, so restarting a stage does not hand back the guaranteed misses.
+        private static readonly System.Collections.Generic.Dictionary<string, int> rollCounts = new();
+        private int RollCount
+        {
+            get => rollCounts.TryGetValue(gameObject.scene.name, out int n) ? n : 0;
+            set => rollCounts[gameObject.scene.name] = value;
+        }
+        internal bool AwaitingEntryRoll { get; private set; }
+
+        // 20 rolls: the first 3 never clear, every 5th (5, 10, 15, 20) always can, the rest are random.
+        internal static RollOutcome[] DefaultRollPlan()
+        {
+            var plan = new RollOutcome[20];
+            for (int i = 0; i < plan.Length; i++)
+                plan[i] = i < 3 ? RollOutcome.CannotClear : (i + 1) % 5 == 0 ? RollOutcome.CanClear : RollOutcome.Random;
+            return plan;
+        }
+
+        internal RollOutcome NextOutcome()
+        {
+            var plan = rollPlan != null && rollPlan.Length > 0 ? rollPlan : DefaultRollPlan();
+            return plan[RollCount % plan.Length];
+        }
+
+        private bool RollNow()
+        {
+            if (!loadout) return false;
+            var outcome = NextOutcome();
+            System.Func<PlayerPartBuild, bool> accept = outcome switch
+            {
+                RollOutcome.CanClear => CanClearWith,
+                RollOutcome.CannotClear => build => !CanClearWith(build),
+                _ => null
+            };
+            // Tutorial room: after the entry roll, R always gives a build that beats the obstacle ahead.
+            var guide = TutorialGuide.Instance;
+            if (guide && !AwaitingEntryRoll && player && guide.AcceptFor(player.position.x) is { } next) accept = next;
+            if (!loadout.TryResummon(accept)) return false;
+            RollCount++;
+            return true;
+        }
+
+        private IEnumerator EntryRoll()
+        {
+            AwaitingEntryRoll = true;
+            if (motor) motor.enabled = false;
+            if (body) body.linearVelocity = new Vector2(0f, body.linearVelocity.y);
+            yield return new WaitForSeconds(entryRerollDelay);
+            while (InDoorway || IsRespawning || Time.timeScale <= 0f || StageTutorial.Active) yield return null;
+            RollNow();
+            if (player && player.TryGetComponent<PlayerInputReader>(out var input)) input.ConsumeJumpPressed();
+            // Always hand control back. Don't restore a remembered state: the door arrival may have switched the
+            // motor off before this ran, and restoring that would leave the player frozen.
+            if (motor) motor.enabled = true;
+            AwaitingEntryRoll = false;
+        }
+
+        // Stages entered during this run. Reloading the same stage (restart) keeps the current build;
+        // going back through the menus starts a fresh run.
+        private static readonly System.Collections.Generic.HashSet<string> enteredStages = new();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetRun()
+        {
+            enteredStages.Clear();
+            rollCounts.Clear();
+            UnityEngine.SceneManagement.SceneManager.activeSceneChanged -= ForgetRunOutsideStages;
+            UnityEngine.SceneManagement.SceneManager.activeSceneChanged += ForgetRunOutsideStages;
+        }
+
+        private static void ForgetRunOutsideStages(UnityEngine.SceneManagement.Scene from, UnityEngine.SceneManagement.Scene to)
+        {
+            if (to.name.StartsWith("Stage", StringComparison.Ordinal)) return;
+            enteredStages.Clear();
+            rollCounts.Clear();
+        }
+
+        private void Start()
+        {
+            if (loadout && player && spawnPoint && enteredStages.Add(gameObject.scene.name)) StartCoroutine(EntryRoll());
+        }
+
         private void Reroll()
         {
-            if (!InDoorway && !IsRespawning && Time.timeScale > 0f && loadout) loadout.TryResummon();
+            if (!InDoorway && !IsRespawning && !AwaitingEntryRoll && Time.timeScale > 0f) RollNow();
         }
 
         private void Update()
