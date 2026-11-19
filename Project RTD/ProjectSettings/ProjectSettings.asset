@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: gamecats
-  productName: Fusion Escape
+  productName: CollaZoo
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -151,6 +151,7 @@ PlayerSettings:
   preloadedAssets:
   - {fileID: 11400000, guid: c0cae80aa10743743bd7e141db86283a, type: 2}
   - {fileID: 11400000, guid: 5c9d97979f5948c0a36c64d8c1ecbcb1, type: 2}
+  - {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
