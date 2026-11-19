@@ -10,6 +10,8 @@ namespace ProjectRTD.Gameplay
     public sealed class PlayerStatPopup : MonoBehaviour
     {
         [SerializeField] private Sprite weightIcon, speedIcon, jumpIcon;
+        // Muscle icon; the prefab still stores it under the old health field name.
+        [SerializeField, UnityEngine.Serialization.FormerlySerializedAs("healthIcon")] private Sprite powerIcon;
         [SerializeField] private TMP_FontAsset font;
         [SerializeField] private Color gain = new Color32(0xff, 0xd1, 0x66, 0xff);
         [SerializeField] private Color loss = new Color32(0xe0, 0x52, 0x63, 0xff);
@@ -49,7 +51,7 @@ namespace ProjectRTD.Gameplay
             var changes = new List<(Sprite icon, int delta)>();
             Add(changes, weightIcon, next.Weight - before.Weight);
             Add(changes, speedIcon, next.Speed - before.Speed);
-
+            Add(changes, powerIcon, next.Power - before.Power);
             Add(changes, jumpIcon, next.Jump - before.Jump);
             Clear();
             for (int i = 0; i < changes.Count; i++)
