@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ProjectRTD.Core
 {
-    public enum Sfx { Confirm, Jump, Land, Splash, Scare, Defeat, PlateDown, PlateUp, Respawn, Goal, Summon, StepLeft, StepRight, Paddle, Glide }
+    public enum Sfx { Confirm, Jump, Land, Splash, Scare, Defeat, PlateDown, PlateUp, Respawn, Goal, Summon, StepLeft, StepRight, Paddle, Glide, Rustle }
 
     public sealed class SoundManager : MonoBehaviour
     {

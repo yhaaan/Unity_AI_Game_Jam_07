@@ -36,6 +36,7 @@ namespace ProjectRTD.Core
 
         public static AudioClip Create(Sfx cue)
         {
+            if (cue == Sfx.Rustle) return CreateRustle();
             var notes = Score(cue);
             int length = 0;
             foreach (var note in notes) length += Mathf.RoundToInt(note.seconds * Rate);
@@ -58,6 +59,48 @@ namespace ProjectRTD.Core
                 offset += n;
             }
             var clip = AudioClip.Create(cue.ToString(), length, 1, Rate, false);
+            clip.SetData(samples, 0);
+            return clip;
+        }
+
+        /// <summary>
+        /// Grass brushing past legs: a soft swish of airy noise with a scatter of tiny leaf ticks on top.
+        /// No pitched tone, so it sits under the footsteps instead of competing with them.
+        /// </summary>
+        private static AudioClip CreateRustle()
+        {
+            const float seconds = .3f;
+            int n = Mathf.RoundToInt(seconds * Rate);
+            var samples = new float[n];
+            var random = new System.Random(4711);
+            float low = 0f, prev = 0f;
+            for (int i = 0; i < n; i++)
+            {
+                float t = i / (float)(n - 1);
+                float white = (float)random.NextDouble() * 2f - 1f;
+                // band-pass-ish: high-pass by differencing, then soften with a one-pole low-pass
+                float high = white - prev; prev = white;
+                low += (high - low) * .35f;
+                // swell in, long soft tail
+                float swish = Mathf.Sin(Mathf.PI * Mathf.Pow(t, .55f)) * (1f - t * .4f);
+                samples[i] = low * swish * .55f;
+            }
+            // leaf ticks: short bright grains scattered through the swish
+            for (int g = 0; g < 9; g++)
+            {
+                int start = (int)(n * (.05f + .8f * (float)random.NextDouble()));
+                int len = (int)(Rate * (.006f + .012f * (float)random.NextDouble()));
+                float amp = .12f + .18f * (float)random.NextDouble();
+                float p = 0f;
+                for (int i = 0; i < len && start + i < n; i++)
+                {
+                    float w = (float)random.NextDouble() * 2f - 1f;
+                    float h = w - p; p = w;
+                    float env = 1f - i / (float)len;
+                    samples[start + i] += h * env * env * amp;
+                }
+            }
+            var clip = AudioClip.Create(nameof(Sfx.Rustle), n, 1, Rate, false);
             clip.SetData(samples, 0);
             return clip;
         }

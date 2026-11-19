@@ -1,5 +1,5 @@
+using System.Collections.Generic;
 using System.Linq;
-using ChimeraGroove.Plants;
 using UnityEngine;
 
 namespace ProjectRTD.Gameplay
@@ -9,7 +9,6 @@ namespace ProjectRTD.Gameplay
     {
         public const float Width = 24.8f;
         const string Marker = "Course Boundaries";
-        static readonly string[] Islands = { "dirt-pipe", "lab-rock", "root-fossil", "sand-fossil", "dirt-roots", "sand-arch", "slate", "red-strata" };
 
         public static void Apply(StageRuntime stage)
         {
@@ -21,8 +20,7 @@ namespace ProjectRTD.Gameplay
             float left = (oldLeft + oldRight - Width) / 2f, right = left + Width;
             var holder = new GameObject(Marker).transform;
             holder.SetParent(stage.transform, false);
-            int.TryParse(stage.gameObject.scene.name.Replace("Stage", ""), out int level);
-            int skin = Mathf.Max(0, level - 1);
+            var spans = new List<LabRoomArt.Span>();
             foreach (var floor in floors)
             {
                 var b = floor.bounds;
@@ -30,20 +28,7 @@ namespace ProjectRTD.Gameplay
                 float sx = floor.transform.lossyScale.x;
                 floor.offset += Vector2.right * (((a + z) * .5f - b.center.x) / sx);
                 floor.size = new Vector2((z - a) / Mathf.Abs(sx), floor.size.y);
-                // Use two panels on long runs instead of stretching a single island silhouette.
-                int panels = Mathf.CeilToInt((z-a) / 15f);
-                for (int i = 0; i < panels; i++)
-                {
-                    float w = (z-a) / panels;
-                    var sprite = Resources.Load<Sprite>("Islands/" + Islands[(skin++) % Islands.Length]);
-                    if (!sprite) continue;
-                    var sr = new GameObject(sprite.name).AddComponent<SpriteRenderer>();
-                    sr.transform.SetParent(holder, false); sr.sprite = sprite;
-                    sr.sortingOrder = 1;
-                    float height = Mathf.Clamp(w * sprite.bounds.size.y / sprite.bounds.size.x, 1.4f, 3.3f);
-                    sr.transform.localScale = new Vector3(w / sprite.bounds.size.x, height / sprite.bounds.size.y, 1);
-                    sr.transform.position = new Vector3(a + (i+.5f)*w, b.max.y - height*.5f, 0);
-                }
+                spans.Add(new LabRoomArt.Span(a, z, b.max.y));
                 foreach (var sr in floor.GetComponentsInChildren<SpriteRenderer>()) sr.enabled = false;
             }
             foreach (var sr in first.transform.parent.GetComponentsInChildren<SpriteRenderer>())
@@ -59,25 +44,35 @@ namespace ProjectRTD.Gameplay
             AddWall(holder, left, first.bounds.max.y, true);
             AddWall(holder, right, last.bounds.max.y, false);
             Physics2D.SyncTransforms();
+
+            // the whole course becomes one closed lab room: rail floors on pillars, shafts or pools in the gaps,
+            // pillar walls at both ends and a rail ceiling
+            var pools = new List<Bounds>();
+            int water = LayerMask.NameToLayer("Water");
+            foreach (var col in stage.GetComponentsInChildren<Collider2D>())
+                if (col.gameObject.layer == water) pools.Add(col.bounds);
+            LabRoomArt.BuildRoom(holder, spans, left, right, WallWidth, pools);
+
+            // pools become toxic sludge: hide the old blue basin overlay and its waterline, keep the swim volumes
+            if (pools.Count > 0)
+            {
+                foreach (var sr in stage.GetComponentsInChildren<SpriteRenderer>())
+                    if (sr.name is "Water Basin" or "Waterline") sr.enabled = false;
+                foreach (var pool in pools) LabRoomArt.ToxicPool(holder, pool);
+            }
         }
 
+        const float WallWidth = 2.4f;
+
+        // collider only: the room's pillar walls are drawn by LabRoomArt
         static void AddWall(Transform holder, float edge, float ground, bool left)
         {
-            const float width = 2.4f, height = 6.4f;
+            const float height = 6.4f;
             var go = new GameObject(left ? "Left Boundary" : "Right Boundary");
             go.transform.SetParent(holder, false);
-            go.transform.position = new Vector3(edge + (left ? -1 : 1)*width*.5f, ground, 0);
+            go.transform.position = new Vector3(edge + (left ? -1 : 1) * WallWidth * .5f, ground, 0);
             var box = go.AddComponent<BoxCollider2D>();
-            box.size = new Vector2(width, height + 4); box.offset = Vector2.up * ((height-4)*.5f);
-            if (left)
-            {
-                var art = go.AddComponent<BrickWall>(); art.width = width; art.addCollider = false;
-            }
-            else
-            {
-                var art = go.AddComponent<JumpWall>(); art.style = JumpWall.Style.MossyCliff;
-                art.width = width; art.height = height;
-            }
+            box.size = new Vector2(WallWidth, height + 4); box.offset = Vector2.up * ((height - 4) * .5f);
         }
     }
 }
