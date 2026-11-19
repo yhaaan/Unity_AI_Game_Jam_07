@@ -180,7 +180,7 @@ namespace ProjectRTD.Gameplay
             Hide(box.transform);
             // Sink the art slightly so it sits in the island's grass instead of hovering on the collider line.
             const float sink = 0.15f;
-            Make(box.transform, texture, Vector2Int.one, box.bounds.center + Vector3.down * sink, box.bounds.size, 4,
+            Make(box.transform, texture, Vector2Int.one, box.bounds.center + Vector3.down * sink, box.bounds.size, StagePowerCrate2D.SortingOrder,
                 new Rect(body.x, body.y, body.width, body.height));
         }
 

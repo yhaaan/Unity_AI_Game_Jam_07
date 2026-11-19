@@ -93,6 +93,12 @@ namespace ProjectRTD.Core
             if (number <= HighestUnlockedStage) LoadStage(number);
         }
 
+        public static void RestartActiveScene()
+        {
+            Scene activeScene = SceneManager.GetActiveScene();
+            if (activeScene.IsValid()) SceneManager.LoadScene(activeScene.name, LoadSceneMode.Single);
+        }
+
         private static void Load(string sceneName)
         {
             if (Application.CanStreamedLevelBeLoaded(sceneName))

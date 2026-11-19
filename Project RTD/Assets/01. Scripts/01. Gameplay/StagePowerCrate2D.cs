@@ -10,10 +10,17 @@ namespace ProjectRTD.Gameplay
         private PlayerPartLoadout loadout;
         private Vector2 startPosition;
 
+        // One above the stage gimmicks (entrance door, plates, press door: 4) and below the player (10+), so a
+        // pushed crate never slips behind the door art it slides over. Same order = undefined draw order.
+        public const int SortingOrder = 5;
+
         private void Start()
         {
             body = GetComponent<Rigidbody2D>();
             startPosition = body.position;
+            // Scenes baked before this keep the old order on the crate art; lift it at runtime too.
+            foreach (var view in GetComponentsInChildren<SpriteRenderer>(true))
+                if (view.enabled && view.sortingOrder < SortingOrder) view.sortingOrder = SortingOrder;
             stage = StageRuntime.Instance;
             if (!stage || !stage.Player || !stage.Player.TryGetComponent(out loadout)) return;
             stage.ResetMechanics += ResetCrate;
