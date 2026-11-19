@@ -17,6 +17,8 @@ namespace ChimeraGroove.Bubble
         public enum Tail { Right, Left, None }
 
         [TextArea] public string text = "?";
+        [Tooltip("picture drawn in the cloud instead of text (e.g. a part sprite)")] public Sprite icon;
+        [Tooltip("share of the cloud's inner area the icon fills")] public float iconFill = .9f;
         [Tooltip("cloud size in art pixels; 0 = fit the text")] public Vector2 size = Vector2.zero;
         [Tooltip("world size: 1 = 100 art px per unit")] public float scale = .25f;
         public Tail tail = Tail.Right;
@@ -44,6 +46,7 @@ namespace ChimeraGroove.Bubble
 #pragma warning restore 0649
         static Meta meta;
         static readonly Dictionary<string, Sprite> sprites = new Dictionary<string, Sprite>();
+        static readonly Dictionary<Sprite, Sprite> trimmed = new Dictionary<Sprite, Sprite>();
         const float Tuck = 10f;                        // the big circle tucks this far under the cloud's real bottom edge
         static readonly Vector2 SmallIn = new Vector2(-6f, -14f);
 
@@ -67,6 +70,13 @@ namespace ChimeraGroove.Bubble
             Rebuild();
             Visible = true; shownAt = time; hideAt = -10f;
             if (pivot) pivot.gameObject.SetActive(true);
+        }
+
+        /// <summary>Shows a picture (no text) in the cloud and pops it in.</summary>
+        public void Show(Sprite picture)
+        {
+            icon = picture;
+            Show(string.Empty);
         }
 
         public void Hide()
@@ -136,7 +146,64 @@ namespace ChimeraGroove.Bubble
             if (tail == Tail.Left) tp.x = -tp.x;
             label.transform.localPosition = tp;
             label.rectTransform.sizeDelta = new Vector2(w * .8f / PPU * scale, h * .7f / PPU * scale);
+            if (icon) AddIcon(tp, label.rectTransform.sizeDelta);
             Apply();
+        }
+
+        void AddIcon(Vector2 center, Vector2 box)
+        {
+            var sr = new GameObject("Icon").AddComponent<SpriteRenderer>();
+            sr.transform.SetParent(pivot, false);
+            var pic = Trim(icon);
+            sr.sprite = pic;
+            sr.sortingLayerName = sortingLayerName;
+            sr.sortingOrder = sortingOrder + 30;
+            Vector2 size = pic.bounds.size;
+            float s = size.x > 0f && size.y > 0f ? Mathf.Min(box.x / size.x, box.y / size.y) * iconFill : 1f;
+            sr.transform.localScale = new Vector3(s, s, 1f);
+            sr.transform.localPosition = (Vector3)(center - (Vector2)pic.bounds.center * s);
+        }
+
+        /// <summary>
+        /// Same picture without its transparent margin, so a small drawing on a big canvas still fills the cloud.
+        /// Reads the alpha back through the GPU, so it also works for textures that are not CPU-readable.
+        /// </summary>
+        static Sprite Trim(Sprite source)
+        {
+            if (trimmed.TryGetValue(source, out var cached) && cached) return cached;
+            var tex = source.texture;
+            var r = source.textureRect;
+            int x0 = Mathf.RoundToInt(r.x), y0 = Mathf.RoundToInt(r.y), rw = Mathf.RoundToInt(r.width), rh = Mathf.RoundToInt(r.height);
+            var rt = RenderTexture.GetTemporary(tex.width, tex.height, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear);
+            var previous = RenderTexture.active;
+            var read = new Texture2D(rw, rh, TextureFormat.RGBA32, false);
+            Color32[] px;
+            try
+            {
+                Graphics.Blit(tex, rt);
+                RenderTexture.active = rt;
+                read.ReadPixels(new Rect(x0, y0, rw, rh), 0, 0, false);
+                px = read.GetPixels32();
+            }
+            finally
+            {
+                RenderTexture.active = previous;
+                RenderTexture.ReleaseTemporary(rt);
+                Destroy(read);
+            }
+            int minX = rw, minY = rh, maxX = -1, maxY = -1;
+            for (int y = 0; y < rh; y++)
+                for (int x = 0; x < rw; x++)
+                    if (px[y * rw + x].a > 8)
+                    {
+                        if (x < minX) minX = x; if (x > maxX) maxX = x;
+                        if (y < minY) minY = y; if (y > maxY) maxY = y;
+                    }
+            var result = maxX < minX ? source : Sprite.Create(tex,
+                new Rect(x0 + minX, y0 + minY, maxX - minX + 1, maxY - minY + 1),
+                new Vector2(.5f, .5f), source.pixelsPerUnit, 0, SpriteMeshType.FullRect);
+            trimmed[source] = result;
+            return result;
         }
 
         /// <summary>bottom outline row of the assembled cloud at column X (same tiling as Row)</summary>

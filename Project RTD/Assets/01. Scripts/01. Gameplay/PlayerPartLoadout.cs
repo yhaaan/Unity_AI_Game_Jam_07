@@ -16,6 +16,7 @@ namespace ProjectRTD.Gameplay
         private PlayerMotor2D motor;
         private float baseJump;
         public PlayerPartBuild Current { get; private set; }
+        internal PartCatalog Catalog => catalog;
         public event Action<PlayerPartBuild> Changed;
         internal event Action<PlayerPartBuild, PlayerPartBuild> Revealed;
 
