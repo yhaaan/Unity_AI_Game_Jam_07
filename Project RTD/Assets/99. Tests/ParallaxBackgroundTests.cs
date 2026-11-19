@@ -15,7 +15,9 @@ public class ParallaxBackgroundTests
         foreach (var renderer in renderers)
             Assert.IsNotNull(renderer.sprite, renderer.name);
 
-        var used = renderers.Select(r => AssetDatabase.GetAssetPath(r.sprite)).Distinct();
+        // The foreground and atmosphere layers use their own art; only the lab background folder is checked here.
+        var used = renderers.Select(r => AssetDatabase.GetAssetPath(r.sprite)).Distinct()
+            .Where(p => p.StartsWith(folder + "/"));
         var supplied = Directory.GetFiles(folder, "*.png").Select(p => p.Replace('\\', '/'));
         CollectionAssert.AreEquivalent(supplied, used);
     }

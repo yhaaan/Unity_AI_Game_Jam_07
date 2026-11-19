@@ -13,6 +13,9 @@ namespace ProjectRTD.Gameplay
 
         internal void BindDoors(StageRuntime stage, StageGimmickArt startDoor, StageGimmickArt endDoor)
         {
+            // Dress runs on AfterSceneLoad and again on sceneLoaded for the same scene. A second Arrive
+            // would take the already-shrunk player scale as the "normal" one and leave the player tiny.
+            if (owner) return;
             owner = stage;
             entrance = startDoor;
             exit = endDoor;
@@ -46,7 +49,7 @@ namespace ProjectRTD.Gameplay
             {
                 yield return new WaitForSeconds(.5f);
                 yield return Tween(1.1f, t => overview.Weight = 1f - t);
-                Destroy(overview);
+                overview.Weight = 0;   // stays on as the room's camera bounds
             }
             yield return Tween(.45f, t => {
                 player.position = Vector3.Lerp(inside, spawn, t);

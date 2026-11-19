@@ -48,9 +48,10 @@ Unity  (Unity/PlantsDoor 폴더를 Assets 안에 넣기)
   스테이지가 열릴 때 자동으로 꾸밈 (씬 파일은 안 건드림)
     골(StageGoal)        → 깃대/깃발 숨기고 실험실 문. 플레이어가 2.4 안으로 오면 열리고 멀어지면 닫힘
     "Jump Wall"          → 연구소 기둥 그림 (원래 크기 그대로)
-    섬 바닥("Surface")   → 식물 꾸밈 (플레이어 뒤, 낮은 풀 몇 개는 앞). 시작점/문/벽/게이트/장치 자리는 비움
-    배치는 씬 이름으로 고정 시드라 스테이지마다 항상 같은 모습
+    스테이지는 실내 연구실이라 식물/자연물 꾸밈은 하지 않음
 
-섬 발판 (Resources/Islands)  8종: dirt-pipe, lab-rock, root-fossil, sand-fossil, dirt-roots, sand-arch, slate, red-strata
+섬 발판 (Resources/Islands)  자연 섬 8종. 스테이지에서는 쓰지 않음
+  (스테이지 바닥은 03. Sprites/Background(New)/floor.png 의 floor_83, StageCourseLayout 이 깔고
+   양끝은 보이지 않는 벽 + 카메라 경계(StageOverviewCamera)로 처리)
   islands.json: size(px), top = 윗면(밟는 면) 외곽선이 시작하는 줄(px). 100 PPU, 가운데 피벗
   배치: 스프라이트 위치 y = 바닥 콜라이더 윗면 - (top - size.y/2)/100 * scale

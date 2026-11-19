@@ -8,7 +8,10 @@ namespace ChimeraGroove.Plants
     /// ends keep their size, only the plain middle stretches. Position = bottom centre on the ground.
     /// Something landing on top makes the cap squash and the whole pillar settle (watch, or Land()).
     /// Purely visual: put it on / next to the wall's own collider.
+    /// Also drawn in edit mode (the built pieces are never saved), so the wall shows in the Scene view
+    /// and follows width / height / style edits in the Inspector.
     /// </summary>
+    [ExecuteAlways, SelectionBase]
     public class JumpWall : MonoBehaviour
     {
         public const float PPU = 100f;
@@ -34,16 +37,34 @@ namespace ChimeraGroove.Plants
 
         string Folder => style == Style.LabBarrier ? "Walls/lab-barrier" : "Walls/mossy-cliff";
 
+        bool dirty;
+
         void Start() { Rebuild(); }
+
+        void OnValidate() { dirty = true; }
+
+        void OnDisable()
+        {
+            if (!Application.isPlaying && root != null) { DestroyImmediate(root.gameObject); root = null; }
+        }
+
+        void OnEnable() { if (!Application.isPlaying && root == null) dirty = true; }
 
         public void Rebuild()
         {
-            if (root != null) Destroy(root.gameObject);
+            dirty = false;
+            if (root != null)
+            {
+                if (Application.isPlaying) Destroy(root.gameObject);
+                else DestroyImmediate(root.gameObject);
+            }
             var text = Resources.Load<TextAsset>(Folder + "/rig");
             if (text == null) { Debug.LogError("JumpWall: missing Resources/" + Folder + "/rig.json"); return; }
             rig = JsonUtility.FromJson<Rig>(text.text);
             root = new GameObject("Wall Art").transform;
             root.SetParent(transform, false);
+            var edit = !Application.isPlaying;
+            if (edit) root.gameObject.hideFlags = HideFlags.DontSave;
             float k = width / (rig.width / PPU);                     // png px → world, horizontally and for fixed slices
             float fixedH = 0f; foreach (var s in rig.slices) if (!s.stretch) fixedH += s.h / PPU * k;
             float stretchH = Mathf.Max(.05f, height - fixedH);
@@ -55,6 +76,7 @@ namespace ChimeraGroove.Plants
                 var s = rig.slices[i];
                 float h = s.stretch ? stretchH * (s.h / stretchPx) : s.h / PPU * k;
                 var sr = new GameObject(s.id).AddComponent<SpriteRenderer>();
+                if (edit) sr.gameObject.hideFlags = HideFlags.DontSave;
                 sr.transform.SetParent(root, false);
                 sr.sprite = Resources.Load<Sprite>(Folder + "/" + s.id);
                 sr.sortingLayerName = sortingLayerName;
@@ -66,6 +88,7 @@ namespace ChimeraGroove.Plants
             }
             // the cap gets its own pivot (its bottom) so it can squash onto the body
             var capPivot = new GameObject("cap pivot").transform;
+            if (edit) capPivot.gameObject.hideFlags = HideFlags.DontSave;
             capPivot.SetParent(root, false);
             float capBottom = parts[0].transform.localPosition.y - parts[0].transform.localScale.y * rig.slices[0].h / PPU / 2f;
             capPivot.localPosition = new Vector3(0f, capBottom, 0f);
@@ -80,6 +103,11 @@ namespace ChimeraGroove.Plants
 
         void Update()
         {
+            if (!Application.isPlaying)
+            {
+                if (dirty) Rebuild();
+                return;
+            }
             if (root == null) return;
             time += Time.deltaTime;
             if (watch != null) WatchLanding();

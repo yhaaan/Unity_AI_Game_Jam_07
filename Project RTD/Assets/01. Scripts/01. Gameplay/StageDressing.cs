@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using ChimeraGroove.Plants;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,29 +5,27 @@ using UnityEngine.SceneManagement;
 namespace ProjectRTD.Gameplay
 {
     /// <summary>
-    /// Dresses every stage when it loads (no scene edits, so nothing to merge):
-    ///   * the exit (StageGoal) becomes the lab shutter door that opens as the player walks up
-    ///   * "Jump Wall" blocks get the lab-barrier pillar art at their exact size
-    ///   * island surfaces get plants as decoration (behind the player, a dense grass verge in front that
-    ///     rustles when walked through),
-    ///     kept clear of the spawn, the door, walls, gates and other gameplay pieces; they sway and react to the player
-    /// Placement is seeded by the scene name, so a stage always looks the same.
+    /// Stage art that stands in for the grey placeholders:
+    ///   * the spawn and the exit (StageGoal) get the lab shutter doors (children of Spawn Point / Goal)
+    ///   * "Jump Wall" blocks get the lab-barrier pillar art at their exact size (child of the Jump Wall)
+    ///   * crates, pressure plates, the cave roof and the press door get their art (StageGimmickArt.Install)
+    /// Built once in the editor and saved into the scene (Tools/RTD/Bake Stage Layout), so it shows and can be
+    /// moved in the Scene view. On load in Play it is only bound to the goal; a stage that was never baked
+    /// is still dressed on the fly.
+    /// Stages are indoor lab rooms, so no plants or other natural props are added.
     /// </summary>
     public static class StageDressing
     {
-        const string Marker = "Stage Dressing";
-        const int PlantOrder = 3, FrontOrder = 15, DoorOrder = 3, WallOrder = 2;
-        const float DoorScale = .33f;
+        const string EntranceName = "Entrance Door", ExitName = "Exit Door";
+        const int WallOrder = 2;
+        // Half of the visible door frame, plus a little air, kept inside the room's walls.
+        const float DoorHalfWidth = 1.95f;
 
-        static readonly string[] BackPlants =
+        static readonly string[] Signs =
         {
-            "grass-tall", "bush", "wheat", "clover", "grass-wild", "grass-clover", "grass-dry",
-            "flower-pink", "flower-buck", "bellflower", "calla-tongue", "flower-nose", "flower-tooth", "fern-eyes", "pitcher-ear",
+            "Start Marker", "Exit Marker", "Jump Analysis", "Glide Instructions",
+            "Weight Limit", "Swimming Requirement", "Height Limit", "Power Limit",
         };
-        static readonly float[] BackWeights = { 3, 2, 2, 2, 3, 2, 2, 1.2f, 1, 1, 1, 1, .8f, 1, .8f };
-        static readonly string[] FrontPlants = { "grass-low", "grass-wild", "grass-dry" };
-        static readonly string[] VergeGrass = { "grass-low", "grass-low", "grass-wild", "grass-dry", "grass-clover" };
-        const int VergeOrder = 16;   // over the player's parts (10-12) and the old front tufts (15)
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Install()
@@ -40,101 +37,60 @@ namespace ProjectRTD.Gameplay
 
         static void OnLoaded(Scene scene, LoadSceneMode mode) => Dress(scene);
 
-        public static void Dress(Scene scene)
+        static StageRuntime Find(Scene scene)
         {
-            StageRuntime stage = null;
             foreach (var root in scene.GetRootGameObjects())
             {
-                if (root.name == Marker) return;   // already dressed
-                if (!stage) stage = root.GetComponentInChildren<StageRuntime>(true);
+                var stage = root.GetComponentInChildren<StageRuntime>(true);
+                if (stage) return stage;
             }
-            if (!stage) return;
+            return null;
+        }
 
-            var holder = new GameObject(Marker);
-            SceneManager.MoveGameObjectToScene(holder, scene);
-            // Remove only static world signs. The drone's live target label and canvas HUD are gameplay UI.
+        public static bool IsDressed(StageRuntime stage) =>
+            stage.SpawnPoint && stage.SpawnPoint.Find(EntranceName);
+
+        // Play: bind the saved doors to the goal (dressing first if the scene was never baked).
+        static void Dress(Scene scene)
+        {
+            var stage = Find(scene);
+            if (!stage || !Application.isPlaying) return;
+            if (!IsDressed(stage)) Build(stage);
+            else StageGimmickArt.Upgrade(stage);
+            var entrance = stage.SpawnPoint ? stage.SpawnPoint.Find(EntranceName) : null;
+            foreach (var goal in stage.GetComponentsInChildren<StageGoal>(true))
+            {
+                var group = goal.transform.parent ? goal.transform.parent : goal.transform;
+                var exit = group.Find(ExitName);
+                if (entrance && exit)
+                    goal.BindDoors(stage, entrance.GetComponent<StageGimmickArt>(), exit.GetComponent<StageGimmickArt>());
+            }
+            // the lab-room look (rail floors, walls, ceiling, toxic pools, plants, grass verge) over the baked layout
+            StageLabArt.Apply(stage);
+        }
+
+        /// <summary>Creates the stage art (editor bake, or Play for a stage that was never baked).</summary>
+        public static void Build(StageRuntime stage)
+        {
+            if (IsDressed(stage)) return;
+            // Static world signs only. The drone's live target label and canvas HUD are gameplay UI.
             foreach (var sign in stage.GetComponentsInChildren<TMPro.TextMeshPro>(true))
-                if (sign.name is "Start Marker" or "Exit Marker" or "Jump Analysis" or "Glide Instructions"
-                    or "Weight Limit" or "Swimming Requirement" or "Height Limit" or "Power Limit")
-                    Object.Destroy(sign.gameObject);
+                if (System.Array.IndexOf(Signs, sign.name) >= 0) StageArt.Remove(sign.gameObject);
 
             StageGimmickArt.Install(stage);
             Transform player = stage.Player;
-            var rng = new System.Random(StableHash(scene.name));
-            var blocked = new List<Vector2>();   // x-intervals where nothing decorative may stand
-
-            foreach (var goal in stage.GetComponentsInChildren<StageGoal>(true)) DressGoal(goal, holder.transform, player, blocked);
+            foreach (var goal in stage.GetComponentsInChildren<StageGoal>(true)) DressGoal(goal, player);
             foreach (var col in stage.GetComponentsInChildren<BoxCollider2D>(true))
-                if (col.name == "Jump Wall") DressJumpWall(col, holder.transform, player, blocked);
-
-            // gameplay pieces standing on the ground keep their space
-            foreach (var col in stage.GetComponentsInChildren<Collider2D>(true))
-            {
-                if (IsSurface(col) || col.GetComponent<RespawnZone>() || col.transform == player) continue;
-                var b = col.bounds;
-                if (b.size.x > 40f) continue;
-                blocked.Add(new Vector2(b.min.x - .25f, b.max.x + .25f));
-            }
-            // plants behind the player may stand at the spawn; ones in front of it may not
-            var frontBlocked = new List<Vector2>(blocked);
-            if (stage.SpawnPoint) frontBlocked.Add(new Vector2(stage.SpawnPoint.position.x - .8f, stage.SpawnPoint.position.x + .8f));
-
-            // the verge only avoids gameplay pieces and the spawn, not the decorative plants planted next
-            var vergeBlocked = new List<Vector2>(frontBlocked);
-            foreach (var col in stage.GetComponentsInChildren<BoxCollider2D>(true))
-                if (IsSurface(col)) Plant(col, holder.transform, player, blocked, frontBlocked, rng);
-
-            // a dense verge of grass in front of the character, so walking feels like wading through it
-            var verge = new List<Vector3>();   // x-min, x-max, ground y of each tuft
-            foreach (var col in stage.GetComponentsInChildren<BoxCollider2D>(true))
-                if (IsSurface(col)) Verge(col, holder.transform, player, vergeBlocked, rng, verge);
-            if (player && verge.Count > 0) holder.AddComponent<GrassRustle>().Init(player, verge);
-
-            // overgrowth on the ceiling, walls and floor slabs of the lab room
-            StageDecor.Dress(holder.transform, stage, vergeBlocked, rng);
-        }
-
-        /// <summary>Overlapping low grass along the front lip of a surface, drawn over the character's legs.</summary>
-        static void Verge(BoxCollider2D surface, Transform holder, Transform player, List<Vector2> frontBlocked, System.Random rng, List<Vector3> tufts)
-        {
-            var b = surface.bounds;
-            float x = b.min.x + .2f + (float)rng.NextDouble() * .3f;
-            while (x < b.max.x - .2f)
-            {
-                string name = VergeGrass[rng.Next(VergeGrass.Length)];
-                float scale = .3f + (float)rng.NextDouble() * .1f;
-                float half = Approx(name) * scale * .5f;
-                // gaps of varied length so the verge reads as clumps, not a hedge
-                if (Free(x - half * .5f, x + half * .5f, frontBlocked) && rng.NextDouble() > .12)
-                {
-                    var go = new GameObject("Verge " + name);
-                    go.transform.SetParent(holder, false);
-                    go.transform.position = new Vector3(x, b.max.y - .1f, 0f);
-                    float flip = rng.NextDouble() < .5 ? -1f : 1f;
-                    go.transform.localScale = new Vector3(scale * flip, scale * (.85f + (float)rng.NextDouble() * .3f), 1f);
-                    var p = go.AddComponent<PlantRig>();
-                    p.plantName = name;
-                    p.sortingOrder = VergeOrder;
-                    p.bendRows = 12;
-                    p.reactToBodies = false;
-                    p.watch = player;
-                    p.watchHalfWidth = .25f;
-                    p.phase = (float)rng.NextDouble();
-                    p.wind = .5f + (float)rng.NextDouble() * .4f;
-                    tufts.Add(new Vector3(x - half * .6f, x + half * .6f, b.max.y));
-                }
-                x += half * .55f + (float)rng.NextDouble() * .35f;
-            }
+                if (col.name == "Jump Wall") DressJumpWall(col, player);
         }
 
         static bool IsSurface(Collider2D col) =>
             !col.isTrigger && !col.attachedRigidbody && col.name.Contains("Surface");
 
-        static void DressGoal(StageGoal goal, Transform holder, Transform player, List<Vector2> blocked)
+        static void DressGoal(StageGoal goal, Transform player)
         {
             var col = goal.GetComponent<Collider2D>();
             if (!col) return;
-            var b = col.bounds;
             // the pole + flag placeholder make way for the door
             var group = goal.transform.parent ? goal.transform.parent : goal.transform;
             // Keep the authored marker visible if a custom stage has no door art.
@@ -142,7 +98,15 @@ namespace ProjectRTD.Gameplay
             var stage = goal.GetComponentInParent<StageRuntime>();
             var art = ProjectRTD.Core.SharedMenuArt.Loaded;
             if (!stage || !player || !stage.SpawnPoint || !art || !art.doorSheet || art.doorGrid.x < 1 || art.doorGrid.y < 1) return;
-            foreach (var r in group.GetComponentsInChildren<Renderer>(true)) r.enabled = false;
+            // keep the whole exit door inside the room's right wall
+            var rightWall = stage.transform.Find("Course Boundaries/Right Boundary");
+            if (rightWall && rightWall.TryGetComponent(out BoxCollider2D wall))
+            {
+                float over = col.bounds.center.x + DoorHalfWidth - wall.bounds.min.x;
+                if (over > 0) { group.position += Vector3.left * over; Physics2D.SyncTransforms(); }
+            }
+            var b = col.bounds;
+            foreach (var r in group.GetComponentsInChildren<Renderer>(true)) StageArt.Retire(r);
             Vector3 spawn = stage.SpawnPoint.position;
             Vector3 Ground(float x, float fallback)
             {
@@ -155,122 +119,35 @@ namespace ProjectRTD.Gameplay
                     float distance = Mathf.Abs(fallback - bounds.max.y);
                     if (distance < nearest) { ground = bounds.max.y; nearest = distance; }
                 }
-                // Stand the frame on the rail deck, just into its top lip so no gap shows.
-                return new Vector3(x, ground - .04f, 0f);
+                // Seat the bottom of the frame slightly into the illustrated island lip.
+                return new Vector3(x, ground - .12f, 0f);
             }
-            var exit = StageGimmickArt.Portal(holder, Ground(b.center.x, b.min.y), art, "Exit Door");
-            var entrance = StageGimmickArt.Portal(holder, Ground(spawn.x - .6f, spawn.y - .7f), art, "Entrance Door");
-            // the doors are set into the room's end walls: never overlapping them, never floating away from them
-            var room = stage.transform.Find("Course Boundaries");
-            var leftWall = room ? room.Find("Left Boundary") : null;
-            var rightWall = room ? room.Find("Right Boundary") : null;
-            if (leftWall && rightWall)
-            {
-                float leftFace = leftWall.GetComponent<Collider2D>().bounds.max.x, rightFace = rightWall.GetComponent<Collider2D>().bounds.min.x;
-                FitBetween(entrance, leftFace, rightFace, -1);
-                FitBetween(exit, leftFace, rightFace, 1);
-            }
-            blocked.Add(new Vector2(entrance.transform.position.x - 1.5f, Mathf.Max(spawn.x, entrance.transform.position.x) + .6f));
-            goal.BindDoors(stage, entrance, exit);
-            blocked.Add(new Vector2(exit.transform.position.x - 1.4f, exit.transform.position.x + 1.4f));
+            StageGimmickArt.Portal(group, Ground(b.center.x, b.min.y), art, ExitName);
+            StageGimmickArt.Portal(stage.SpawnPoint, Ground(spawn.x - .6f, spawn.y - .7f), art, EntranceName);
         }
 
-        /// <summary>Slides a door so its frame sits inside the room, and against the end wall it is near.</summary>
-        static void FitBetween(StageGimmickArt door, float leftFace, float rightFace, int nearWall)
-        {
-            var r = door.GetComponent<SpriteRenderer>();
-            if (!r) return;
-            float half = r.bounds.extents.x, x = door.transform.position.x;
-            const float gap = .15f;
-            // a door within two door-widths of its wall is pulled flush against it
-            if (nearWall < 0 && x - half - leftFace < half * 2f) x = leftFace + half + gap;
-            if (nearWall > 0 && rightFace - (x + half) < half * 2f) x = rightFace - half - gap;
-            x = Mathf.Clamp(x, leftFace + half + gap, rightFace - half - gap);
-            door.transform.position = new Vector3(x, door.transform.position.y, door.transform.position.z);
-        }
-
-        static void DressJumpWall(BoxCollider2D col, Transform holder, Transform player, List<Vector2> blocked)
+        static void DressJumpWall(BoxCollider2D col, Transform player)
         {
             var b = col.bounds;
             float top = b.max.y;
-            // hide the grey placeholder (its own sprite + the "Wall Top" strip next to it)
-            foreach (var sr in col.GetComponentsInChildren<SpriteRenderer>(true)) sr.enabled = false;
+            // retire the grey placeholder (its own sprite + the "Wall Top" strip next to it)
+            foreach (var sr in col.GetComponentsInChildren<SpriteRenderer>(true)) StageArt.Retire(sr);
             if (col.transform.parent)
-                foreach (Transform sib in col.transform.parent)
-                    if (sib.name == "Wall Top" && sib.TryGetComponent(out SpriteRenderer strip))
+                foreach (var strip in col.transform.parent.GetComponentsInChildren<SpriteRenderer>(true))
+                    if (strip.name == "Wall Top" && strip.transform.parent == col.transform.parent)
                     {
-                        strip.enabled = false;
                         top = Mathf.Max(top, strip.bounds.max.y);
+                        StageArt.Retire(strip);
                     }
-            // the lab pillar, 9-sliced to the wall's exact height: base and cap keep their shape, the shaft stretches
-            // its rounded base is sunk into the rail deck's lip so it stands on the floor instead of resting on it
-            LabRoomArt.Pillar(holder, "Jump Wall Art", new Vector2(b.center.x, b.min.y - LabRoomArt.SinkIntoDeck), b.size.x,
-                top - b.min.y + LabRoomArt.SinkIntoDeck, WallOrder, Color.white, contactShadow: true);
-            blocked.Add(new Vector2(b.min.x - .3f, b.max.x + .3f));
-        }
-
-        static void Plant(BoxCollider2D surface, Transform holder, Transform player, List<Vector2> blocked, List<Vector2> frontBlocked, System.Random rng)
-        {
-            var b = surface.bounds;
-            float x = b.min.x + .25f + (float)rng.NextDouble() * .4f, end = b.max.x - .25f;
-            int n = 0;
-            while (x < end)
-            {
-                bool front = n % 4 == 3;
-                string name = front ? FrontPlants[rng.Next(FrontPlants.Length)] : Pick(rng);
-                // sized against the ~1.4 unit tall player: grass knee-high, flowers about shoulder-high
-                float scale = front ? .3f + (float)rng.NextDouble() * .06f
-                    : name.StartsWith("grass") || name == "bush" ? .42f + (float)rng.NextDouble() * .1f
-                    : .4f + (float)rng.NextDouble() * .08f;
-                float half = Approx(name) * scale * .5f;
-                if (Free(x - half, x + half, front ? frontBlocked : blocked) && x - half > b.min.x - .1f && x + half < b.max.x + .1f)
-                {
-                    var go = new GameObject("Plant " + name);
-                    go.transform.SetParent(holder, false);
-                    go.transform.position = new Vector3(x, b.max.y - .02f, 0f);
-                    float flip = rng.NextDouble() < .5 ? -1f : 1f;
-                    go.transform.localScale = new Vector3(scale * flip, scale, 1f);
-                    var p = go.AddComponent<PlantRig>();
-                    p.plantName = name;
-                    p.sortingOrder = front ? FrontOrder : PlantOrder;
-                    p.reactToBodies = false;
-                    p.watch = player;
-                    p.phase = (float)rng.NextDouble();
-                    p.wind = .7f + (float)rng.NextDouble() * .5f;
-                    var used = new Vector2(x - half * .45f, x + half * .45f);
-                    blocked.Add(used); frontBlocked.Add(used);
-                    x += half * 1.3f + .1f + (float)rng.NextDouble() * .5f;   // neighbours may overlap a little, like a real verge
-                }
-                else x += .3f;
-                n++;
-            }
-        }
-
-        static string Pick(System.Random rng)
-        {
-            float total = 0f; foreach (var w in BackWeights) total += w;
-            float r = (float)rng.NextDouble() * total;
-            for (int i = 0; i < BackPlants.Length; i++) { r -= BackWeights[i]; if (r <= 0f) return BackPlants[i]; }
-            return BackPlants[0];
-        }
-
-        /// <summary>rough plant width in world units at scale 1 (png px / 100)</summary>
-        static float Approx(string name) => name switch
-        {
-            "flower-nose" or "flower-tooth" or "fern-eyes" => 3.9f,
-            "pitcher-ear" => 3.5f,
-            _ => 3.1f,
-        };
-
-        static bool Free(float a, float b, List<Vector2> blocked)
-        {
-            foreach (var r in blocked) if (a < r.y && b > r.x) return false;
-            return true;
-        }
-
-        static int StableHash(string s)
-        {
-            unchecked { int h = 23; foreach (char c in s) h = h * 31 + c; return h; }
+            var go = new GameObject("Jump Wall Art");
+            go.transform.SetParent(col.transform, false);
+            go.transform.position = new Vector3(b.center.x, b.min.y, 0f);
+            var wall = go.AddComponent<JumpWall>();
+            wall.style = JumpWall.Style.LabBarrier;
+            wall.width = b.size.x;
+            wall.height = top - b.min.y;
+            wall.sortingOrder = WallOrder;
+            wall.watch = player;
         }
     }
 }

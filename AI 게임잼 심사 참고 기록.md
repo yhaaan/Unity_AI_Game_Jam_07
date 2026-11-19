@@ -1,10 +1,14 @@
 # Project RTD AI 게임잼 심사 참고 기록
 
+이 문서의 근거 파일은 저장소 루트의 `심사 근거 자료/` 폴더에 있다.
+
 ## Unity Game Jam 개발 세션
 
 **Unity Game Jam**은 Codex로 제작한 OpenAI Responses API 기반 Unity 개발 에이전트다. 브라우저에서 작업별 대화를 열고, 프로젝트 파일을 검색·수정하거나 Unity CLI로 에디터 상태를 조회하고 컴파일과 테스트를 실행했다. 세션별 기록과 토큰 사용량을 로컬에 저장해 작업을 이어갔다.
 
-2026년 11월 19일 00:45 KST까지 확인한 기록은 **10개 세션의 요청 41건**이다. 복원 로그 40건 중 완료 응답은 38건이며 오류 응답과 응답이 남지 않은 요청이 각각 1건 있었다. 이후 일별 로그에 완료 응답 1건이 추가됐다. 기록에 표시된 모델은 `gpt-6.2-astra`다. 아래 사례의 번호는 복원 로그의 줄 번호다. [앱 구현 이력](https://github.com/yhaaan/Unity_AI_Game_Jam_07/commit/34d51416) · [프로젝트 인덱스·씬 조회·기억 구현](https://github.com/yhaaan/Unity_AI_Game_Jam_07/commit/f5c26a9b)
+2026년 11월 19일 00:45 KST까지 확인한 기록은 **10개 세션의 요청 41건**이다. 복원 로그(`backfill.jsonl`)에는 9개 세션의 요청 40건이 있으며 완료 응답 38건, 오류 응답 1건, 응답이 남지 않은 요청 1건이다. 이후 일별 로그(`2026-11-19.jsonl`)에 다른 세션의 완료 응답 1건이 추가됐다. 기록된 모델은 모두 `gpt-6.2-astra`다. 아래 사례의 번호는 `backfill.jsonl`의 줄 번호다. [앱 구현 이력](https://github.com/yhaaan/Unity_AI_Game_Jam_07/commit/34d51416) · [프로젝트 인덱스·씬 조회·기억 구현](https://github.com/yhaaan/Unity_AI_Game_Jam_07/commit/f5c26a9b)
+
+로그 원본: `심사 근거 자료/개발 세션 로그/`의 `backfill.jsonl`, `2026-11-18.jsonl`, `2026-11-19.jsonl`. 일별 로그에는 00:45 KST 이후의 요청도 그대로 남아 있다.
 
 | 세션에서 다룬 작업 | 기록에서 확인한 작업 결과 |
 | --- | --- |
@@ -12,12 +16,12 @@
 | 효과음 생성과 보정 | 효과음 11종을 처음 만든 뒤 15종을 다시 구성했다. 보행 거리별 발소리와 점프음 보정을 적용하고 공용 사운드 뱅크에 연결했다. |
 | 구버전 키메라 폴더 | 현재 참조를 확인한 뒤 사용하지 않는 `Chimera(old)`를 제거했다. |
 | 병렬 세션 변경 정리 | 작업 중인 다른 세션의 변경을 확인하고 커밋 대상에서 뺐다. |
-| 타이틀 연출 | 로고 여백을 조정하고 최초 진입 때 페이드·확대 효과를 적용했다. |
+| 타이틀 연출 | 로고 여백을 조정하고 최초 진입 때 0.45초 페이드·확대 효과를 적용했다. |
 | UI 글꼴 | Engcomica를 TextMesh Pro용 SDF 에셋으로 변환하고 게임 UI에 연결했다. |
 | 배경 교체와 방향 전환 | 실험실 배경 PNG 13개를 패럴랙스 프리팹에 배치했다. 키메라·과학자·드론의 방향 전환에 카드식 연출을 적용했다. |
 | Git 병합 충돌 진단 | 적 스크립트와 프리팹의 양쪽 변경을 살리는 방식으로 작업 파일을 병합했다. 당시 CLI 컴파일과 테스트는 에디터 응답 시간 초과로 결과를 확인하지 못했다. |
 | 무게별 점프·파워 | 기본 무게를 0으로 바꾸고 조합 무게 −6~6에 따른 점프·파워 표를 적용했다. 모든 조합에 공통 기본 이동속도를 사용했다. |
-| 7개 레벨과 적 렌더링 변경 정리 | 7개 레벨과 키메라 조립 연출, 적 렌더링 수정을 각각 커밋했다. Unity 재컴파일 오류 0건과 `PlayerPartBuildTests` 10건 통과가 후속 로그에 기록됐다. |
+| 7개 레벨과 적 렌더링 변경 정리 | 7개 레벨과 키메라 조립 연출, 적 렌더링 수정을 각각 커밋했다. Unity 컴파일 오류 0건과 `PlayerPartBuildTests` 10건 통과가 일별 로그에 기록됐다. |
 
 ### 파츠 시트와 실제 게임 능력 연결 · 로그 7–8행
 
@@ -27,23 +31,25 @@
 
 > 활강은 Y축 고정이 아니라 서서히 내려가게 해
 
-후속 요청을 반영해 활강 중 서서히 하강하도록 수정했다. 재컴파일과 활강 시간 제한 테스트가 통과했다. [파츠 데이터 동기화 커밋](https://github.com/yhaaan/Unity_AI_Game_Jam_07/commit/acaa982d)
+후속 요청을 반영해 활강 중 초당 1.5유닛씩 하강하도록 수정했다. 재컴파일과 활강 시간 제한 테스트가 통과했다. [파츠 데이터 동기화 커밋](https://github.com/yhaaan/Unity_AI_Game_Jam_07/commit/acaa982d)
 
 ### 효과음 반복 생성과 보정 · 로그 13, 15–19행
+
+13행에서 기존 효과음 11종을 Unity AI CLI로 생성했다. 이때 첫 생성 요청 1건이 공급자 대기열에서 5분을 넘겨 실패했고, 나머지 11종 생성을 마쳤다.
 
 > 너무 효과음이 구리다. 너가 이 게임의 아트 스타일과 , 특색을 잘 고려해서 unity cli 에게 프롬프트 잘 넣어서 적절한 sound를 만들어봐.
 >
 > 그리고 걸을때는 걷는 사운드가 계속 재생돼야하는데 그런 기본적인 게임적 요소들도 다 고려해서 다시 제작하고 재생시켜
 
-초기 11종을 만든 뒤, 레트로 TV 만화의 작은 동물과 실험실 소품을 기준으로 Unity AI CLI 프롬프트를 작성해 15종을 구성했다. 실제 이동 거리만큼 좌우 발소리가 번갈아 나며, 수면 이동 중에는 물 젓는 소리가 난다. 생성 대기 시간 초과 뒤 재시도한 내역도 남았다.
+오래된 TV 만화 속 작은 동물과 실험실 소품을 기준으로 Unity AI CLI 프롬프트를 작성해 15종을 구성했다. 실제 이동 거리만큼 좌우 발소리가 번갈아 나며, 수면 이동 중에는 물 젓는 소리가 난다.
 
-점프음에 후속 소리가 들린다는 피드백을 받고 재생할 때 첫 타격음만 최대 0.12초로 사용하도록 수정했다. 수정 후 관련 테스트 4건이 통과했다. 파일 이동 이후 사용본 15종을 `GameSoundBank.asset`에 연결했다. [효과음 위치와 사운드 뱅크 커밋](https://github.com/yhaaan/Unity_AI_Game_Jam_07/commit/0d591332) · [재생 로직 커밋](https://github.com/yhaaan/Unity_AI_Game_Jam_07/commit/37ed1d09)
+점프음에 후속 소리가 들린다는 피드백을 받고 원본 WAV는 보존한 채 재생할 때 첫 타격음만 최대 0.12초 사용하도록 수정했다. 수정 후 효과음 테스트 4건이 통과했다. 이후 WAV 26개를 `Assets/05. Arts/`로 옮기고 사용본 15종을 `GameSoundBank.asset`에 연결했다. [효과음 이동·사운드 뱅크·보행 재생 로직 커밋](https://github.com/yhaaan/Unity_AI_Game_Jam_07/commit/0d591332) · [플레이어 이동 효과음 호출과 방향 전환 연출 커밋](https://github.com/yhaaan/Unity_AI_Game_Jam_07/commit/37ed1d09)
 
 ### 카드식 방향 전환 · 로그 33–34행
 
 > 좌우 키를 눌러서 flip 될때 바로 flip 되지 말고 scale이 서서히 0이 되면서 마치 카드 뒤집히듯 이 flip 되게 해줄 수 있어 ? 대신 아주 빠르게 돼서 이 연출로 인한 딜레이가 존재하지는 않게 .
 
-이동 방향은 즉시 바뀌고 스프라이트는 약 0.08초 동안 접혔다 펴지도록 구현했다. 후속 요청으로 드론과 과학자에도 공통 `CardTurn` 코드를 적용했다. 두 적의 방향 전환에서 콜라이더 크기가 유지되는 EditMode 테스트 2건이 통과했다. [적 방향 전환 테스트 커밋](https://github.com/yhaaan/Unity_AI_Game_Jam_07/commit/5493b586)
+이동 방향은 즉시 바뀌고 스프라이트는 0.08초 동안 접혔다 펴지도록 구현했다. 후속 요청으로 드론과 과학자에도 공통 `CardTurn` 코드를 적용했다. 두 적의 방향 전환에서 콜라이더 크기가 유지되는 EditMode 테스트 2건이 통과했다. [적 방향 전환 테스트 커밋](https://github.com/yhaaan/Unity_AI_Game_Jam_07/commit/5493b586)
 
 ### 조합 무게에 따른 점프·파워 · 로그 38–39행
 
@@ -57,7 +63,6 @@
 
 | 검증 작업 | 확인된 결과 | 파일 또는 변경 이력 |
 | --- | --- | --- |
-| Windows 프로토타입 빌드 | 2026년 11월 18일 16:52 KST에 성공했다. Unity `6000.3.28f1`, Unity CLI `1.0.1`, 대상 `StandaloneWindows64`. 빌드 시 소스 `265d955e`와 작업 중 변경분을 사용했다. | `Project RTD/Builds/Prototype/ProjectRTD.provenance.json` |
-| 초기 Stage01 Play Mode | 타이틀 화면, 스테이지 시작 지점, 무게 발판 반응을 캡처했다. | `Project RTD/Captures/title.png`, `stage01-start-final.png`, `stage01-weight-feedback.png` |
-| 후속 7개 레벨과 키메라 추첨 | Codex 작업 기록에 7개 레벨부터 엔딩까지의 Play Mode 검증, `Reroll`과 실제 파츠 장착 확인, EditMode 테스트 17건 통과가 남았다. | [7개 스테이지 및 키메라 조립 연출 커밋](https://github.com/yhaaan/Unity_AI_Game_Jam_07/commit/00678a59) |
-| 효과음 생성 메타데이터 | 대표 WAV의 생성 모델 `elevenlabs-sound-effects-v2`와 프롬프트·생성 옵션이 저장됐다. | `Project RTD/Assets/05. Arts/RTD_Foley_Jump.wav.unityai.json`, `RTD_SFX_StepLeft.wav.unityai.json` |
+| Windows 프로토타입 빌드 | 2026년 11월 18일 16:52 KST에 성공했다. Unity `6000.3.28f1`, Unity CLI `1.0.1`, 대상 `StandaloneWindows64`. 빌드 시 소스 `265d955e`와 작업 중 변경분을 사용했다. 빌드에 포함된 씬은 TitleScene, Stage01, EndingScene이다. | `심사 근거 자료/빌드 기록/ProjectRTD.provenance.json` |
+| 초기 Stage01 Play Mode | 타이틀 화면, 스테이지 시작 지점, 무게 발판 반응을 캡처했다. | `심사 근거 자료/Play Mode 캡처/`의 `title.png`, `stage01-start-final.png`, `stage01-weight-feedback.png` |
+| 효과음 생성 메타데이터 | WAV 26개 모두 생성 모델 `elevenlabs-sound-effects-v2`와 프롬프트·생성 옵션이 저장됐다. | `Project RTD/Assets/05. Arts/RTD_Foley_Jump.wav.unityai.json`, `RTD_SFX_StepLeft.wav.unityai.json` |
