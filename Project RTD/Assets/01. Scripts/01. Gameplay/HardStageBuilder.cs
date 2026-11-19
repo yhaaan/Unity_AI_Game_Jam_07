@@ -45,7 +45,7 @@ namespace ProjectRTD.Gameplay
                     (-4f, StageRuntime.Challenge.HighJump), (8.5f, StageRuntime.Challenge.Lightweight), (19f, StageRuntime.Challenge.Scientist),
                     (24.8f, StageRuntime.Challenge.LowCeiling), (99f, StageRuntime.Challenge.Swim),
                 },
-                new (float, float, float, float)[0]);
+                new (float, float, float, float)[0], float.NaN);
 
             Build("Stage10", "STAGE 10",
                 new[] { new Vector2(Left, 7f), new Vector2(13f, 19.9f), new Vector2(19.9f, 27.4f), new Vector2(27.4f, 30.2f), new Vector2(33.6f, Right) },
@@ -63,11 +63,13 @@ namespace ProjectRTD.Gameplay
                     (27.4f, StageRuntime.Challenge.Scientist), (29.6f, StageRuntime.Challenge.HighJump), (99f, StageRuntime.Challenge.Swim),
                 },
                 // drones: patrol left, patrol right, height, beam length
-                new[] { (5f, 15f, 5f, 5.6f), (20.5f, 27f, 4.6f, 4.8f) });
+                new[] { (5f, 15f, 5f, 5.6f), (20.5f, 27f, 4.6f, 4.8f) },
+                // start to the right of the crate, like Stage07: the crate is pushed left onto the button at the wall
+                -4.4f);
         }
 
         static void Build(string sceneName, string title, Vector2[] floors, Gimmick[] gimmicks,
-            (float endX, StageRuntime.Challenge challenge)[] sections, (float left, float right, float y, float beam)[] drones)
+            (float endX, StageRuntime.Challenge challenge)[] sections, (float left, float right, float y, float beam)[] drones, float spawnX)
         {
             var opened = new List<Scene>();
             Scene Open(string name)
@@ -161,6 +163,16 @@ namespace ProjectRTD.Gameplay
                     if (watch == null || watch.propertyType != SerializedPropertyType.ObjectReference || watch.objectReferenceValue) continue;
                     watch.objectReferenceValue = stage.Player;
                     so.ApplyModifiedPropertiesWithoutUndo();
+                }
+
+                // ---- start position (entrance door and player move with the spawn point) ----
+                if (!float.IsNaN(spawnX) && stage.SpawnPoint && Mathf.Abs(spawnX - stage.SpawnPoint.position.x) > .01f)
+                {
+                    var delta = Vector3.right * (spawnX - stage.SpawnPoint.position.x);
+                    stage.SpawnPoint.position += delta;
+                    stage.Player.position += delta;
+                    foreach (var t in scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<Transform>(true)))
+                        if (t.name is "Entrance Door" or "Start Marker") t.position += delta;
                 }
 
                 // ---- drones ----

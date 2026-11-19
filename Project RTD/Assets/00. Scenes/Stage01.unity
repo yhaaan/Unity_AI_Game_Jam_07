@@ -396,7 +396,7 @@ Transform:
   m_GameObject: {fileID: 230613516}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2.9999995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -473,7 +473,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 16.72, y: 1.73}
+  m_Size: {x: 24.8, y: 6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -764,7 +764,7 @@ Transform:
   m_GameObject: {fileID: 383687028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5933332, y: 1.6400002, z: -10}
+  m_LocalPosition: {x: -7.968115, y: 1.6400002, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1233,7 +1233,7 @@ Transform:
   m_GameObject: {fileID: 669989148}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5933332, y: 1.6400002, z: -10}
+  m_LocalPosition: {x: -7.968115, y: 1.6400002, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2829,6 +2829,8 @@ MonoBehaviour:
   spawnPoint: {fileID: 1715542592}
   deathFade: {fileID: 1958250911}
   challenge: 0
+  entryRerollDelay: 1.2
+  rollPlan: 0100000001000000010000000000000002000000000000000000000000000000000000000200000000000000000000000000000000000000020000000000000000000000000000000000000002000000
 --- !u!1 &1534128007
 GameObject:
   m_ObjectHideFlags: 0
