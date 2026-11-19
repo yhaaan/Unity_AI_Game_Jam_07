@@ -99,6 +99,8 @@ namespace ProjectRTD.Gameplay
         public void ReturnToStart(bool falling = false)
         {
             if (!player || !spawnPoint || IsRespawning || InDoorway) return;
+            // 불사조 rises from its ashes once per stage (not out of a pit).
+            if (!falling && PlayerLegendPower.TryRevive()) return;
             StartCoroutine(Respawn(falling));
         }
 
@@ -208,6 +210,8 @@ namespace ProjectRTD.Gameplay
             set => rollCounts[gameObject.scene.name] = value;
         }
         internal bool AwaitingEntryRoll { get; private set; }
+        /// <summary>Rerolls the player spent in this stage this run (the free stage-entry roll is not counted).</summary>
+        internal int ManualRolls => Mathf.Max(0, RollCount - 1);
 
         // 20 rolls: the first 3 never clear, every 5th (5, 10, 15, 20) always can, the rest are random.
         internal static RollOutcome[] DefaultRollPlan()
@@ -266,6 +270,7 @@ namespace ProjectRTD.Gameplay
         {
             enteredStages.Clear();
             rollCounts.Clear();
+            RollsLeft = RollBudget;
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged -= ForgetRunOutsideStages;
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += ForgetRunOutsideStages;
         }
@@ -275,6 +280,7 @@ namespace ProjectRTD.Gameplay
             if (to.name.StartsWith("Stage", StringComparison.Ordinal)) return;
             enteredStages.Clear();
             rollCounts.Clear();
+            RollsLeft = RollBudget;
         }
 
         private void Start()
@@ -282,9 +288,24 @@ namespace ProjectRTD.Gameplay
             if (loadout && player && spawnPoint && enteredStages.Add(gameObject.scene.name)) StartCoroutine(EntryRoll());
         }
 
+        // ---- reroll budget: the whole run shares this many player rerolls (stage-entry rolls and the tutorial are free) ----
+        public const int RollBudget = 80, RefillOnEmpty = 5;
+        public static int RollsLeft { get; private set; } = RollBudget;
+        /// <summary>Raised when the player pressed R with nothing left: sent back to the stage start with a small refill.</summary>
+        public static event Action RanOutOfRolls;
+
         private void Reroll()
         {
-            if (!InDoorway && !IsRespawning && !AwaitingEntryRoll && Time.timeScale > 0f) RollNow();
+            if (InDoorway || IsRespawning || AwaitingEntryRoll || Time.timeScale <= 0f) return;
+            bool free = TutorialGuide.Instance;
+            if (!free && RollsLeft <= 0)
+            {
+                RollsLeft = RefillOnEmpty;
+                RanOutOfRolls?.Invoke();
+                ReturnToStart();
+                return;
+            }
+            if (RollNow() && !free) RollsLeft--;
         }
 
         private void Update()

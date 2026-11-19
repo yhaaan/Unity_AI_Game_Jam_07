@@ -125,12 +125,16 @@ namespace ProjectRTD.Gameplay
         {
             if (!loadout) loadout = FindFirstObjectByType<PlayerPartLoadout>();
             if (loadout) { loadout.Changed += Show; Show(loadout.Current); }
+            StageRuntime.RanOutOfRolls += RollAlarm;
             StartCoroutine(SlideIn());
         }
+
+        void RollAlarm() => rollAlarm = 1f;
 
         void OnDisable()
         {
             if (loadout) loadout.Changed -= Show;
+            StageRuntime.RanOutOfRolls -= RollAlarm;
         }
 
         void Update()
@@ -149,6 +153,34 @@ namespace ProjectRTD.Gameplay
             float span = faceH + 60f;
             band.anchoredPosition = new Vector2(0f, faceH + 30f - Mathf.Repeat(t * 70f, span));
             screenFlicker.alpha = 0.97f + 0.03f * Mathf.PerlinNoise(t * 9f, 0.3f) + (Random.value < 0.006f ? -0.06f : 0f);
+
+            // Rerolls left for the run, on a tag under the phone. Pops on every use; turns red and blinks when low.
+            int rolls = StageRuntime.RollsLeft;
+            if (rolls != shownRolls)
+            {
+                if (shownRolls != int.MinValue) rollPop = 1f;
+                shownRolls = rolls;
+                rollText.text = $"<size=62%>R</size> {rolls}";
+            }
+            rollPop = Mathf.MoveTowards(rollPop, 0f, Time.unscaledDeltaTime * 4f);
+            rollAlarm = Mathf.MoveTowards(rollAlarm, 0f, Time.unscaledDeltaTime * 0.8f);
+            bool low = rolls <= 10;
+            bool blink = low && Mathf.Repeat(t * 3f, 1f) < 0.5f || Mathf.Repeat(rollAlarm * 8f, 1f) > 0.5f;
+            rollPlate.color = blink ? Hex(0xE8401C) : Screen;
+            rollText.color = low && !blink ? Hex(0xFF7A66) : Yellow;
+            rollCounter.localScale = Vector3.one * (1f + 0.3f * rollPop * rollPop + 0.25f * rollAlarm);
+            rollCounter.gameObject.SetActive(!TutorialGuide.Instance); // the tutorial room's rerolls are free
+
+            // Legendary build: a T key under the phone fills up as the hidden power recharges.
+            var charge = PlayerLegendPower.Charge;
+            if (legendKey.gameObject.activeSelf != charge.HasValue) legendKey.gameObject.SetActive(charge.HasValue);
+            if (charge.HasValue)
+            {
+                legendFill.fillAmount = charge.Value;
+                bool ready = charge.Value >= 1f;
+                legendFill.color = ready ? Color.Lerp(Yellow, Color.white, 0.5f + 0.5f * Mathf.Sin(t * 8f)) : WithAlpha(Yellow, 0.55f);
+                legendKey.localScale = Vector3.one * (ready ? 1f + 0.06f * Mathf.Sin(t * 8f) : 1f);
+            }
 
             powerFire.Tick(t, Time.unscaledDeltaTime);
             jumpFire.Tick(t, Time.unscaledDeltaTime);
@@ -219,6 +251,13 @@ namespace ProjectRTD.Gameplay
         // ---------- legendary roll: the phone rings, then dances ----------
 
         float danceTilt, danceX, danceY;
+        RectTransform legendKey;
+        Image legendFill;
+        RectTransform rollCounter;
+        Image rollPlate;
+        TMPro.TMP_Text rollText;
+        int shownRolls = int.MinValue;
+        float rollPop, rollAlarm;
         Coroutine party;
 
         IEnumerator LegendParty()
@@ -539,6 +578,27 @@ namespace ProjectRTD.Gameplay
                         break;
                 }
             }
+
+            // Reroll counter tag hanging under the phone.
+            rollCounter = Fixed("Roll Counter", body, new Vector2(0.5f, 0f), new Vector2(0f, -32f), new Vector2(132f, 48f), Outline, round);
+            rollPlate = Fixed("Plate", rollCounter, new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(124f, 40f), Screen, round).GetComponent<Image>();
+            var rollLabel = Rect("Count", rollCounter, Vector2.zero, Vector2.zero, true);
+            rollText = rollLabel.gameObject.AddComponent<TMPro.TextMeshProUGUI>();
+            rollText.alignment = TMPro.TextAlignmentOptions.Center;
+            rollText.fontSize = 30f;
+            rollText.color = Yellow;
+            rollText.raycastTarget = false;
+
+            // T key badge hanging under the reroll counter (legend builds only).
+            legendKey = Fixed("Legend Key", body, new Vector2(0.5f, 0f), new Vector2(0f, -86f), new Vector2(96f, 44f), Outline, round);
+            Fixed("Back", legendKey, new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(88f, 36f), Screen, round);
+            legendFill = Fixed("Fill", legendKey, new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(88f, 36f), Yellow, round).GetComponent<Image>();
+            legendFill.type = Image.Type.Filled;
+            legendFill.fillMethod = Image.FillMethod.Horizontal;
+            // The letter T from two bars, so it needs no font.
+            Fixed("T Top", legendKey, new Vector2(0.5f, 0.5f), new Vector2(0f, 8f), new Vector2(26f, 7f), Outline, null);
+            Fixed("T Stem", legendKey, new Vector2(0.5f, 0.5f), new Vector2(0f, -3f), new Vector2(7f, 22f), Outline, null);
+            legendKey.gameObject.SetActive(false);
 
             // Extra CRT on the little screen: scanlines that crawl downward, a rolling bright band, and flicker.
             if (!scanlines) scanlines = MakeScanlines();

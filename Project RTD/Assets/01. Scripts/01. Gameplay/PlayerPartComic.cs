@@ -148,7 +148,7 @@ namespace ProjectRTD.Gameplay
             // Behind the panel: a soft warm glow and slowly turning light rays.
             var tint = index == 1 ? new Color(1f, 0.8f, 0.6f, 1f) : new Color(1f, 0.93f, 0.62f, 1f);
             Glow(root, tint, 3.6f, Order - 3);
-            Rays(root, tint, 2.9f, 3, Order - 2); // three fanfare beams per part, spinning
+            Rays(root, tint, 2.3f, 3, Order - 2); // three fanfare beams per part, spinning
             // No panel box: just the part itself over the glow and beams, with its name underneath.
             float bandY = -PanelH * 0.5f + BandH * 0.5f;
             if (part && part.Sprite)
@@ -275,7 +275,7 @@ namespace ProjectRTD.Gameplay
             var cols = new Color[count * 3];
             var tris = new int[count * 6];
             Color root = color, tip = color;
-            root.a = 0.85f; tip.a = 0f;
+            root.a = 0.5f; tip.a = 0f;
             for (int i = 0; i < count; i++)
             {
                 float a = i / (float)count * Mathf.PI * 2f;

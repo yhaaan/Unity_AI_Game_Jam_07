@@ -222,7 +222,9 @@ namespace ProjectRTD.Gameplay
                 nameText.text = c.known ? $"<color=#FFC814>{c.legend}</color>  <size=60%>전설 조합</size>" : "<color=#8A8F9C>???</color>  <size=60%>전설 조합</size>";
                 statText.text = "리롤 1,000번에 한 번     점프 <color=" + Good + ">3</color>     힘 <color=" + Good + ">3</color>";
                 bodyText.text = c.known
-                    ? "능력: <color=#FFC814>날기 · 수영 · 과학자 통과</color>\n낮은 천장도 약한 다리도 전부 통과하는 만능 조합!"
+                    ? "능력: <color=#FFC814>날기 · 수영 · 과학자 통과</color>\n<color=#FFC814>T</color> " + (c.legend == "불사조"
+                        ? "화염 폭발로 주변 적을 태워요. 스테이지마다 한 번 부활!"
+                        : "브레스를 뿜어 앞의 적을 쓸어버려요.")
                     : "<color=#8A8F9C>아주 낮은 확률로 나타나는 전설의 조합… 모든 능력을 가졌다고 해요.</color>";
                 return;
             }

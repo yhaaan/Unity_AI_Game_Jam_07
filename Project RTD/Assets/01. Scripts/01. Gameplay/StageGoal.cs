@@ -66,6 +66,9 @@ namespace ProjectRTD.Gameplay
             var start = player.position;
             var inside = exit.transform.position - Vector3.up * .26f;
             owner.BeginDoorway();
+            // Star rating for the stage, shown before walking out.
+            float stars = StageStars.Show(owner);
+            if (stars > 0f) yield return new WaitForSeconds(stars);
             yield return Tween(.45f, exit.ShowProgress);
             yield return Tween(.65f, t => {
                 player.position = Vector3.Lerp(start, inside, t);

@@ -65,12 +65,10 @@ namespace ProjectRTD.Gameplay
             var group = gameObject.AddComponent<CanvasGroup>();
             group.alpha = 0f;
 
-            // Flat dark band with thin pale lines top and bottom, like the game's tooltips.
-            Stretch(Box("Band", root, new Color(0.07f, 0.08f, 0.12f, 0.9f)), 0f, 0f);
-            var top = Box("Line", root, new Color(0.36f, 0.39f, 0.47f, 1f));
-            top.anchorMin = new Vector2(0f, 1f); top.anchorMax = new Vector2(1f, 1f); top.sizeDelta = new Vector2(0f, 4f); top.anchoredPosition = new Vector2(0f, -8f);
-            var bottom = Box("Line", root, new Color(0.36f, 0.39f, 0.47f, 1f));
-            bottom.anchorMin = new Vector2(0f, 0f); bottom.anchorMax = new Vector2(1f, 0f); bottom.sizeDelta = new Vector2(0f, 4f); bottom.anchoredPosition = new Vector2(0f, 8f);
+            // No box: just a soft dark glow behind the words so they read on any background.
+            var halo = Box("Glow", root, new Color(0.02f, 0.04f, 0.12f, 0.85f));
+            halo.sizeDelta = new Vector2(1700f, 420f);
+            halo.GetComponent<Image>().sprite = SoftSprite();
 
             var label = Label(root, "<color=#FFC814>MISSION</color>", new Vector2(0f, 46f), 30f);
             var mission = Label(root, "연구소에서 <color=#FFC814>무사히 탈출</color>하세요!", new Vector2(0f, -14f), 62f);
@@ -102,6 +100,27 @@ namespace ProjectRTD.Gameplay
                 yield return null;
             }
             Destroy(gameObject);
+        }
+
+        static Sprite softSprite;
+
+        internal static Sprite SoftSprite()
+        {
+            if (softSprite) return softSprite;
+            const int n = 96;
+            var tex = new Texture2D(n, n, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Clamp, hideFlags = HideFlags.DontUnloadUnusedAsset };
+            var px = new Color32[n * n];
+            for (int y = 0; y < n; y++)
+            for (int x = 0; x < n; x++)
+            {
+                float d = Vector2.Distance(new Vector2(x + 0.5f, y + 0.5f), new Vector2(n * 0.5f, n * 0.5f)) / (n * 0.5f);
+                px[y * n + x] = new Color32(255, 255, 255, (byte)(255 * Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(1f - d))));
+            }
+            tex.SetPixels32(px);
+            tex.Apply();
+            softSprite = Sprite.Create(tex, new Rect(0, 0, n, n), new Vector2(0.5f, 0.5f), 100f);
+            softSprite.hideFlags = HideFlags.DontUnloadUnusedAsset;
+            return softSprite;
         }
 
         static RectTransform Box(string name, Transform parent, Color color)
