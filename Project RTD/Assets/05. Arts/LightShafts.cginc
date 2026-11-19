@@ -28,16 +28,27 @@ float ShaftOctave (float x0, float spacing, float seed, float t)
     return beam * lerp(0.45, 1.0, h) * breathe;
 }
 
+// beam strength at a point, ignoring how far it is below the ceiling; xShift slides the sample sideways
+float ShaftBeams (float2 world, float t, float xShift)
+{
+    float drop = max(0, _ShaftView.y - world.y);
+    // trace the pixel back up the slant to where its beam leaves the ceiling
+    float x0 = world.x + xShift - drop * _ShaftSlant - _ShaftView.x * _ShaftParallax;
+    x0 += sin(t * 0.21) * 0.15;                               // the source sways a touch
+    return saturate(ShaftOctave(x0, _ShaftSpacing, 0, t) + 0.6 * ShaftOctave(x0, _ShaftSpacing * 0.47, 11.3, t * 1.3));
+}
+
+// 1 right under the ceiling, 0 once the light has travelled its reach
+float ShaftFall (float2 world)
+{
+    float drop = max(0, _ShaftView.y - world.y);
+    return saturate(1 - drop / max(0.01, _ShaftView.z * _ShaftReach));
+}
+
 float ShaftMask (float2 world, float t)
 {
-    float top = _ShaftView.y;
-    float drop = max(0, top - world.y);
-    // trace the pixel back up the slant to where its beam leaves the ceiling
-    float x0 = world.x - drop * _ShaftSlant - _ShaftView.x * _ShaftParallax;
-    x0 += sin(t * 0.21) * 0.15;                               // the source sways a touch
-    float beams = ShaftOctave(x0, _ShaftSpacing, 0, t) + 0.6 * ShaftOctave(x0, _ShaftSpacing * 0.47, 11.3, t * 1.3);
-    float fall = saturate(1 - drop / max(0.01, _ShaftView.z * _ShaftReach));
-    return saturate(beams) * fall * fall;
+    float fall = ShaftFall(world);
+    return ShaftBeams(world, t, 0) * fall * fall;
 }
 
 #endif
